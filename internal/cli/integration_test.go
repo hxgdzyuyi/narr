@@ -31,6 +31,13 @@ type buildReport struct {
 	} `json:"build"`
 }
 
+type buildAllReport struct {
+	OK     bool `json:"ok"`
+	Builds []struct {
+		Chapter goldenChapter `json:"chapter"`
+	} `json:"builds"`
+}
+
 type buildGolden struct {
 	OK        bool            `json:"ok"`
 	Chapter   goldenChapter   `json:"chapter"`
@@ -124,6 +131,46 @@ func TestExamplesBuildDefaultWritesNarrLikeFile(t *testing.T) {
 	}
 	if !strings.Contains(stdout, "wrote "+outPath) {
 		t.Fatalf("stdout did not mention written file\nstdout:\n%s", stdout)
+	}
+}
+
+func TestExamplesBuildAllWritesNarrLikeFiles(t *testing.T) {
+	outDir := t.TempDir()
+	code, stdout, stderr := runCLI(t, "build", "--all", "--project", examplesRoot(t), "--out-dir", outDir)
+	if code != 0 {
+		t.Fatalf("build --all exited %d\nstdout:\n%s\nstderr:\n%s", code, stdout, stderr)
+	}
+	for _, chapter := range []string{"vol01.ch01", "vol01.ch02"} {
+		outPath := filepath.Join(outDir, chapter+".build.narr")
+		data, err := os.ReadFile(outPath)
+		if err != nil {
+			t.Fatalf("failed to read LLM output %s: %v\nstdout:\n%s", outPath, err, stdout)
+		}
+		if !strings.Contains(string(data), "build "+chapter+" {") {
+			t.Fatalf("LLM output did not contain build header for %s:\n%s", chapter, data)
+		}
+		if !strings.Contains(stdout, "wrote "+outPath) {
+			t.Fatalf("stdout did not mention written file %s\nstdout:\n%s", outPath, stdout)
+		}
+	}
+}
+
+func TestExamplesBuildAllJSON(t *testing.T) {
+	code, stdout, stderr := runCLI(t, "build", "--all", "--project", examplesRoot(t), "--json")
+	if code != 0 {
+		t.Fatalf("build --all --json exited %d\nstdout:\n%s\nstderr:\n%s", code, stdout, stderr)
+	}
+	var report buildAllReport
+	if err := json.Unmarshal([]byte(stdout), &report); err != nil {
+		t.Fatalf("failed to decode build --all JSON: %v\n%s", err, stdout)
+	}
+	if !report.OK || len(report.Builds) != 2 {
+		t.Fatalf("unexpected build --all JSON: %+v", report)
+	}
+	if report.Builds[0].Chapter.CanonicalCode != "vol01.ch01" || report.Builds[1].Chapter.CanonicalCode != "vol01.ch02" {
+		t.Fatalf("build --all order = [%s %s], want [vol01.ch01 vol01.ch02]",
+			report.Builds[0].Chapter.CanonicalCode,
+			report.Builds[1].Chapter.CanonicalCode)
 	}
 }
 

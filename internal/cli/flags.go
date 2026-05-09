@@ -69,7 +69,7 @@ func parseOptions(command string, args []string) (ParsedOptions, error) {
 			}
 			parsed.Global.NoColor = true
 		case "--all":
-			if command != "test" && command != "install-skill" {
+			if command != "build" && command != "test" && command != "install-skill" {
 				return parsed, fmt.Errorf("%s is not valid for %s", name, command)
 			}
 			if hasValue {

@@ -242,12 +242,13 @@ fact 沈夜是王血 = "沈夜拥有旧王血脉"
 
 ```text
 narrc build vol01.ch01
+narrc build --all
 narrc build vol01.ch01 --llm
 ```
 
 包含：chapter 元信息、summary（novel/volume/chapter）、context（相关实体）、state（章首/章末/预期变化）、structure（active/served threads/promises/arcs）、beats（顺序/前置/效果/render_hint）、prose（hint/length）。
 
-默认生成 Narr-like 写作上下文文件，文件头包含说明文档。它仍是编译器派生产物，不是 `.narr` 源声明。`--json` 输出 JSON 到 stdout。
+默认生成 Narr-like 写作上下文文件，文件头包含说明文档。它仍是编译器派生产物，不是 `.narr` 源声明。`--all` 按 chapter 顺序为项目内全部章节生成 build artifact。`--json` 输出 JSON 到 stdout。
 
 ## 19. 派生视图（确定性计算，不可被 .narr import）
 

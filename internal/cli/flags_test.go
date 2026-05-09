@@ -49,3 +49,16 @@ func TestParseOptionsAcceptsBuildLLM(t *testing.T) {
 		t.Fatalf("Positionals = %#v, want [vol01.ch01]", parsed.Positionals)
 	}
 }
+
+func TestParseOptionsAcceptsBuildAll(t *testing.T) {
+	parsed, err := parseOptions("build", []string{"--all"})
+	if err != nil {
+		t.Fatalf("parseOptions returned error: %v", err)
+	}
+	if !parsed.Command.All {
+		t.Fatalf("All = false, want true")
+	}
+	if len(parsed.Positionals) != 0 {
+		t.Fatalf("Positionals = %#v, want []", parsed.Positionals)
+	}
+}

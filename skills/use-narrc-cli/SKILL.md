@@ -44,6 +44,7 @@ narrc init-project "My Novel" --dir my-novel
 narrc lint --project <project-dir>
 narrc test --project <project-dir> --all
 narrc build --project <project-dir> <chapter_code> --dry-run
+narrc build --project <project-dir> --all --dry-run
 ```
 
 安装内置 skill：

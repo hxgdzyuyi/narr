@@ -827,6 +827,7 @@ fact 沈夜是王血 = "沈夜拥有旧王血脉"
 
 ```text
 narrc build vol01.ch01
+narrc build --all
 narrc build vol01.ch01 --llm
 ```
 
@@ -887,6 +888,7 @@ build 必须能生成单章自包含上下文。
 build 中所有 ref 必须可解析。
 .test.narr 可以查询 build 字段，但不负责验证 build 机制本身。
 默认生成 Narr-like 写作上下文文件，文件头必须包含面向 LLM 的说明文档；该文件仍是 build artifact，不是 `.narr` 源声明。
+`--all` 按 chapter 顺序为项目内全部章节生成 build artifact。
 `--json` 输出 JSON 到 stdout，不写文件。
 ```
 

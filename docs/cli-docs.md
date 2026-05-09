@@ -4,7 +4,7 @@
 Usage: narrc [global options] <command> [options] <args>
 
 Commands:
-  build <chapter_code>          构建指定单章的 build 文件
+  build <chapter_code>|--all    构建指定单章或全部章节的 build 文件
   test [files|--all]            执行 .test.narr 文件中的测试
   lint [files]                  检查 .narr 文件语法与规范
   info <chapter_code>           显示单章 build / 状态信息
@@ -15,13 +15,14 @@ Commands:
 
 ---
 
-### 1️⃣ `build` — 构建单章
+### 1️⃣ `build` — 构建章节
 
 ```bash
 narrc build vol01.ch01
+narrc build --all
 ```
 
-* **作用**：只构建指定章节的 `build` 输出，默认生成 Narr-like 的 LLM 写作上下文。
+* **作用**：构建指定章节或项目内全部章节的 `build` 输出，默认生成 Narr-like 的 LLM 写作上下文。
 * **输出示例**：
 
 ```
@@ -36,10 +37,11 @@ state_at_end: ...
 
 * **可选参数**：
 
+  * `--all`：按项目章节顺序构建全部 chapter
   * `--out-dir DIR`：指定输出目录
   * `--dry-run`：只检查语法，不生成 build
   * `--llm`：显式使用默认的 Narr-like LLM 写作上下文输出，文件头包含说明文档
-  * `--json`：输出 JSON 到 stdout，不写文件
+  * `--json`：输出 JSON 到 stdout，不写文件；与 `--all` 搭配时输出 `builds`
 
 ---
 
@@ -183,6 +185,9 @@ narrc init-project "My Novel" --dir my-novel
 ```bash
 # 构建单章 LLM 写作上下文
 narrc build vol01.ch01 --out-dir build
+
+# 构建全部章节 LLM 写作上下文
+narrc build --all --out-dir build
 
 # 显式使用默认 LLM 输出模式
 narrc build vol01.ch01 --llm --out-dir build

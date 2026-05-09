@@ -174,10 +174,11 @@ beat 火印异常 @ vol01.ch01 {
 }
 ```
 
-生成单章上下文：
+生成章节上下文：
 
 ```bash
 go run ./cmd/narrc build vol01.ch01 --project examples/红楼梦 --out-dir build
+go run ./cmd/narrc build --all --project examples/红楼梦 --out-dir build
 ```
 
 默认输出类似：
@@ -244,7 +245,7 @@ go build -o narrc ./cmd/narrc
 Usage: narrc [global options] <command> [options] <args>
 
 Commands:
-  build <chapter_code>  build a chapter JSON file
+  build <chapter_code>|--all  build chapter artifact files
   test [files|--all]    run .test.narr declarations
   lint [files]          load and check a Narr project
   info <chapter_code>   show chapter build/state summary
@@ -267,6 +268,7 @@ Commands:
 
 ```text
 --out-dir DIR   write build artifacts under DIR
+--all           build every chapter in project order
 --dry-run       check build target without writing
 --llm           explicitly use the default Narr-like LLM output
 ```
@@ -309,9 +311,11 @@ go run ./cmd/narrc test --all --project examples/红楼梦
 
 # 生成默认 LLM 写作上下文
 go run ./cmd/narrc build vol01.ch01 --project examples/红楼梦 --out-dir build
+go run ./cmd/narrc build --all --project examples/红楼梦 --out-dir build
 
 # 只检查构建目标，不写文件
 go run ./cmd/narrc build vol01.ch01 --project examples/红楼梦 --dry-run
+go run ./cmd/narrc build --all --project examples/红楼梦 --dry-run
 
 # 输出 JSON 到 stdout
 go run ./cmd/narrc --json build vol01.ch01 --project examples/红楼梦

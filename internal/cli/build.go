@@ -21,8 +21,12 @@ func (a *App) runBuild(args []string) int {
 		fmt.Fprintln(a.err, "error:", err)
 		return 2
 	}
-	if len(parsed.Positionals) != 1 {
-		fmt.Fprintln(a.err, "error: build requires exactly one chapter_code")
+	if parsed.Command.All && len(parsed.Positionals) > 0 {
+		fmt.Fprintln(a.err, "error: build accepts either --all or one chapter_code, not both")
+		return 2
+	}
+	if !parsed.Command.All && len(parsed.Positionals) != 1 {
+		fmt.Fprintln(a.err, "error: build requires one chapter_code or --all")
 		return 2
 	}
 	if parsed.Command.LLM && parsed.Global.JSON {
@@ -34,26 +38,47 @@ func (a *App) runBuild(args []string) int {
 	if source.HasErrors(diagnostics) {
 		return a.finishPending(parsed.Global, diagnostics)
 	}
-	chapter, buildDiagnostics := generator.BuildChapter(parsed.Positionals[0], env, source.Span{})
-	diagnostics = append(diagnostics, buildDiagnostics...)
+
+	targets := parsed.Positionals
+	if parsed.Command.All {
+		targets = append([]string(nil), generator.Timeline.OrderedCodes...)
+	}
+	builds := make([]*chapterbuild.ChapterBuild, 0, len(targets))
+	for _, target := range targets {
+		chapter, buildDiagnostics := generator.BuildChapter(target, env, source.Span{})
+		diagnostics = append(diagnostics, buildDiagnostics...)
+		if chapter != nil {
+			builds = append(builds, chapter)
+		}
+	}
 	if source.HasErrors(diagnostics) {
 		return a.finishPending(parsed.Global, diagnostics)
 	}
 
 	llmOutput := !parsed.Global.JSON
 	if parsed.Global.JSON {
+		if parsed.Command.All {
+			_ = outformat.JSON(a.out, map[string]any{
+				"ok":      true,
+				"dry_run": parsed.Command.DryRun,
+				"builds":  builds,
+			})
+			return 0
+		}
 		_ = outformat.JSON(a.out, map[string]any{
 			"ok":      true,
 			"dry_run": parsed.Command.DryRun,
-			"build":   chapter,
+			"build":   builds[0],
 		})
 		return 0
 	}
 	if parsed.Command.DryRun {
-		if llmOutput {
-			fmt.Fprintf(a.out, "DRY RUN build %s llm ok\n", chapter.Chapter.CanonicalCode)
-		} else {
-			fmt.Fprintf(a.out, "DRY RUN build %s ok\n", chapter.Chapter.CanonicalCode)
+		for _, chapter := range builds {
+			if llmOutput {
+				fmt.Fprintf(a.out, "DRY RUN build %s llm ok\n", chapter.Chapter.CanonicalCode)
+			} else {
+				fmt.Fprintf(a.out, "DRY RUN build %s ok\n", chapter.Chapter.CanonicalCode)
+			}
 		}
 		return 0
 	}
@@ -62,21 +87,23 @@ func (a *App) runBuild(args []string) int {
 	if !filepath.IsAbs(outDir) {
 		outDir = filepath.Join(loaded.Root, outDir)
 	}
-	outPath := chapterbuild.OutputPath(outDir, chapter.Chapter.CanonicalCode)
-	write := chapterbuild.WriteJSON
-	if llmOutput {
-		outPath = chapterbuild.LLMOutputPath(outDir, chapter.Chapter.CanonicalCode)
-		write = chapterbuild.WriteLLM
+	for _, chapter := range builds {
+		outPath := chapterbuild.OutputPath(outDir, chapter.Chapter.CanonicalCode)
+		write := chapterbuild.WriteJSON
+		if llmOutput {
+			outPath = chapterbuild.LLMOutputPath(outDir, chapter.Chapter.CanonicalCode)
+			write = chapterbuild.WriteLLM
+		}
+		if err := write(outPath, chapter); err != nil {
+			diagnostics = append(diagnostics, source.Error("E0806", outPath, 0, 0, err.Error()))
+			return a.finishPending(parsed.Global, diagnostics)
+		}
+		fmt.Fprintf(a.out, "wrote %s\n", outPath)
+		fmt.Fprintf(a.out, "chapter: %s\n", chapter.Chapter.CanonicalCode)
+		fmt.Fprintf(a.out, "beats: %d\n", len(chapter.Beats.OrderedBeats))
+		fmt.Fprintf(a.out, "active_threads: %d\n", len(chapter.Structure.ActiveThreads))
+		fmt.Fprintf(a.out, "active_promises: %d\n", len(chapter.Structure.ActivePromises))
 	}
-	if err := write(outPath, chapter); err != nil {
-		diagnostics = append(diagnostics, source.Error("E0806", outPath, 0, 0, err.Error()))
-		return a.finishPending(parsed.Global, diagnostics)
-	}
-	fmt.Fprintf(a.out, "wrote %s\n", outPath)
-	fmt.Fprintf(a.out, "chapter: %s\n", chapter.Chapter.CanonicalCode)
-	fmt.Fprintf(a.out, "beats: %d\n", len(chapter.Beats.OrderedBeats))
-	fmt.Fprintf(a.out, "active_threads: %d\n", len(chapter.Structure.ActiveThreads))
-	fmt.Fprintf(a.out, "active_promises: %d\n", len(chapter.Structure.ActivePromises))
 	return 0
 }
 

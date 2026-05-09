@@ -13,7 +13,7 @@ go run ./cmd/narrc --version
 Usage: narrc [global options] <command> [options] <args>
 
 Commands:
-  build <chapter_code>  build a chapter JSON file
+  build <chapter_code>|--all  build chapter artifact files
   test [files|--all]    run .test.narr declarations
   lint [files]          load and check a Narr project
   info <chapter_code>   show chapter build/state summary
@@ -29,6 +29,7 @@ Global options:
   --version             print version
 
 Build options:
+  --all                 build every chapter in project order
   --out-dir DIR         write build artifacts under DIR
   --dry-run             check build target without writing
   --llm                 explicitly use the default Narr-like LLM output
@@ -52,6 +53,7 @@ Init-project options:
 go run ./cmd/narrc lint --project examples/红楼梦
 go run ./cmd/narrc test --project examples/红楼梦 --all
 go run ./cmd/narrc build --project examples/红楼梦 vol01.ch01 --dry-run
+go run ./cmd/narrc build --project examples/红楼梦 --all --dry-run
 go run ./cmd/narrc info --project examples/红楼梦 vol01.ch01
 go run ./cmd/narrc query --project examples/红楼梦 'active_threads(s.vol01.ch01)'
 ```
@@ -60,6 +62,7 @@ go run ./cmd/narrc query --project examples/红楼梦 'active_threads(s.vol01.ch
 
 ```bash
 go run ./cmd/narrc build --project examples/红楼梦 vol01.ch01 --out-dir build
+go run ./cmd/narrc build --project examples/红楼梦 --all --out-dir build
 go run ./cmd/narrc build --project examples/红楼梦 vol01.ch01 --llm --out-dir build
 go run ./cmd/narrc build --project examples/红楼梦 vol01.ch01 --json
 ```
