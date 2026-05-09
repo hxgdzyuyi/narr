@@ -1,0 +1,125 @@
+namespace 红楼梦.promises
+
+import 红楼梦.structure as structure
+
+promise 通灵宝玉来历伏笔 {
+  setup_at: structure.vol01.ch01
+  start_pattern: structure.第一回开端模式
+  setup_strength: strong
+  payoff_by: structure.空空道人抄录石记.after
+  payoff_kind: transformed_question
+  question: "石头为何能成为一部书的叙事起点？"
+  reader_visibility: visible
+}
+
+promise 英莲失踪伏笔 {
+  setup_at: structure.僧道警示英莲.after
+  start_pattern: structure.英莲劫数启动模式
+  setup_strength: strong
+  payoff_by: structure.英莲元宵失踪.after
+  payoff_kind: answered
+  question: "僧道所说元宵后的灾厄将如何落到英莲身上？"
+  reader_visibility: visible
+}
+
+promise 娇杏回顾伏笔 {
+  setup_at: structure.雨村窥见娇杏.after
+  start_pattern: structure.雨村功名启动模式
+  setup_strength: medium
+  payoff_by: structure.雨村求娶娇杏.after
+  payoff_kind: answered
+  question: "娇杏偶然回顾雨村的一眼，会怎样变成命运机缘？"
+  reader_visibility: implied
+}
+
+promise 还泪因果伏笔 {
+  setup_at: structure.甄士隐梦见太虚.after
+  start_pattern: structure.士隐宿慧模式
+  setup_strength: strong
+  tags: { deferred }
+  question: "绛珠还泪与神瑛入世将如何进入人间故事？"
+  reader_visibility: visible
+}
+
+promise 好了歌悟道伏笔 {
+  setup_at: structure.甄士隐梦见太虚.after
+  start_pattern: structure.士隐宿慧模式
+  setup_strength: medium
+  payoff_by: structure.士隐听好了歌.after
+  payoff_kind: symbolic_payoff
+  question: "士隐梦中所闻玄机是否会转化为现实中的出世选择？"
+  reader_visibility: implied
+}
+
+promise 公差传唤悬念 {
+  setup_at: structure.雨村到任传唤.after
+  start_pattern: structure.第一回收束模式
+  setup_strength: medium
+  payoff_by: structure.公差传唤封肃.after
+  payoff_kind: answered
+  question: "新任太爷为何突然传唤甄家旧人？"
+  reader_visibility: visible
+}
+
+promise 雨村再起伏笔 {
+  setup_at: structure.雨村升官又被革.after
+  start_pattern: structure.雨村革职模式
+  setup_strength: medium
+  tags: { deferred }
+  question: "革职游历后的雨村将如何再次借势入局？"
+  reader_visibility: implied
+}
+
+promise 黛玉身世伏笔 {
+  setup_at: structure.雨村入林府设馆.after
+  start_pattern: structure.黛玉入场模式
+  setup_strength: strong
+  tags: { deferred }
+  question: "丧母病弱的黛玉与荣国府会如何发生连接？"
+  reader_visibility: visible
+}
+
+promise 荣国府衰象伏笔 {
+  setup_at: structure.冷子兴谈宁荣二府.after
+  start_pattern: structure.荣府入场模式
+  setup_strength: strong
+  tags: { deferred }
+  question: "外盛内衰的宁荣二府如何在后文具体败露？"
+  reader_visibility: visible
+}
+
+promise 宝玉衔玉伏笔 {
+  setup_at: structure.子兴叙宝玉衔玉.after
+  start_pattern: structure.宝玉异兆模式
+  setup_strength: strong
+  tags: { deferred }
+  question: "宝玉口中所衔之玉与第一回通灵宝玉的来历如何合流？"
+  reader_visibility: visible
+}
+
+promise 宝玉镜像伏笔 {
+  setup_at: structure.子兴叙宝玉衔玉.after
+  start_pattern: structure.宝玉异兆模式
+  setup_strength: medium
+  tags: { deferred }
+  question: "甄宝玉与贾宝玉的相似会如何形成镜像关系？"
+  reader_visibility: implied
+}
+
+promise 黛玉入贾府伏笔 {
+  setup_at: structure.子兴详述贾府女眷.after
+  start_pattern: structure.贾府女眷模式
+  setup_strength: strong
+  tags: { deferred }
+  question: "黛玉外祖家身份被点明后，她是否会进入荣国府？"
+  reader_visibility: visible
+}
+
+promise 下回报喜伏笔 {
+  setup_at: structure.酒肆报喜悬念.after
+  start_pattern: structure.下回报喜模式
+  setup_strength: strong
+  tags: { deferred }
+  question: "是谁给雨村报喜，喜信将怎样改变他的处境？"
+  reader_visibility: visible
+}

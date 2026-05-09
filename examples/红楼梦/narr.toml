@@ -1,0 +1,5 @@
+[project]
+name = "红楼梦"
+version = "0.3.5"
+language = "zh-CN"
+main = "main.narr"

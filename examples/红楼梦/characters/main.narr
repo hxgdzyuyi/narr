@@ -1,0 +1,234 @@
+namespace 红楼梦.characters
+
+import 红楼梦.world as world
+
+class 叙事人物 {
+  field 位置: Place = world.未明
+  field 身份: Symbol = 未明
+  field 状态: Symbol = 在场
+  field 心境: Symbol = 平常
+  field arc_state: Symbol = 未启动
+  field 知道: Set<Fact> = {}
+  field 相信: Set<Claim> = {}
+  field 关系: Set<Claim> = {}
+}
+
+character 叙述者 : 叙事人物 {
+  位置 = world.悼红轩
+  身份 = 章回叙述者
+  状态 = 承接叙述
+}
+
+character 女娲 : 叙事人物 {
+  位置 = world.大荒山
+  身份 = 上古神人
+  状态 = 已炼石
+}
+
+character 茫茫大士 : 叙事人物 {
+  位置 = world.青埂峰
+  身份 = 僧人
+  状态 = 游戏红尘
+}
+
+character 渺渺真人 : 叙事人物 {
+  位置 = world.青埂峰
+  身份 = 道人
+  状态 = 游戏红尘
+}
+
+character 空空道人 : 叙事人物 {
+  位置 = world.青埂峰
+  身份 = 求仙道人
+  状态 = 访道
+}
+
+character 曹雪芹 : 叙事人物 {
+  位置 = world.悼红轩
+  身份 = 披阅增删者
+  状态 = 编订
+}
+
+character 通灵宝玉 : 叙事人物 {
+  位置 = world.青埂峰
+  身份 = 补天剩石
+  状态 = 原石
+}
+
+character 甄士隐 : 叙事人物 {
+  位置 = world.甄府
+  身份 = 姑苏乡宦
+  状态 = 安居
+  心境 = 恬淡
+  arc_state = 安稳
+}
+
+character 封氏 : 叙事人物 {
+  位置 = world.甄府
+  身份 = 士隐之妻
+  状态 = 安居
+}
+
+character 英莲 : 叙事人物 {
+  位置 = world.甄府
+  身份 = 士隐之女
+  状态 = 娇养
+  arc_state = 娇养
+}
+
+character 贾雨村 : 叙事人物 {
+  位置 = world.葫芦庙
+  身份 = 穷儒
+  状态 = 困居葫芦庙
+  心境 = 待时
+  arc_state = 困顿
+}
+
+character 娇杏 : 叙事人物 {
+  位置 = world.甄府
+  身份 = 甄家丫鬟
+  状态 = 侍奉甄家
+  arc_state = 偶顾之前
+}
+
+character 霍启 : 叙事人物 {
+  位置 = world.甄府
+  身份 = 甄家家人
+  状态 = 侍奉
+}
+
+character 封肃 : 叙事人物 {
+  位置 = world.封肃家
+  身份 = 士隐岳丈
+  状态 = 殷实
+}
+
+character 跛足道人 : 叙事人物 {
+  位置 = world.未明
+  身份 = 度脱道人
+  状态 = 游行
+}
+
+character 林如海 : 叙事人物 {
+  位置 = world.林府
+  身份 = 巡盐御史
+  状态 = 聘师
+}
+
+character 贾敏 : 叙事人物 {
+  位置 = world.林府
+  身份 = 林如海嫡妻
+  状态 = 仙逝
+}
+
+character 林黛玉 : 叙事人物 {
+  位置 = world.林府
+  身份 = 林如海之女
+  状态 = 丧母病弱
+  心境 = 哀痛
+  arc_state = 孤弱
+}
+
+character 冷子兴 : 叙事人物 {
+  位置 = world.村肆
+  身份 = 都中古董商
+  状态 = 过路
+}
+
+character 智通寺老僧 : 叙事人物 {
+  位置 = world.智通寺
+  身份 = 老僧
+  状态 = 昏聩
+}
+
+character 贾母 : 叙事人物 {
+  位置 = world.荣国府
+  身份 = 史老太君
+  状态 = 掌家余威
+}
+
+character 贾赦 : 叙事人物 {
+  位置 = world.荣国府
+  身份 = 荣府袭爵长子
+  状态 = 在府
+}
+
+character 贾政 : 叙事人物 {
+  位置 = world.荣国府
+  身份 = 荣府次子
+  状态 = 任员外郎
+}
+
+character 贾敬 : 叙事人物 {
+  位置 = world.都中
+  身份 = 宁府前代袭爵者
+  状态 = 好道不理家
+}
+
+character 贾珍 : 叙事人物 {
+  位置 = world.宁国府
+  身份 = 宁府现管事者
+  状态 = 纵乐
+}
+
+character 贾蓉 : 叙事人物 {
+  位置 = world.宁国府
+  身份 = 贾珍之子
+  状态 = 年少
+}
+
+character 贾珠 : 叙事人物 {
+  位置 = world.荣国府
+  身份 = 贾政长子
+  状态 = 已逝
+}
+
+character 贾宝玉 : 叙事人物 {
+  位置 = world.荣国府
+  身份 = 衔玉而生者
+  状态 = 顽童
+  心境 = 亲近女儿
+  arc_state = 异常受宠
+}
+
+character 元春 : 叙事人物 {
+  位置 = world.都中
+  身份 = 贾政长女
+  状态 = 入宫女史
+}
+
+character 迎春 : 叙事人物 {
+  位置 = world.荣国府
+  身份 = 贾赦之女
+  状态 = 随祖母读书
+}
+
+character 探春 : 叙事人物 {
+  位置 = world.荣国府
+  身份 = 贾政庶女
+  状态 = 随祖母读书
+}
+
+character 惜春 : 叙事人物 {
+  位置 = world.宁国府
+  身份 = 贾珍胞妹
+  状态 = 随祖母读书
+}
+
+character 贾琏 : 叙事人物 {
+  位置 = world.荣国府
+  身份 = 贾赦之子
+  状态 = 料理家务
+}
+
+character 王熙凤 : 叙事人物 {
+  位置 = world.荣国府
+  身份 = 贾琏之妻
+  状态 = 精明得誉
+}
+
+character 甄宝玉 : 叙事人物 {
+  位置 = world.甄府
+  身份 = 甄府异样子弟
+  状态 = 类宝玉
+}

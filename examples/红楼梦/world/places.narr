@@ -1,0 +1,54 @@
+namespace 红楼梦.world
+
+place 未明
+place 大荒山
+place 无稽崖 in 大荒山
+place 青埂峰 in 无稽崖
+place 红尘
+place 红尘入口 in 红尘
+place 太虚幻境
+place 姑苏
+place 阊门 in 姑苏
+place 十里街 in 阊门
+place 仁清巷 in 十里街
+
+place 葫芦庙 in 仁清巷 {
+  状态: Symbol = 完好
+}
+
+place 甄府 in 仁清巷 {
+  状态: Symbol = 安居
+}
+
+place 封肃家 {
+  状态: Symbol = 可投奔
+}
+
+place 贾雨村官署
+place 神都
+place 悼红轩
+place 扬州
+
+place 林府 in 扬州 {
+  状态: Symbol = 守丧
+}
+
+place 郭外
+
+place 智通寺 in 郭外 {
+  状态: Symbol = 颓败
+}
+
+place 村肆 in 郭外
+place 金陵
+place 石头城 in 金陵
+
+place 宁国府 in 石头城 {
+  状态: Symbol = 外盛内衰
+}
+
+place 荣国府 in 石头城 {
+  状态: Symbol = 外盛内衰
+}
+
+place 都中

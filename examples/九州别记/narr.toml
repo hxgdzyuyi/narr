@@ -1,0 +1,5 @@
+[project]
+name = "九州别记"
+version = "0.3.5"
+language = "zh-CN"
+main = "main.narr"

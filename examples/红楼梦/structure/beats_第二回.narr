@@ -1,0 +1,188 @@
+namespace 红楼梦.structure
+
+import 红楼梦.world as world
+import 红楼梦.characters as chars
+import 红楼梦.promises as promises
+
+beat 公差传唤封肃 @ vol01.ch02 {
+  effect:
+    chars.封肃.状态 = 面见雨村
+    chars.贾雨村.知道 += world.公差传唤原因
+    chars.封氏.心境 = 伤感
+
+  location: world.封肃家
+  pov: chars.封肃
+  on_screen: true
+  pays_off: promises.公差传唤悬念
+  reveals: world.公差传唤原因
+}
+
+beat 雨村求娶娇杏 @ vol01.ch02 {
+  effect:
+    chars.娇杏.位置 = world.贾雨村官署
+    chars.娇杏.身份 = 雨村二房
+    chars.娇杏.状态 = 得奇缘
+    chars.娇杏.arc_state = 改命
+    chars.贾雨村.关系 += "纳娇杏为二房"
+
+  location: world.封肃家
+  pov: chars.叙述者
+  on_screen: true
+  pays_off: promises.娇杏回顾伏笔
+}
+
+beat 娇杏扶正 @ vol01.ch02 {
+  effect:
+    chars.娇杏.身份 = 雨村正室
+    chars.娇杏.状态 = 扶正
+
+  location: world.贾雨村官署
+  pov: chars.叙述者
+  on_screen: false
+  reveals: world.娇杏奇缘
+}
+
+beat 雨村升官又被革 @ vol01.ch02 {
+  effect:
+    chars.贾雨村.状态 = 革职游历
+    chars.贾雨村.位置 = world.扬州
+    chars.贾雨村.arc_state = 失势
+    chars.贾雨村.知道 += world.雨村贪酷被革
+
+  location: world.扬州
+  pov: chars.叙述者
+  on_screen: true
+  sets_up: promises.雨村再起伏笔
+  reveals: world.雨村贪酷被革
+}
+
+beat 雨村入林府设馆 @ vol01.ch02 {
+  effect:
+    chars.贾雨村.位置 = world.林府
+    chars.贾雨村.身份 = 林府西宾
+    chars.贾雨村.arc_state = 寄馆
+    chars.林黛玉.知道 += world.黛玉丧母
+    world.林府.状态 = 丧母
+    world.林家.状态 = 丧母无子
+
+  location: world.林府
+  pov: chars.贾雨村
+  on_screen: true
+  sets_up: promises.黛玉身世伏笔
+  reveals: world.黛玉丧母
+}
+
+beat 雨村访智通寺 @ vol01.ch02 {
+  effect:
+    chars.贾雨村.知道 += world.智通寺对联
+    chars.贾雨村.心境 = 欲回头而未回头
+
+  location: world.智通寺
+  pov: chars.贾雨村
+  on_screen: true
+  observers: { chars.贾雨村, chars.智通寺老僧 }
+  reveals: world.智通寺对联
+}
+
+beat 雨村偶遇冷子兴 @ vol01.ch02 {
+  effect:
+    chars.冷子兴.位置 = world.村肆
+    chars.贾雨村.位置 = world.村肆
+    chars.贾雨村.关系 += "与冷子兴旧识相逢"
+
+  location: world.村肆
+  pov: chars.贾雨村
+  on_screen: true
+  observers: { chars.贾雨村, chars.冷子兴 }
+}
+
+beat 冷子兴谈宁荣二府 @ vol01.ch02 {
+  effect:
+    world.贾府.状态 = 外盛内衰
+    world.宁国府.状态 = 外盛内衰
+    world.荣国府.状态 = 外盛内衰
+    chars.冷子兴.知道 += world.荣宁二府衰象
+    chars.贾雨村.知道 += world.荣宁二府衰象
+
+  location: world.村肆
+  pov: chars.冷子兴
+  on_screen: true
+  sets_up: promises.荣国府衰象伏笔
+  reveals: world.荣宁二府衰象
+  render_hint: "冷子兴的话要像旁观冷眼，不直接进入贾府内景。"
+}
+
+beat 子兴叙宝玉衔玉 @ vol01.ch02 {
+  effect:
+    chars.贾宝玉.状态 = 衔玉顽童
+    chars.贾宝玉.arc_state = 异常受宠
+    chars.通灵宝玉.位置 = world.荣国府
+    chars.通灵宝玉.状态 = 已入世
+    chars.冷子兴.知道 += world.宝玉衔玉而生
+    chars.贾雨村.知道 += world.宝玉衔玉而生
+
+  location: world.村肆
+  pov: chars.冷子兴
+  on_screen: true
+  sets_up: promises.宝玉衔玉伏笔
+  reveals: world.宝玉衔玉而生
+}
+
+beat 雨村论正邪两赋 @ vol01.ch02 {
+  precondition:
+    world.宝玉衔玉而生 in chars.贾雨村.知道
+
+  effect:
+    chars.贾雨村.知道 += world.正邪两赋理论
+    chars.贾雨村.相信 += "贾宝玉并非寻常色鬼"
+
+  location: world.村肆
+  pov: chars.贾雨村
+  on_screen: true
+  observers: { chars.贾雨村, chars.冷子兴 }
+  reveals: world.正邪两赋理论
+}
+
+beat 雨村举甄宝玉映照 @ vol01.ch02 {
+  effect:
+    chars.甄宝玉.状态 = 类宝玉
+    chars.贾雨村.知道 += world.甄宝玉映照
+    chars.冷子兴.知道 += world.甄宝玉映照
+
+  location: world.村肆
+  pov: chars.贾雨村
+  on_screen: true
+  sets_up: promises.宝玉镜像伏笔
+  reveals: world.甄宝玉映照
+}
+
+beat 子兴详述贾府女眷 @ vol01.ch02 {
+  effect:
+    chars.贾雨村.知道 += world.贾敏是黛玉之母
+    chars.林黛玉.关系 += "外祖家为荣国府"
+    chars.元春.状态 = 入宫女史
+    chars.迎春.状态 = 随祖母读书
+    chars.探春.状态 = 随祖母读书
+    chars.惜春.状态 = 随祖母读书
+    chars.王熙凤.状态 = 精明得誉
+
+  location: world.村肆
+  pov: chars.冷子兴
+  on_screen: true
+  sets_up: promises.黛玉入贾府伏笔
+  reveals: world.贾敏是黛玉之母
+}
+
+beat 酒肆报喜悬念 @ vol01.ch02 {
+  effect:
+    chars.贾雨村.状态 = 将有转机
+    chars.贾雨村.arc_state = 借势再起
+    chars.贾雨村.知道 += world.下回报喜悬念
+
+  location: world.村肆
+  pov: chars.贾雨村
+  on_screen: true
+  sets_up: promises.下回报喜伏笔
+  reveals: world.下回报喜悬念
+  render_hint: "以一声报喜截断酒肆谈话，保留章回悬念。"
+}

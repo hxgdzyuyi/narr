@@ -1,0 +1,112 @@
+namespace 九州别记.structure.vol1_ch03
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 丁缺金带来求援 @ structure.vol01.ch03 {
+  effect:
+    chars.殷折.位置 = world.雪炽原旧驿
+    chars.洛衡.位置 = world.雪炽原旧驿
+    chars.苏离灯.位置 = world.雪炽原旧驿
+    chars.硕风照夜.位置 = world.雪炽原旧驿
+    chars.牧云镜.位置 = world.雪炽原旧驿
+    chars.穆如砚.位置 = world.雪炽原旧驿
+    chars.丁缺金.位置 = world.雪炽原旧驿
+    chars.殷折.状态 = 接下救人活
+    chars.丁缺金.状态 = 伪装同道
+    chars.殷折.知道 += world.边地求援事实
+    chars.丁缺金.知道 += world.丁缺金门规旧债
+    world.无名旧道.状态 = 塌陷传闻
+
+  pov: chars.殷折
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.殷折, chars.丁缺金, chars.洛衡, chars.苏离灯, chars.硕风照夜 }
+  sets_up: { promises.塌陷原因悬念, promises.丁缺金背叛伏笔 }
+  advances: { threads.误入地宫线, threads.摸金门规线 }
+  reveals: world.边地求援事实
+  render_hint: "丁缺金给出的理由是救人和边地旧债，不是发现王陵。"
+}
+
+beat 暴雪旧道塌陷 @ structure.vol01.ch03 {
+  effect:
+    world.无名旧道.状态 = 塌陷扩大
+    chars.殷折.位置 = world.雪炽原
+    chars.洛衡.位置 = world.雪炽原
+    chars.苏离灯.位置 = world.雪炽原
+    chars.硕风照夜.位置 = world.雪炽原
+    chars.丁缺金.位置 = world.雪炽原
+    chars.殷折.知道 += world.边地塌陷事实
+    chars.硕风照夜.知道 += world.边地塌陷事实
+
+  pov: chars.硕风照夜
+  location: world.雪炽原
+  on_screen: true
+  observers: { chars.殷折, chars.洛衡, chars.苏离灯, chars.硕风照夜, chars.丁缺金 }
+  advances: { threads.误入地宫线, threads.瀚州草原线 }
+  reveals: world.边地塌陷事实
+  mentions: { world.雪炽原, world.无名旧道 }
+}
+
+beat 主角团合术探路 @ structure.vol01.ch03 {
+  effect:
+    chars.殷折.位置 = world.无名旧道
+    chars.洛衡.位置 = world.无名旧道
+    chars.苏离灯.位置 = world.无名旧道
+    chars.硕风照夜.位置 = world.无名旧道
+    chars.丁缺金.位置 = world.无名旧道
+    chars.殷折.状态 = 以罗盘探路
+    chars.洛衡.状态 = 校准机关术
+    chars.硕风照夜.状态 = 辨得地声
+    chars.苏离灯.状态 = 旧誓警觉
+    chars.洛衡.知道 += world.旧道异常事实
+    chars.硕风照夜.知道 += world.旧道异常事实
+    world.殷门罗盘.状态 = 指向旧道
+    world.旧鹰扳指.状态 = 发热
+
+  pov: chars.殷折
+  location: world.无名旧道
+  on_screen: true
+  observers: { chars.殷折, chars.洛衡, chars.苏离灯, chars.硕风照夜, chars.丁缺金 }
+  sets_up: promises.旧道异常伏笔
+  pays_off: { promises.机关残学伏笔, promises.草原旧歌伏笔, promises.天驱扳指伏笔 }
+  advances: { threads.摸金门规线, threads.天驱旧誓线, threads.大墓真相线 }
+  reveals: { world.旧道异常事实, world.摸金技艺来源 }
+  render_hint: "这一段要让第二章铺过的技能真正派上用场。"
+}
+
+beat 辰月星坛远观 @ structure.vol01.ch03 {
+  effect:
+    chars.闻人观星.位置 = world.辰月星坛
+    chars.闻人观星.状态 = 远观星动
+    chars.闻人观星.知道 += world.辰月人物规划原则
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  sets_up: promises.辰月远观悬念
+  advances: threads.辰月暗流线
+  mentions: { world.辰月星坛, world.疑似封陵 }
+  render_hint: "辰月只看见星象和可利用的乱局，不确认墓主。"
+}
+
+beat 地裂露出石门 @ structure.vol01.ch03 {
+  effect:
+    world.疑似封陵.状态 = 露出石门
+    chars.殷折.状态 = 被困旧道
+    chars.殷折.arc_state = 只求脱身
+    chars.洛衡.相信 += "旧道下方有被人改封过的石构"
+
+  pov: chars.殷折
+  location: world.无名旧道
+  on_screen: true
+  observers: { chars.殷折, chars.洛衡, chars.苏离灯, chars.硕风照夜, chars.丁缺金 }
+  sets_up: promises.石门身份伏笔
+  pays_off: { promises.塌陷原因悬念, promises.旧道异常伏笔 }
+  advances: { threads.误入地宫线, threads.大墓真相线, threads.九州野史线 }
+  reveals: world.旧道异常事实
+  render_hint: "石门只说明地下规模异常，不进入外城，不出现墓主名号。"
+}

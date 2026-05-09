@@ -1,0 +1,14 @@
+namespace 红楼梦.structure
+
+novel 红楼梦 {
+  title: "红楼梦"
+  language: zh-CN
+  summary: "以甄贾真假、通灵宝玉、还泪因果与贾府兴衰为骨架的章回体长篇。"
+
+  length:
+    volumes = 1
+    chapters_per_volume = 120
+    chapter = 3000 字
+
+  prose_hint: "保持章回体骨架与古典白话气息，正文不输出 beat 标签，不解释 Narr 语法，实体称谓要自然融入叙述。"
+}

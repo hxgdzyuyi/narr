@@ -1,0 +1,76 @@
+namespace 九州别记.tests
+
+import 九州别记.world as world
+
+test "燮朝与端朝世界观事实已建立" tags {world, dynasty} {
+  assert world.燮朝承胤末 exists
+  assert world.姬昌夜承帝统 exists
+  assert world.端朝承晟末 exists
+  assert world.牧云穆如盟约 exists
+  assert world.端末盟约破裂 exists
+  assert world.九州别记朝代用法 exists
+}
+
+test "两朝关键势力已建立" tags {world, faction} {
+  assert world.燮朝 exists
+  assert world.燮室姬氏 exists
+  assert world.离国 exists
+  assert world.离国赤旅 exists
+  assert world.端朝 exists
+  assert world.端室牧云氏 exists
+  assert world.穆如军门 exists
+  assert world.瀚州硕风部 exists
+}
+
+test "两朝地理锚点已建立" tags {world, place} {
+  assert world.东陆 exists
+  assert world.中州 exists
+  assert world.天启城 exists
+  assert world.掩史司密库 exists
+  assert world.宛州 exists
+  assert world.殷门旧宅 exists
+  assert world.瀚州 exists
+  assert world.雪炽原 exists
+  assert world.雪炽原旧驿 exists
+  assert world.无名旧道 exists
+  assert world.疑似封陵 exists
+  assert world.封陵外城 exists
+  assert world.地下铁誓厅 exists
+  assert world.疑似离公墓域 exists
+  assert world.赤旅兵冢 exists
+  assert world.墓志石室 exists
+}
+
+test "祖辈与摸金技艺世界观已建立" tags {world, ancestor, skills} {
+  assert world.殷照胆封门旧事 exists
+  assert world.殷照胆殉门事实 exists
+  assert world.殷氏罗盘旧训 exists
+  assert world.洛氏机关残学 exists
+  assert world.硕风吞狼旧歌 exists
+  assert world.天驱护陵旧誓 exists
+  assert world.摸金技艺来源 exists
+  assert world.殷门罗盘 exists
+  assert world.河络机关残页 exists
+  assert world.旧鹰扳指 exists
+}
+
+test "朝代世界观保持开局未知大墓" tags {world, premise} {
+  assert world.开局不知大墓 exists
+  assert world.地理约束原则 exists
+  assert world.地上地下双线地理 exists
+  assert world.疑似封陵.状态 == 身份未明
+  assert world.疑似离公墓域.状态 == 未证实
+}
+
+test "嬴无翳墓主世界观已建立" tags {world, 嬴无翳, tomb} {
+  assert world.嬴无翳 exists
+  assert world.嬴无翳为离公 exists
+  assert world.嬴无翳善兵 exists
+  assert world.嬴无翳未帝而霸 exists
+  assert world.离国辰月牵连 exists
+  assert world.嬴无翳墓主定位 exists
+  assert world.霸刀遗名 exists
+  assert world.离公墓志残片 exists
+  assert world.嬴无翳.所属 == world.离国
+  assert world.嬴无翳.状态 == 墓主待证
+}

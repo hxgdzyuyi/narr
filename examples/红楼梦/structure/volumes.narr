@@ -1,0 +1,7 @@
+namespace 红楼梦.structure
+
+volume vol01 alias 开端卷 {
+  title: "梦幻与兴衰"
+  purpose: setup
+  summary: "第一卷以前两回建立《红楼梦》的神话源头、现实入口、甄贾真假结构、贾府兴衰预兆与宝黛主线入口。"
+}

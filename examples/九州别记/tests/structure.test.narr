@@ -1,0 +1,68 @@
+namespace 九州别记.tests
+
+import 九州别记.structure as structure
+import 九州别记.characters as chars
+import 九州别记.world as world
+import 九州别记.threads as threads
+
+test "开头三章已声明且章序连续" tags {structure, chapters} {
+  let 第一章 = structure.vol01.ch01
+  let 第二章 = structure.vol01.ch02
+  let 第三章 = structure.vol01.ch03
+
+  assert count(chapters_in(structure.vol01)) == 3
+  assert 第一章 precedes 第二章
+  assert 第二章 precedes 第三章
+  assert next(第一章) == 第二章
+  assert next(第二章) == 第三章
+}
+
+test "开头三章保留章节元信息" tags {structure, metadata} {
+  forall chapter 章节 in chapters_in(structure.vol01):
+    assert 章节.title exists
+    assert 章节.alias exists
+    assert 章节.summary exists
+    assert 章节.pov exists
+    assert 章节.location exists
+    assert 章节.prose_hint exists
+}
+
+test "开头三章各有五个 beat" tags {structure, beats} {
+  assert count(beats(structure.vol01.ch01)) == 5
+  assert count(beats(structure.vol01.ch02)) == 5
+  assert count(beats(structure.vol01.ch03)) == 5
+}
+
+test "前两章先讲祖辈死亡与摸金技艺来源" tags {structure, pacing, ancestor} {
+  assert structure.vol01.ch01 reveals world.殷照胆封门旧事
+  assert structure.vol01.ch01 reveals world.殷照胆殉门事实
+  assert structure.vol01.ch01 reveals world.殷门祖辈传承
+  assert structure.vol01.ch02 reveals world.摸金技艺来源
+  assert structure.vol01.ch02 reveals world.洛氏机关残学
+  assert structure.vol01.ch02 reveals world.硕风吞狼旧歌
+  assert structure.vol01.ch02 reveals world.天驱护陵旧誓
+}
+
+test "开头三章推进核心 threads 但不抢跑入墓" tags {structure, threads} {
+  assert structure.vol01.ch01 advances threads.摸金门规线
+  assert structure.vol01.ch01 advances threads.九州野史线
+  assert structure.vol01.ch02 advances threads.封陵旧史线
+  assert structure.vol01.ch02 advances threads.端朝皇权线
+  assert structure.vol01.ch02 advances threads.穆如军门线
+  assert structure.vol01.ch02 advances threads.天驱旧誓线
+  assert structure.vol01.ch03 advances threads.误入地宫线
+  assert structure.vol01.ch03 advances threads.辰月暗流线
+  assert structure.vol01.ch03 advances threads.大墓真相线
+}
+
+test "开头三章只推进到石门不进入外城" tags {state, premise, pacing} {
+  assert state(chars.殷照胆.状态, at structure.vol01.ch01.end) == 殉门
+  assert state(chars.殷折.位置, at structure.vol01.ch01.end) == world.殷门旧宅
+  assert state(world.殷门罗盘.状态, at structure.vol01.ch02.end) == 可用
+  assert state(world.旧鹰扳指.状态, at structure.vol01.ch02.end) == 微热未明
+  assert state(chars.殷折.位置, at structure.vol01.ch03.end) == world.无名旧道
+  assert state(world.疑似封陵.状态, at structure.vol01.ch03.end) == 露出石门
+  assert state(world.封陵外城.状态, at structure.vol01.ch03.end) == 未开启
+  assert state(world.疑似离公墓域.状态, at structure.vol01.ch03.end) == 未证实
+  assert count(chapter 章节 in chapters_in(structure.vol01) where 章节 reveals world.嬴无翳墓主定位) == 0
+}

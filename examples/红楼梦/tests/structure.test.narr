@@ -1,0 +1,68 @@
+namespace 红楼梦.tests
+
+import 红楼梦.structure as structure
+import 红楼梦.promises as p
+import 红楼梦.world as world
+
+test "前两回关键章保留标题摘要" tags {vol01, structure, metadata} {
+  let 第一卷 = structure.vol01
+
+  forall chapter 章节 in chapters_in(第一卷):
+    assert 章节.title exists
+    assert 章节.alias exists
+    assert 章节.summary exists
+}
+
+test "前两回章序连续" tags {vol01, structure, order} {
+  let 第一回 = structure.vol01.ch01
+  let 第二回 = structure.vol01.ch02
+
+  assert 第一回 precedes 第二回
+  assert next(第一回) == 第二回
+}
+
+test "前两回保留关键入口与收束 beat" tags {vol01, structure, beats} {
+  let 第一回 = structure.vol01.ch01
+  let 第二回 = structure.vol01.ch02
+
+  assert count(beats(第一回)) == 14
+  assert count(beats(第二回)) == 13
+
+  exists beat 事件 in beats(第一回) where 事件 == structure.作者自陈本旨
+  exists beat 事件 in beats(第一回) where 事件 == structure.雨村到任传唤
+  exists beat 事件 in beats(第二回) where 事件 == structure.公差传唤封肃
+  exists beat 事件 in beats(第二回) where 事件 == structure.酒肆报喜悬念
+}
+
+test "每回至少有一个正面呈现 beat" tags {vol01, structure, beats} {
+  forall chapter 章节 in chapters_in(structure.vol01):
+    assert count(beat 事件 in beats(章节) where 事件.on_screen == true) >= 1
+}
+
+test "前两回暂不进入荣国府内景" tags {vol01, location, restraint} {
+  forall chapter 章节 in chapters_in(structure.vol01):
+    assert 章节.location != world.荣国府
+}
+
+test "第一回同时承载神话起点和现实灾变" tags {vol01, promise, 第一回} {
+  let 第一回 = structure.vol01.ch01
+
+  assert count(promise 伏笔 in served_promises(第一回) where 伏笔.reader_visibility == visible) >= 2
+  assert 第一回 serves p.通灵宝玉来历伏笔
+  assert 第一回 serves p.英莲失踪伏笔
+  assert 第一回 serves p.好了歌悟道伏笔
+}
+
+test "第二回从公案收束转入贾府入口" tags {vol01, promise, 第二回} {
+  let 第二回 = structure.vol01.ch02
+
+  assert 第二回 pays_off p.公差传唤悬念
+  assert 第二回 serves p.荣国府衰象伏笔
+  assert 第二回 serves p.宝玉衔玉伏笔
+  assert 第二回 serves p.黛玉入贾府伏笔
+}
+
+test "关键章都有 alias" tags {metadata} {
+  forall chapter 章节 where 章节.purpose in { entry, discovery, reveal, climax }:
+    assert 章节.alias exists
+}

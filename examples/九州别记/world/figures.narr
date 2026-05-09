@@ -1,0 +1,43 @@
+namespace 九州别记.world
+
+class 历史人物 {
+  field 位置: Place = 东陆
+  field 所属: Faction
+  field 身份: Symbol = 未明
+  field 状态: Symbol = 入史
+  field 相关事实: Set<Fact> = {}
+}
+
+character 嬴无翳 : 历史人物 {
+  位置 = 离国旧境
+  所属 = 离国
+  身份 = 离国霸主
+  状态 = 墓主待证
+  相关事实 += 嬴无翳为离公
+  相关事实 += 嬴无翳善兵
+  相关事实 += 嬴无翳未帝而霸
+}
+
+object 霸刀遗名 {
+  状态: Symbol = 传闻
+}
+
+object 殷门罗盘 {
+  状态: Symbol = 封存
+}
+
+object 河络机关残页 {
+  状态: Symbol = 残缺
+}
+
+object 旧鹰扳指 {
+  状态: Symbol = 静默
+}
+
+object 穆如旧令抄本 {
+  状态: Symbol = 私藏
+}
+
+object 离公墓志残片 in 疑似离公墓域 {
+  状态: Symbol = 未出土
+}

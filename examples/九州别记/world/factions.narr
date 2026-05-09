@@ -1,0 +1,65 @@
+namespace 九州别记.world
+
+faction 燮朝 {
+  状态: Symbol = 已亡
+  国祚: String = "约一百二十年"
+  开国名义: Symbol = 姬野太祖
+  皇统: Symbol = 姬昌夜一脉
+}
+
+faction 燮室姬氏 {
+  状态: Symbol = 余脉入史
+  来源: Symbol = 胤末姬氏
+}
+
+faction 离国 {
+  状态: Symbol = 胤末霸主遗国
+  根基: Symbol = 离国旧境
+}
+
+faction 离国赤旅 {
+  状态: Symbol = 墓中文献待证
+  根基: Symbol = 离军旧制
+}
+
+faction 摸金殷门 {
+  状态: Symbol = 衰落避世
+  根基: Symbol = 旧陵术
+}
+
+faction 端朝掩史司 {
+  状态: Symbol = 奉诏封口
+  根基: Symbol = 端朝秘档
+}
+
+faction 端朝 {
+  状态: Symbol = 末世分裂
+  国祚: String = "三百余年"
+  开国名义: Symbol = 牧云雄疆太祖
+  皇统: Symbol = 牧云氏
+}
+
+faction 端室牧云氏 {
+  状态: Symbol = 皇权动摇
+  根基: Symbol = 天启城
+}
+
+faction 穆如军门 {
+  状态: Symbol = 盟约破裂
+  根基: Symbol = 军门铁骑
+}
+
+faction 瀚州硕风部 {
+  状态: Symbol = 北陆崛起
+  根基: Symbol = 瀚州八部
+}
+
+faction 天驱旧盟 {
+  状态: Symbol = 旧誓潜伏
+  根基: Symbol = 王道盟约
+}
+
+faction 辰月暗宗 {
+  状态: Symbol = 暗流窥伺
+  根基: Symbol = 星命秘术
+}

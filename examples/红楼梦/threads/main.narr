@@ -1,0 +1,67 @@
+namespace 红楼梦.threads
+
+import 红楼梦.structure as structure
+
+thread 石头入世线 {
+  kind: main_plot
+  starts_at: structure.vol01.ch01
+  start_pattern: structure.第一回开端模式
+  tags: { deferred }
+  priority: main
+}
+
+thread 甄士隐兴亡线 {
+  kind: thematic
+  starts_at: structure.vol01.ch01
+  start_pattern: structure.第一回开端模式
+  expected_resolution: structure.士隐听好了歌.after
+  priority: major
+}
+
+thread 英莲命运线 {
+  kind: emotional
+  starts_at: structure.僧道警示英莲.after
+  start_pattern: structure.英莲劫数启动模式
+  tags: { deferred }
+  priority: major
+}
+
+thread 贾雨村仕途线 {
+  kind: political
+  starts_at: structure.雨村窥见娇杏.after
+  start_pattern: structure.雨村功名启动模式
+  tags: { deferred }
+  priority: major
+}
+
+thread 贾府引入线 {
+  kind: subplot
+  starts_at: structure.vol01.ch02
+  start_pattern: structure.第二回承接模式
+  tags: { deferred }
+  priority: minor
+}
+
+thread 林黛玉身世线 {
+  kind: emotional
+  starts_at: structure.雨村入林府设馆.after
+  start_pattern: structure.黛玉入场模式
+  tags: { deferred }
+  priority: main
+}
+
+thread 荣国府家族线 {
+  kind: main_plot
+  starts_at: structure.冷子兴谈宁荣二府.after
+  start_pattern: structure.荣府入场模式
+  tags: { deferred }
+  priority: main
+}
+
+thread 贾宝玉人物线 {
+  kind: emotional
+  starts_at: structure.子兴叙宝玉衔玉.after
+  start_pattern: structure.宝玉异兆模式
+  tags: { deferred }
+  priority: main
+}

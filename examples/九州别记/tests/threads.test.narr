@@ -1,0 +1,34 @@
+namespace 九州别记.tests
+
+import 九州别记.threads as threads
+
+test "threads 已建立十条核心线" tags {threads, blueprint} {
+  assert count(threads) >= 10
+}
+
+test "核心线存在且优先级不低" tags {threads, priority} {
+  assert threads.误入地宫线.priority in {main, major}
+  assert threads.大墓真相线.priority in {main, major}
+  assert threads.封陵旧史线.priority in {main, major}
+  assert threads.九州野史线.priority in {main, major}
+  assert threads.天驱旧誓线.priority in {main, major}
+  assert threads.辰月暗流线.priority in {main, major}
+}
+
+test "所有 thread 保留起止与说明字段" tags {threads, metadata} {
+  forall thread 线:
+    assert 线.starts_at exists
+    assert 线.expected_resolution exists
+    assert 线.kind exists
+    assert 线.priority exists
+    assert 线.note exists
+}
+
+test "主线数量足够" tags {threads, priority} {
+  assert count(thread 线 in threads where 线.priority == main) >= 2
+}
+
+test "开局不得已知嬴无翳大墓" tags {threads, premise} {
+  assert count(thread 线 in threads where 线.note == "开局已知目标是嬴无翳大墓") == 0
+  assert count(thread 线 in threads where 线.note == "已知目标是嬴无翳大墓") == 0
+}

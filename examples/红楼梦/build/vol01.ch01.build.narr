@@ -1,0 +1,920 @@
+// LLM 使用说明
+// 1. 本文件由 narrc build 生成，是单章写作上下文，不是项目源文件；不要把 build {...} 写回 .narr。
+// 2. Narr 只有全局蓝图层和局部章节层；不要新增 outline、chapter_plan、scene_plan、act、sequence 等结构层。
+// 3. 写作时严格遵守 chapter、ordered_beats、precondition、effect、state_at_chapter_begin、state_at_chapter_end 与 target_length。
+// 4. beat 是章内状态变化单位；按 ordered_beats 顺序展开，effect 描述本章必须完成的状态变化。
+// 5. state_at_chapter_begin 是开章事实，expected_state_changes 是本章预期变化，state_at_chapter_end 是收束状态。
+// 6. 只补充散文表达和场面细节，不改动结构、引用、状态边界或未在 build 中出现的设定。
+//
+// build.narr 简易语法与属性说明
+// build <chapter_code> { ... }：单章派生上下文根节点；chapter_code 是归一化章节号。
+// chapter：目标章节元信息。
+// chapter.code：源文件中写入的章节号。
+// chapter.canonical_code：编译器归一化后的章节号，作为 build 主键。
+// chapter.alias：章节别名，供人读和引用 disambiguation 使用。
+// chapter.title：章回标题或章节标题。
+// chapter.purpose：章节叙事功能，例如 entry、discovery、conflict。
+// chapter.target_length：本章目标字数或长度提示。
+// chapter.volume_code：本章所属卷。
+// chapter.previous_chapter / chapter.next_chapter：相邻章节，用于承接与悬念控制。
+// summary：写作前必须继承的摘要。
+// summary.novel_summary：整部作品的总体叙事摘要。
+// summary.volume_summary：当前卷的叙事摘要。
+// summary.chapter_summary：本章必须完成的摘要。
+// context：本章相关实体集合，只写这些实体已知设定，不擅自扩展世界观。
+// context.relevant_characters：本章相关角色。
+// context.relevant_places：本章相关地点。
+// context.relevant_objects：本章相关物件。
+// context.relevant_facts：本章相关事实、信息或已揭示设定。
+// state：章节边界状态，约束本章开局、变化与收束。
+// state.state_at_chapter_begin：开章时已经成立的状态事实。
+// state.expected_state_changes：本章从 begin 到 end 必须发生的状态变化。
+// state.state_at_chapter_end：章末必须成立的状态事实。
+// structure：本章涉及的叙事结构关系。
+// structure.start_patterns：本章触发或承接的开端模式。
+// structure.active_threads：本章开始时仍活跃的主线/支线。
+// structure.active_promises：本章开始时仍活跃的伏笔或悬念。
+// structure.active_arcs：本章开始时仍活跃的人物或主题弧线。
+// structure.served_threads：本章实际推进的线索。
+// structure.served_promises：本章实际设置、推进或兑现的伏笔。
+// structure.served_arcs：本章实际推进的人物或主题弧线。
+// beats：章内状态变化单位，必须按 ordered_beats 顺序展开成正文。
+// beats.ordered_beats：本章 beat 顺序，是正文组织的主骨架。
+// beats.beat_preconditions：进入某 beat 前必须满足的条件。
+// beats.beat_effects：每个 beat 必须造成的状态变化；effect 行使用 target op value。
+// beats.beat_render_hints：单个 beat 的呈现方式提示。
+// prose：正文生成提示。
+// prose.prose_hint：语气、文风、叙述方式等散文提示。
+// prose.target_length：正文目标长度，通常与 chapter.target_length 一致。
+// 字面量说明：字符串使用双引号；引用形如 namespace.name；列表使用 [item, ...]；状态集合使用 {item, ...}。
+// effect 操作：= 表示赋值，+= 表示集合添加，-= 表示集合移除，append 表示列表追加。
+
+build vol01.ch01 {
+  chapter:
+    code: vol01.ch01
+    canonical_code: vol01.ch01
+    alias: 甄士隐识通灵
+    title: "甄士隐梦幻识通灵 贾雨村风尘怀闺秀"
+    purpose: entry
+    target_length: 3000 字
+    volume_code: vol01
+    next_chapter: vol01.ch02
+  summary:
+    novel_summary: "以甄贾真假、通灵宝玉、还泪因果与贾府兴衰为骨架的章回体长篇。"
+    volume_summary: "第一卷以前两回建立《红楼梦》的神话源头、现实入口、甄贾真假结构、贾府兴衰预兆与宝黛主线入口。"
+    chapter_summary: "第一回以作者自陈、顽石入世、甄士隐梦幻、英莲失踪、士隐悟道、雨村起势构成长篇的神话起点与现实入口。"
+  context:
+    relevant_characters: [
+      红楼梦.characters.叙述者,
+      红楼梦.characters.娇杏,
+      红楼梦.characters.封氏,
+      红楼梦.characters.封肃,
+      红楼梦.characters.曹雪芹,
+      红楼梦.characters.渺渺真人,
+      红楼梦.characters.甄士隐,
+      红楼梦.characters.空空道人,
+      红楼梦.characters.英莲,
+      红楼梦.characters.茫茫大士,
+      红楼梦.characters.贾雨村,
+      红楼梦.characters.跛足道人,
+      红楼梦.characters.通灵宝玉,
+      红楼梦.characters.霍启,
+    ]
+    relevant_places: [
+      红楼梦.world.仁清巷,
+      红楼梦.world.十里街,
+      红楼梦.world.太虚幻境,
+      红楼梦.world.封肃家,
+      红楼梦.world.未明,
+      红楼梦.world.甄府,
+      红楼梦.world.神都,
+      红楼梦.world.红尘入口,
+      红楼梦.world.葫芦庙,
+      红楼梦.world.青埂峰,
+    ]
+    relevant_objects: [
+    ]
+    relevant_facts: [
+      红楼梦.world.作者自陈本旨,
+      红楼梦.world.士隐资助雨村,
+      红楼梦.world.好了歌真义,
+      红楼梦.world.石头记成书,
+      红楼梦.world.英莲劫数,
+      红楼梦.world.贾雨村贫困,
+      红楼梦.world.还泪因果,
+      红楼梦.world.通灵宝玉源起,
+    ]
+  state:
+    state_at_chapter_begin: {
+      红楼梦.characters.元春.arc_state: 未启动
+      红楼梦.characters.元春.位置: 红楼梦.world.都中
+      红楼梦.characters.元春.关系: {}
+      红楼梦.characters.元春.心境: 平常
+      红楼梦.characters.元春.状态: 入宫女史
+      红楼梦.characters.元春.相信: {}
+      红楼梦.characters.元春.知道: {}
+      红楼梦.characters.元春.身份: 贾政长女
+      红楼梦.characters.冷子兴.arc_state: 未启动
+      红楼梦.characters.冷子兴.位置: 红楼梦.world.村肆
+      红楼梦.characters.冷子兴.关系: {}
+      红楼梦.characters.冷子兴.心境: 平常
+      红楼梦.characters.冷子兴.状态: 过路
+      红楼梦.characters.冷子兴.相信: {}
+      红楼梦.characters.冷子兴.知道: {}
+      红楼梦.characters.冷子兴.身份: 都中古董商
+      红楼梦.characters.叙述者.arc_state: 未启动
+      红楼梦.characters.叙述者.位置: 红楼梦.world.悼红轩
+      红楼梦.characters.叙述者.关系: {}
+      红楼梦.characters.叙述者.心境: 平常
+      红楼梦.characters.叙述者.状态: 承接叙述
+      红楼梦.characters.叙述者.相信: {}
+      红楼梦.characters.叙述者.知道: {}
+      红楼梦.characters.叙述者.身份: 章回叙述者
+      红楼梦.characters.女娲.arc_state: 未启动
+      红楼梦.characters.女娲.位置: 红楼梦.world.大荒山
+      红楼梦.characters.女娲.关系: {}
+      红楼梦.characters.女娲.心境: 平常
+      红楼梦.characters.女娲.状态: 已炼石
+      红楼梦.characters.女娲.相信: {}
+      红楼梦.characters.女娲.知道: {}
+      红楼梦.characters.女娲.身份: 上古神人
+      红楼梦.characters.娇杏.arc_state: 偶顾之前
+      红楼梦.characters.娇杏.位置: 红楼梦.world.甄府
+      红楼梦.characters.娇杏.关系: {}
+      红楼梦.characters.娇杏.心境: 平常
+      红楼梦.characters.娇杏.状态: 侍奉甄家
+      红楼梦.characters.娇杏.相信: {}
+      红楼梦.characters.娇杏.知道: {}
+      红楼梦.characters.娇杏.身份: 甄家丫鬟
+      红楼梦.characters.封氏.arc_state: 未启动
+      红楼梦.characters.封氏.位置: 红楼梦.world.甄府
+      红楼梦.characters.封氏.关系: {}
+      红楼梦.characters.封氏.心境: 平常
+      红楼梦.characters.封氏.状态: 安居
+      红楼梦.characters.封氏.相信: {}
+      红楼梦.characters.封氏.知道: {}
+      红楼梦.characters.封氏.身份: 士隐之妻
+      红楼梦.characters.封肃.arc_state: 未启动
+      红楼梦.characters.封肃.位置: 红楼梦.world.封肃家
+      红楼梦.characters.封肃.关系: {}
+      红楼梦.characters.封肃.心境: 平常
+      红楼梦.characters.封肃.状态: 殷实
+      红楼梦.characters.封肃.相信: {}
+      红楼梦.characters.封肃.知道: {}
+      红楼梦.characters.封肃.身份: 士隐岳丈
+      红楼梦.characters.惜春.arc_state: 未启动
+      红楼梦.characters.惜春.位置: 红楼梦.world.宁国府
+      红楼梦.characters.惜春.关系: {}
+      红楼梦.characters.惜春.心境: 平常
+      红楼梦.characters.惜春.状态: 随祖母读书
+      红楼梦.characters.惜春.相信: {}
+      红楼梦.characters.惜春.知道: {}
+      红楼梦.characters.惜春.身份: 贾珍胞妹
+      红楼梦.characters.探春.arc_state: 未启动
+      红楼梦.characters.探春.位置: 红楼梦.world.荣国府
+      红楼梦.characters.探春.关系: {}
+      红楼梦.characters.探春.心境: 平常
+      红楼梦.characters.探春.状态: 随祖母读书
+      红楼梦.characters.探春.相信: {}
+      红楼梦.characters.探春.知道: {}
+      红楼梦.characters.探春.身份: 贾政庶女
+      红楼梦.characters.智通寺老僧.arc_state: 未启动
+      红楼梦.characters.智通寺老僧.位置: 红楼梦.world.智通寺
+      红楼梦.characters.智通寺老僧.关系: {}
+      红楼梦.characters.智通寺老僧.心境: 平常
+      红楼梦.characters.智通寺老僧.状态: 昏聩
+      红楼梦.characters.智通寺老僧.相信: {}
+      红楼梦.characters.智通寺老僧.知道: {}
+      红楼梦.characters.智通寺老僧.身份: 老僧
+      红楼梦.characters.曹雪芹.arc_state: 未启动
+      红楼梦.characters.曹雪芹.位置: 红楼梦.world.悼红轩
+      红楼梦.characters.曹雪芹.关系: {}
+      红楼梦.characters.曹雪芹.心境: 平常
+      红楼梦.characters.曹雪芹.状态: 编订
+      红楼梦.characters.曹雪芹.相信: {}
+      红楼梦.characters.曹雪芹.知道: {}
+      红楼梦.characters.曹雪芹.身份: 披阅增删者
+      红楼梦.characters.林如海.arc_state: 未启动
+      红楼梦.characters.林如海.位置: 红楼梦.world.林府
+      红楼梦.characters.林如海.关系: {}
+      红楼梦.characters.林如海.心境: 平常
+      红楼梦.characters.林如海.状态: 聘师
+      红楼梦.characters.林如海.相信: {}
+      红楼梦.characters.林如海.知道: {}
+      红楼梦.characters.林如海.身份: 巡盐御史
+      红楼梦.characters.林黛玉.arc_state: 孤弱
+      红楼梦.characters.林黛玉.位置: 红楼梦.world.林府
+      红楼梦.characters.林黛玉.关系: {}
+      红楼梦.characters.林黛玉.心境: 哀痛
+      红楼梦.characters.林黛玉.状态: 丧母病弱
+      红楼梦.characters.林黛玉.相信: {}
+      红楼梦.characters.林黛玉.知道: {}
+      红楼梦.characters.林黛玉.身份: 林如海之女
+      红楼梦.characters.渺渺真人.arc_state: 未启动
+      红楼梦.characters.渺渺真人.位置: 红楼梦.world.青埂峰
+      红楼梦.characters.渺渺真人.关系: {}
+      红楼梦.characters.渺渺真人.心境: 平常
+      红楼梦.characters.渺渺真人.状态: 游戏红尘
+      红楼梦.characters.渺渺真人.相信: {}
+      红楼梦.characters.渺渺真人.知道: {}
+      红楼梦.characters.渺渺真人.身份: 道人
+      红楼梦.characters.王熙凤.arc_state: 未启动
+      红楼梦.characters.王熙凤.位置: 红楼梦.world.荣国府
+      红楼梦.characters.王熙凤.关系: {}
+      红楼梦.characters.王熙凤.心境: 平常
+      红楼梦.characters.王熙凤.状态: 精明得誉
+      红楼梦.characters.王熙凤.相信: {}
+      红楼梦.characters.王熙凤.知道: {}
+      红楼梦.characters.王熙凤.身份: 贾琏之妻
+      红楼梦.characters.甄士隐.arc_state: 安稳
+      红楼梦.characters.甄士隐.位置: 红楼梦.world.甄府
+      红楼梦.characters.甄士隐.关系: {}
+      红楼梦.characters.甄士隐.心境: 恬淡
+      红楼梦.characters.甄士隐.状态: 安居
+      红楼梦.characters.甄士隐.相信: {}
+      红楼梦.characters.甄士隐.知道: {}
+      红楼梦.characters.甄士隐.身份: 姑苏乡宦
+      红楼梦.characters.甄宝玉.arc_state: 未启动
+      红楼梦.characters.甄宝玉.位置: 红楼梦.world.甄府
+      红楼梦.characters.甄宝玉.关系: {}
+      红楼梦.characters.甄宝玉.心境: 平常
+      红楼梦.characters.甄宝玉.状态: 类宝玉
+      红楼梦.characters.甄宝玉.相信: {}
+      红楼梦.characters.甄宝玉.知道: {}
+      红楼梦.characters.甄宝玉.身份: 甄府异样子弟
+      红楼梦.characters.空空道人.arc_state: 未启动
+      红楼梦.characters.空空道人.位置: 红楼梦.world.青埂峰
+      红楼梦.characters.空空道人.关系: {}
+      红楼梦.characters.空空道人.心境: 平常
+      红楼梦.characters.空空道人.状态: 访道
+      红楼梦.characters.空空道人.相信: {}
+      红楼梦.characters.空空道人.知道: {}
+      红楼梦.characters.空空道人.身份: 求仙道人
+      红楼梦.characters.英莲.arc_state: 娇养
+      红楼梦.characters.英莲.位置: 红楼梦.world.甄府
+      红楼梦.characters.英莲.关系: {}
+      红楼梦.characters.英莲.心境: 平常
+      红楼梦.characters.英莲.状态: 娇养
+      红楼梦.characters.英莲.相信: {}
+      红楼梦.characters.英莲.知道: {}
+      红楼梦.characters.英莲.身份: 士隐之女
+      红楼梦.characters.茫茫大士.arc_state: 未启动
+      红楼梦.characters.茫茫大士.位置: 红楼梦.world.青埂峰
+      红楼梦.characters.茫茫大士.关系: {}
+      红楼梦.characters.茫茫大士.心境: 平常
+      红楼梦.characters.茫茫大士.状态: 游戏红尘
+      红楼梦.characters.茫茫大士.相信: {}
+      红楼梦.characters.茫茫大士.知道: {}
+      红楼梦.characters.茫茫大士.身份: 僧人
+      红楼梦.characters.贾宝玉.arc_state: 异常受宠
+      红楼梦.characters.贾宝玉.位置: 红楼梦.world.荣国府
+      红楼梦.characters.贾宝玉.关系: {}
+      红楼梦.characters.贾宝玉.心境: 亲近女儿
+      红楼梦.characters.贾宝玉.状态: 顽童
+      红楼梦.characters.贾宝玉.相信: {}
+      红楼梦.characters.贾宝玉.知道: {}
+      红楼梦.characters.贾宝玉.身份: 衔玉而生者
+      红楼梦.characters.贾政.arc_state: 未启动
+      红楼梦.characters.贾政.位置: 红楼梦.world.荣国府
+      红楼梦.characters.贾政.关系: {}
+      红楼梦.characters.贾政.心境: 平常
+      红楼梦.characters.贾政.状态: 任员外郎
+      红楼梦.characters.贾政.相信: {}
+      红楼梦.characters.贾政.知道: {}
+      红楼梦.characters.贾政.身份: 荣府次子
+      红楼梦.characters.贾敏.arc_state: 未启动
+      红楼梦.characters.贾敏.位置: 红楼梦.world.林府
+      红楼梦.characters.贾敏.关系: {}
+      红楼梦.characters.贾敏.心境: 平常
+      红楼梦.characters.贾敏.状态: 仙逝
+      红楼梦.characters.贾敏.相信: {}
+      红楼梦.characters.贾敏.知道: {}
+      红楼梦.characters.贾敏.身份: 林如海嫡妻
+      红楼梦.characters.贾敬.arc_state: 未启动
+      红楼梦.characters.贾敬.位置: 红楼梦.world.都中
+      红楼梦.characters.贾敬.关系: {}
+      红楼梦.characters.贾敬.心境: 平常
+      红楼梦.characters.贾敬.状态: 好道不理家
+      红楼梦.characters.贾敬.相信: {}
+      红楼梦.characters.贾敬.知道: {}
+      红楼梦.characters.贾敬.身份: 宁府前代袭爵者
+      红楼梦.characters.贾母.arc_state: 未启动
+      红楼梦.characters.贾母.位置: 红楼梦.world.荣国府
+      红楼梦.characters.贾母.关系: {}
+      红楼梦.characters.贾母.心境: 平常
+      红楼梦.characters.贾母.状态: 掌家余威
+      红楼梦.characters.贾母.相信: {}
+      红楼梦.characters.贾母.知道: {}
+      红楼梦.characters.贾母.身份: 史老太君
+      红楼梦.characters.贾珍.arc_state: 未启动
+      红楼梦.characters.贾珍.位置: 红楼梦.world.宁国府
+      红楼梦.characters.贾珍.关系: {}
+      红楼梦.characters.贾珍.心境: 平常
+      红楼梦.characters.贾珍.状态: 纵乐
+      红楼梦.characters.贾珍.相信: {}
+      红楼梦.characters.贾珍.知道: {}
+      红楼梦.characters.贾珍.身份: 宁府现管事者
+      红楼梦.characters.贾珠.arc_state: 未启动
+      红楼梦.characters.贾珠.位置: 红楼梦.world.荣国府
+      红楼梦.characters.贾珠.关系: {}
+      红楼梦.characters.贾珠.心境: 平常
+      红楼梦.characters.贾珠.状态: 已逝
+      红楼梦.characters.贾珠.相信: {}
+      红楼梦.characters.贾珠.知道: {}
+      红楼梦.characters.贾珠.身份: 贾政长子
+      红楼梦.characters.贾琏.arc_state: 未启动
+      红楼梦.characters.贾琏.位置: 红楼梦.world.荣国府
+      红楼梦.characters.贾琏.关系: {}
+      红楼梦.characters.贾琏.心境: 平常
+      红楼梦.characters.贾琏.状态: 料理家务
+      红楼梦.characters.贾琏.相信: {}
+      红楼梦.characters.贾琏.知道: {}
+      红楼梦.characters.贾琏.身份: 贾赦之子
+      红楼梦.characters.贾蓉.arc_state: 未启动
+      红楼梦.characters.贾蓉.位置: 红楼梦.world.宁国府
+      红楼梦.characters.贾蓉.关系: {}
+      红楼梦.characters.贾蓉.心境: 平常
+      红楼梦.characters.贾蓉.状态: 年少
+      红楼梦.characters.贾蓉.相信: {}
+      红楼梦.characters.贾蓉.知道: {}
+      红楼梦.characters.贾蓉.身份: 贾珍之子
+      红楼梦.characters.贾赦.arc_state: 未启动
+      红楼梦.characters.贾赦.位置: 红楼梦.world.荣国府
+      红楼梦.characters.贾赦.关系: {}
+      红楼梦.characters.贾赦.心境: 平常
+      红楼梦.characters.贾赦.状态: 在府
+      红楼梦.characters.贾赦.相信: {}
+      红楼梦.characters.贾赦.知道: {}
+      红楼梦.characters.贾赦.身份: 荣府袭爵长子
+      红楼梦.characters.贾雨村.arc_state: 困顿
+      红楼梦.characters.贾雨村.位置: 红楼梦.world.葫芦庙
+      红楼梦.characters.贾雨村.关系: {}
+      红楼梦.characters.贾雨村.心境: 待时
+      红楼梦.characters.贾雨村.状态: 困居葫芦庙
+      红楼梦.characters.贾雨村.相信: {}
+      红楼梦.characters.贾雨村.知道: {}
+      红楼梦.characters.贾雨村.身份: 穷儒
+      红楼梦.characters.跛足道人.arc_state: 未启动
+      红楼梦.characters.跛足道人.位置: 红楼梦.world.未明
+      红楼梦.characters.跛足道人.关系: {}
+      红楼梦.characters.跛足道人.心境: 平常
+      红楼梦.characters.跛足道人.状态: 游行
+      红楼梦.characters.跛足道人.相信: {}
+      红楼梦.characters.跛足道人.知道: {}
+      红楼梦.characters.跛足道人.身份: 度脱道人
+      红楼梦.characters.迎春.arc_state: 未启动
+      红楼梦.characters.迎春.位置: 红楼梦.world.荣国府
+      红楼梦.characters.迎春.关系: {}
+      红楼梦.characters.迎春.心境: 平常
+      红楼梦.characters.迎春.状态: 随祖母读书
+      红楼梦.characters.迎春.相信: {}
+      红楼梦.characters.迎春.知道: {}
+      红楼梦.characters.迎春.身份: 贾赦之女
+      红楼梦.characters.通灵宝玉.arc_state: 未启动
+      红楼梦.characters.通灵宝玉.位置: 红楼梦.world.青埂峰
+      红楼梦.characters.通灵宝玉.关系: {}
+      红楼梦.characters.通灵宝玉.心境: 平常
+      红楼梦.characters.通灵宝玉.状态: 原石
+      红楼梦.characters.通灵宝玉.相信: {}
+      红楼梦.characters.通灵宝玉.知道: {}
+      红楼梦.characters.通灵宝玉.身份: 补天剩石
+      红楼梦.characters.霍启.arc_state: 未启动
+      红楼梦.characters.霍启.位置: 红楼梦.world.甄府
+      红楼梦.characters.霍启.关系: {}
+      红楼梦.characters.霍启.心境: 平常
+      红楼梦.characters.霍启.状态: 侍奉
+      红楼梦.characters.霍启.相信: {}
+      红楼梦.characters.霍启.知道: {}
+      红楼梦.characters.霍启.身份: 甄家家人
+      红楼梦.world.宁国府.状态: 外盛内衰
+      红楼梦.world.封肃家.状态: 可投奔
+      红楼梦.world.智通寺.状态: 颓败
+      红楼梦.world.林家.状态: 丧母无子
+      红楼梦.world.林府.状态: 守丧
+      红楼梦.world.甄府.状态: 安居
+      红楼梦.world.甄府宗族.状态: 显贵好礼
+      红楼梦.world.荣国府.状态: 外盛内衰
+      红楼梦.world.葫芦庙.状态: 完好
+      红楼梦.world.贾府.状态: 外盛内衰
+    }
+    expected_state_changes: [
+      { field: 红楼梦.characters.叙述者.知道, before: {}, after: {红楼梦.world.作者自陈本旨} },
+      { field: 红楼梦.characters.娇杏.arc_state, before: 偶顾之前, after: 偶顾 },
+      { field: 红楼梦.characters.娇杏.状态, before: 侍奉甄家, after: 被认出 },
+      { field: 红楼梦.characters.娇杏.知道, before: {}, after: {红楼梦.world.贾雨村贫困} },
+      { field: 红楼梦.characters.封氏.位置, before: 红楼梦.world.甄府, after: 红楼梦.world.封肃家 },
+      { field: 红楼梦.characters.封氏.心境, before: 平常, after: 哀痛 },
+      { field: 红楼梦.characters.封氏.状态, before: 安居, after: 破家 },
+      { field: 红楼梦.characters.封肃.状态, before: 殷实, after: 被传唤 },
+      { field: 红楼梦.characters.曹雪芹.知道, before: {}, after: {红楼梦.world.石头记成书} },
+      { field: 红楼梦.characters.渺渺真人.知道, before: {}, after: {红楼梦.world.通灵宝玉源起} },
+      { field: 红楼梦.characters.甄士隐.arc_state, before: 安稳, after: 彻悟 },
+      { field: 红楼梦.characters.甄士隐.位置, before: 红楼梦.world.甄府, after: 红楼梦.world.未明 },
+      { field: 红楼梦.characters.甄士隐.关系, before: {}, after: {"资助贾雨村赴考"} },
+      { field: 红楼梦.characters.甄士隐.心境, before: 恬淡, after: 彻悟 },
+      { field: 红楼梦.characters.甄士隐.状态, before: 安居, after: 出家 },
+      { field: 红楼梦.characters.甄士隐.知道, before: {}, after: {红楼梦.world.好了歌真义, 红楼梦.world.英莲劫数, 红楼梦.world.贾雨村贫困, 红楼梦.world.还泪因果} },
+      { field: 红楼梦.characters.空空道人.知道, before: {}, after: {红楼梦.world.石头记成书} },
+      { field: 红楼梦.characters.空空道人.身份, before: 求仙道人, after: 情僧 },
+      { field: 红楼梦.characters.英莲.arc_state, before: 娇养, after: 失踪 },
+      { field: 红楼梦.characters.英莲.位置, before: 红楼梦.world.甄府, after: 红楼梦.world.未明 },
+      { field: 红楼梦.characters.英莲.状态, before: 娇养, after: 失踪 },
+      { field: 红楼梦.characters.茫茫大士.知道, before: {}, after: {红楼梦.world.通灵宝玉源起} },
+      { field: 红楼梦.characters.贾雨村.arc_state, before: 困顿, after: 得势 },
+      { field: 红楼梦.characters.贾雨村.位置, before: 红楼梦.world.葫芦庙, after: 红楼梦.world.封肃家 },
+      { field: 红楼梦.characters.贾雨村.关系, before: {}, after: {"与甄士隐相交"} },
+      { field: 红楼梦.characters.贾雨村.心境, before: 待时, after: 自许知己 },
+      { field: 红楼梦.characters.贾雨村.状态, before: 困居葫芦庙, after: 新任知府 },
+      { field: 红楼梦.characters.贾雨村.相信, before: {}, after: {"娇杏回顾是知己之意"} },
+      { field: 红楼梦.characters.贾雨村.知道, before: {}, after: {红楼梦.world.士隐资助雨村} },
+      { field: 红楼梦.characters.通灵宝玉.位置, before: 红楼梦.world.青埂峰, after: 红楼梦.world.红尘入口 },
+      { field: 红楼梦.characters.通灵宝玉.状态, before: 原石, after: 美玉 },
+      { field: 红楼梦.characters.通灵宝玉.身份, before: 补天剩石, after: 通灵宝玉 },
+      { field: 红楼梦.characters.霍启.状态, before: 侍奉, after: 逃走 },
+      { field: 红楼梦.world.甄府.状态, before: 安居, after: 焚毁 },
+      { field: 红楼梦.world.葫芦庙.状态, before: 完好, after: 起火 },
+    ]
+    state_at_chapter_end: {
+      红楼梦.characters.元春.arc_state: 未启动
+      红楼梦.characters.元春.位置: 红楼梦.world.都中
+      红楼梦.characters.元春.关系: {}
+      红楼梦.characters.元春.心境: 平常
+      红楼梦.characters.元春.状态: 入宫女史
+      红楼梦.characters.元春.相信: {}
+      红楼梦.characters.元春.知道: {}
+      红楼梦.characters.元春.身份: 贾政长女
+      红楼梦.characters.冷子兴.arc_state: 未启动
+      红楼梦.characters.冷子兴.位置: 红楼梦.world.村肆
+      红楼梦.characters.冷子兴.关系: {}
+      红楼梦.characters.冷子兴.心境: 平常
+      红楼梦.characters.冷子兴.状态: 过路
+      红楼梦.characters.冷子兴.相信: {}
+      红楼梦.characters.冷子兴.知道: {}
+      红楼梦.characters.冷子兴.身份: 都中古董商
+      红楼梦.characters.叙述者.arc_state: 未启动
+      红楼梦.characters.叙述者.位置: 红楼梦.world.悼红轩
+      红楼梦.characters.叙述者.关系: {}
+      红楼梦.characters.叙述者.心境: 平常
+      红楼梦.characters.叙述者.状态: 承接叙述
+      红楼梦.characters.叙述者.相信: {}
+      红楼梦.characters.叙述者.知道: {红楼梦.world.作者自陈本旨}
+      红楼梦.characters.叙述者.身份: 章回叙述者
+      红楼梦.characters.女娲.arc_state: 未启动
+      红楼梦.characters.女娲.位置: 红楼梦.world.大荒山
+      红楼梦.characters.女娲.关系: {}
+      红楼梦.characters.女娲.心境: 平常
+      红楼梦.characters.女娲.状态: 已炼石
+      红楼梦.characters.女娲.相信: {}
+      红楼梦.characters.女娲.知道: {}
+      红楼梦.characters.女娲.身份: 上古神人
+      红楼梦.characters.娇杏.arc_state: 偶顾
+      红楼梦.characters.娇杏.位置: 红楼梦.world.甄府
+      红楼梦.characters.娇杏.关系: {}
+      红楼梦.characters.娇杏.心境: 平常
+      红楼梦.characters.娇杏.状态: 被认出
+      红楼梦.characters.娇杏.相信: {}
+      红楼梦.characters.娇杏.知道: {红楼梦.world.贾雨村贫困}
+      红楼梦.characters.娇杏.身份: 甄家丫鬟
+      红楼梦.characters.封氏.arc_state: 未启动
+      红楼梦.characters.封氏.位置: 红楼梦.world.封肃家
+      红楼梦.characters.封氏.关系: {}
+      红楼梦.characters.封氏.心境: 哀痛
+      红楼梦.characters.封氏.状态: 破家
+      红楼梦.characters.封氏.相信: {}
+      红楼梦.characters.封氏.知道: {}
+      红楼梦.characters.封氏.身份: 士隐之妻
+      红楼梦.characters.封肃.arc_state: 未启动
+      红楼梦.characters.封肃.位置: 红楼梦.world.封肃家
+      红楼梦.characters.封肃.关系: {}
+      红楼梦.characters.封肃.心境: 平常
+      红楼梦.characters.封肃.状态: 被传唤
+      红楼梦.characters.封肃.相信: {}
+      红楼梦.characters.封肃.知道: {}
+      红楼梦.characters.封肃.身份: 士隐岳丈
+      红楼梦.characters.惜春.arc_state: 未启动
+      红楼梦.characters.惜春.位置: 红楼梦.world.宁国府
+      红楼梦.characters.惜春.关系: {}
+      红楼梦.characters.惜春.心境: 平常
+      红楼梦.characters.惜春.状态: 随祖母读书
+      红楼梦.characters.惜春.相信: {}
+      红楼梦.characters.惜春.知道: {}
+      红楼梦.characters.惜春.身份: 贾珍胞妹
+      红楼梦.characters.探春.arc_state: 未启动
+      红楼梦.characters.探春.位置: 红楼梦.world.荣国府
+      红楼梦.characters.探春.关系: {}
+      红楼梦.characters.探春.心境: 平常
+      红楼梦.characters.探春.状态: 随祖母读书
+      红楼梦.characters.探春.相信: {}
+      红楼梦.characters.探春.知道: {}
+      红楼梦.characters.探春.身份: 贾政庶女
+      红楼梦.characters.智通寺老僧.arc_state: 未启动
+      红楼梦.characters.智通寺老僧.位置: 红楼梦.world.智通寺
+      红楼梦.characters.智通寺老僧.关系: {}
+      红楼梦.characters.智通寺老僧.心境: 平常
+      红楼梦.characters.智通寺老僧.状态: 昏聩
+      红楼梦.characters.智通寺老僧.相信: {}
+      红楼梦.characters.智通寺老僧.知道: {}
+      红楼梦.characters.智通寺老僧.身份: 老僧
+      红楼梦.characters.曹雪芹.arc_state: 未启动
+      红楼梦.characters.曹雪芹.位置: 红楼梦.world.悼红轩
+      红楼梦.characters.曹雪芹.关系: {}
+      红楼梦.characters.曹雪芹.心境: 平常
+      红楼梦.characters.曹雪芹.状态: 编订
+      红楼梦.characters.曹雪芹.相信: {}
+      红楼梦.characters.曹雪芹.知道: {红楼梦.world.石头记成书}
+      红楼梦.characters.曹雪芹.身份: 披阅增删者
+      红楼梦.characters.林如海.arc_state: 未启动
+      红楼梦.characters.林如海.位置: 红楼梦.world.林府
+      红楼梦.characters.林如海.关系: {}
+      红楼梦.characters.林如海.心境: 平常
+      红楼梦.characters.林如海.状态: 聘师
+      红楼梦.characters.林如海.相信: {}
+      红楼梦.characters.林如海.知道: {}
+      红楼梦.characters.林如海.身份: 巡盐御史
+      红楼梦.characters.林黛玉.arc_state: 孤弱
+      红楼梦.characters.林黛玉.位置: 红楼梦.world.林府
+      红楼梦.characters.林黛玉.关系: {}
+      红楼梦.characters.林黛玉.心境: 哀痛
+      红楼梦.characters.林黛玉.状态: 丧母病弱
+      红楼梦.characters.林黛玉.相信: {}
+      红楼梦.characters.林黛玉.知道: {}
+      红楼梦.characters.林黛玉.身份: 林如海之女
+      红楼梦.characters.渺渺真人.arc_state: 未启动
+      红楼梦.characters.渺渺真人.位置: 红楼梦.world.青埂峰
+      红楼梦.characters.渺渺真人.关系: {}
+      红楼梦.characters.渺渺真人.心境: 平常
+      红楼梦.characters.渺渺真人.状态: 游戏红尘
+      红楼梦.characters.渺渺真人.相信: {}
+      红楼梦.characters.渺渺真人.知道: {红楼梦.world.通灵宝玉源起}
+      红楼梦.characters.渺渺真人.身份: 道人
+      红楼梦.characters.王熙凤.arc_state: 未启动
+      红楼梦.characters.王熙凤.位置: 红楼梦.world.荣国府
+      红楼梦.characters.王熙凤.关系: {}
+      红楼梦.characters.王熙凤.心境: 平常
+      红楼梦.characters.王熙凤.状态: 精明得誉
+      红楼梦.characters.王熙凤.相信: {}
+      红楼梦.characters.王熙凤.知道: {}
+      红楼梦.characters.王熙凤.身份: 贾琏之妻
+      红楼梦.characters.甄士隐.arc_state: 彻悟
+      红楼梦.characters.甄士隐.位置: 红楼梦.world.未明
+      红楼梦.characters.甄士隐.关系: {"资助贾雨村赴考"}
+      红楼梦.characters.甄士隐.心境: 彻悟
+      红楼梦.characters.甄士隐.状态: 出家
+      红楼梦.characters.甄士隐.相信: {}
+      红楼梦.characters.甄士隐.知道: {红楼梦.world.好了歌真义, 红楼梦.world.英莲劫数, 红楼梦.world.贾雨村贫困, 红楼梦.world.还泪因果}
+      红楼梦.characters.甄士隐.身份: 姑苏乡宦
+      红楼梦.characters.甄宝玉.arc_state: 未启动
+      红楼梦.characters.甄宝玉.位置: 红楼梦.world.甄府
+      红楼梦.characters.甄宝玉.关系: {}
+      红楼梦.characters.甄宝玉.心境: 平常
+      红楼梦.characters.甄宝玉.状态: 类宝玉
+      红楼梦.characters.甄宝玉.相信: {}
+      红楼梦.characters.甄宝玉.知道: {}
+      红楼梦.characters.甄宝玉.身份: 甄府异样子弟
+      红楼梦.characters.空空道人.arc_state: 未启动
+      红楼梦.characters.空空道人.位置: 红楼梦.world.青埂峰
+      红楼梦.characters.空空道人.关系: {}
+      红楼梦.characters.空空道人.心境: 平常
+      红楼梦.characters.空空道人.状态: 访道
+      红楼梦.characters.空空道人.相信: {}
+      红楼梦.characters.空空道人.知道: {红楼梦.world.石头记成书}
+      红楼梦.characters.空空道人.身份: 情僧
+      红楼梦.characters.英莲.arc_state: 失踪
+      红楼梦.characters.英莲.位置: 红楼梦.world.未明
+      红楼梦.characters.英莲.关系: {}
+      红楼梦.characters.英莲.心境: 平常
+      红楼梦.characters.英莲.状态: 失踪
+      红楼梦.characters.英莲.相信: {}
+      红楼梦.characters.英莲.知道: {}
+      红楼梦.characters.英莲.身份: 士隐之女
+      红楼梦.characters.茫茫大士.arc_state: 未启动
+      红楼梦.characters.茫茫大士.位置: 红楼梦.world.青埂峰
+      红楼梦.characters.茫茫大士.关系: {}
+      红楼梦.characters.茫茫大士.心境: 平常
+      红楼梦.characters.茫茫大士.状态: 游戏红尘
+      红楼梦.characters.茫茫大士.相信: {}
+      红楼梦.characters.茫茫大士.知道: {红楼梦.world.通灵宝玉源起}
+      红楼梦.characters.茫茫大士.身份: 僧人
+      红楼梦.characters.贾宝玉.arc_state: 异常受宠
+      红楼梦.characters.贾宝玉.位置: 红楼梦.world.荣国府
+      红楼梦.characters.贾宝玉.关系: {}
+      红楼梦.characters.贾宝玉.心境: 亲近女儿
+      红楼梦.characters.贾宝玉.状态: 顽童
+      红楼梦.characters.贾宝玉.相信: {}
+      红楼梦.characters.贾宝玉.知道: {}
+      红楼梦.characters.贾宝玉.身份: 衔玉而生者
+      红楼梦.characters.贾政.arc_state: 未启动
+      红楼梦.characters.贾政.位置: 红楼梦.world.荣国府
+      红楼梦.characters.贾政.关系: {}
+      红楼梦.characters.贾政.心境: 平常
+      红楼梦.characters.贾政.状态: 任员外郎
+      红楼梦.characters.贾政.相信: {}
+      红楼梦.characters.贾政.知道: {}
+      红楼梦.characters.贾政.身份: 荣府次子
+      红楼梦.characters.贾敏.arc_state: 未启动
+      红楼梦.characters.贾敏.位置: 红楼梦.world.林府
+      红楼梦.characters.贾敏.关系: {}
+      红楼梦.characters.贾敏.心境: 平常
+      红楼梦.characters.贾敏.状态: 仙逝
+      红楼梦.characters.贾敏.相信: {}
+      红楼梦.characters.贾敏.知道: {}
+      红楼梦.characters.贾敏.身份: 林如海嫡妻
+      红楼梦.characters.贾敬.arc_state: 未启动
+      红楼梦.characters.贾敬.位置: 红楼梦.world.都中
+      红楼梦.characters.贾敬.关系: {}
+      红楼梦.characters.贾敬.心境: 平常
+      红楼梦.characters.贾敬.状态: 好道不理家
+      红楼梦.characters.贾敬.相信: {}
+      红楼梦.characters.贾敬.知道: {}
+      红楼梦.characters.贾敬.身份: 宁府前代袭爵者
+      红楼梦.characters.贾母.arc_state: 未启动
+      红楼梦.characters.贾母.位置: 红楼梦.world.荣国府
+      红楼梦.characters.贾母.关系: {}
+      红楼梦.characters.贾母.心境: 平常
+      红楼梦.characters.贾母.状态: 掌家余威
+      红楼梦.characters.贾母.相信: {}
+      红楼梦.characters.贾母.知道: {}
+      红楼梦.characters.贾母.身份: 史老太君
+      红楼梦.characters.贾珍.arc_state: 未启动
+      红楼梦.characters.贾珍.位置: 红楼梦.world.宁国府
+      红楼梦.characters.贾珍.关系: {}
+      红楼梦.characters.贾珍.心境: 平常
+      红楼梦.characters.贾珍.状态: 纵乐
+      红楼梦.characters.贾珍.相信: {}
+      红楼梦.characters.贾珍.知道: {}
+      红楼梦.characters.贾珍.身份: 宁府现管事者
+      红楼梦.characters.贾珠.arc_state: 未启动
+      红楼梦.characters.贾珠.位置: 红楼梦.world.荣国府
+      红楼梦.characters.贾珠.关系: {}
+      红楼梦.characters.贾珠.心境: 平常
+      红楼梦.characters.贾珠.状态: 已逝
+      红楼梦.characters.贾珠.相信: {}
+      红楼梦.characters.贾珠.知道: {}
+      红楼梦.characters.贾珠.身份: 贾政长子
+      红楼梦.characters.贾琏.arc_state: 未启动
+      红楼梦.characters.贾琏.位置: 红楼梦.world.荣国府
+      红楼梦.characters.贾琏.关系: {}
+      红楼梦.characters.贾琏.心境: 平常
+      红楼梦.characters.贾琏.状态: 料理家务
+      红楼梦.characters.贾琏.相信: {}
+      红楼梦.characters.贾琏.知道: {}
+      红楼梦.characters.贾琏.身份: 贾赦之子
+      红楼梦.characters.贾蓉.arc_state: 未启动
+      红楼梦.characters.贾蓉.位置: 红楼梦.world.宁国府
+      红楼梦.characters.贾蓉.关系: {}
+      红楼梦.characters.贾蓉.心境: 平常
+      红楼梦.characters.贾蓉.状态: 年少
+      红楼梦.characters.贾蓉.相信: {}
+      红楼梦.characters.贾蓉.知道: {}
+      红楼梦.characters.贾蓉.身份: 贾珍之子
+      红楼梦.characters.贾赦.arc_state: 未启动
+      红楼梦.characters.贾赦.位置: 红楼梦.world.荣国府
+      红楼梦.characters.贾赦.关系: {}
+      红楼梦.characters.贾赦.心境: 平常
+      红楼梦.characters.贾赦.状态: 在府
+      红楼梦.characters.贾赦.相信: {}
+      红楼梦.characters.贾赦.知道: {}
+      红楼梦.characters.贾赦.身份: 荣府袭爵长子
+      红楼梦.characters.贾雨村.arc_state: 得势
+      红楼梦.characters.贾雨村.位置: 红楼梦.world.封肃家
+      红楼梦.characters.贾雨村.关系: {"与甄士隐相交"}
+      红楼梦.characters.贾雨村.心境: 自许知己
+      红楼梦.characters.贾雨村.状态: 新任知府
+      红楼梦.characters.贾雨村.相信: {"娇杏回顾是知己之意"}
+      红楼梦.characters.贾雨村.知道: {红楼梦.world.士隐资助雨村}
+      红楼梦.characters.贾雨村.身份: 穷儒
+      红楼梦.characters.跛足道人.arc_state: 未启动
+      红楼梦.characters.跛足道人.位置: 红楼梦.world.未明
+      红楼梦.characters.跛足道人.关系: {}
+      红楼梦.characters.跛足道人.心境: 平常
+      红楼梦.characters.跛足道人.状态: 游行
+      红楼梦.characters.跛足道人.相信: {}
+      红楼梦.characters.跛足道人.知道: {}
+      红楼梦.characters.跛足道人.身份: 度脱道人
+      红楼梦.characters.迎春.arc_state: 未启动
+      红楼梦.characters.迎春.位置: 红楼梦.world.荣国府
+      红楼梦.characters.迎春.关系: {}
+      红楼梦.characters.迎春.心境: 平常
+      红楼梦.characters.迎春.状态: 随祖母读书
+      红楼梦.characters.迎春.相信: {}
+      红楼梦.characters.迎春.知道: {}
+      红楼梦.characters.迎春.身份: 贾赦之女
+      红楼梦.characters.通灵宝玉.arc_state: 未启动
+      红楼梦.characters.通灵宝玉.位置: 红楼梦.world.红尘入口
+      红楼梦.characters.通灵宝玉.关系: {}
+      红楼梦.characters.通灵宝玉.心境: 平常
+      红楼梦.characters.通灵宝玉.状态: 美玉
+      红楼梦.characters.通灵宝玉.相信: {}
+      红楼梦.characters.通灵宝玉.知道: {}
+      红楼梦.characters.通灵宝玉.身份: 通灵宝玉
+      红楼梦.characters.霍启.arc_state: 未启动
+      红楼梦.characters.霍启.位置: 红楼梦.world.甄府
+      红楼梦.characters.霍启.关系: {}
+      红楼梦.characters.霍启.心境: 平常
+      红楼梦.characters.霍启.状态: 逃走
+      红楼梦.characters.霍启.相信: {}
+      红楼梦.characters.霍启.知道: {}
+      红楼梦.characters.霍启.身份: 甄家家人
+      红楼梦.world.宁国府.状态: 外盛内衰
+      红楼梦.world.封肃家.状态: 可投奔
+      红楼梦.world.智通寺.状态: 颓败
+      红楼梦.world.林家.状态: 丧母无子
+      红楼梦.world.林府.状态: 守丧
+      红楼梦.world.甄府.状态: 焚毁
+      红楼梦.world.甄府宗族.状态: 显贵好礼
+      红楼梦.world.荣国府.状态: 外盛内衰
+      红楼梦.world.葫芦庙.状态: 起火
+      红楼梦.world.贾府.状态: 外盛内衰
+    }
+  structure:
+    start_patterns: [
+      红楼梦.structure.士隐宿慧模式,
+      红楼梦.structure.第一回开端模式,
+      红楼梦.structure.第一回收束模式,
+      红楼梦.structure.英莲劫数启动模式,
+      红楼梦.structure.雨村功名启动模式,
+    ]
+    active_threads: [
+      红楼梦.threads.甄士隐兴亡线,
+      红楼梦.threads.石头入世线,
+      红楼梦.threads.英莲命运线,
+      红楼梦.threads.贾雨村仕途线,
+    ]
+    active_promises: [
+      红楼梦.promises.公差传唤悬念,
+      红楼梦.promises.好了歌悟道伏笔,
+      红楼梦.promises.娇杏回顾伏笔,
+      红楼梦.promises.英莲失踪伏笔,
+      红楼梦.promises.还泪因果伏笔,
+      红楼梦.promises.通灵宝玉来历伏笔,
+    ]
+    active_arcs: [
+      红楼梦.arcs.甄士隐悟道弧,
+      红楼梦.arcs.英莲命运弧,
+      红楼梦.arcs.贾雨村官场弧,
+    ]
+    served_threads: [
+      红楼梦.threads.甄士隐兴亡线,
+      红楼梦.threads.石头入世线,
+      红楼梦.threads.英莲命运线,
+      红楼梦.threads.贾雨村仕途线,
+    ]
+    served_promises: [
+      红楼梦.promises.公差传唤悬念,
+      红楼梦.promises.好了歌悟道伏笔,
+      红楼梦.promises.娇杏回顾伏笔,
+      红楼梦.promises.英莲失踪伏笔,
+      红楼梦.promises.还泪因果伏笔,
+      红楼梦.promises.通灵宝玉来历伏笔,
+    ]
+    served_arcs: [
+      红楼梦.arcs.甄士隐悟道弧,
+      红楼梦.arcs.英莲命运弧,
+      红楼梦.arcs.贾雨村官场弧,
+    ]
+  beats:
+    ordered_beats: [
+      红楼梦.structure.作者自陈本旨,
+      红楼梦.structure.女娲炼石遗石,
+      红楼梦.structure.僧道携石入世,
+      红楼梦.structure.空空道人抄录石记,
+      红楼梦.structure.甄士隐梦见太虚,
+      红楼梦.structure.僧道警示英莲,
+      红楼梦.structure.士隐雨村交谈,
+      红楼梦.structure.雨村窥见娇杏,
+      红楼梦.structure.中秋资助雨村,
+      红楼梦.structure.英莲元宵失踪,
+      红楼梦.structure.葫芦庙失火,
+      红楼梦.structure.士隐投奔封肃,
+      红楼梦.structure.士隐听好了歌,
+      红楼梦.structure.雨村到任传唤,
+    ]
+    beat_preconditions: [
+      { beat: 红楼梦.structure.僧道携石入世, condition: "chars.通灵宝玉.状态 == 未用" },
+      { beat: 红楼梦.structure.雨村窥见娇杏, condition: "chars.贾雨村.状态 == 困居葫芦庙" },
+      { beat: 红楼梦.structure.中秋资助雨村, condition: "chars.贾雨村.状态 == 困居葫芦庙" },
+      { beat: 红楼梦.structure.士隐听好了歌, condition: "chars.甄士隐.状态 == 寄居困顿" },
+    ]
+    beat_effects: [
+      {
+        beat: 红楼梦.structure.作者自陈本旨
+        effect:
+          chars.叙述者.知道 += world.作者自陈本旨
+      },
+      {
+        beat: 红楼梦.structure.女娲炼石遗石
+        effect:
+          chars.通灵宝玉.位置 = world.青埂峰
+          chars.通灵宝玉.状态 = 未用
+      },
+      {
+        beat: 红楼梦.structure.僧道携石入世
+        effect:
+          chars.通灵宝玉.身份 = 通灵宝玉
+          chars.通灵宝玉.状态 = 美玉
+          chars.通灵宝玉.位置 = world.红尘入口
+          chars.茫茫大士.知道 += world.通灵宝玉源起
+          chars.渺渺真人.知道 += world.通灵宝玉源起
+      },
+      {
+        beat: 红楼梦.structure.空空道人抄录石记
+        effect:
+          chars.空空道人.知道 += world.石头记成书
+          chars.空空道人.身份 = 情僧
+          chars.曹雪芹.知道 += world.石头记成书
+      },
+      {
+        beat: 红楼梦.structure.甄士隐梦见太虚
+        effect:
+          chars.甄士隐.位置 = world.太虚幻境
+          chars.甄士隐.知道 += world.还泪因果
+          chars.甄士隐.心境 = 惊异
+          chars.甄士隐.arc_state = 惊异
+      },
+      {
+        beat: 红楼梦.structure.僧道警示英莲
+        effect:
+          chars.英莲.状态 = 被预言
+          chars.英莲.arc_state = 被预言
+          chars.甄士隐.知道 += world.英莲劫数
+      },
+      {
+        beat: 红楼梦.structure.士隐雨村交谈
+        effect:
+          chars.贾雨村.位置 = world.甄府
+          chars.甄士隐.知道 += world.贾雨村贫困
+          chars.贾雨村.关系 += 与甄士隐相交
+      },
+      {
+        beat: 红楼梦.structure.雨村窥见娇杏
+        effect:
+          chars.贾雨村.心境 = 自许知己
+          chars.贾雨村.相信 += 娇杏回顾是知己之意
+          chars.娇杏.知道 += world.贾雨村贫困
+          chars.娇杏.arc_state = 偶顾
+      },
+      {
+        beat: 红楼梦.structure.中秋资助雨村
+        effect:
+          chars.贾雨村.状态 = 得资入都
+          chars.贾雨村.位置 = world.神都
+          chars.贾雨村.arc_state = 起势
+          chars.甄士隐.关系 += 资助贾雨村赴考
+          chars.贾雨村.知道 += world.士隐资助雨村
+      },
+      {
+        beat: 红楼梦.structure.英莲元宵失踪
+        effect:
+          chars.英莲.状态 = 失踪
+          chars.英莲.位置 = world.未明
+          chars.英莲.arc_state = 失踪
+          chars.霍启.状态 = 逃走
+          chars.甄士隐.心境 = 哀痛
+          chars.封氏.心境 = 哀痛
+      },
+      {
+        beat: 红楼梦.structure.葫芦庙失火
+        effect:
+          world.葫芦庙.状态 = 起火
+          world.甄府.状态 = 焚毁
+          chars.甄士隐.状态 = 破家
+          chars.封氏.状态 = 破家
+      },
+      {
+        beat: 红楼梦.structure.士隐投奔封肃
+        effect:
+          chars.甄士隐.位置 = world.封肃家
+          chars.封氏.位置 = world.封肃家
+          chars.甄士隐.状态 = 寄居困顿
+          chars.甄士隐.arc_state = 败落
+          chars.封肃.状态 = 薄待女婿
+      },
+      {
+        beat: 红楼梦.structure.士隐听好了歌
+        effect:
+          chars.甄士隐.知道 += world.好了歌真义
+          chars.甄士隐.心境 = 彻悟
+          chars.甄士隐.arc_state = 彻悟
+          chars.甄士隐.状态 = 出家
+          chars.甄士隐.位置 = world.未明
+      },
+      {
+        beat: 红楼梦.structure.雨村到任传唤
+        effect:
+          chars.贾雨村.状态 = 新任知府
+          chars.贾雨村.位置 = world.封肃家
+          chars.贾雨村.arc_state = 得势
+          chars.娇杏.状态 = 被认出
+          chars.封肃.状态 = 被传唤
+      },
+    ]
+    beat_render_hints: [
+      { beat: 红楼梦.structure.作者自陈本旨, hint: "保留作者自白的悔愧与为闺阁立传的写作动机。" },
+      { beat: 红楼梦.structure.僧道携石入世, hint: "石头求入红尘时要兼具痴念、天真与后来幻灭的反讽。" },
+      { beat: 红楼梦.structure.甄士隐梦见太虚, hint: "梦中玄机只让士隐和读者略闻其端，不解释全局命数。" },
+      { beat: 红楼梦.structure.中秋资助雨村, hint: "中秋酒席要把雨村的抱负、士隐的慷慨和后文回报并置。" },
+      { beat: 红楼梦.structure.雨村到任传唤, hint: "以娇杏认出新太爷的面熟感，收束第一回并转入第二回。" },
+    ]
+  prose:
+    target_length: 3000 字
+}

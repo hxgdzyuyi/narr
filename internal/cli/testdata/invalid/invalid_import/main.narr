@@ -1,0 +1,5 @@
+namespace invalid
+
+import invalid.missing as missing
+
+novel Invalid

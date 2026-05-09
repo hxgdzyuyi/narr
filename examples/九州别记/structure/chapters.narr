@@ -1,0 +1,61 @@
+namespace 九州别记.structure
+
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.structure.vol1_ch01 as vol1_ch01
+import 九州别记.structure.vol1_ch02 as vol1_ch02
+import 九州别记.structure.vol1_ch03 as vol1_ch03
+
+chapter vol01.ch01 alias 祖辈封门 {
+  title: "祖辈封门"
+  purpose: entry
+  target_length: 3000 字
+  pov: chars.殷照胆
+  location: world.无名旧道
+  time_hint: "端朝末年之前十七年，雪炽原暴雪夜。"
+  summary: "殷折祖父殷照胆接下无名旧道封门活，在一次完整的小故事中展示殷门罗盘、听土、封门和救人的摸金门规；他最终为救后辈死在旧道里，只把罗盘、遗言和禁入旧道的线索留给殷折。"
+  beats: [
+    vol1_ch01.旧道封门受托,
+    vol1_ch01.祖辈辨出活土,
+    vol1_ch01.门规救下后辈,
+    vol1_ch01.石构吞人,
+    vol1_ch01.罗盘遗言归殷门
+  ]
+  prose_hint: "第一章要像祖辈短篇，不急着进入主线；祖辈必须死，且死亡只留下危险与技艺，不留下墓主答案。"
+}
+
+chapter vol01.ch02 alias 遗技成形 {
+  title: "遗技成形"
+  purpose: aftermath
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.殷门旧宅
+  time_hint: "十七年后，端朝末局，殷门旧宅。"
+  summary: "殷折继承祖父遗物，洛衡、硕风照夜、苏离灯各自带来机关残学、草原听地法和天驱旧誓；牧云镜与穆如砚携旧档入局，说明主角团为何拥有进入旧道后能自保的摸金能力。"
+  beats: [
+    vol1_ch02.殷折启封罗盘,
+    vol1_ch02.洛衡拆解旧锁,
+    vol1_ch02.硕风听雪辨空,
+    vol1_ch02.苏离灯试鹰扳指,
+    vol1_ch02.牧云穆如携旧档入局
+  ]
+  prose_hint: "第二章以继承、练习和互相试探为主，把摸金技能写成来历清楚的生存本事。"
+}
+
+chapter vol01.ch03 alias 旧道塌陷 {
+  title: "旧道塌陷"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.雪炽原
+  time_hint: "端朝末年，雪炽原暴雪后第三日。"
+  summary: "丁缺金送来边地求援，主角团带着刚刚交代清楚的祖辈技艺抵达雪炽原；他们只为救人和探明塌陷进入无名旧道，合力发现地下石门，却仍不知道其最终会指向嬴无翳大墓。"
+  beats: [
+    vol1_ch03.丁缺金带来求援,
+    vol1_ch03.暴雪旧道塌陷,
+    vol1_ch03.主角团合术探路,
+    vol1_ch03.辰月星坛远观,
+    vol1_ch03.地裂露出石门
+  ]
+  prose_hint: "第三章才让事故真正启动；只露出石门和地下异常，不进入外城，不出现空棺，不确认墓主。"
+}

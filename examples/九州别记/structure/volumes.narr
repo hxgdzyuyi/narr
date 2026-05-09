@@ -1,0 +1,8 @@
+namespace 九州别记.structure
+
+volume vol01 alias 别记卷 {
+  title: "端末入地"
+  purpose: setup
+  summary: "端朝末年的边地异变使摸金者、军门、皇权与草原诸部相继卷入地下遗迹；真相从无名旧道逐步指向燮朝封陵与嬴无翳大墓。"
+  target_chapters: 80
+}

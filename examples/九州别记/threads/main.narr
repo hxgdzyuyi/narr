@@ -1,0 +1,93 @@
+namespace 九州别记.threads
+
+import 九州别记.structure as structure
+
+thread 误入地宫线 {
+  kind: main_plot
+  starts_at: structure.vol01
+  expected_resolution: end_of_story
+  priority: main
+  tags: {端朝, 地宫, 开局, 瀚州, 雪炽原, 无名旧道, 疑似封陵}
+  note: "故事从端朝末局的一次边地塌陷和小型摸金行动开始，众人只知道地下旧道异常，并不知道其最终会牵涉嬴无翳大墓。"
+}
+
+thread 大墓真相线 {
+  kind: mystery
+  starts_at: structure.vol01
+  expected_resolution: end_of_story
+  priority: main
+  tags: {嬴无翳, 大墓, 真相, 疑似封陵, 疑似离公墓域, 离国旧境, 墓志石室}
+  note: "遗迹身份必须层层递进：先是旧陵痕迹，再见燮朝封陵残证，后段才确认地下核心与嬴无翳大墓有关。"
+}
+
+thread 封陵旧史线 {
+  kind: mystery
+  starts_at: structure.vol01
+  expected_resolution: end_of_story
+  priority: major
+  tags: {燮朝, 封陵, 旧史, 中州, 疑似封陵, 封陵外城, 墓志石室}
+  note: "追问燮朝为何重封某处古陵，前期只留下残砖、断简、错铭和被改写的葬制。"
+}
+
+thread 端朝皇权线 {
+  kind: political
+  starts_at: structure.vol01
+  expected_resolution: end_of_story
+  priority: major
+  tags: {端朝, 牧云氏, 皇权, 中州, 天启城, 掩史司密库}
+  note: "牧云氏皇族在末世疑惧中追索旧物与旧史，试图把地下发现转化为稳固皇权的凭证。"
+}
+
+thread 穆如军门线 {
+  kind: political
+  starts_at: structure.vol01
+  expected_resolution: end_of_story
+  priority: major
+  tags: {穆如, 军门, 端朝, 宛州, 宛州城, 殇州, 殇州流放道}
+  note: "穆如军门奉命处置边地异变，却在奉诏、疑诏与护民之间不断失去单纯的军令立场。"
+}
+
+thread 瀚州草原线 {
+  kind: subplot
+  starts_at: structure.vol01
+  expected_resolution: end_of_story
+  priority: major
+  tags: {瀚州, 硕风, 北陆, 雪炽原, 硕风草场, 北陆狼道}
+  note: "硕风部与北陆旧盟最初只因边地风雪和商路断绝靠近遗迹，随后发现草原传说与地下封陵有远因。"
+}
+
+thread 天驱旧誓线 {
+  kind: thematic
+  starts_at: structure.vol01
+  expected_resolution: end_of_story
+  priority: major
+  tags: {天驱, 旧誓, 铁甲, 殇阳关, 天驱旧驿, 地下铁誓厅, 疑似封陵}
+  note: "天驱并非开局主导掘陵，只因边地异变触动旧誓与失传铁甲线索而被牵入，随后发现地下遗迹与前代王道盟约有关。"
+}
+
+thread 辰月暗流线 {
+  kind: mystery
+  starts_at: structure.vol01
+  expected_resolution: end_of_story
+  priority: major
+  tags: {辰月, 星命, 暗流, 天启城, 辰月星坛, 疑似封陵}
+  note: "辰月起初只把塌陷与星象异动视为可利用的末世征兆，暗中渗透端朝、军门和摸金队，后续才追索到墓中更深的王权秘密。"
+}
+
+thread 摸金门规线 {
+  kind: thematic
+  starts_at: structure.vol01
+  expected_resolution: end_of_story
+  priority: major
+  tags: {摸金, 门规, 背叛, 无名旧道, 疑似封陵, 封陵外城}
+  note: "摸金者以技艺、禁忌、内契和分赃规矩维系彼此，地下异变会逐步逼出门规背后的旧债和背叛。"
+}
+
+thread 九州野史线 {
+  kind: thematic
+  starts_at: structure.vol01
+  expected_resolution: end_of_story
+  priority: main
+  tags: {野史, 王道, 霸道, 东陆, 天启城, 离国旧境, 疑似离公墓域}
+  note: "正史、野史、墓志和口传互相冲突，使嬴无翳、燮朝、端朝各自的王道与霸道被重新审问。"
+}

@@ -1,0 +1,13 @@
+namespace 红楼梦.world
+
+faction 贾府 {
+  状态: Symbol = 外盛内衰
+}
+
+faction 林家 {
+  状态: Symbol = 丧母无子
+}
+
+faction 甄府宗族 {
+  状态: Symbol = 显贵好礼
+}

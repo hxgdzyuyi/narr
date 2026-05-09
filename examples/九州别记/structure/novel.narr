@@ -1,0 +1,14 @@
+namespace 九州别记.structure
+
+novel 九州别记 {
+  title: "九州别记"
+  language: zh-CN
+  summary: "端朝末局中，边地一次意外塌陷牵出地下遗迹、燮朝封陵旧史与嬴无翳大墓真相的九州幻想长篇。"
+
+  length:
+    volumes = 1
+    chapters_per_volume = 80
+    chapter = 3000 字
+
+  prose_hint: "以九州东方奇幻的史诗质感写野史、盗墓与王朝末世，不在开局明说遗迹就是嬴无翳大墓。"
+}

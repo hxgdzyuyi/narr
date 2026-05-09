@@ -1,0 +1,4 @@
+interface:
+  display_name: "Narrc CLI 指南"
+  short_description: "引导运行 narrc 命令和解释输出结果"
+  default_prompt: "使用 $use-narrc-cli 帮我运行 narrc 命令并解释输出。"

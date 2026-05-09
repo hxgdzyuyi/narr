@@ -1,0 +1,18 @@
+namespace invalid
+
+class Person {
+  field 状态: Symbol
+}
+
+character 甲 : Person {
+  状态 = 初始
+}
+
+chapter vol01.ch01 {
+  beats: [事件]
+}
+
+beat 事件 @ vol01.ch01 {
+  effect:
+    甲.未知 = done
+}

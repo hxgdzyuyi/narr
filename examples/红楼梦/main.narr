@@ -1,0 +1,8 @@
+namespace 红楼梦
+
+import 红楼梦.world as world
+import 红楼梦.characters as chars
+import 红楼梦.structure as structure
+import 红楼梦.promises as promises
+import 红楼梦.threads as threads
+import 红楼梦.arcs as arcs

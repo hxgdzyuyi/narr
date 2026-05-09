@@ -1,0 +1,137 @@
+namespace 九州别记.promises
+
+import 九州别记.structure.vol1_ch01 as vol1_ch01
+import 九州别记.structure.vol1_ch02 as vol1_ch02
+import 九州别记.structure.vol1_ch03 as vol1_ch03
+
+promise 祖辈封门伏笔 {
+  setup_at: vol1_ch01.旧道封门受托.after
+  setup_strength: strong
+  payoff_by: vol1_ch01.罗盘遗言归殷门.after
+  payoff_kind: emotional_payoff
+  question: "殷照胆最后一次封门活会怎样改变殷折的一生？"
+  reader_visibility: visible
+  tags: { 祖辈, 殷门, 封门, 死亡 }
+  note: "第一章用祖辈小故事完整兑现死亡，把后续主线建立在遗物和门规上。"
+}
+
+promise 殷门罗盘伏笔 {
+  setup_at: vol1_ch01.祖辈辨出活土.after
+  setup_strength: strong
+  payoff_by: vol1_ch02.殷折启封罗盘.after
+  payoff_kind: answered
+  question: "殷氏罗盘为何不是寻宝器，而是殷折能活着入旧道的工具？"
+  reader_visibility: visible
+  tags: { 摸金, 罗盘, 祖辈 }
+  note: "由祖辈示范，再由殷折继承，解释摸金技能的来源。"
+}
+
+promise 机关残学伏笔 {
+  setup_at: vol1_ch02.洛衡拆解旧锁.after
+  setup_strength: medium
+  payoff_by: vol1_ch03.主角团合术探路.after
+  payoff_kind: answered
+  question: "洛衡的机关残学能否在真正塌陷的旧道里救人？"
+  reader_visibility: visible
+  tags: { 机关, 洛衡, 技艺 }
+  note: "第二章讲来历，第三章让机关术第一次派上用场。"
+}
+
+promise 草原旧歌伏笔 {
+  setup_at: vol1_ch02.硕风听雪辨空.after
+  setup_strength: medium
+  payoff_by: vol1_ch03.主角团合术探路.after
+  payoff_kind: answered
+  question: "硕风旧歌中的听地法能不能辨出雪炽原下方的空洞？"
+  reader_visibility: visible
+  tags: { 瀚州, 旧歌, 听地 }
+  note: "把草原传承写成地理经验，而不是单纯异族神秘感。"
+}
+
+promise 天驱扳指伏笔 {
+  setup_at: vol1_ch02.苏离灯试鹰扳指.after
+  setup_strength: strong
+  payoff_by: vol1_ch03.主角团合术探路.after
+  payoff_kind: transformed_question
+  question: "苏离灯的旧鹰扳指为什么会被无名旧道触动？"
+  reader_visibility: visible
+  tags: { 天驱, 旧誓, 扳指 }
+  note: "前三章只让扳指从微热变成警觉，不解释旧誓背后的全部历史。"
+}
+
+promise 军门密诏悬念 {
+  setup_at: vol1_ch02.牧云穆如携旧档入局.after
+  setup_strength: medium
+  payoff_by: end_of_story
+  payoff_kind: reversed
+  question: "牧云镜与穆如砚带来的命令为何彼此相冲？"
+  reader_visibility: visible
+  tags: { 端朝, 皇权, 穆如, 密诏 }
+  note: "第二章先把地上政治压力带入局，不让皇权线直接解释地下真相。"
+}
+
+promise 燮朝重封伏笔 {
+  setup_at: vol1_ch02.牧云穆如携旧档入局.after
+  setup_strength: strong
+  payoff_by: end_of_story
+  payoff_kind: answered
+  question: "燮朝为何会留下重封古陵的残档和军令？"
+  reader_visibility: visible
+  tags: { 燮朝, 封陵, 旧史 }
+  note: "旧档只指向重封行为，不指向墓主身份。"
+}
+
+promise 塌陷原因悬念 {
+  setup_at: vol1_ch03.丁缺金带来求援.after
+  setup_strength: medium
+  payoff_by: vol1_ch03.地裂露出石门.after
+  payoff_kind: transformed_question
+  question: "边地旧道为何在暴雪后突然塌陷？"
+  reader_visibility: visible
+  tags: { 开局, 雪炽原, 无名旧道, 误入 }
+  note: "先把塌陷写成救人与小型摸金事故，兑现为地下结构异常，不确认墓主。"
+}
+
+promise 丁缺金背叛伏笔 {
+  setup_at: vol1_ch03.丁缺金带来求援.after
+  setup_strength: medium
+  payoff_by: end_of_story
+  payoff_kind: reversed
+  question: "丁缺金借边地求援把殷折带来旧道，究竟要卖给谁？"
+  reader_visibility: hidden
+  tags: { 摸金, 背叛, 辰月 }
+  note: "动作先被读者察觉为不安细节，后续再反转为门规与辰月渗透的交点。"
+}
+
+promise 旧道异常伏笔 {
+  setup_at: vol1_ch03.主角团合术探路.after
+  setup_strength: medium
+  payoff_by: vol1_ch03.地裂露出石门.after
+  payoff_kind: answered
+  question: "旧道里不合常制的空音和石构到底意味着什么？"
+  reader_visibility: implied
+  tags: { 无名旧道, 摸金, 机关 }
+  note: "第三章只回答地下结构异常，不回答最终墓主。"
+}
+
+promise 辰月远观悬念 {
+  setup_at: vol1_ch03.辰月星坛远观.after
+  setup_strength: medium
+  payoff_by: end_of_story
+  payoff_kind: answered
+  question: "辰月为何会隔着星坛盯上边地塌陷？"
+  reader_visibility: visible
+  tags: { 辰月, 星命, 暗流 }
+  note: "辰月只从星象与乱局入手，不在前三章确认墓主。"
+}
+
+promise 石门身份伏笔 {
+  setup_at: vol1_ch03.地裂露出石门.after
+  setup_strength: strong
+  payoff_by: end_of_story
+  payoff_kind: transformed_question
+  question: "石门背后的地下建筑究竟是什么？"
+  reader_visibility: visible
+  tags: { 石门, 疑似封陵, 大墓真相 }
+  note: "开局只给出地下规模异常与旧陵感，不把目标写成已知王陵。"
+}

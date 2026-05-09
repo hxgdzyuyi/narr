@@ -1,0 +1,56 @@
+namespace 九州别记.tests
+
+import 九州别记.characters as chars
+import 九州别记.world as world
+
+test "主角与主角团已建立" tags {characters, protagonist} {
+  assert chars.殷折 exists
+  assert chars.殷照胆 exists
+  assert chars.苏离灯 exists
+  assert chars.牧云镜 exists
+  assert chars.穆如砚 exists
+  assert chars.硕风照夜 exists
+  assert chars.洛衡 exists
+  assert chars.殷折.阵营 == 主角团
+  assert count(character 人物 in characters where 人物.阵营 == 主角团) >= 6
+}
+
+test "祖辈小故事人物已建立" tags {characters, ancestor} {
+  assert chars.殷照胆.所属 == world.摸金殷门
+  assert chars.殷照胆.阵营 == 祖辈
+  assert chars.殷照胆.状态 == 殉门
+  assert chars.殷照胆.动机 exists
+  assert chars.殷照胆.秘密 exists
+}
+
+test "敌对人物已建立" tags {characters, antagonist} {
+  assert chars.闻人观星 exists
+  assert chars.姬断鹰 exists
+  assert chars.牧云烬 exists
+  assert chars.丁缺金 exists
+  assert count(character 人物 in characters where 人物.阵营 == 敌人) >= 4
+}
+
+test "天驱和辰月进入人物规划" tags {characters, 天驱, 辰月} {
+  assert chars.苏离灯.所属 == world.天驱旧盟
+  assert chars.姬断鹰.所属 == world.天驱旧盟
+  assert chars.闻人观星.所属 == world.辰月暗宗
+  assert chars.苏离灯.阵营 == 主角团
+  assert chars.姬断鹰.阵营 == 敌人
+  assert chars.闻人观星.阵营 == 敌人
+}
+
+test "人物规划保持开局未知大墓" tags {characters, premise} {
+  assert world.开局不知大墓 exists
+  assert world.主角团开局共识 exists
+  assert chars.殷折.状态 == 被迫入局
+  assert chars.丁缺金.状态 == 伪装同道
+}
+
+test "人物都有叙事动机与秘密" tags {characters, metadata} {
+  forall character 人物 where 人物.阵营 in {主角团, 敌人}:
+    assert 人物.动机 exists
+    assert 人物.秘密 exists
+    assert 人物.arc_state exists
+    assert 人物.阵营 in {主角团, 敌人}
+}

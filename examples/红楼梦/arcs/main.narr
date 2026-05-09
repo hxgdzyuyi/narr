@@ -1,0 +1,53 @@
+namespace 红楼梦.arcs
+
+import 红楼梦.characters as chars
+import 红楼梦.structure as structure
+
+arc 甄士隐悟道弧 {
+  subject: chars.甄士隐
+  starts_at: structure.vol01.ch01
+  start_pattern: structure.第一回开端模式
+  state_field: arc_state
+  initial: 安稳
+  states: [安稳, 惊异, 失女, 败落, 彻悟, 出家]
+}
+
+arc 英莲命运弧 {
+  subject: chars.英莲
+  starts_at: structure.僧道警示英莲.after
+  start_pattern: structure.英莲劫数启动模式
+  state_field: arc_state
+  initial: 被预言
+  states: [娇养, 被预言, 失踪, 流落]
+  tags: { deferred }
+}
+
+arc 贾雨村官场弧 {
+  subject: chars.贾雨村
+  starts_at: structure.雨村窥见娇杏.after
+  start_pattern: structure.雨村功名启动模式
+  state_field: arc_state
+  initial: 困顿
+  states: [困顿, 起势, 得势, 失势, 寄馆, 借势再起]
+  tags: { deferred }
+}
+
+arc 林黛玉离丧弧 {
+  subject: chars.林黛玉
+  starts_at: structure.雨村入林府设馆.after
+  start_pattern: structure.黛玉入场模式
+  state_field: arc_state
+  initial: 孤弱
+  states: [孤弱, 入贾府, 寄人篱下, 情感觉醒]
+  tags: { deferred }
+}
+
+arc 贾宝玉角色弧 {
+  subject: chars.贾宝玉
+  starts_at: structure.子兴叙宝玉衔玉.after
+  start_pattern: structure.宝玉异兆模式
+  state_field: arc_state
+  initial: 异常受宠
+  states: [异常受宠, 顽劣不合, 情痴显露, 悟空]
+  tags: { deferred }
+}

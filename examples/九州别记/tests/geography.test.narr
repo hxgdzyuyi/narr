@@ -1,0 +1,49 @@
+namespace 九州别记.tests
+
+import 九州别记.threads as threads
+import 九州别记.world as world
+
+test "地理锚点覆盖地上与地下" tags {geography, world} {
+  assert world.天启城 exists
+  assert world.宛州城 exists
+  assert world.殇州流放道 exists
+  assert world.雪炽原 exists
+  assert world.无名旧道 exists
+  assert world.疑似封陵 exists
+  assert world.疑似离公墓域 exists
+  assert world.辰月星坛 exists
+}
+
+test "主墓相关 threads 绑定地下地理" tags {geography, threads, tomb} {
+  assert 无名旧道 in threads.误入地宫线.tags
+  assert 疑似封陵 in threads.误入地宫线.tags
+  assert 疑似封陵 in threads.大墓真相线.tags
+  assert 疑似离公墓域 in threads.大墓真相线.tags
+  assert 封陵外城 in threads.摸金门规线.tags
+  assert 墓志石室 in threads.封陵旧史线.tags
+}
+
+test "政治军门草原 threads 绑定地上地理" tags {geography, threads, surface} {
+  assert 天启城 in threads.端朝皇权线.tags
+  assert 掩史司密库 in threads.端朝皇权线.tags
+  assert 宛州城 in threads.穆如军门线.tags
+  assert 殇州流放道 in threads.穆如军门线.tags
+  assert 雪炽原 in threads.瀚州草原线.tags
+  assert 北陆狼道 in threads.瀚州草原线.tags
+}
+
+test "天驱辰月 threads 绑定组织地理" tags {geography, threads, secret_order} {
+  assert 殇阳关 in threads.天驱旧誓线.tags
+  assert 天驱旧驿 in threads.天驱旧誓线.tags
+  assert 地下铁誓厅 in threads.天驱旧誓线.tags
+  assert 天启城 in threads.辰月暗流线.tags
+  assert 辰月星坛 in threads.辰月暗流线.tags
+  assert 疑似封陵 in threads.辰月暗流线.tags
+}
+
+test "九州野史线连接地上正史与地下墓志" tags {geography, threads, thematic} {
+  assert 东陆 in threads.九州野史线.tags
+  assert 天启城 in threads.九州野史线.tags
+  assert 离国旧境 in threads.九州野史线.tags
+  assert 疑似离公墓域 in threads.九州野史线.tags
+}

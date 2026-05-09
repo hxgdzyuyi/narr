@@ -1,0 +1,212 @@
+namespace 红楼梦.structure
+
+import 红楼梦.world as world
+import 红楼梦.characters as chars
+import 红楼梦.promises as promises
+
+beat 作者自陈本旨 @ vol01.ch01 {
+  effect:
+    chars.叙述者.知道 += world.作者自陈本旨
+
+  pov: chars.叙述者
+  on_screen: true
+  sets_up: promises.通灵宝玉来历伏笔
+  reveals: world.作者自陈本旨
+  render_hint: "保留作者自白的悔愧与为闺阁立传的写作动机。"
+}
+
+beat 女娲炼石遗石 @ vol01.ch01 {
+  effect:
+    chars.通灵宝玉.位置 = world.青埂峰
+    chars.通灵宝玉.状态 = 未用
+
+  location: world.青埂峰
+  pov: chars.叙述者
+  on_screen: true
+  mentions: world.青埂峰
+}
+
+beat 僧道携石入世 @ vol01.ch01 {
+  precondition:
+    chars.通灵宝玉.状态 == 未用
+
+  effect:
+    chars.通灵宝玉.身份 = 通灵宝玉
+    chars.通灵宝玉.状态 = 美玉
+    chars.通灵宝玉.位置 = world.红尘入口
+    chars.茫茫大士.知道 += world.通灵宝玉源起
+    chars.渺渺真人.知道 += world.通灵宝玉源起
+
+  location: world.青埂峰
+  observers: { chars.茫茫大士, chars.渺渺真人, chars.通灵宝玉 }
+  sets_up: promises.通灵宝玉来历伏笔
+  reveals: world.通灵宝玉源起
+  render_hint: "石头求入红尘时要兼具痴念、天真与后来幻灭的反讽。"
+}
+
+beat 空空道人抄录石记 @ vol01.ch01 {
+  effect:
+    chars.空空道人.知道 += world.石头记成书
+    chars.空空道人.身份 = 情僧
+    chars.曹雪芹.知道 += world.石头记成书
+
+  location: world.青埂峰
+  pov: chars.空空道人
+  on_screen: true
+  pays_off: promises.通灵宝玉来历伏笔
+  reveals: world.石头记成书
+}
+
+beat 甄士隐梦见太虚 @ vol01.ch01 {
+  effect:
+    chars.甄士隐.位置 = world.太虚幻境
+    chars.甄士隐.知道 += world.还泪因果
+    chars.甄士隐.心境 = 惊异
+    chars.甄士隐.arc_state = 惊异
+
+  location: world.太虚幻境
+  pov: chars.甄士隐
+  on_screen: true
+  sets_up: promises.还泪因果伏笔
+  reveals: world.还泪因果
+  render_hint: "梦中玄机只让士隐和读者略闻其端，不解释全局命数。"
+}
+
+beat 僧道警示英莲 @ vol01.ch01 {
+  effect:
+    chars.英莲.状态 = 被预言
+    chars.英莲.arc_state = 被预言
+    chars.甄士隐.知道 += world.英莲劫数
+
+  location: world.甄府
+  pov: chars.甄士隐
+  on_screen: true
+  observers: { chars.甄士隐, chars.英莲, chars.茫茫大士, chars.渺渺真人 }
+  sets_up: promises.英莲失踪伏笔
+  reveals: world.英莲劫数
+}
+
+beat 士隐雨村交谈 @ vol01.ch01 {
+  effect:
+    chars.贾雨村.位置 = world.甄府
+    chars.甄士隐.知道 += world.贾雨村贫困
+    chars.贾雨村.关系 += "与甄士隐相交"
+
+  location: world.甄府
+  pov: chars.甄士隐
+  on_screen: true
+  observers: { chars.甄士隐, chars.贾雨村 }
+  reveals: world.贾雨村贫困
+}
+
+beat 雨村窥见娇杏 @ vol01.ch01 {
+  precondition:
+    chars.贾雨村.状态 == 困居葫芦庙
+
+  effect:
+    chars.贾雨村.心境 = 自许知己
+    chars.贾雨村.相信 += "娇杏回顾是知己之意"
+    chars.娇杏.知道 += world.贾雨村贫困
+    chars.娇杏.arc_state = 偶顾
+
+  location: world.甄府
+  pov: chars.贾雨村
+  on_screen: true
+  observers: { chars.贾雨村, chars.娇杏 }
+  sets_up: promises.娇杏回顾伏笔
+}
+
+beat 中秋资助雨村 @ vol01.ch01 {
+  precondition:
+    chars.贾雨村.状态 == 困居葫芦庙
+
+  effect:
+    chars.贾雨村.状态 = 得资入都
+    chars.贾雨村.位置 = world.神都
+    chars.贾雨村.arc_state = 起势
+    chars.甄士隐.关系 += "资助贾雨村赴考"
+    chars.贾雨村.知道 += world.士隐资助雨村
+
+  location: world.甄府
+  pov: chars.贾雨村
+  on_screen: true
+  observers: { chars.甄士隐, chars.贾雨村 }
+  reveals: world.士隐资助雨村
+  render_hint: "中秋酒席要把雨村的抱负、士隐的慷慨和后文回报并置。"
+}
+
+beat 英莲元宵失踪 @ vol01.ch01 {
+  effect:
+    chars.英莲.状态 = 失踪
+    chars.英莲.位置 = world.未明
+    chars.英莲.arc_state = 失踪
+    chars.霍启.状态 = 逃走
+    chars.甄士隐.心境 = 哀痛
+    chars.封氏.心境 = 哀痛
+
+  location: world.十里街
+  pov: chars.叙述者
+  on_screen: true
+  pays_off: promises.英莲失踪伏笔
+}
+
+beat 葫芦庙失火 @ vol01.ch01 {
+  effect:
+    world.葫芦庙.状态 = 起火
+    world.甄府.状态 = 焚毁
+    chars.甄士隐.状态 = 破家
+    chars.封氏.状态 = 破家
+
+  location: world.葫芦庙
+  pov: chars.叙述者
+  on_screen: true
+  mentions: { world.葫芦庙, world.甄府 }
+}
+
+beat 士隐投奔封肃 @ vol01.ch01 {
+  effect:
+    chars.甄士隐.位置 = world.封肃家
+    chars.封氏.位置 = world.封肃家
+    chars.甄士隐.状态 = 寄居困顿
+    chars.甄士隐.arc_state = 败落
+    chars.封肃.状态 = 薄待女婿
+
+  location: world.封肃家
+  pov: chars.叙述者
+  on_screen: true
+  observers: { chars.甄士隐, chars.封氏, chars.封肃 }
+}
+
+beat 士隐听好了歌 @ vol01.ch01 {
+  precondition:
+    chars.甄士隐.状态 == 寄居困顿
+
+  effect:
+    chars.甄士隐.知道 += world.好了歌真义
+    chars.甄士隐.心境 = 彻悟
+    chars.甄士隐.arc_state = 彻悟
+    chars.甄士隐.状态 = 出家
+    chars.甄士隐.位置 = world.未明
+
+  location: world.十里街
+  pov: chars.甄士隐
+  on_screen: true
+  observers: { chars.甄士隐, chars.跛足道人 }
+  pays_off: promises.好了歌悟道伏笔
+  reveals: world.好了歌真义
+}
+
+beat 雨村到任传唤 @ vol01.ch01 {
+  effect:
+    chars.贾雨村.状态 = 新任知府
+    chars.贾雨村.位置 = world.封肃家
+    chars.贾雨村.arc_state = 得势
+    chars.娇杏.状态 = 被认出
+    chars.封肃.状态 = 被传唤
+
+  location: world.封肃家
+  pov: chars.娇杏
+  on_screen: true
+  sets_up: promises.公差传唤悬念
+  render_hint: "以娇杏认出新太爷的面熟感，收束第一回并转入第二回。"
+}

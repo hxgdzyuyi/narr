@@ -1,0 +1,50 @@
+namespace 九州别记.world
+
+place 东陆
+place 中州 in 东陆
+place 天启城 in 中州
+place 掩史司密库 in 天启城
+place 宛州 in 东陆
+place 宛州城 in 宛州
+place 穆如旧营 in 宛州
+place 殷门旧宅 in 宛州
+place 殇州 in 东陆
+place 殇州流放道 in 殇州
+place 瀚州
+place 雪炽原 in 瀚州
+place 雪炽原旧驿 in 雪炽原
+place 硕风草场 in 瀚州
+place 北陆
+place 北陆狼道 in 北陆
+place 离国旧境 in 东陆
+place 殇阳关 in 东陆
+place 天驱旧驿 in 殇阳关
+place 辰月星坛 in 东陆
+
+place 无名旧道 in 雪炽原 {
+  状态: Symbol = 塌陷初显
+}
+
+place 疑似封陵 in 无名旧道 {
+  状态: Symbol = 身份未明
+}
+
+place 封陵外城 in 疑似封陵 {
+  状态: Symbol = 未开启
+}
+
+place 地下铁誓厅 in 疑似封陵 {
+  状态: Symbol = 传闻
+}
+
+place 疑似离公墓域 in 疑似封陵 {
+  状态: Symbol = 未证实
+}
+
+place 赤旅兵冢 in 疑似离公墓域 {
+  状态: Symbol = 沉睡
+}
+
+place 墓志石室 in 疑似离公墓域 {
+  状态: Symbol = 未出土
+}

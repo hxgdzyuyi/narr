@@ -1,0 +1,148 @@
+namespace 红楼梦.structure
+
+import 红楼梦.world as world
+import 红楼梦.characters as chars
+import 红楼梦.promises as promises
+import 红楼梦.threads as threads
+import 红楼梦.arcs as arcs
+
+start_pattern 第一回开端模式 {
+  at: vol01.ch01
+
+  requires:
+    chars.通灵宝玉.状态 == 原石
+    chars.甄士隐.状态 == 安居
+    chars.贾雨村.状态 == 困居葫芦庙
+
+  starts:
+    arc arcs.甄士隐悟道弧
+    promise promises.通灵宝玉来历伏笔
+    thread threads.石头入世线
+    thread threads.甄士隐兴亡线
+}
+
+start_pattern 英莲劫数启动模式 {
+  at: 僧道警示英莲.after
+
+  requires:
+    chars.英莲.状态 == 被预言
+
+  starts:
+    arc arcs.英莲命运弧
+    promise promises.英莲失踪伏笔
+    thread threads.英莲命运线
+}
+
+start_pattern 雨村功名启动模式 {
+  at: 雨村窥见娇杏.after
+
+  requires:
+    chars.贾雨村.心境 == 自许知己
+
+  starts:
+    arc arcs.贾雨村官场弧
+    promise promises.娇杏回顾伏笔
+    thread threads.贾雨村仕途线
+}
+
+start_pattern 士隐宿慧模式 {
+  at: 甄士隐梦见太虚.after
+
+  requires:
+    world.还泪因果 in chars.甄士隐.知道
+
+  starts:
+    promise promises.还泪因果伏笔
+    promise promises.好了歌悟道伏笔
+}
+
+start_pattern 第一回收束模式 {
+  at: 雨村到任传唤.after
+
+  requires:
+    chars.贾雨村.状态 == 新任知府
+    chars.娇杏.状态 == 被认出
+
+  starts:
+    promise promises.公差传唤悬念
+}
+
+start_pattern 第二回承接模式 {
+  at: vol01.ch02
+
+  requires:
+    chars.贾雨村.状态 == 新任知府
+    chars.封肃.状态 == 被传唤
+    chars.娇杏.状态 == 被认出
+
+  starts:
+    thread threads.贾府引入线
+}
+
+start_pattern 雨村革职模式 {
+  at: 雨村升官又被革.after
+
+  requires:
+    chars.贾雨村.状态 == 革职游历
+
+  starts:
+    promise promises.雨村再起伏笔
+}
+
+start_pattern 黛玉入场模式 {
+  at: 雨村入林府设馆.after
+
+  requires:
+    world.林家.状态 == 丧母无子
+    chars.林黛玉.状态 == 丧母病弱
+
+  starts:
+    arc arcs.林黛玉离丧弧
+    promise promises.黛玉身世伏笔
+    thread threads.林黛玉身世线
+}
+
+start_pattern 荣府入场模式 {
+  at: 冷子兴谈宁荣二府.after
+
+  requires:
+    world.荣宁二府衰象 in chars.贾雨村.知道
+
+  starts:
+    promise promises.荣国府衰象伏笔
+    thread threads.荣国府家族线
+}
+
+start_pattern 宝玉异兆模式 {
+  at: 子兴叙宝玉衔玉.after
+
+  requires:
+    world.宝玉衔玉而生 in chars.贾雨村.知道
+    chars.通灵宝玉.状态 == 已入世
+
+  starts:
+    arc arcs.贾宝玉角色弧
+    promise promises.宝玉衔玉伏笔
+    promise promises.宝玉镜像伏笔
+    thread threads.贾宝玉人物线
+}
+
+start_pattern 贾府女眷模式 {
+  at: 子兴详述贾府女眷.after
+
+  requires:
+    world.贾敏是黛玉之母 in chars.贾雨村.知道
+
+  starts:
+    promise promises.黛玉入贾府伏笔
+}
+
+start_pattern 下回报喜模式 {
+  at: 酒肆报喜悬念.after
+
+  requires:
+    world.下回报喜悬念 in chars.贾雨村.知道
+
+  starts:
+    promise promises.下回报喜伏笔
+}

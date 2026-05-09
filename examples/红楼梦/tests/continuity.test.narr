@@ -1,0 +1,43 @@
+namespace 红楼梦.tests
+
+import 红楼梦.structure as structure
+import 红楼梦.arcs as arcs
+import 红楼梦.characters as chars
+import 红楼梦.world as world
+
+test "有兑现期限的伏笔必须有章节承载" tags {promise, payoff} {
+  forall promise 伏笔 where 伏笔.payoff_by exists:
+    exists chapter 章节 where chapter_of(伏笔.payoff_by) == 章节:
+      assert 章节 pays_off 伏笔
+}
+
+test "可见伏笔必须在 setup 所在章被服务" tags {promise, visibility} {
+  forall promise 伏笔 where 伏笔.reader_visibility == visible:
+    exists chapter 章节 where chapter_of(伏笔.setup_at) == 章节:
+      assert 章节 serves 伏笔
+}
+
+test "第一回推进士隐悟道与英莲命运" tags {arc, state, 第一回} {
+  let 第一回 = structure.vol01.ch01
+
+  assert 第一回 advances arcs.甄士隐悟道弧
+  assert 第一回 advances arcs.英莲命运弧
+  assert state(chars.甄士隐.状态, at 第一回.end) == 出家
+  assert state(chars.英莲.状态, at 第一回.end) == 失踪
+}
+
+test "第二回推进雨村官场并引出宝黛入口" tags {arc, state, 第二回} {
+  let 第二回 = structure.vol01.ch02
+
+  assert 第二回 advances arcs.贾雨村官场弧
+  assert 第二回 starts arcs.贾宝玉角色弧
+  assert state(chars.贾雨村.状态, at 第二回.end) == 将有转机
+  assert state(chars.林黛玉.位置, at 第二回.end) == world.林府
+}
+
+test "前两回覆盖主要叙事线" tags {thread, vol01} {
+  let 第一回 = structure.vol01.ch01
+  let 第二回 = structure.vol01.ch02
+
+  assert count(thread 叙事线 in threads where 叙事线.priority in { main, major } and (第一回 serves 叙事线 or 第二回 serves 叙事线)) >= 6
+}

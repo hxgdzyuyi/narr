@@ -1,0 +1,22 @@
+chapter vol01.ch01 - 甄士隐梦幻识通灵 贾雨村风尘怀闺秀
+alias: 甄士隐识通灵
+volume: vol01
+next: vol01.ch02
+summary: 第一回以作者自陈、顽石入世、甄士隐梦幻、英莲失踪、士隐悟道、雨村起势构成长篇的神话起点与现实入口。
+beats: 14
+state changes: 35
+active threads: 4
+active promises: 6
+served promises: 6
+active_threads:
+  红楼梦.threads.甄士隐兴亡线
+  红楼梦.threads.石头入世线
+  红楼梦.threads.英莲命运线
+  红楼梦.threads.贾雨村仕途线
+served_promises:
+  红楼梦.promises.公差传唤悬念
+  红楼梦.promises.好了歌悟道伏笔
+  红楼梦.promises.娇杏回顾伏笔
+  红楼梦.promises.英莲失踪伏笔
+  红楼梦.promises.还泪因果伏笔
+  红楼梦.promises.通灵宝玉来历伏笔

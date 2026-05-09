@@ -1,0 +1,4 @@
+interface:
+  display_name: "Narr 语言指南"
+  short_description: "引导编写 Narr 蓝图和设计测试文件"
+  default_prompt: "使用 $use-narr-lang 帮我生成或修改 Narr 项目里的 .narr 和 .test.narr 文件。"

@@ -1,0 +1,55 @@
+namespace 红楼梦.structure
+
+import 红楼梦.world as world
+import 红楼梦.characters as chars
+
+chapter vol01.ch01 alias 甄士隐识通灵 {
+  title: "甄士隐梦幻识通灵 贾雨村风尘怀闺秀"
+  purpose: entry
+  target_length: 3000 字
+  start_pattern: 第一回开端模式
+  summary: "第一回以作者自陈、顽石入世、甄士隐梦幻、英莲失踪、士隐悟道、雨村起势构成长篇的神话起点与现实入口。"
+  pov: chars.叙述者
+  location: world.仁清巷
+  beats: [
+    作者自陈本旨,
+    女娲炼石遗石,
+    僧道携石入世,
+    空空道人抄录石记,
+    甄士隐梦见太虚,
+    僧道警示英莲,
+    士隐雨村交谈,
+    雨村窥见娇杏,
+    中秋资助雨村,
+    英莲元宵失踪,
+    葫芦庙失火,
+    士隐投奔封肃,
+    士隐听好了歌,
+    雨村到任传唤
+  ]
+}
+
+chapter vol01.ch02 alias 冷子兴说荣府 {
+  title: "贾夫人仙逝扬州城 冷子兴演说荣国府"
+  purpose: discovery
+  target_length: 3000 字
+  start_pattern: 第二回承接模式
+  summary: "第二回先解开公差传唤之由，再写雨村仕途起落、入林府为师、与冷子兴酒肆相逢，由旁观者引出宁荣二府、宝玉异兆与黛玉身世。"
+  pov: chars.贾雨村
+  location: world.村肆
+  beats: [
+    公差传唤封肃,
+    雨村求娶娇杏,
+    娇杏扶正,
+    雨村升官又被革,
+    雨村入林府设馆,
+    雨村访智通寺,
+    雨村偶遇冷子兴,
+    冷子兴谈宁荣二府,
+    子兴叙宝玉衔玉,
+    雨村论正邪两赋,
+    雨村举甄宝玉映照,
+    子兴详述贾府女眷,
+    酒肆报喜悬念
+  ]
+}

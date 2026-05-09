@@ -1,0 +1,7 @@
+namespace 九州别记
+
+import 九州别记.structure as structure
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+import 九州别记.world as world
+import 九州别记.characters as chars
