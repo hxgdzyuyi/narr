@@ -1,0 +1,53 @@
+namespace 九州别记.tests
+
+import 九州别记.structure as structure
+import 九州别记.characters as chars
+import 九州别记.world as world
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+test "第六十一至七十章接续天驱辰月正面冲突" tags {structure, vol01, chapters} {
+  assert previous(structure.vol01.ch61) == structure.vol01.ch60
+  assert previous(structure.vol01.ch70) == structure.vol01.ch69
+  assert next(structure.vol01.ch70) == structure.vol01.ch71
+}
+
+test "辰月远观悬念在星局受挫中兑现" tags {辰月, promise, payoff} {
+  assert structure.vol01.ch61 reveals world.十二主星秘术体系
+  assert structure.vol01.ch67 reveals world.秘术溢出风险
+  assert structure.vol01.ch70 pays_off promises.辰月远观悬念
+  assert state(world.十二主星盘.状态, at structure.vol01.ch70.end) == 被旧誓截断
+  assert state(chars.闻人观星.状态, at structure.vol01.ch70.end) == 星局受挫
+}
+
+test "苏离灯区分守誓与夺权" tags {天驱, character, oath} {
+  assert structure.vol01.ch62 advances threads.天驱旧誓线
+  assert structure.vol01.ch63 reveals world.天驱护陵旧誓
+  assert structure.vol01.ch68 reveals world.天驱人物规划原则
+  assert state(world.旧鹰扳指.状态, at structure.vol01.ch70.end) == 自定守誓
+  assert state(chars.苏离灯.arc_state, at structure.vol01.ch70.end) == 守誓自定
+}
+
+test "殷折坚持救活人留真史不贪墓物" tags {摸金, ethics, history} {
+  assert structure.vol01.ch64 advances threads.摸金门规线
+  assert structure.vol01.ch64 reveals world.殷门祖辈传承
+  assert state(chars.殷折.arc_state, at structure.vol01.ch64.end) == 守规留史
+  assert state(world.殷门罗盘.状态, at structure.vol01.ch64.end) == 照活路不照宝
+  assert state(world.离公墓志残片.状态, at structure.vol01.ch64.end) == 留真史不归私
+}
+
+test "姬断鹰夺取王道解释权失败" tags {天驱, 王道, conflict} {
+  assert structure.vol01.ch65 advances threads.九州野史线
+  assert structure.vol01.ch69 advances threads.天驱旧誓线
+  assert structure.vol01.ch70 advances threads.大墓真相线
+  assert state(chars.姬断鹰.状态, at structure.vol01.ch70.end) == 败走
+  assert state(chars.姬断鹰.arc_state, at structure.vol01.ch70.end) == 夺誓受挫
+}
+
+test "六十一至七十章持续推进四条核心线" tags {threads, pacing} {
+  assert structure.vol01.ch61 advances threads.辰月暗流线
+  assert structure.vol01.ch62 advances threads.天驱旧誓线
+  assert structure.vol01.ch64 advances threads.摸金门规线
+  assert structure.vol01.ch66 advances threads.殇阳梦境线
+  assert structure.vol01.ch70 advances threads.大墓真相线
+}

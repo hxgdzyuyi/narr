@@ -1,0 +1,194 @@
+namespace 九州别记.structure
+
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.structure.vol1_ch21 as vol1_ch21
+import 九州别记.structure.vol1_ch22 as vol1_ch22
+import 九州别记.structure.vol1_ch23 as vol1_ch23
+import 九州别记.structure.vol1_ch24 as vol1_ch24
+import 九州别记.structure.vol1_ch25 as vol1_ch25
+import 九州别记.structure.vol1_ch26 as vol1_ch26
+import 九州别记.structure.vol1_ch27 as vol1_ch27
+import 九州别记.structure.vol1_ch28 as vol1_ch28
+import 九州别记.structure.vol1_ch29 as vol1_ch29
+import 九州别记.structure.vol1_ch30 as vol1_ch30
+
+chapter vol01.ch21 alias 残页再启 {
+  title: "残页再启"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  time_hint: "梦印反写张博姓名之后，殷折尚未退出殇阳关梦境。"
+  summary: "张博归名只让无名战牍露出第一处缺口，殷折在梦门边缘看见更多被败局、雨阵和辰月污染遮住的空格；他确认第二段梦境的目标不是再救一将，而是循残页追索更多无名战死者的姓名。"
+  beats: [
+    vol1_ch21.梦印未退反开残页,
+    vol1_ch21.雨阵群影压近,
+    vol1_ch21.殷折循名查牍,
+    vol1_ch21.战牍空格连成列,
+    vol1_ch21.残页再启指向群名
+  ]
+  prose_hint: "第二十一章要让张博归名成为入口而不是终点，重点是群名任务浮现。"
+}
+
+chapter vol01.ch22 alias 星污显形 {
+  title: "星污显形"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  time_hint: "无名战牍残页再启后，殇阳雨阵深处的辰月污染重新压上残页。"
+  summary: "殷折追索群名时看见雷碧城星术残简把战牍空格一再涂黑，尸阵与蛊影只在污染边缘浮现；他不能把污染当作幻象略过，只能先辨出辰月如何借败局遮蔽死者。"
+  beats: [
+    vol1_ch22.星污覆上残页,
+    vol1_ch22.雷碧城影入雨阵,
+    vol1_ch22.残简割裂群名,
+    vol1_ch22.殷折辨出污染代价,
+    vol1_ch22.雨阵转向异变夜
+  ]
+  prose_hint: "第二十二章写污染机制，不写成术士随手抹名；每一次遮蔽都应依附战史败局。"
+}
+
+chapter vol01.ch23 alias 国师星局 {
+  title: "国师星局"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  time_hint: "殷折辨出残简污染后，梦境把雷碧城与辰月暗流的旧局照出一角。"
+  summary: "雷碧城的国师星局在梦中显形，闻人观星远处借旧污染偷读残页；殷折守住证据链，不让星术替代战牍本身，并从被污染的空格里找到反污追名的路径。"
+  beats: [
+    vol1_ch23.国师府影入牍,
+    vol1_ch23.十二主星误写军册,
+    vol1_ch23.闻人借污读名,
+    vol1_ch23.殷折守住证据链,
+    vol1_ch23.残页留下反污路
+  ]
+  prose_hint: "第二十三章让辰月线更清晰，但仍坚持证据链原则，不能让星术直接给出墓主答案。"
+}
+
+chapter vol01.ch24 alias 群名残缺 {
+  title: "群名残缺"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  time_hint: "反污路径露出后，殷折回到张博断刃所在的死阵边缘。"
+  summary: "张博断刃旁显出更多被折断的名位，殷折试图逐一辨认，却发现群名并非简单排在张博之后；败局、污墨和断刃共同留下的只是半列残缺，迫使他承认归名需要先收住残缺本身。"
+  beats: [
+    vol1_ch24.断刃照出群名缺口,
+    vol1_ch24.张博名旁余墨裂开,
+    vol1_ch24.殷折试逐一认骨,
+    vol1_ch24.群名被败局压回,
+    vol1_ch24.断刃只留半列
+  ]
+  prose_hint: "第二十四章不要把群名写成清单，要写出战场缺名的断裂感。"
+}
+
+chapter vol01.ch25 alias 点名收殓 {
+  title: "点名收殓"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  time_hint: "断刃只留半列之后，雨阵边缘的辰月异变逼近死者遗痕。"
+  summary: "尸阵材料的阴影逼近无名战死者，殷折以殷门门规拒绝把死者当成术材或战利；他把点名当成收殓，先护住第一列残缺姓名，让群名梦印真正成为第二段梦境的入口。"
+  beats: [
+    vol1_ch25.尸阵材料逼近,
+    vol1_ch25.殷折拒把死者当术材,
+    vol1_ch25.门规点名成线,
+    vol1_ch25.战牍收住第一列,
+    vol1_ch25.残印转为群名之门
+  ]
+  prose_hint: "第二十五章把摸金门规压进梦境伦理：可记、可收殓，不可夺死者作物。"
+}
+
+chapter vol01.ch26 alias 败局边缘 {
+  title: "败局边缘"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  time_hint: "第一列群名被护住后，梦境把殷折推向嬴无翳突围前的败局边缘。"
+  summary: "殷折听见突围军令，又一次被墓主身体和因果压向不能回身的战局；他在第二列残名出现时放弃改写胜负，只把选择收束为补名与收殓。"
+  beats: [
+    vol1_ch26.败局边缘再开,
+    vol1_ch26.殷折听见突围军令,
+    vol1_ch26.墓主因果压回营门,
+    vol1_ch26.无名战牍补成第二列,
+    vol1_ch26.殷折承认只补名
+  ]
+  prose_hint: "第二十六章要再次确认边界，让殷折主动承认行动目标从救胜负转为守死者姓名。"
+}
+
+chapter vol01.ch27 alias 突围因果 {
+  title: "突围因果"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  time_hint: "第二列残名出现后，梦境照出嬴无翳突围与殇阳关失守之间的因果锁。"
+  summary: "突围路线、白毅压阵和嬴无翳不能回身的因果同时显形，殷折看见墓葬危险不在宝物而在旧史会动摇正统；他避开改史诱惑，把群名继续从突围因果旁边剥离出来。"
+  beats: [
+    vol1_ch27.突围路线显形,
+    vol1_ch27.白毅压阵不许回身,
+    vol1_ch27.嬴无翳因果成锁,
+    vol1_ch27.殷折照见墓葬危险,
+    vol1_ch27.群名避开改史
+  ]
+  prose_hint: "第二十七章可以让墓主危险更近，但不能把墓主真相完全公开成结论。"
+}
+
+chapter vol01.ch28 alias 旧誓护名 {
+  title: "旧誓护名"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.苏离灯
+  location: world.星文回廊
+  time_hint: "殷折在梦中避开改史诱惑时，现实侧旧鹰扳指与梦门互相回响。"
+  summary: "苏离灯在星文回廊外侧听见旧誓越过梦门，旧鹰扳指割开部分星污；梦中的殷折借这道旧誓护住群名，使天驱旧誓不再只是守门禁语，而成为阻止死者被术式吞没的边界。"
+  beats: [
+    vol1_ch28.旧鹰回声越过梦门,
+    vol1_ch28.天驱旧誓拦住尸阵,
+    vol1_ch28.殷折借誓护名,
+    vol1_ch28.星污被誓线割开,
+    vol1_ch28.群名继续反写
+  ]
+  prose_hint: "第二十八章让现实侧主角团短暂回到场上，但不要切断殷折的梦境任务。"
+}
+
+chapter vol01.ch29 alias 梦潮将退 {
+  title: "梦潮将退"
+  purpose: aftermath
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  time_hint: "旧誓割开星污后，殇阳雨阵开始向战牍与墓志残片退潮。"
+  summary: "雨阵退成战牍纹路，殷折不再追逐胜负幻影；嬴无翳突围因果闭合，群名终于在无名战牍残页上初步成形，梦门也露出通向墓志石室的回潮缝隙。"
+  beats: [
+    vol1_ch29.雨阵退成战牍,
+    vol1_ch29.殷折不追胜负,
+    vol1_ch29.突围因果闭合,
+    vol1_ch29.无名残页群名初成,
+    vol1_ch29.梦门露回石室
+  ]
+  prose_hint: "第二十九章收束梦境战场，把情绪落在群名成形和退潮将临。"
+}
+
+chapter vol01.ch30 alias 梦印群名 {
+  title: "群名反写"
+  purpose: aftermath
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.墓志石室
+  time_hint: "群名初成后，殇阳关梦境第一次退潮回墓志石室。"
+  summary: "梦潮退回残印，群名反写进现实残片；殷折醒回墓志石室，苏离灯和牧云镜只能看见残痕而不能完全公开墓主真相，梦境暂时退潮，却把下一段追问留给石室深处。"
+  beats: [
+    vol1_ch30.梦潮退入残印,
+    vol1_ch30.群名梦印落回残片,
+    vol1_ch30.殷折醒在石室,
+    vol1_ch30.众人只见残痕,
+    vol1_ch30.墓主真相仍留暗门
+  ]
+  prose_hint: "第三十章要让梦境退潮而不是终结，最终状态回到墓志石室，墓主真相仍未完全公开。"
+}

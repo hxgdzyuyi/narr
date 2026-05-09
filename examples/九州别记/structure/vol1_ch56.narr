@@ -1,0 +1,89 @@
+namespace 九州别记.structure.vol1_ch56
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 闻人校十二主星 @ structure.vol01.ch56 {
+  effect:
+    chars.闻人观星.位置 = world.辰月星坛
+    chars.闻人观星.状态 = 校十二主星
+    chars.闻人观星.知道 += world.十二主星秘术体系
+    world.十二主星盘.状态 = 校星入盘
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  observers: { chars.闻人观星 }
+  advances: { threads.辰月暗流线, threads.大墓真相线 }
+  reveals: world.十二主星秘术体系
+  mentions: { world.十二主星盘, world.辰月星坛, world.星辰秘术师 }
+  render_hint: "星盘操作要像推演证据关系，不像全知预言。"
+}
+
+beat 墓主真名入星盘 @ structure.vol01.ch56 {
+  effect:
+    chars.闻人观星.知道 += world.嬴无翳墓主定位
+    chars.闻人观星.状态 = 真名入盘
+    world.十二主星盘.状态 = 真名入盘
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  observers: { chars.闻人观星 }
+  advances: { threads.辰月暗流线, threads.九州野史线 }
+  reveals: world.星文观测原则
+  mentions: { world.嬴无翳, world.十二主星盘, world.嬴无翳墓主定位 }
+  render_hint: "真名入盘来自墓主确认后的证据，不是辰月提前知道答案。"
+}
+
+beat 辰月借星分证 @ structure.vol01.ch56 {
+  effect:
+    chars.闻人观星.知道 += world.辰月主星偏用
+    world.辰月暗宗.状态 = 借星分证
+    world.十二主星盘.状态 = 分证成局
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  observers: { chars.闻人观星 }
+  advances: { threads.辰月暗流线, threads.端朝皇权线, threads.穆如军门线 }
+  reveals: world.辰月主星偏用
+  mentions: { world.辰月暗宗, world.端朝掩史司, world.穆如军门 }
+  render_hint: "闻人借星分证，让端朝和军门各自看见不同风险。"
+}
+
+beat 星盘牵动天启 @ structure.vol01.ch56 {
+  effect:
+    chars.闻人观星.状态 = 牵动天启
+    world.十二主星盘.状态 = 牵动天启
+    world.端朝.状态 = 星局牵动
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  observers: { chars.闻人观星 }
+  advances: { threads.辰月暗流线, threads.端朝皇权线 }
+  mentions: { world.天启辰月别坛, world.天启城, world.端朝 }
+  render_hint: "星盘牵动的是政治判断和恐惧，不是直接控制天启。"
+}
+
+beat 闻人留出开阵价 @ structure.vol01.ch56 {
+  effect:
+    chars.闻人观星.状态 = 承受开阵价
+    chars.闻人观星.知道 += world.秘术溢出风险
+    world.十二主星盘.状态 = 待开阵
+    world.辰月暗宗.状态 = 星局待启
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  observers: { chars.闻人观星 }
+  advances: { threads.辰月暗流线, threads.九州野史线 }
+  reveals: world.秘术溢出风险
+  mentions: { world.十二主星盘, world.秘术溢出风险, world.辰月主星偏用 }
+  render_hint: "章末给出开阵代价，避免辰月秘术无成本推进。"
+}
+

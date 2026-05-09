@@ -1,0 +1,67 @@
+namespace 九州别记.tests
+
+import 九州别记.structure as structure
+import 九州别记.characters as chars
+import 九州别记.world as world
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+test "第十一至第二十章顺序接续第十章" tags {structure, vol01, chapters} {
+  assert previous(structure.vol01.ch11) == structure.vol01.ch10
+  assert previous(structure.vol01.ch20) == structure.vol01.ch19
+  assert next(structure.vol01.ch20) == structure.vol01.ch21
+}
+
+test "第十一至十五章回答多族痕迹不是同建主墓" tags {world, races, tomb} {
+  assert structure.vol01.ch11 reveals world.河络机坊封死事实
+  assert structure.vol01.ch12 reveals world.羽族坠羽井传闻
+  assert structure.vol01.ch13 reveals world.鲛泪暗渠事实
+  assert structure.vol01.ch14 reveals world.夸父骨画壁事实
+  assert structure.vol01.ch15 reveals world.魅影空廊事实
+  assert structure.vol01.ch15 reveals world.多族痕迹解释原则
+  assert structure.vol01.ch11 sets_up promises.多族重封伏笔
+  assert structure.vol01.ch15 pays_off promises.多族重封伏笔
+}
+
+test "第十一至十五章地下空间继续分层打开" tags {state, geography, tomb} {
+  assert state(world.河络地火机坊.状态, at structure.vol01.ch11.end) == 火道复醒
+  assert state(world.羽族坠羽井.状态, at structure.vol01.ch12.end) == 星文显现
+  assert state(world.鲛泪暗渠.状态, at structure.vol01.ch13.end) == 暗渠断流
+  assert state(world.夸父骨画壁.状态, at structure.vol01.ch14.end) == 骨画拓存
+  assert state(world.魅影空廊.状态, at structure.vol01.ch15.end) == 证词扰乱
+  assert state(world.疑似封陵.状态, at structure.vol01.ch15.end) == 多代重封成证
+}
+
+test "第十六至十八章把证据链转入殇阳梦境" tags {dream, promise, 殇阳关} {
+  assert structure.vol01.ch16 sets_up promises.星术触梦伏笔
+  assert structure.vol01.ch17 sets_up promises.张博归名伏笔
+  assert structure.vol01.ch18 pays_off promises.殇阳梦境伏笔
+  assert structure.vol01.ch18 pays_off promises.星术触梦伏笔
+  assert structure.vol01.ch18 reveals world.殇阳梦境映射机制
+  assert structure.vol01.ch18 reveals world.化身墓主规则
+  assert state(world.殇阳关战牍.状态, at structure.vol01.ch17.end) == 与星术相连
+  assert state(world.殇阳关梦境.状态, at structure.vol01.ch18.end) == 映射开启
+}
+
+test "第十九至二十章兑现归名而不改写败局" tags {dream, payoff, boundary} {
+  assert structure.vol01.ch19 reveals world.梦境挽回边界
+  assert structure.vol01.ch20 reveals world.墓主遗憾核心
+  assert structure.vol01.ch20 pays_off promises.张博归名伏笔
+  assert state(world.张博断刃.状态, at structure.vol01.ch20.end) == 已归名
+  assert state(world.无名战牍残页.状态, at structure.vol01.ch20.end) == 张博归名
+  assert state(world.梦中殇阳雨阵.状态, at structure.vol01.ch20.end) != 战役改写
+}
+
+test "十一至二十章持续推进核心 threads" tags {threads, pacing} {
+  assert structure.vol01.ch11 advances threads.大墓真相线
+  assert structure.vol01.ch11 advances threads.摸金门规线
+  assert structure.vol01.ch12 advances threads.天驱旧誓线
+  assert structure.vol01.ch13 advances threads.九州野史线
+  assert structure.vol01.ch14 advances threads.瀚州草原线
+  assert structure.vol01.ch15 advances threads.封陵旧史线
+  assert structure.vol01.ch16 advances threads.辰月暗流线
+  assert structure.vol01.ch17 advances threads.殇阳梦境线
+  assert structure.vol01.ch18 advances threads.殇阳梦境线
+  assert structure.vol01.ch19 advances threads.殇阳梦境线
+  assert structure.vol01.ch20 advances threads.九州野史线
+}

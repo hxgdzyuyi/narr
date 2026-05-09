@@ -1,0 +1,84 @@
+namespace 九州别记.structure.vol1_ch76
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 闻人强牵残简 @ structure.vol01.ch76 {
+  effect:
+    chars.闻人观星.位置 = world.辰月星坛
+    chars.闻人观星.状态 = 强牵残简
+    world.雷碧城星术残简.状态 = 强牵封门
+
+  pov: chars.苏离灯
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折 }
+  advances: { threads.辰月暗流线, threads.大墓真相线 }
+  mentions: { chars.闻人观星, world.雷碧城星术残简, world.辰月星坛 }
+  render_hint: "闻人隔坛强牵残简，要显出辰月仍想把证据变成星命独占。"
+}
+
+beat 星盘裂出反噬 @ structure.vol01.ch76 {
+  effect:
+    world.十二主星盘.状态 = 反噬裂盘
+    chars.闻人观星.状态 = 星局反噬
+    world.辰月暗宗.状态 = 星局受挫
+
+  pov: chars.苏离灯
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折, chars.牧云镜 }
+  advances: { threads.辰月暗流线, threads.九州野史线 }
+  reveals: world.秘术溢出风险
+  mentions: { world.十二主星盘, world.辰月主星偏用, world.秘术溢出风险 }
+  render_hint: "反噬要来自秘术越界和证据链不受星命独占，不是简单法术失败。"
+}
+
+beat 雷碧城旧影入证 @ structure.vol01.ch76 {
+  effect:
+    world.雷碧城.状态 = 辰月旧影入证
+    chars.殷折.知道 += world.雷碧城辰月国师
+    chars.牧云镜.知道 += world.离国辰月牵连
+
+  pov: chars.牧云镜
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.苏离灯 }
+  advances: { threads.辰月暗流线, threads.九州野史线, threads.大墓真相线 }
+  reveals: { world.雷碧城辰月国师, world.离国辰月牵连 }
+  mentions: { world.雷碧城, world.雷碧城星术残简, world.离国国师府 }
+  render_hint: "雷碧城在这里成为旧史证据，不再作为辰月神谕。"
+}
+
+beat 苏离灯断开誓线污染 @ structure.vol01.ch76 {
+  effect:
+    chars.苏离灯.状态 = 断星护门
+    world.旧鹰扳指.状态 = 断星护门
+    world.星文回廊.状态 = 星线中断
+
+  pov: chars.苏离灯
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折 }
+  advances: { threads.天驱旧誓线, threads.辰月暗流线 }
+  mentions: { world.旧鹰扳指, world.星文回廊事实, world.天驱旧誓残痕 }
+  render_hint: "断线是守誓自限，不让天驱旧誓被辰月借走。"
+}
+
+beat 闻人退守残局 @ structure.vol01.ch76 {
+  effect:
+    chars.闻人观星.状态 = 退守残局
+    chars.闻人观星.位置 = world.辰月星坛
+    world.辰月暗宗.状态 = 星局受挫
+
+  pov: chars.苏离灯
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折, chars.牧云镜 }
+  advances: { threads.辰月暗流线, threads.九州野史线 }
+  mentions: { chars.闻人观星, world.辰月暗宗, world.十二主星盘 }
+  render_hint: "闻人退走要带着未灭暗流，但本卷内失去独占墓主真相的机会。"
+}

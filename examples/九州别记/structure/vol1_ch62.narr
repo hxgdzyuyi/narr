@@ -1,0 +1,84 @@
+namespace 九州别记.structure.vol1_ch62
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 铁誓厅门重开 @ structure.vol01.ch62 {
+  effect:
+    world.地下铁誓厅.状态 = 旧门重开
+    chars.苏离灯.位置 = world.地下铁誓厅
+    world.旧鹰扳指.状态 = 指向铁誓厅
+
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折 }
+  advances: { threads.天驱旧誓线, threads.误入地宫线 }
+  mentions: { world.地下铁誓厅, world.旧鹰扳指, world.天驱旧盟 }
+  render_hint: "铁誓厅重开要承接早期旧誓残痕，不新增未知密室体系。"
+}
+
+beat 姬断鹰举旧誓逼认 @ structure.vol01.ch62 {
+  effect:
+    chars.姬断鹰.位置 = world.地下铁誓厅
+    chars.姬断鹰.状态 = 借誓夺权
+    chars.姬断鹰.动机 = "以天驱旧誓夺取王道解释权。"
+
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  on_screen: true
+  observers: { chars.苏离灯, chars.姬断鹰, chars.殷折 }
+  advances: { threads.天驱旧誓线, threads.九州野史线 }
+  reveals: world.天驱人物规划原则
+  mentions: { world.天驱旧盟, world.天驱护陵旧誓, world.天驱指套制度 }
+  render_hint: "姬断鹰要把旧誓说成号令资格，让读者看见夺权性质。"
+}
+
+beat 宗主残模映出夺权 @ structure.vol01.ch62 {
+  effect:
+    world.天驱宗主指套残模.状态 = 映出夺权影
+    chars.苏离灯.知道 += world.天驱指套制度
+    chars.姬断鹰.arc_state = 以誓夺权
+
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  on_screen: true
+  observers: { chars.苏离灯, chars.姬断鹰 }
+  advances: { threads.天驱旧誓线, threads.辰月暗流线 }
+  reveals: world.天驱指套制度
+  mentions: { world.天驱宗主指套残模, world.十二主星盘 }
+  render_hint: "残模只证明制度被利用，不把苏离灯写成自动继承宗主。"
+}
+
+beat 旧鹰扳指失衡 @ structure.vol01.ch62 {
+  effect:
+    world.旧鹰扳指.状态 = 夺权牵裂
+    chars.苏离灯.状态 = 被旧誓压迫
+    chars.苏离灯.arc_state = 守誓受问
+
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折, chars.姬断鹰 }
+  advances: { threads.天驱旧誓线, threads.摸金门规线 }
+  mentions: { world.旧鹰扳指, world.天驱护陵旧誓 }
+  render_hint: "扳指失衡要压出苏离灯的判断，而不是给她即时答案。"
+}
+
+beat 苏离灯拒先跪誓 @ structure.vol01.ch62 {
+  effect:
+    chars.苏离灯.状态 = 拒绝先跪
+    chars.苏离灯.相信 += "旧誓若先夺人，就不是守誓。"
+    chars.姬断鹰.状态 = 逼誓未成
+
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  on_screen: true
+  observers: { chars.苏离灯, chars.姬断鹰, chars.殷折 }
+  advances: { threads.天驱旧誓线, threads.九州野史线 }
+  mentions: { world.旧鹰扳指, world.天驱旧盟 }
+  render_hint: "拒绝不是反誓，而是暂停被迫承认姬断鹰的解释权。"
+}

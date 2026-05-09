@@ -1,0 +1,87 @@
+namespace 九州别记.structure.vol1_ch14
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 巨石壁露骨画 @ structure.vol01.ch14 {
+  effect:
+    chars.殷折.位置 = world.夸父骨画壁
+    chars.硕风照夜.位置 = world.夸父骨画壁
+    chars.牧云镜.位置 = world.夸父骨画壁
+    chars.丁缺金.位置 = world.夸父骨画壁
+    world.夸父骨画壁.状态 = 骨画显现
+
+  pov: chars.硕风照夜
+  location: world.夸父骨画壁
+  on_screen: true
+  observers: { chars.硕风照夜, chars.殷折, chars.牧云镜, chars.丁缺金 }
+  advances: { threads.误入地宫线, threads.大墓真相线 }
+  mentions: { world.夸父骨画壁, world.疑似离公墓域 }
+  render_hint: "巨石骨画要像非华族证词，不像墓室壁画装饰。"
+}
+
+beat 硕风照夜译出吞狼旧口 @ structure.vol01.ch14 {
+  effect:
+    chars.硕风照夜.状态 = 译出吞狼旧口
+    chars.硕风照夜.知道 += world.硕风吞狼旧歌
+    chars.硕风照夜.知道 += world.夸父骨画壁事实
+    world.夸父骨画壁.状态 = 吞狼旧口显明
+
+  pov: chars.硕风照夜
+  location: world.夸父骨画壁
+  on_screen: true
+  observers: { chars.硕风照夜, chars.殷折 }
+  advances: { threads.瀚州草原线, threads.九州野史线 }
+  reveals: world.夸父骨画壁事实
+  mentions: { world.夸父族, world.北陆狼道, world.夸父骨画壁 }
+  render_hint: "让草原旧歌帮助读骨画，但不把草原传说写成万能钥匙。"
+}
+
+beat 牧云镜辨非华族证词 @ structure.vol01.ch14 {
+  effect:
+    chars.牧云镜.状态 = 辨出非华族证词
+    chars.牧云镜.知道 += world.六族创世异说
+    chars.牧云镜.相信 += "正史之外仍有能互证墓域的族群证词"
+
+  pov: chars.牧云镜
+  location: world.夸父骨画壁
+  on_screen: true
+  observers: { chars.牧云镜, chars.硕风照夜, chars.殷折 }
+  advances: { threads.封陵旧史线, threads.九州野史线 }
+  mentions: { world.华族, world.夸父族, world.夸父骨画壁 }
+  render_hint: "牧云镜要把野史外证纳入辨伪，不要代替墓志结论。"
+}
+
+beat 丁缺金借骨影逃匿 @ structure.vol01.ch14 {
+  effect:
+    chars.丁缺金.状态 = 借骨影逃匿
+    chars.丁缺金.位置 = world.疑似离公墓域
+    chars.殷折.关系 += "丁缺金借骨画阴影再度脱队"
+
+  pov: chars.丁缺金
+  location: world.夸父骨画壁
+  on_screen: true
+  observers: { chars.丁缺金, chars.殷折 }
+  advances: { threads.摸金门规线, threads.辰月暗流线 }
+  mentions: { world.夸父骨画壁, world.辰月暗宗 }
+  render_hint: "丁缺金逃匿继续制造背门压力，不要让他解释全部阴谋。"
+}
+
+beat 殷折拓下无王图 @ structure.vol01.ch14 {
+  effect:
+    chars.殷折.状态 = 拓下无王图
+    chars.殷折.知道 += world.夸父骨画壁事实
+    world.夸父骨画拓本.状态 = 殷折拓存
+    world.夸父骨画壁.状态 = 骨画拓存
+
+  pov: chars.殷折
+  location: world.夸父骨画壁
+  on_screen: true
+  observers: { chars.殷折, chars.硕风照夜, chars.牧云镜 }
+  advances: { threads.大墓真相线, threads.摸金门规线, threads.九州野史线 }
+  mentions: { world.夸父骨画拓本, world.疑似离公墓域 }
+  render_hint: "无王图要成为后续辨伪证据，不直接写出墓主姓名。"
+}

@@ -1,0 +1,74 @@
+namespace 九州别记.tests
+
+import 九州别记.structure as structure
+import 九州别记.characters as chars
+import 九州别记.world as world
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+test "第四十一至五十章接续墓主确认段" tags {structure, vol01, chapters} {
+  assert previous(structure.vol01.ch41) == structure.vol01.ch40
+  assert next(structure.vol01.ch50) == structure.vol01.ch51
+  assert count(beats(structure.vol01.ch41)) == 5
+  assert count(beats(structure.vol01.ch42)) == 5
+  assert count(beats(structure.vol01.ch43)) == 5
+  assert count(beats(structure.vol01.ch44)) == 5
+  assert count(beats(structure.vol01.ch45)) == 5
+  assert count(beats(structure.vol01.ch46)) == 5
+  assert count(beats(structure.vol01.ch47)) == 5
+  assert count(beats(structure.vol01.ch48)) == 5
+  assert count(beats(structure.vol01.ch49)) == 5
+  assert count(beats(structure.vol01.ch50)) == 5
+}
+
+test "第四十一至四十四章把四件证物合成墓主前证" tags {evidence, tomb, vol01} {
+  assert structure.vol01.ch41 reveals world.嬴无翳骑射霸刀
+  assert structure.vol01.ch42 reveals world.嬴无翳用人与军政
+  assert structure.vol01.ch44 advances threads.大墓真相线
+  assert state(world.霸刀断铭.状态, at structure.vol01.ch41.end) == 待互证
+  assert state(world.离国马具残饰.状态, at structure.vol01.ch42.end) == 赤旅军制坐实
+  assert state(world.殇阳关战牍.状态, at structure.vol01.ch44.end) == 与墓志互证
+  assert state(world.离公墓志残片.状态, at structure.vol01.ch44.end) == 与断铭互证
+  assert state(world.疑似离公墓域.状态, at structure.vol01.ch44.end) == 离公唯一待证
+}
+
+test "第四十五章兑现石门身份但不把确认写成胜利" tags {promise, stone_gate, pacing} {
+  assert structure.vol01.ch45 pays_off promises.石门身份伏笔
+  assert state(world.疑似封陵.状态, at structure.vol01.ch45.end) == 石门身份兑现
+  assert state(world.封陵外城.状态, at structure.vol01.ch45.end) == 离公墓门外城
+  assert state(world.疑似离公墓域.状态, at structure.vol01.ch45.end) == 离公墓域待证
+  assert state(world.嬴无翳.状态, at structure.vol01.ch45.end) != 墓主确认
+  assert state(chars.殷折.状态, at structure.vol01.ch45.end) == 石门前守规
+}
+
+test "第四十八章回答燮朝重封的政治动机" tags {promise, 燮朝, orthodox} {
+  assert structure.vol01.ch48 pays_off promises.燮朝重封伏笔
+  assert structure.vol01.ch48 reveals world.姬昌夜承帝统
+  assert state(world.燮朝.状态, at structure.vol01.ch48.end) == 重封意图显
+  assert state(world.封陵外城.状态, at structure.vol01.ch48.end) == 重封证成
+  assert state(world.疑似封陵.状态, at structure.vol01.ch48.end) == 燮朝重封意图显
+  assert state(world.穆如旧令抄本.状态, at structure.vol01.ch48.end) == 重封证成
+}
+
+test "第五十章确认墓主并转为正统叙事危机" tags {reveal, tomb, orthodox} {
+  assert structure.vol01.ch50 reveals world.嬴无翳墓主定位
+  assert structure.vol01.ch50 reveals world.嬴无翳墓葬危险原则
+  assert state(world.嬴无翳.状态, at structure.vol01.ch50.end) == 墓主确认
+  assert state(world.疑似封陵.状态, at structure.vol01.ch50.end) == 墓主确认
+  assert state(world.疑似离公墓域.状态, at structure.vol01.ch50.end) == 嬴无翳墓域
+  assert state(world.霸刀断铭.状态, at structure.vol01.ch50.end) == 墓主证成
+  assert state(chars.殷折.状态, at structure.vol01.ch50.end) == 确认后守规
+}
+
+test "第四十一至五十章持续推进核心冲突线" tags {threads, pacing} {
+  assert structure.vol01.ch41 advances threads.大墓真相线
+  assert structure.vol01.ch42 advances threads.九州野史线
+  assert structure.vol01.ch43 advances threads.封陵旧史线
+  assert structure.vol01.ch44 advances threads.大墓真相线
+  assert structure.vol01.ch45 advances threads.摸金门规线
+  assert structure.vol01.ch46 advances threads.端朝皇权线
+  assert structure.vol01.ch47 advances threads.封陵旧史线
+  assert structure.vol01.ch48 advances threads.九州野史线
+  assert structure.vol01.ch49 advances threads.辰月暗流线
+  assert structure.vol01.ch50 advances threads.大墓真相线
+}

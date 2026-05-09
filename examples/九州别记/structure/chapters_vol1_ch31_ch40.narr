@@ -1,0 +1,194 @@
+namespace 九州别记.structure
+
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.structure.vol1_ch31 as vol1_ch31
+import 九州别记.structure.vol1_ch32 as vol1_ch32
+import 九州别记.structure.vol1_ch33 as vol1_ch33
+import 九州别记.structure.vol1_ch34 as vol1_ch34
+import 九州别记.structure.vol1_ch35 as vol1_ch35
+import 九州别记.structure.vol1_ch36 as vol1_ch36
+import 九州别记.structure.vol1_ch37 as vol1_ch37
+import 九州别记.structure.vol1_ch38 as vol1_ch38
+import 九州别记.structure.vol1_ch39 as vol1_ch39
+import 九州别记.structure.vol1_ch40 as vol1_ch40
+
+chapter vol01.ch31 alias 梦醒反写 {
+  title: "梦醒反写"
+  purpose: aftermath
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.墓志石室
+  time_hint: "殷折从殇阳关梦境余波中醒回墓志石室后。"
+  summary: "殷折带着梦印醒回现实，离公墓志残片被反写出归名痕迹；牧云烬、姬断鹰、丁缺金和闻人观星都意识到残片不只是墓志碎石，而是能撬动墓主、军制和端朝正史解释权的证物。"
+  beats: [
+    vol1_ch31.殷折醒回石室,
+    vol1_ch31.梦印反写残片,
+    vol1_ch31.牧云烬估出证价,
+    vol1_ch31.丁缺金暗记退价,
+    vol1_ch31.断鹰闻人同觉异动
+  ]
+  prose_hint: "第三十一章要从梦境余波落回现实压力，重点是证物价值暴露，不确认墓主。"
+}
+
+chapter vol01.ch32 alias 封口夺证 {
+  title: "封口夺证"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.墓志石室
+  time_hint: "梦印反写被各方察觉后，墓志石室内外同时收紧。"
+  summary: "牧云烬以掩史司名义封住墓志石室，试图夺走残片、战牍和梦印解释权；牧云镜拒绝交出原证，穆如砚拆分人证物证护队，殷折以罗盘护住残片，众人被迫寻找通往星文回廊的退路。"
+  beats: [
+    vol1_ch32.掩史司封住石室,
+    vol1_ch32.牧云镜拒交战牍,
+    vol1_ch32.穆如砚拆分人证物证,
+    vol1_ch32.殷折以罗盘护片,
+    vol1_ch32.石室围困逼向回廊
+  ]
+  prose_hint: "第三十二章把地上皇权压力压回地下，不写成单纯抢宝，而写成抢证和抢解释权。"
+}
+
+chapter vol01.ch33 alias 星文反锁 {
+  title: "星文反锁"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.苏离灯
+  location: world.星文回廊
+  time_hint: "主角团从墓志石室退入星文回廊时。"
+  summary: "众人退入星文回廊，闻人观星远借十二主星盘封路并试图反套梦印；苏离灯分辨旧誓与辰月星术的边界，洛衡改动回廊活扣开出偏门，使队伍带证离开封锁而不让星术替代证据链。"
+  beats: [
+    vol1_ch33.众人退入星文回廊,
+    vol1_ch33.闻人借星封路,
+    vol1_ch33.苏离灯断开旧誓回路,
+    vol1_ch33.洛衡改扣开偏门,
+    vol1_ch33.星文回廊留证不留人
+  ]
+  prose_hint: "第三十三章要让星术成为围困工具和误读风险，不让闻人远程全知。"
+}
+
+chapter vol01.ch34 alias 旧誓断鹰 {
+  title: "旧誓断鹰"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  time_hint: "星文回廊偏门通回地下铁誓厅边缘。"
+  summary: "姬断鹰沿铁誓厅旧痕现身索证，声称梦印和残片应归天驱旧誓；旧鹰扳指照出誓术裂痕，苏离灯拒绝把证物交给以霸道护誓的人，穆如砚压住内斗让队伍继续守住活人。"
+  beats: [
+    vol1_ch34.姬断鹰入铁誓厅,
+    vol1_ch34.旧鹰扳指照出裂誓,
+    vol1_ch34.苏离灯拒交残片,
+    vol1_ch34.姬断鹰夺誓索证,
+    vol1_ch34.穆如砚压住内斗
+  ]
+  prose_hint: "第三十四章推进天驱旧誓线，姬断鹰要危险但不能把天驱写成寻宝帮。"
+}
+
+chapter vol01.ch35 alias 背门弃星 {
+  title: "背门弃星"
+  purpose: reversal
+  target_length: 3000 字
+  pov: chars.丁缺金
+  location: world.赤旅兵冢
+  time_hint: "铁誓厅内斗被压住后，丁缺金趁乱把退路引向赤旅兵冢。"
+  summary: "丁缺金以摸金旧路作诱，把队伍再次带入赤旅兵冢，却发现闻人观星只把他当弃子；他再次背门想卖残片和退路，殷折仍按门规先救被困活人，兵冢深处则露出更清晰的离国军制痕迹。"
+  beats: [
+    vol1_ch35.丁缺金领错兵冢岔路,
+    vol1_ch35.闻人以星令弃子,
+    vol1_ch35.丁缺金再次背门,
+    vol1_ch35.殷折先救伤者,
+    vol1_ch35.兵冢深处露出军列
+  ]
+  prose_hint: "第三十五章要把丁缺金的背叛写成求活路的现实选择，同时让辰月弃子逻辑浮出。"
+}
+
+chapter vol01.ch36 alias 兵冢军制 {
+  title: "兵冢军制"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.洛衡
+  location: world.赤旅兵冢
+  time_hint: "丁缺金再次背门后，众人被迫在赤旅兵冢深处辨证脱身。"
+  summary: "赤旅兵冢的马具残饰、铸痕和军列方位互相对上，洛衡与牧云镜确认这些不是寻常陪葬物，而是离国军政与赤旅旧制的证据；牧云烬立刻试图把军制证据改称官证。"
+  beats: [
+    vol1_ch36.马具残饰排出旧制,
+    vol1_ch36.洛衡识出赤旅铸痕,
+    vol1_ch36.牧云镜对照军政,
+    vol1_ch36.牧云烬改称官证,
+    vol1_ch36.殷折封存军制证据
+  ]
+  prose_hint: "第三十六章把离国军制证据推实，但仍只说明墓域牵涉离国遗制，不确认墓主。"
+}
+
+chapter vol01.ch37 alias 活证分路 {
+  title: "活证分路"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.穆如砚
+  location: world.墓志石室
+  time_hint: "赤旅兵冢军制证据出土后，塌道迫使队伍回护墓志石室。"
+  summary: "围困与塌道同时逼近，穆如砚把护民、护证和护队拆成三条路；牧云镜分录战牍证词，硕风照夜听出外侧包围，殷折把残片和战牍分藏，选择先保活人和证据而不是抢先定论。"
+  beats: [
+    vol1_ch37.崩道逼回石室,
+    vol1_ch37.穆如砚护民护证,
+    vol1_ch37.牧云镜分录证词,
+    vol1_ch37.硕风照夜听出外围,
+    vol1_ch37.殷折把证据分藏
+  ]
+  prose_hint: "第三十七章的选择核心是活人优先、证据不灭，不让主角团为了答案抛弃伤者。"
+}
+
+chapter vol01.ch38 alias 主墓将明 {
+  title: "主墓将明"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  time_hint: "证据分藏后，疑似离公墓域内门方位第一次对上。"
+  summary: "墓域旧墙、空棺缺名、赤旅军制和反写残片互相逼近主墓方位，牧云镜止住众人过早定名；霸刀断铭在暗匣中未出先应，疑似离公墓域被推到主墓将明而仍未确认墓主的位置。"
+  beats: [
+    vol1_ch38.旧墙露出内门方位,
+    vol1_ch38.空棺缺名对上军制,
+    vol1_ch38.牧云镜止住墓主定论,
+    vol1_ch38.霸刀断铭未出先应,
+    vol1_ch38.疑似墓域主墓将明
+  ]
+  prose_hint: "第三十八章要让答案逼近，但明确把状态停在将明，不能越过墓主确认。"
+}
+
+chapter vol01.ch39 alias 内斗夺名 {
+  title: "内斗夺名"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.墓志石室
+  time_hint: "主墓将明的消息被牧云烬、丁缺金和姬断鹰同时利用。"
+  summary: "牧云烬借牧云氏内部分裂的密诏争夺证物，牧云镜押证抗命；丁缺金再卖殷门退路却被辰月弃用，姬断鹰趁乱索誓，殷折只封路不封口，把内斗拖离伤者和原证。"
+  beats: [
+    vol1_ch39.牧云烬分裂牧云令,
+    vol1_ch39.牧云镜押证抗命,
+    vol1_ch39.丁缺金卖门被弃,
+    vol1_ch39.姬断鹰趁乱索誓痕,
+    vol1_ch39.殷折封路不封口
+  ]
+  prose_hint: "第三十九章把现实侧内斗推高，所有人都想夺解释权，但主角团只守原证和活路。"
+}
+
+chapter vol01.ch40 alias 断铭未证 {
+  title: "断铭未证"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  time_hint: "内斗被拖离原证后，赤旅兵冢暗匣终于露出霸刀断铭。"
+  summary: "赤旅兵冢暗匣出土霸刀断铭，并与离国马具残饰、赤旅军制和反写残片互照；牧云烬再次封口夺证，殷折拒绝以单件刀铭确认墓主，只把证据推到出土未证和主墓将明，为后续墓主确认留下缺口。"
+  beats: [
+    vol1_ch40.赤旅暗匣出刀铭,
+    vol1_ch40.离国军制互证,
+    vol1_ch40.牧云烬封口夺证,
+    vol1_ch40.殷折拒绝墓主定名,
+    vol1_ch40.主墓将明仍留缺名
+  ]
+  prose_hint: "第四十章必须把霸刀断铭或离国军制证据推到出土未证，不把嬴无翳墓主身份坐实。"
+}

@@ -1,0 +1,86 @@
+namespace 九州别记.structure.vol1_ch77
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 燮年错铭合旧令 @ structure.vol01.ch77 {
+  effect:
+    world.疑似封陵.状态 = 重封旧制现形
+    world.穆如旧令抄本.状态 = 与燮封互证
+    chars.牧云镜.知道 += world.燮朝封陵残证
+
+  pov: chars.牧云镜
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.牧云镜, chars.穆如砚, chars.殷折 }
+  advances: { threads.封陵旧史线, threads.大墓真相线 }
+  reveals: world.燮朝封陵残证
+  mentions: { world.疑似封陵, world.穆如旧令抄本, world.燮朝 }
+  render_hint: "燮年错铭和穆如旧令要互相解释重封旧制，不再只是残破线索。"
+}
+
+beat 地火星文归封程 @ structure.vol01.ch77 {
+  effect:
+    world.河络地火机坊.状态 = 归入封程
+    world.星文回廊.状态 = 封程闭合
+    world.雷碧城星术残简.状态 = 断星入封
+
+  pov: chars.洛衡
+  location: world.河络地火机坊
+  on_screen: true
+  observers: { chars.洛衡, chars.苏离灯, chars.殷折 }
+  advances: { threads.封陵旧史线, threads.大墓真相线 }
+  mentions: { world.河络地火机坊, world.星文回廊, world.多族痕迹解释原则 }
+  render_hint: "地火与星文要被解释为重封工程的两端，不是新机关奇观。"
+}
+
+beat 穆如砚重读护民令 @ structure.vol01.ch77 {
+  effect:
+    chars.穆如砚.知道 += world.穆如封陵军令抄本
+    chars.穆如砚.状态 = 重读封陵旧令
+    chars.穆如砚.arc_state = 违令守民
+
+  pov: chars.穆如砚
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.穆如砚, chars.牧云镜 }
+  advances: { threads.穆如军门线, threads.封陵旧史线 }
+  mentions: { world.穆如封陵军令抄本, world.穆如军门, world.燮朝封陵残证 }
+  render_hint: "穆如砚要把旧令从封口命令重读成护民封存命令。"
+}
+
+beat 殷折拒开内门 @ structure.vol01.ch77 {
+  effect:
+    chars.殷折.arc_state = 守门不夺
+    chars.殷折.状态 = 拒开内门
+    world.墓志石室.状态 = 内门不启
+
+  pov: chars.殷折
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.苏离灯, chars.洛衡 }
+  advances: { threads.摸金门规线, threads.封陵旧史线 }
+  mentions: { world.墓志石室, world.殷门祖辈传承, world.疑似封陵 }
+  render_hint: "拒开内门是主动守门，不是因为机关无解而被迫放弃。"
+}
+
+beat 重封缘由归证 @ structure.vol01.ch77 {
+  effect:
+    world.疑似封陵.状态 = 重封缘由归证
+    world.燮朝.状态 = 重封入史
+    world.离公墓志残片.状态 = 重封互证
+
+  pov: chars.牧云镜
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚 }
+  pays_off: promises.燮朝重封伏笔
+  resolves: threads.封陵旧史线
+  advances: { threads.九州野史线, threads.大墓真相线 }
+  reveals: world.九州别记朝代用法
+  mentions: { world.燮朝, world.疑似封陵, world.离公墓志残片 }
+  render_hint: "重封伏笔的答案要落在封存旧史，而不是发现新夺取目标。"
+}

@@ -1,0 +1,81 @@
+namespace 九州别记.structure.vol1_ch46
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 牧云镜试写不上名 @ structure.vol01.ch46 {
+  effect:
+    chars.牧云镜.位置 = world.墓志石室
+    chars.牧云镜.状态 = 不敢上呈墓主名
+    chars.牧云镜.相信 += "离公墓门之证不能写成献捷章"
+
+  pov: chars.牧云镜
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚 }
+  advances: { threads.端朝皇权线, threads.九州野史线 }
+  mentions: { world.端朝, world.牧云掩史旧档, world.嬴无翳未帝而霸 }
+  render_hint: "牧云镜写不下名字，是因为她知道一旦上呈，证据会被皇权夺用。"
+}
+
+beat 牧云烬索牍封口 @ structure.vol01.ch46 {
+  effect:
+    chars.牧云烬.位置 = world.墓志石室
+    chars.牧云烬.状态 = 索牍封口
+    world.殇阳关战牍.状态 = 被索封口
+
+  pov: chars.牧云烬
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.牧云烬, chars.牧云镜, chars.殷折, chars.穆如砚 }
+  advances: { threads.端朝皇权线, threads.封陵旧史线 }
+  mentions: { world.殇阳关战牍, world.端朝掩史司, world.掩史司密库 }
+  render_hint: "牧云烬要把证据变成封口材料，推动正统压力而不是普通夺宝冲突。"
+}
+
+beat 穆如砚护证违诏加深 @ structure.vol01.ch46 {
+  effect:
+    chars.穆如砚.状态 = 违诏护证加深
+    chars.穆如砚.关系 += "与牧云烬正面冲突"
+    world.穆如军门.状态 = 护证违诏
+
+  pov: chars.穆如砚
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.穆如砚, chars.牧云烬, chars.牧云镜, chars.殷折 }
+  advances: { threads.穆如军门线, threads.端朝皇权线, threads.大墓真相线 }
+  mentions: { world.穆如军门, world.端末盟约破裂, world.穆如旧令抄本 }
+  render_hint: "穆如砚护的是证据和活人，不是抢先掌握墓主名。"
+}
+
+beat 苏离灯警觉旧誓失衡 @ structure.vol01.ch46 {
+  effect:
+    chars.苏离灯.位置 = world.墓志石室
+    chars.苏离灯.状态 = 警觉旧誓失衡
+    world.旧鹰扳指.状态 = 誓纹失衡
+
+  pov: chars.苏离灯
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折, chars.牧云镜 }
+  advances: { threads.天驱旧誓线, threads.大墓真相线 }
+  mentions: { world.旧鹰扳指, world.天驱护陵旧誓, world.天驱旧盟 }
+  render_hint: "旧誓失衡说明墓主确认会牵动王道盟约，不让政治线孤立。"
+}
+
+beat 闻人借正统裂缝 @ structure.vol01.ch46 {
+  effect:
+    chars.闻人观星.状态 = 借正统裂缝
+    world.辰月暗宗.状态 = 借正统裂缝
+    world.十二主星盘.状态 = 推演正统裂缝
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  advances: { threads.辰月暗流线, threads.端朝皇权线, threads.大墓真相线 }
+  mentions: { world.辰月暗宗, world.十二主星盘, world.端末盟约破裂 }
+  render_hint: "闻人利用各方怕真相的裂缝，不直接替他们给出答案。"
+}

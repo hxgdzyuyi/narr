@@ -1,0 +1,60 @@
+namespace 九州别记.tests
+
+import 九州别记.structure as structure
+import 九州别记.characters as chars
+import 九州别记.world as world
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+test "第五十一至第六十章承接墓主确认段" tags {structure, vol01, chapters} {
+  assert previous(structure.vol01.ch51) == structure.vol01.ch50
+  assert previous(structure.vol01.ch60) == structure.vol01.ch59
+  assert next(structure.vol01.ch60) == structure.vol01.ch61
+}
+
+test "第五十一至第六十章每章五个 beats" tags {structure, beats, pacing} {
+  assert count(beat 节 in beats(structure.vol01.ch51)) == 5
+  assert count(beat 节 in beats(structure.vol01.ch52)) == 5
+  assert count(beat 节 in beats(structure.vol01.ch53)) == 5
+  assert count(beat 节 in beats(structure.vol01.ch54)) == 5
+  assert count(beat 节 in beats(structure.vol01.ch55)) == 5
+  assert count(beat 节 in beats(structure.vol01.ch56)) == 5
+  assert count(beat 节 in beats(structure.vol01.ch57)) == 5
+  assert count(beat 节 in beats(structure.vol01.ch58)) == 5
+  assert count(beat 节 in beats(structure.vol01.ch59)) == 5
+  assert count(beat 节 in beats(structure.vol01.ch60)) == 5
+}
+
+test "墓主确认后转入端朝政治危机" tags {world, politics, tomb} {
+  assert structure.vol01.ch51 reveals world.嬴无翳墓主定位
+  assert structure.vol01.ch51 reveals world.嬴无翳墓葬危险原则
+  assert structure.vol01.ch52 advances threads.端朝皇权线
+  assert structure.vol01.ch53 advances threads.九州野史线
+  assert state(world.疑似离公墓域.状态, at structure.vol01.ch51.end) == 墓主已确认
+  assert state(world.端朝掩史司.状态, at structure.vol01.ch52.end) == 皇权取证
+}
+
+test "军门密诏在政治危机中反转兑现" tags {promise, military, politics} {
+  assert structure.vol01.ch54 pays_off promises.军门密诏悬念
+  assert structure.vol01.ch54 reveals world.端末盟约破裂
+  assert structure.vol01.ch55 advances threads.穆如军门线
+  assert state(chars.穆如砚.arc_state, at structure.vol01.ch55.end) == 护民疑诏
+  assert state(world.穆如军门.状态, at structure.vol01.ch55.end) == 护民抗令
+}
+
+test "辰月以十二主星盘接入真相" tags {辰月, stars, politics} {
+  assert structure.vol01.ch56 advances threads.辰月暗流线
+  assert structure.vol01.ch56 reveals world.十二主星秘术体系
+  assert structure.vol01.ch56 reveals world.星文观测原则
+  assert structure.vol01.ch60 advances threads.辰月暗流线
+  assert state(world.十二主星盘.状态, at structure.vol01.ch60.end) == 星局开阵
+}
+
+test "第六十章形成抗诏与夺局终态" tags {state, climax, vol01} {
+  assert structure.vol01.ch60 advances threads.端朝皇权线
+  assert structure.vol01.ch60 advances threads.穆如军门线
+  assert structure.vol01.ch60 advances threads.九州野史线
+  assert state(chars.牧云镜.arc_state, at structure.vol01.ch60.end) == 史官抗诏
+  assert state(chars.穆如砚.arc_state, at structure.vol01.ch60.end) == 护民违诏
+  assert state(chars.牧云烬.状态, at structure.vol01.ch60.end) == 掩史夺局
+}

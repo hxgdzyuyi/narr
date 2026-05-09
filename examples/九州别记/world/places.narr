@@ -8,18 +8,43 @@ place 宛州 in 东陆
 place 宛州城 in 宛州
 place 穆如旧营 in 宛州
 place 殷门旧宅 in 宛州
+place 澜州 in 东陆
+place 擎梁山 in 澜州
+place 夜北高原 in 澜州
+place 朱颜海 in 夜北高原
+place 夜沼 in 澜州
+place 越州 in 东陆
+place 北邙山 in 越州
+place 越州河络旧谷 in 北邙山
 place 殇州 in 东陆
 place 殇州流放道 in 殇州
 place 瀚州
 place 雪炽原 in 瀚州
 place 雪炽原旧驿 in 雪炽原
 place 硕风草场 in 瀚州
+place 潍海
+place 溟海
+place 瀚州北冰原 in 瀚州
 place 北陆
 place 北陆狼道 in 北陆
+place 宁州 in 北陆
+place 宁州羽族高原 in 宁州
+place 天拓海峡
+place 涣海
+place 滁潦海
+place 西陆
+place 云州 in 西陆
+place 赤华山脉 in 云州
+place 雷州 in 西陆
+place 雷州雨林 in 雷州
 place 离国旧境 in 东陆
 place 殇阳关 in 东陆
 place 天驱旧驿 in 殇阳关
 place 辰月星坛 in 东陆
+place 天启辰月别坛 in 天启城
+place 锁河山 in 中州
+place 黯岚山脉 in 中州
+place 兰缀江 in 中州
 
 place 无名旧道 in 雪炽原 {
   状态: Symbol = 塌陷初显
@@ -33,8 +58,24 @@ place 封陵外城 in 疑似封陵 {
   状态: Symbol = 未开启
 }
 
+place 河络地火机坊 in 封陵外城 {
+  状态: Symbol = 封死
+}
+
+place 羽族坠羽井 in 封陵外城 {
+  状态: Symbol = 未辨
+}
+
+place 鲛泪暗渠 in 疑似封陵 {
+  状态: Symbol = 干涸
+}
+
 place 地下铁誓厅 in 疑似封陵 {
   状态: Symbol = 传闻
+}
+
+place 星文回廊 in 地下铁誓厅 {
+  状态: Symbol = 星痕未读
 }
 
 place 疑似离公墓域 in 疑似封陵 {
@@ -45,6 +86,22 @@ place 赤旅兵冢 in 疑似离公墓域 {
   状态: Symbol = 沉睡
 }
 
+place 夸父骨画壁 in 疑似离公墓域 {
+  状态: Symbol = 未拓
+}
+
 place 墓志石室 in 疑似离公墓域 {
   状态: Symbol = 未出土
+}
+
+place 魅影空廊 in 墓志石室 {
+  状态: Symbol = 虚实未辨
+}
+
+place 殇阳关梦境 in 墓志石室 {
+  状态: Symbol = 未触发
+}
+
+place 梦中殇阳雨阵 in 殇阳关梦境 {
+  状态: Symbol = 待映射
 }

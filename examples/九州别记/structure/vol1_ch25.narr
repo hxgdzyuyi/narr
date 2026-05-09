@@ -1,0 +1,84 @@
+namespace 九州别记.structure.vol1_ch25
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 尸阵材料逼近 @ structure.vol01.ch25 {
+  effect:
+    world.梦中殇阳雨阵.状态 = 尸阵阴影逼近
+    world.无名战牍残页.状态 = 半列受蚀
+    chars.殷折.知道 += world.殇阳关异变之夜
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.辰月暗流线, threads.殇阳梦境线 }
+  reveals: world.殇阳关异变之夜
+  mentions: { world.梦中殇阳雨阵, world.殇阳关异变之夜, world.无名战牍残页 }
+  render_hint: "尸阵阴影只能作为异变压力出现，不新增可引用的尸阵实体。"
+}
+
+beat 殷折拒把死者当术材 @ structure.vol01.ch25 {
+  effect:
+    chars.殷折.状态 = 拒绝术材化死者
+    chars.殷折.arc_state = 守规问史
+    chars.殷折.相信 += "死者可收殓，不可再被用作术材"
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.摸金门规线, threads.殇阳梦境线 }
+  mentions: { world.殷门祖辈传承, world.辰月人物规划原则, world.无名战牍残页 }
+  render_hint: "这是门规选择，不是道德宣讲；通过动作护住残名。"
+}
+
+beat 门规点名成线 @ structure.vol01.ch25 {
+  effect:
+    world.殷门罗盘.状态 = 点名成线
+    world.无名战牍残页.状态 = 点名成线
+    chars.殷折.状态 = 以门规点名
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.摸金门规线, threads.九州野史线 }
+  mentions: { world.殷门罗盘, world.无名战牍残页, world.摸金殷门 }
+  render_hint: "罗盘只帮助辨方与收名，不要写成自动补全姓名的法器。"
+}
+
+beat 战牍收住第一列 @ structure.vol01.ch25 {
+  effect:
+    world.殇阳关战牍.状态 = 收住第一列
+    world.无名战牍残页.状态 = 第一列成形
+    chars.殷折.知道 += world.墓主遗憾核心
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.大墓真相线, threads.九州野史线 }
+  reveals: world.墓主遗憾核心
+  mentions: { world.殇阳关战牍, world.无名战牍残页, world.墓主遗憾核心 }
+  render_hint: "第一列成形要有限度，保留后续第二列和突围因果。"
+}
+
+beat 残印转为群名之门 @ structure.vol01.ch25 {
+  effect:
+    world.殇阳梦境残印.状态 = 群名之门
+    world.殇阳关梦境.状态 = 群名追索加深
+    chars.殷折.状态 = 推开群名之门
+
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.大墓真相线, threads.摸金门规线 }
+  mentions: { world.殇阳梦境残印, world.殇阳关梦境, world.无名战牍残页 }
+  render_hint: "章末让残印变成继续追索的门，不要退出现实。"
+}

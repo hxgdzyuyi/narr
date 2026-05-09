@@ -43,6 +43,13 @@ test "前三章显式设置与兑现 promise" tags {promise, chapters} {
   assert 第三章 sets_up promises.石门身份伏笔
 }
 
+test "第十章建立殇阳关梦境卷级伏笔" tags {promise, dream, 殇阳关} {
+  assert promises.殇阳梦境伏笔 exists
+  assert promises.殇阳梦境伏笔.setup_strength == strong
+  assert promises.殇阳梦境伏笔.reader_visibility == visible
+  assert structure.vol01.ch10 sets_up promises.殇阳梦境伏笔
+}
+
 test "前三章 promise 服务节奏先铺后启" tags {promise, pacing} {
   assert count(served_promises(structure.vol01.ch01)) >= 2
   assert count(served_promises(structure.vol01.ch02)) >= 5

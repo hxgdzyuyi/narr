@@ -1,0 +1,83 @@
+namespace 九州别记.structure.vol1_ch60
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 星盘十二位齐亮 @ structure.vol01.ch60 {
+  effect:
+    chars.闻人观星.位置 = world.辰月星坛
+    chars.闻人观星.状态 = 十二位齐亮
+    world.十二主星盘.状态 = 十二位齐亮
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  observers: { chars.闻人观星 }
+  advances: { threads.辰月暗流线, threads.大墓真相线 }
+  mentions: { world.十二主星盘, world.十二主星秘术体系, world.辰月星坛 }
+  render_hint: "开阵前先让十二主星位齐亮，显出星术体系的秩序。"
+}
+
+beat 真相落入辰月局 @ structure.vol01.ch60 {
+  effect:
+    chars.闻人观星.知道 += world.嬴无翳墓葬危险原则
+    world.十二主星盘.状态 = 真相入局
+    world.辰月暗宗.状态 = 真相入局
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  observers: { chars.闻人观星 }
+  advances: { threads.辰月暗流线, threads.九州野史线, threads.端朝皇权线 }
+  mentions: { world.嬴无翳墓葬危险原则, world.十二主星盘, world.辰月暗宗 }
+  render_hint: "真相入局意味着被辰月利用，不等于辰月已经完全掌控真相。"
+}
+
+beat 牧云烬掩史夺局 @ structure.vol01.ch60 {
+  effect:
+    chars.牧云烬.状态 = 掩史夺局
+    world.端朝掩史司.状态 = 掩史夺局
+    world.端朝.状态 = 皇权夺局
+
+  pov: chars.牧云烬
+  location: world.掩史司密库
+  on_screen: true
+  observers: { chars.牧云烬 }
+  advances: { threads.端朝皇权线, threads.辰月暗流线 }
+  mentions: { world.端朝掩史司, world.端朝, world.嬴无翳 }
+  render_hint: "牧云烬的终态是夺局：既要封口，也要把真相变成权力筹码。"
+}
+
+beat 穆如砚护民违诏 @ structure.vol01.ch60 {
+  effect:
+    chars.穆如砚.状态 = 护民违诏
+    chars.穆如砚.arc_state = 护民违诏
+    world.穆如军门.状态 = 护民违诏
+
+  pov: chars.穆如砚
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.穆如砚, chars.牧云镜, chars.硕风照夜 }
+  advances: { threads.穆如军门线, threads.端朝皇权线, threads.九州野史线 }
+  mentions: { world.穆如军门, world.端末盟约破裂, world.雪炽原旧驿 }
+  render_hint: "违诏是护民后的公开结果，不是为了争权而反叛。"
+}
+
+beat 牧云镜抗诏留史 @ structure.vol01.ch60 {
+  effect:
+    chars.牧云镜.状态 = 抗诏留史
+    chars.牧云镜.arc_state = 史官抗诏
+    world.殇阳关战牍.状态 = 抗诏留史
+    world.十二主星盘.状态 = 星局开阵
+
+  pov: chars.牧云镜
+  location: world.辰月星坛
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚 }
+  advances: { threads.九州野史线, threads.端朝皇权线, threads.穆如军门线, threads.辰月暗流线 }
+  mentions: { world.牧云掩史旧档, world.十二主星盘, world.嬴无翳墓主定位 }
+  render_hint: "章末状态要同时落在星局开阵、史官抗诏、护民违诏和掩史夺局。"
+}

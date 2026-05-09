@@ -1,0 +1,86 @@
+namespace 九州别记.structure.vol1_ch72
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 丁缺金夺片寻星 @ structure.vol01.ch72 {
+  effect:
+    chars.丁缺金.位置 = world.星文回廊
+    chars.丁缺金.状态 = 最后背门
+    world.离公墓志残片.状态 = 险被夺走
+
+  pov: chars.殷折
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.殷折, chars.丁缺金, chars.洛衡 }
+  advances: { threads.摸金门规线, threads.辰月暗流线 }
+  mentions: { world.离公墓志残片, world.丁缺金门规旧债, world.辰月暗宗 }
+  render_hint: "丁缺金最后一次背门要显出贪生逻辑，不突然变成辰月死士。"
+}
+
+beat 闻人许他活路 @ structure.vol01.ch72 {
+  effect:
+    chars.闻人观星.状态 = 借叛徒收证
+    chars.丁缺金.相信 += "辰月许背门者活路"
+    world.辰月暗宗.状态 = 借叛徒夺史
+
+  pov: chars.殷折
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.殷折, chars.丁缺金, chars.苏离灯 }
+  advances: { threads.辰月暗流线, threads.摸金门规线 }
+  mentions: { chars.闻人观星, world.辰月人物规划原则, world.离公墓志残片 }
+  render_hint: "闻人的许诺要像交易和诱买，不像救赎。"
+}
+
+beat 殷折追账不杀 @ structure.vol01.ch72 {
+  effect:
+    chars.殷折.状态 = 追账不杀
+    chars.丁缺金.知道 += world.丁缺金门规旧债
+    world.殷门罗盘.状态 = 指向背门旧债
+
+  pov: chars.殷折
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.殷折, chars.丁缺金, chars.洛衡 }
+  advances: { threads.摸金门规线, threads.误入地宫线 }
+  reveals: world.丁缺金门规旧债
+  mentions: { world.摸金殷门, world.殷门罗盘, world.殷门祖辈传承 }
+  render_hint: "殷折要按门规追账，重点是问清旧债而不是处刑。"
+}
+
+beat 丁缺金吐出旧债 @ structure.vol01.ch72 {
+  effect:
+    chars.丁缺金.状态 = 吐露旧债
+    chars.丁缺金.阵营 = 败门
+    chars.殷折.知道 += world.丁缺金门规旧债
+
+  pov: chars.殷折
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.殷折, chars.丁缺金, chars.牧云镜 }
+  pays_off: promises.丁缺金背叛伏笔
+  advances: { threads.摸金门规线, threads.辰月暗流线 }
+  reveals: world.丁缺金门规旧债
+  mentions: { world.边地求援事实, world.丁缺金门规旧债, world.辰月暗宗 }
+  render_hint: "吐露旧债要回答他到底把旧道和殷折卖给了谁。"
+}
+
+beat 背门者留守塌口 @ structure.vol01.ch72 {
+  effect:
+    chars.丁缺金.位置 = world.无名旧道
+    chars.丁缺金.状态 = 背门守塌
+    chars.丁缺金.arc_state = 赎债封路
+    world.离公墓志残片.状态 = 追回待封
+
+  pov: chars.殷折
+  location: world.无名旧道
+  on_screen: true
+  observers: { chars.殷折, chars.丁缺金, chars.穆如砚 }
+  advances: { threads.摸金门规线, threads.误入地宫线 }
+  mentions: { world.无名旧道, world.摸金殷门, world.离公墓志残片 }
+  render_hint: "丁缺金的归处是守塌口赎债，不给他洗清，也不把他写成简单弃子。"
+}

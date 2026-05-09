@@ -1,0 +1,85 @@
+namespace 九州别记.structure.vol1_ch22
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 星污覆上残页 @ structure.vol01.ch22 {
+  effect:
+    world.雷碧城星术残简.状态 = 污染回涌
+    world.无名战牍残页.状态 = 星污覆名
+    chars.殷折.状态 = 被星污阻名
+
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.辰月暗流线, threads.殇阳梦境线 }
+  reveals: world.殇阳关异变之夜
+  mentions: { world.雷碧城星术残简, world.无名战牍残页, world.殇阳关异变之夜 }
+  render_hint: "星污要像旧污染复燃，不是新的任意障碍。"
+}
+
+beat 雷碧城影入雨阵 @ structure.vol01.ch22 {
+  effect:
+    world.雷碧城.位置 = world.梦中殇阳雨阵
+    world.雷碧城.状态 = 星影入阵
+    chars.殷折.知道 += world.雷碧城辰月国师
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.辰月暗流线, threads.九州野史线 }
+  mentions: { world.雷碧城, world.雷碧城辰月国师, world.梦中殇阳雨阵 }
+  render_hint: "雷碧城只以污染影子进入，不把他写成梦境里可被击败的实体敌人。"
+}
+
+beat 残简割裂群名 @ structure.vol01.ch22 {
+  effect:
+    world.殇阳关战牍.状态 = 群名被割裂
+    world.无名战牍残页.状态 = 群名碎裂
+    world.十二主星盘.状态 = 遥牵污染
+
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.辰月暗流线, threads.殇阳梦境线 }
+  mentions: { world.殇阳关战牍, world.十二主星盘, world.辰月主星偏用 }
+  render_hint: "割裂的是姓名结构，不要把群名处理成普通破译题。"
+}
+
+beat 殷折辨出污染代价 @ structure.vol01.ch22 {
+  effect:
+    chars.殷折.知道 += world.秘术溢出风险
+    chars.殷折.知道 += world.辰月主星偏用
+    chars.殷折.状态 = 辨出污染代价
+
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.辰月暗流线, threads.大墓真相线 }
+  reveals: world.辰月主星偏用
+  mentions: { world.秘术溢出风险, world.辰月主星偏用, world.雷碧城星术残简 }
+  render_hint: "污染有代价和限制，不能写成辰月全能遮蔽。"
+}
+
+beat 雨阵转向异变夜 @ structure.vol01.ch22 {
+  effect:
+    world.梦中殇阳雨阵.状态 = 异变夜临近
+    world.殇阳关梦境.状态 = 异变夜逼近
+    world.雷碧城星术残简.状态 = 污染显形
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.辰月暗流线, threads.九州野史线 }
+  reveals: world.殇阳关异变之夜
+  mentions: { world.梦中殇阳雨阵, world.殇阳关异变之夜, world.雷碧城星术残简 }
+  render_hint: "章末把战役梦境推向异变夜边缘，为反污追名做准备。"
+}

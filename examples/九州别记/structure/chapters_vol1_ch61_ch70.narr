@@ -1,0 +1,194 @@
+namespace 九州别记.structure
+
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.structure.vol1_ch61 as vol1_ch61
+import 九州别记.structure.vol1_ch62 as vol1_ch62
+import 九州别记.structure.vol1_ch63 as vol1_ch63
+import 九州别记.structure.vol1_ch64 as vol1_ch64
+import 九州别记.structure.vol1_ch65 as vol1_ch65
+import 九州别记.structure.vol1_ch66 as vol1_ch66
+import 九州别记.structure.vol1_ch67 as vol1_ch67
+import 九州别记.structure.vol1_ch68 as vol1_ch68
+import 九州别记.structure.vol1_ch69 as vol1_ch69
+import 九州别记.structure.vol1_ch70 as vol1_ch70
+
+chapter vol01.ch61 alias 星局临誓 {
+  title: "星局临誓"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.闻人观星
+  location: world.星文回廊
+  time_hint: "第一卷中后段，殇阳梦境残印被重新牵回星文回廊之夜。"
+  summary: "闻人观星携十二主星盘入星文回廊，以雷碧城星术残简和殇阳梦境残印为两枚阵眼，把辰月远观多章的暗线推成正面星局；主角团发现他要夺取的不是墓物，而是解释殇阳旧史与王道名义的权柄。"
+  beats: [
+    vol1_ch61.闻人携盘入廊,
+    vol1_ch61.十二主星排成旧局,
+    vol1_ch61.残简牵起梦印,
+    vol1_ch61.辰月远观显因,
+    vol1_ch61.主角团被迫入阵
+  ]
+  prose_hint: "第六十一章把辰月远观从暗处推到明处；星局要有计算和代价，不写成凭空预言。"
+}
+
+chapter vol01.ch62 alias 断鹰夺誓 {
+  title: "断鹰夺誓"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  time_hint: "星局临誓后，旧鹰扳指牵着众人退入地下铁誓厅。"
+  summary: "姬断鹰从铁誓厅另一侧现身，以天驱旧誓压迫苏离灯认他为解释旧盟的人；他把守护王道的旧誓改写成夺取王道名义的枷锁，旧鹰扳指因此在苏离灯掌中失衡。"
+  beats: [
+    vol1_ch62.铁誓厅门重开,
+    vol1_ch62.姬断鹰举旧誓逼认,
+    vol1_ch62.宗主残模映出夺权,
+    vol1_ch62.旧鹰扳指失衡,
+    vol1_ch62.苏离灯拒先跪誓
+  ]
+  prose_hint: "第六十二章要让姬断鹰的危险来自解释旧誓的权力欲，不把他写成只想抢一件信物。"
+}
+
+chapter vol01.ch63 alias 守誓分权 {
+  title: "守誓分权"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  time_hint: "姬断鹰逼誓之后，铁誓厅与星文回廊的光同时压到旧鹰扳指上。"
+  summary: "苏离灯从断名、鹰旗残绶和旧誓残痕里分出守誓与夺权的界限：旧誓是护人、护证与护王道不被篡改，不是让后人借一枚指套号令天下；她以此暂时稳住旧鹰扳指。"
+  beats: [
+    vol1_ch63.断名照出守誓原义,
+    vol1_ch63.鹰旗残绶不肯归宗,
+    vol1_ch63.苏离灯分开守誓与夺权,
+    vol1_ch63.旧鹰扳指暂稳,
+    vol1_ch63.姬断鹰改以星局施压
+  ]
+  prose_hint: "第六十三章是苏离灯的判断章，重点是伦理区分，不是获得更强秘术。"
+}
+
+chapter vol01.ch64 alias 留史不取 {
+  title: "留史不取"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.墓志石室
+  time_hint: "旧誓暂稳后，星局把墓志石室中的残片与战牍重新照亮。"
+  summary: "姬断鹰和闻人观星都试图让殷折交出残片作为权柄凭证；殷折坚持殷门门规，只先护活人退路、保存真实证词、不把墓物带成私产，使离公墓志残片成为共同见证而非一方战利。"
+  beats: [
+    vol1_ch64.墓志残片再度发热,
+    vol1_ch64.两方逼索证物,
+    vol1_ch64.殷折先量活路,
+    vol1_ch64.残片留为真史,
+    vol1_ch64.罗盘照路不照宝
+  ]
+  prose_hint: "第六十四章让殷折的门规选择正面顶住两方夺证，不让他靠占有墓物解决冲突。"
+}
+
+chapter vol01.ch65 alias 王道争辞 {
+  title: "王道争辞"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.星文回廊
+  time_hint: "殷折拒交证物后，星局把墓志、战牍和旧誓三种证词投到同一面星壁上。"
+  summary: "闻人观星将嬴无翳未帝而霸的旧史推成末世夺命的星命注脚，姬断鹰则要用天驱旧誓把王道解释权收回自己手中；牧云镜记录两种叙述如何同时压迫真史，主角团意识到大墓危险在权柄解释而非宝藏。"
+  beats: [
+    vol1_ch65.三证投上星壁,
+    vol1_ch65.闻人改写霸主旧史,
+    vol1_ch65.姬断鹰夺取王道辞,
+    vol1_ch65.牧云镜记下双重篡改,
+    vol1_ch65.众人确认危险不在宝物
+  ]
+  prose_hint: "第六十五章要把王道解释权写成政治和历史压力，避免变成口号辩论。"
+}
+
+chapter vol01.ch66 alias 梦印反潮 {
+  title: "梦印反潮"
+  purpose: reversal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  time_hint: "王道争辞后，殇阳梦境残印被星局和旧誓同时扯开。"
+  summary: "殇阳梦境残印反潮，把张博归名后的旧雨阵、雷碧城星术污染和天驱破局传闻重叠照出；殷折再次确认梦境只能留名、收殓和保存边界，不能被辰月或姬断鹰拿去改写胜负。"
+  beats: [
+    vol1_ch66.梦印反潮入阵,
+    vol1_ch66.张博归名照出边界,
+    vol1_ch66.雷碧城旧术露出污源,
+    vol1_ch66.天驱破局传闻被星局借用,
+    vol1_ch66.殷折守住梦境边界
+  ]
+  prose_hint: "第六十六章用梦印把殇阳旧史压回眼前，但仍遵守不能改写战局的规则。"
+}
+
+chapter vol01.ch67 alias 星术溢出 {
+  title: "星术溢出"
+  purpose: reversal
+  target_length: 3000 字
+  pov: chars.闻人观星
+  location: world.星文回廊
+  time_hint: "梦印反潮后，闻人观星强行把十二主星盘推过承载边界。"
+  summary: "闻人观星偏用密罗、谷玄、暗月与寰化四星压住梦印和旧誓，十二主星盘因此出现秘术溢出；辰月星局第一次显出反噬迹象，苏离灯也看见旧誓并非只能被星术牵引。"
+  beats: [
+    vol1_ch67.闻人偏用四主星,
+    vol1_ch67.星盘越过承载,
+    vol1_ch67.雷碧城残简反噬,
+    vol1_ch67.苏离灯看见截盘缝隙,
+    vol1_ch67.星局压迫全廊
+  ]
+  prose_hint: "第六十七章要明确辰月秘术有承载限制，闻人观星的强行推进开始伤到他自己的局。"
+}
+
+chapter vol01.ch68 alias 鹰戒自定 {
+  title: "鹰戒自定"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  time_hint: "星术溢出后，旧鹰扳指在铁誓厅与星文回廊之间重新定声。"
+  summary: "苏离灯不再让姬断鹰或闻人观星替旧誓命名，她用旧鹰扳指护住活人、证词和不可夺王骨的禁语；旧鹰扳指由此从宗主归属问题转成自定守誓的信物。"
+  beats: [
+    vol1_ch68.苏离灯收回誓名,
+    vol1_ch68.旧鹰扳指转为自鸣,
+    vol1_ch68.不可夺王骨禁语压回夺权,
+    vol1_ch68.姬断鹰旧誓失控,
+    vol1_ch68.守誓自定成形
+  ]
+  prose_hint: "第六十八章是苏离灯的转折，不让她继承宗主权力，而是让她重新定义守誓。"
+}
+
+chapter vol01.ch69 alias 旧誓截盘 {
+  title: "旧誓截盘"
+  purpose: climax
+  target_length: 3000 字
+  pov: chars.苏离灯
+  location: world.星文回廊
+  time_hint: "旧鹰扳指自定守誓后，姬断鹰强行把残誓推向十二主星盘。"
+  summary: "姬断鹰试图借苏离灯重定的守誓反夺星局，却被旧誓本身反截：天驱旧誓只肯护证护人，不肯替他夺取王道名义；十二主星盘被截出裂声，闻人观星的星局也随之偏转。"
+  beats: [
+    vol1_ch69.姬断鹰反夺守誓,
+    vol1_ch69.旧誓拒作王权刀,
+    vol1_ch69.鹰旗残绶截入星盘,
+    vol1_ch69.十二主星盘裂声,
+    vol1_ch69.闻人星局偏转
+  ]
+  prose_hint: "第六十九章让旧誓截盘的逻辑来自守护边界，而不是某个角色突然变强。"
+}
+
+chapter vol01.ch70 alias 截盘败走 {
+  title: "截盘败走"
+  purpose: aftermath
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.星文回廊
+  time_hint: "旧誓截盘后，星文回廊和地下铁誓厅的余光同时熄落。"
+  summary: "十二主星盘被旧誓截断，闻人观星的辰月星局受挫，姬断鹰夺誓失败后败走；苏离灯以自定守誓稳住旧鹰扳指，殷折则把残片、战牍和梦印作为真史证词留下，不让任何一方把墓物带成王道凭证。"
+  beats: [
+    vol1_ch70.星盘被旧誓截断,
+    vol1_ch70.闻人星局受挫,
+    vol1_ch70.姬断鹰败走,
+    vol1_ch70.苏离灯自定守誓,
+    vol1_ch70.殷折封存真史退路
+  ]
+  prose_hint: "第七十章要收束本段正面冲突，保留辰月和天驱后患，但清楚兑现这次星局失败。"
+}

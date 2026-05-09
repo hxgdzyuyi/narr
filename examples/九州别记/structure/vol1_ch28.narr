@@ -1,0 +1,84 @@
+namespace 九州别记.structure.vol1_ch28
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 旧鹰回声越过梦门 @ structure.vol01.ch28 {
+  effect:
+    chars.苏离灯.位置 = world.星文回廊
+    chars.苏离灯.状态 = 听见护名回声
+    world.旧鹰扳指.状态 = 护名回声
+
+  pov: chars.苏离灯
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.苏离灯, chars.牧云镜 }
+  advances: { threads.天驱旧誓线, threads.殇阳梦境线 }
+  reveals: world.天驱护陵旧誓
+  mentions: { world.旧鹰扳指, world.星文回廊, world.天驱旧盟 }
+  render_hint: "现实侧只短暂出现，作用是让旧誓成为护名边界。"
+}
+
+beat 天驱旧誓拦住尸阵 @ structure.vol01.ch28 {
+  effect:
+    world.旧鹰扳指.状态 = 誓线拦污
+    chars.苏离灯.知道 += world.天驱护陵旧誓
+    chars.苏离灯.相信 += "旧誓能护住被术式吞没的名字"
+
+  pov: chars.苏离灯
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.苏离灯 }
+  advances: { threads.天驱旧誓线, threads.辰月暗流线 }
+  mentions: { world.旧鹰扳指, world.天驱护陵旧誓, world.殇阳关异变之夜 }
+  render_hint: "旧誓拦的是术式吞没，不要写成天驱改变殇阳战局。"
+}
+
+beat 殷折借誓护名 @ structure.vol01.ch28 {
+  effect:
+    chars.殷折.状态 = 借旧誓护名
+    world.无名战牍残页.状态 = 誓线护名
+    world.殇阳梦境残印.状态 = 群名反写前兆
+
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.天驱旧誓线, threads.摸金门规线 }
+  mentions: { world.无名战牍残页, world.殇阳梦境残印, world.天驱旧誓残痕 }
+  render_hint: "殷折借的是边界和誓意，不是获得天驱身份。"
+}
+
+beat 星污被誓线割开 @ structure.vol01.ch28 {
+  effect:
+    world.雷碧城星术残简.状态 = 污染被割
+    world.十二主星盘.状态 = 读名受阻
+    chars.闻人观星.状态 = 借污受阻
+
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.辰月暗流线, threads.殇阳梦境线 }
+  reveals: world.秘术溢出风险
+  mentions: { world.雷碧城星术残简, world.十二主星盘, world.秘术溢出风险 }
+  render_hint: "割开污染只是赢得归名窗口，不要写成彻底击败辰月。"
+}
+
+beat 群名继续反写 @ structure.vol01.ch28 {
+  effect:
+    world.殇阳梦境残印.状态 = 群名反写前兆
+    world.无名战牍残页.状态 = 群名继续反写
+    chars.殷折.状态 = 护名向退潮推进
+
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.大墓真相线, threads.天驱旧誓线 }
+  mentions: { world.殇阳梦境残印, world.无名战牍残页, world.墓志石室 }
+  render_hint: "章末让群名反写接近现实，但还不到醒来。"
+}

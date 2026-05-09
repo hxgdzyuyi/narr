@@ -1,0 +1,94 @@
+namespace 九州别记.structure.vol1_ch40
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 赤旅暗匣出刀铭 @ structure.vol01.ch40 {
+  effect:
+    chars.殷折.位置 = world.疑似离公墓域
+    chars.牧云镜.位置 = world.疑似离公墓域
+    chars.穆如砚.位置 = world.疑似离公墓域
+    world.赤旅兵冢.状态 = 暗匣开出
+    world.霸刀断铭.状态 = 出土未证
+    world.霸刀遗名.状态 = 断铭相照
+    chars.殷折.知道 += world.嬴无翳骑射霸刀
+
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.穆如砚, chars.苏离灯 }
+  advances: { threads.大墓真相线, threads.九州野史线 }
+  reveals: world.嬴无翳骑射霸刀
+  mentions: { world.霸刀断铭, world.霸刀遗名, world.赤旅兵冢 }
+  render_hint: "霸刀断铭可以出土，但必须立刻标记为未证，不能直接坐实墓主。"
+}
+
+beat 离国军制互证 @ structure.vol01.ch40 {
+  effect:
+    world.离国马具残饰.状态 = 与断铭互证
+    world.离国赤旅.状态 = 军制证据出土
+    world.疑似离公墓域.状态 = 主墓将明
+    chars.牧云镜.知道 += world.嬴无翳用人与军政
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.洛衡 }
+  advances: { threads.大墓真相线, threads.九州野史线, threads.封陵旧史线 }
+  reveals: world.嬴无翳用人与军政
+  mentions: { world.离国马具残饰, world.离国赤旅, world.嬴无翳用人与军政 }
+  render_hint: "军制互证只能把证据链补强，不替墓志主名盖棺。"
+}
+
+beat 牧云烬封口夺证 @ structure.vol01.ch40 {
+  effect:
+    chars.牧云烬.位置 = world.疑似离公墓域
+    chars.牧云烬.状态 = 封口夺证
+    world.端朝掩史司.状态 = 封口夺证
+    world.霸刀断铭.状态 = 出土未证
+
+  pov: chars.牧云烬
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云烬, chars.殷折, chars.牧云镜, chars.穆如砚 }
+  advances: { threads.端朝皇权线, threads.大墓真相线 }
+  mentions: { world.霸刀断铭, world.端朝掩史司, world.嬴无翳墓葬危险原则 }
+  render_hint: "牧云烬再次封口夺证，说明出土未证也足以引发现实抢夺。"
+}
+
+beat 殷折拒绝墓主定名 @ structure.vol01.ch40 {
+  effect:
+    chars.殷折.状态 = 拒绝墓主定名
+    chars.殷折.arc_state = 守证不证主
+    world.嬴无翳.状态 = 墓主未证
+    world.霸刀断铭.状态 = 出土未证
+
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.穆如砚, chars.苏离灯 }
+  advances: { threads.摸金门规线, threads.九州野史线, threads.大墓真相线 }
+  mentions: { world.嬴无翳, world.霸刀断铭, world.疑似离公墓域 }
+  render_hint: "殷折拒绝定名是为了守证据链，不是逃避答案。"
+}
+
+beat 主墓将明仍留缺名 @ structure.vol01.ch40 {
+  effect:
+    world.霸刀断铭.状态 = 出土未证
+    world.疑似离公墓域.状态 = 主墓将明
+    world.墓志石室.状态 = 证据待合
+    world.离公墓志残片.状态 = 待合断铭
+    chars.丁缺金.状态 = 被辰月弃用
+    chars.牧云烬.状态 = 封口夺证
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚, chars.苏离灯 }
+  advances: { threads.大墓真相线, threads.九州野史线, threads.封陵旧史线 }
+  mentions: { world.霸刀断铭, world.离公墓志残片, world.疑似离公墓域 }
+  render_hint: "章末要把证据停在出土未证和主墓将明，为四十一至五十章确认墓主留出缺口。"
+}

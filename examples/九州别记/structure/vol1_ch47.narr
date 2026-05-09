@@ -1,0 +1,84 @@
+namespace 九州别记.structure.vol1_ch47
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 断简补上重封年代 @ structure.vol01.ch47 {
+  effect:
+    chars.穆如砚.位置 = world.封陵外城
+    chars.穆如砚.状态 = 校出重封年代
+    world.封陵外城.状态 = 重封年代归位
+
+  pov: chars.穆如砚
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.穆如砚, chars.牧云镜, chars.洛衡 }
+  advances: { threads.封陵旧史线, threads.穆如军门线 }
+  reveals: world.燮朝封陵残证
+  mentions: { world.燮朝封陵残证, world.封陵外城, world.燮朝 }
+  render_hint: "补上的年代只证明重封层，不要让它抢先说明完整墓主。"
+}
+
+beat 穆如旧令对上内门 @ structure.vol01.ch47 {
+  effect:
+    world.穆如旧令抄本.状态 = 内门禁令互证
+    chars.穆如砚.知道 += world.穆如封陵军令抄本
+    world.疑似封陵.状态 = 重封为遮名
+
+  pov: chars.穆如砚
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.穆如砚, chars.牧云镜, chars.殷折 }
+  advances: { threads.穆如军门线, threads.封陵旧史线, threads.大墓真相线 }
+  mentions: { world.穆如旧令抄本, world.穆如封陵军令抄本, world.疑似封陵 }
+  render_hint: "军令的禁火禁内门说明重封为遮蔽，不是守护财富。"
+}
+
+beat 燮朝封陵残证归因 @ structure.vol01.ch47 {
+  effect:
+    chars.牧云镜.状态 = 归因燮朝重封
+    chars.牧云镜.知道 += world.燮朝承胤末
+    world.燮朝.状态 = 重封疑意显
+
+  pov: chars.牧云镜
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.牧云镜, chars.穆如砚, chars.殷折 }
+  advances: { threads.封陵旧史线, threads.九州野史线 }
+  reveals: world.燮朝承胤末
+  mentions: { world.燮朝, world.燮朝承胤末, world.姬昌夜承帝统 }
+  render_hint: "归因要落在燮朝自救与继统压力上，不落在宝物保护。"
+}
+
+beat 洛衡看出重封压灾 @ structure.vol01.ch47 {
+  effect:
+    chars.洛衡.位置 = world.封陵外城
+    chars.洛衡.状态 = 看出重封压灾
+    world.河络地火锥.状态 = 重封压灾旧痕
+
+  pov: chars.洛衡
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.洛衡, chars.殷折, chars.苏离灯 }
+  advances: { threads.误入地宫线, threads.封陵旧史线 }
+  mentions: { world.河络地火锥, world.河络机坊封死事实, world.多族痕迹解释原则 }
+  render_hint: "机关痕迹证明重封工程带有压灾性质，而不是给主墓加机关取乐。"
+}
+
+beat 殷折听见墓域回响 @ structure.vol01.ch47 {
+  effect:
+    chars.殷折.位置 = world.封陵外城
+    chars.殷折.状态 = 听见墓域回响
+    world.疑似离公墓域.状态 = 重封回响
+
+  pov: chars.殷折
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.洛衡 }
+  advances: { threads.摸金门规线, threads.大墓真相线 }
+  mentions: { world.疑似离公墓域, world.殷门罗盘, world.嬴无翳 }
+  render_hint: "墓域回响要让殷折感到确认逼近，而不是听见神秘答案。"
+}

@@ -1,0 +1,194 @@
+namespace 九州别记.structure
+
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.structure.vol1_ch41 as vol1_ch41
+import 九州别记.structure.vol1_ch42 as vol1_ch42
+import 九州别记.structure.vol1_ch43 as vol1_ch43
+import 九州别记.structure.vol1_ch44 as vol1_ch44
+import 九州别记.structure.vol1_ch45 as vol1_ch45
+import 九州别记.structure.vol1_ch46 as vol1_ch46
+import 九州别记.structure.vol1_ch47 as vol1_ch47
+import 九州别记.structure.vol1_ch48 as vol1_ch48
+import 九州别记.structure.vol1_ch49 as vol1_ch49
+import 九州别记.structure.vol1_ch50 as vol1_ch50
+
+chapter vol01.ch41 alias 断铭互证 {
+  title: "断铭互证"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  time_hint: "第四十章霸刀断铭与离国军制证据并置之后，墓域外缘。"
+  summary: "主角团不急于宣布墓主，而是把霸刀断铭、离国马具残饰和殇阳关战牍先分层复验，确认它们共同指向离国军制，并意识到任何过早定名都会被辰月和掩史司利用。"
+  beats: [
+    vol1_ch41.殷折复验断铭,
+    vol1_ch41.洛衡合看马具铆痕,
+    vol1_ch41.牧云镜暂压墓主判断,
+    vol1_ch41.穆如砚以军制排伪,
+    vol1_ch41.闻人放大霸刀传闻
+  ]
+  prose_hint: "第四十一章承接第四十章的霸刀证据，但要把确认推迟为严谨互证，不写成寻宝者看见名器后的胜利。"
+}
+
+chapter vol01.ch42 alias 战牍校制 {
+  title: "战牍校制"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.墓志石室
+  time_hint: "断铭复验后，众人退回墓志石室重读殇阳关战牍。"
+  summary: "牧云镜以殇阳关战牍校对离国马具残饰和霸刀断铭，确认它们不是零散陪葬品，而是离国赤旅军制的一组残存证据；殷折因此更坚持先保活人和证据。"
+  beats: [
+    vol1_ch42.战牍军目重读,
+    vol1_ch42.赤旅番号相合,
+    vol1_ch42.牧云镜读出军政调度,
+    vol1_ch42.殷折拒作寻宝证,
+    vol1_ch42.战牍牵回墓志残片
+  ]
+  prose_hint: "第四十二章用军制互证推进危险，重点是制度与旧史，不是器物价值。"
+}
+
+chapter vol01.ch43 alias 墓志缺名 {
+  title: "墓志缺名"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.墓志石室
+  time_hint: "战牍校制后，离公墓志残片被重新嵌入缺口。"
+  summary: "离公墓志残片显出称谓却仍避开真名，空缺与殇阳战牍的污痕相互呼应；苏离灯听出旧誓禁语，丁缺金则试图拿缺名向各方索价。"
+  beats: [
+    vol1_ch43.残片照出离公称谓,
+    vol1_ch43.空缺避开真名,
+    vol1_ch43.苏离灯辨誓禁王骨,
+    vol1_ch43.牧云镜见正史裁剪,
+    vol1_ch43.丁缺金借缺名索价
+  ]
+  prose_hint: "第四十三章让墓志缺名成为危险本身，读者应感到答案临近但仍不可轻宣。"
+}
+
+chapter vol01.ch44 alias 四证成链 {
+  title: "四证成链"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  time_hint: "墓志缺名后，四件证物被摆到同一条石案上。"
+  summary: "霸刀断铭、离国马具残饰、殇阳关战牍和离公墓志残片第一次形成可辩驳的证据链，牧云镜提出墓主只剩离公这一条方向，但星术反噬说明证据越完整越会招来更大危险。"
+  beats: [
+    vol1_ch44.四证同案排布,
+    vol1_ch44.罗盘避开主棺线,
+    vol1_ch44.牧云镜提出离公唯一,
+    vol1_ch44.穆如砚意识军门危局,
+    vol1_ch44.星文回廊反噬证链
+  ]
+  prose_hint: "第四十四章把证据链立起来，但仍停在离公唯一待证，不直接宣布嬴无翳墓主定位。"
+}
+
+chapter vol01.ch45 alias 石门得名 {
+  title: "石门得名"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.封陵外城
+  time_hint: "四证成链后，殷折一行回到最初石门内侧复读门制。"
+  summary: "最初露出的石门终于被确认并非寻常旧道机关，而是通向离公墓域的外城墓门；殷折把石门身份伏笔兑现为守规压力，而不是带队夺宝的捷报。"
+  beats: [
+    vol1_ch45.石门纹路回读,
+    vol1_ch45.外城封门归位,
+    vol1_ch45.殷折确认不是宝门,
+    vol1_ch45.牧云镜改称离公墓门,
+    vol1_ch45.石门身份伏笔兑现
+  ]
+  prose_hint: "第四十五章兑现石门身份伏笔，但答案只让责任变重，不让众人获得胜利感。"
+}
+
+chapter vol01.ch46 alias 正统震荡 {
+  title: "正统震荡"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.墓志石室
+  time_hint: "石门得名后，地上掩史压力沿旧道压入墓志石室。"
+  summary: "牧云镜发现离公墓门的结论无法写成端朝可用的献捷章，牧云烬索牍封口、穆如砚违诏护证、苏离灯警觉旧誓失衡，闻人观星则把正统裂缝变成新的星命局。"
+  beats: [
+    vol1_ch46.牧云镜试写不上名,
+    vol1_ch46.牧云烬索牍封口,
+    vol1_ch46.穆如砚护证违诏加深,
+    vol1_ch46.苏离灯警觉旧誓失衡,
+    vol1_ch46.闻人借正统裂缝
+  ]
+  prose_hint: "第四十六章把确认压力转为地上正统危机，不能把墓主线写成单纯考古推理。"
+}
+
+chapter vol01.ch47 alias 重封本意 {
+  title: "重封本意"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.穆如砚
+  location: world.封陵外城
+  time_hint: "正统震荡后，穆如旧令抄本与燮朝断简被重新校读。"
+  summary: "穆如旧令抄本、燮朝错铭和封陵外城结构互相扣合，说明后世重封不是为了护宝，而是为了把一个会伤及皇统叙事的旧墓重新压住。"
+  beats: [
+    vol1_ch47.断简补上重封年代,
+    vol1_ch47.穆如旧令对上内门,
+    vol1_ch47.燮朝封陵残证归因,
+    vol1_ch47.洛衡看出重封压灾,
+    vol1_ch47.殷折听见墓域回响
+  ]
+  prose_hint: "第四十七章推进燮朝重封伏笔，但只显出重封本意的轮廓，为下一章的回答留口。"
+}
+
+chapter vol01.ch48 alias 重封伏笔 {
+  title: "重封伏笔"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.封陵外城
+  time_hint: "重封本意露出后，牧云镜把燮朝残档与穆如旧令合读到最后一处缺文。"
+  summary: "燮朝重封伏笔被回答为正统叙事的自救：重封者压住的不是宝库，而是未帝而霸的离公旧墓、辰月国师阴影和姬氏皇统分歧会被一同翻出的危险。"
+  beats: [
+    vol1_ch48.重封档缝合军令,
+    vol1_ch48.牧云镜读出不是护宝,
+    vol1_ch48.姬昌夜皇统阴影,
+    vol1_ch48.闻人撬动重封解释,
+    vol1_ch48.燮朝重封伏笔兑现
+  ]
+  prose_hint: "第四十八章可以兑现燮朝重封伏笔，但不要替第五十章提前宣告嬴无翳墓主定位。"
+}
+
+chapter vol01.ch49 alias 名称临界 {
+  title: "名称临界"
+  purpose: reversal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  time_hint: "燮朝重封动机显明后，四件证物再次回到墓域内缘。"
+  summary: "霸刀遗名、断铭、战牍和墓志残片几乎把嬴无翳之名推到台前，殷折却按门规强行停手，要求众人先承认这不是胜利而是会把各方拖入争夺的确认前夜。"
+  beats: [
+    vol1_ch49.霸刀遗名压回断铭,
+    vol1_ch49.战牍与残片逼近名讳,
+    vol1_ch49.殷折按门规停手,
+    vol1_ch49.牧云镜拒作献捷章,
+    vol1_ch49.墓域回声逼近确认
+  ]
+  prose_hint: "第四十九章要写确认前夜的压迫感，让墓主名像危险而不是奖赏。"
+}
+
+chapter vol01.ch50 alias 墓主确认 {
+  title: "墓主确认"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  time_hint: "名称临界后，四证最后互锁，墓域向众人显出真正指向。"
+  summary: "主角团以霸刀断铭、离国马具残饰、殇阳关战牍和离公墓志残片互证，最终确认疑似封陵指向嬴无翳大墓；确认没有带来寻宝胜利，而是把端朝、燮朝、离国、辰月和天驱的正统叙事危机全部压到众人身上。"
+  beats: [
+    vol1_ch50.四证最后互锁,
+    vol1_ch50.嬴无翳墓主名落定,
+    vol1_ch50.殷折拒把确认当胜利,
+    vol1_ch50.牧云镜看见正统危机,
+    vol1_ch50.大墓确认后门规加重
+  ]
+  prose_hint: "第五十章必须确认墓主并明确危险原则：危险不在宝物，而在墓主身份会动摇正统叙事。"
+}

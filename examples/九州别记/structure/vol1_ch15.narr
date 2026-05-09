@@ -1,0 +1,91 @@
+namespace 九州别记.structure.vol1_ch15
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 空廊吞声 @ structure.vol01.ch15 {
+  effect:
+    chars.殷折.位置 = world.魅影空廊
+    chars.牧云镜.位置 = world.魅影空廊
+    chars.苏离灯.位置 = world.魅影空廊
+    chars.硕风照夜.位置 = world.魅影空廊
+    world.魅影空廊.状态 = 吞声起雾
+
+  pov: chars.殷折
+  location: world.魅影空廊
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.苏离灯, chars.硕风照夜 }
+  advances: { threads.误入地宫线, threads.大墓真相线 }
+  mentions: { world.魅影空廊, world.墓志石室 }
+  render_hint: "空廊首先带来方向与声音错乱，不要把魅族写成实体怪物袭击。"
+}
+
+beat 魅影残蜕扰记 @ structure.vol01.ch15 {
+  effect:
+    chars.牧云镜.状态 = 证词被扰
+    chars.殷折.状态 = 记忆错位
+    world.魅影残蜕.状态 = 残蜕显形
+    world.魅影空廊.状态 = 证词扰乱
+
+  pov: chars.牧云镜
+  location: world.魅影空廊
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折 }
+  advances: { threads.封陵旧史线, threads.九州野史线 }
+  reveals: world.魅影空廊事实
+  mentions: { world.魅族, world.魅影残蜕, world.魅影空廊 }
+  render_hint: "魅影残蜕扰乱证词，不给出新的墓主答案。"
+}
+
+beat 众人各失一段证词 @ structure.vol01.ch15 {
+  effect:
+    chars.苏离灯.状态 = 忘却铁誓断名
+    chars.硕风照夜.状态 = 混淆吞狼旧歌
+    chars.牧云镜.相信 += "多族痕迹可能被魅影故意拼接"
+
+  pov: chars.苏离灯
+  location: world.魅影空廊
+  on_screen: true
+  observers: { chars.苏离灯, chars.硕风照夜, chars.牧云镜, chars.殷折 }
+  advances: { threads.天驱旧誓线, threads.瀚州草原线, threads.封陵旧史线 }
+  mentions: { world.天驱旧誓残痕, world.夸父骨画壁, world.魅影空廊 }
+  render_hint: "每个人失去的是自己最信的一段证词，制造解释风险。"
+}
+
+beat 殷折守规点名 @ structure.vol01.ch15 {
+  effect:
+    chars.殷折.状态 = 点名稳队
+    chars.殷折.arc_state = 守规问史
+    chars.殷折.关系 += "按门规逐一点名救回队形"
+    chars.苏离灯.状态 = 旧誓回神
+    chars.硕风照夜.状态 = 旧歌复位
+
+  pov: chars.殷折
+  location: world.魅影空廊
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.硕风照夜, chars.牧云镜 }
+  advances: { threads.摸金门规线, threads.误入地宫线 }
+  mentions: { world.魅影空廊, world.摸金殷门 }
+  render_hint: "点名是殷门下地保队的规矩，也是对前面守规选择的延续。"
+}
+
+beat 多族痕迹归重封 @ structure.vol01.ch15 {
+  effect:
+    chars.牧云镜.状态 = 归纳多代重封
+    chars.牧云镜.知道 += world.多族痕迹解释原则
+    chars.殷折.知道 += world.多族痕迹解释原则
+    world.疑似封陵.状态 = 多代重封成证
+
+  pov: chars.牧云镜
+  location: world.魅影空廊
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.苏离灯, chars.硕风照夜 }
+  pays_off: promises.多族重封伏笔
+  advances: { threads.封陵旧史线, threads.九州野史线, threads.大墓真相线 }
+  reveals: world.多族痕迹解释原则
+  mentions: { world.河络地火机坊, world.羽族坠羽井, world.鲛泪暗渠, world.夸父骨画壁, world.魅影空廊 }
+  render_hint: "明确把多族痕迹归为多代重封和材料流通，不写成共同建主墓。"
+}

@@ -1,0 +1,85 @@
+namespace 九州别记.structure.vol1_ch21
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 梦印未退反开残页 @ structure.vol01.ch21 {
+  effect:
+    chars.殷折.位置 = world.殇阳关梦境
+    chars.殷折.状态 = 梦印前再停步
+    world.殇阳关梦境.状态 = 第二段开启
+    world.无名战牍残页.状态 = 张博名后再开
+
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.大墓真相线 }
+  reveals: world.殇阳关战役事实
+  mentions: { world.殇阳关梦境, world.无名战牍残页, world.张博 }
+  render_hint: "张博姓名落定后，梦境不该立刻放人，而是把更多空格推到殷折面前。"
+}
+
+beat 雨阵群影压近 @ structure.vol01.ch21 {
+  effect:
+    chars.殷折.状态 = 面对群影
+    world.梦中殇阳雨阵.状态 = 群影压近
+    world.殇阳关战牍.状态 = 群名待辨
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.九州野史线 }
+  mentions: { world.梦中殇阳雨阵, world.殇阳关战牍, world.离国铁骑 }
+  render_hint: "群影只能显出缺名压力，不要给每个战死者新增独立实体。"
+}
+
+beat 殷折循名查牍 @ structure.vol01.ch21 {
+  effect:
+    chars.殷折.知道 += world.墓主遗憾核心
+    chars.殷折.状态 = 循名查牍
+    world.殷门罗盘.状态 = 梦中循名
+
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.摸金门规线, threads.殇阳梦境线 }
+  mentions: { world.殷门罗盘, world.墓主遗憾核心, world.无名战牍残页 }
+  render_hint: "殷折用门规式的查证去追名，不用罗盘寻宝。"
+}
+
+beat 战牍空格连成列 @ structure.vol01.ch21 {
+  effect:
+    world.殇阳关战牍.状态 = 空格连列
+    world.张博.状态 = 归名照见群缺
+    chars.殷折.相信 += "一个名字被找回，会照见更多缺名"
+
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.九州野史线, threads.殇阳梦境线 }
+  mentions: { world.殇阳关战牍, world.张博, world.张博殇阳战死 }
+  render_hint: "张博不是孤例，他的名字应像灯一样照出战牍上的空列。"
+}
+
+beat 残页再启指向群名 @ structure.vol01.ch21 {
+  effect:
+    world.无名战牍残页.状态 = 残页再启
+    world.殇阳梦境残印.状态 = 群名待写
+    chars.殷折.状态 = 接下群名追索
+
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.大墓真相线, threads.摸金门规线 }
+  reveals: world.墓主遗憾核心
+  mentions: { world.无名战牍残页, world.殇阳梦境残印, world.梦境挽回边界 }
+  render_hint: "章末明确第二段任务是群名追索，而不是重新打开胜负。"
+}

@@ -1,0 +1,89 @@
+namespace 九州别记.structure.vol1_ch38
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 旧墙露出内门方位 @ structure.vol01.ch38 {
+  effect:
+    chars.殷折.位置 = world.疑似离公墓域
+    chars.牧云镜.位置 = world.疑似离公墓域
+    chars.穆如砚.位置 = world.疑似离公墓域
+    chars.苏离灯.位置 = world.疑似离公墓域
+    world.疑似离公墓域.状态 = 内门方位初合
+    world.墓志石室.状态 = 内门方位指向
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚, chars.苏离灯 }
+  advances: { threads.大墓真相线, threads.封陵旧史线 }
+  mentions: { world.疑似离公墓域, world.墓志石室, world.空棺无名事实 }
+  render_hint: "内门方位要像证据层互相指向，不要写成主墓大门直接打开。"
+}
+
+beat 空棺缺名对上军制 @ structure.vol01.ch38 {
+  effect:
+    chars.牧云镜.状态 = 对上缺名军制
+    chars.牧云镜.知道 += world.空棺无名事实
+    chars.牧云镜.知道 += world.离国军工痕迹
+    world.离公墓志残片.状态 = 与军制互照
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.洛衡 }
+  advances: { threads.大墓真相线, threads.九州野史线 }
+  reveals: { world.空棺无名事实, world.离国军工痕迹 }
+  mentions: { world.离公墓志残片, world.离国马具残饰, world.疑似离公墓域 }
+  render_hint: "空棺和军制只能把问题推近，不能替代墓志主名。"
+}
+
+beat 牧云镜止住墓主定论 @ structure.vol01.ch38 {
+  effect:
+    chars.牧云镜.状态 = 止住墓主定论
+    chars.牧云镜.相信 += "军制和残片还不足以定墓主"
+    world.嬴无翳.状态 = 墓主未证
+    world.疑似离公墓域.状态 = 主墓将明未证
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.牧云烬, chars.穆如砚 }
+  advances: { threads.九州野史线, threads.大墓真相线, threads.端朝皇权线 }
+  mentions: { world.嬴无翳, world.嬴无翳墓主定位, world.疑似离公墓域 }
+  render_hint: "牧云镜要主动阻止过早定论，保持后续四十一至五十章的确认空间。"
+}
+
+beat 霸刀断铭未出先应 @ structure.vol01.ch38 {
+  effect:
+    world.霸刀断铭.状态 = 将出未证
+    world.霸刀遗名.状态 = 断铭将应
+    chars.殷折.状态 = 感到断铭压身
+
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.牧云镜 }
+  advances: { threads.大墓真相线, threads.殇阳梦境线 }
+  mentions: { world.霸刀断铭, world.霸刀遗名, world.嬴无翳骑射霸刀 }
+  render_hint: "断铭只能未出先应，不能在本章完成出土和定主。"
+}
+
+beat 疑似墓域主墓将明 @ structure.vol01.ch38 {
+  effect:
+    world.疑似离公墓域.状态 = 主墓将明
+    world.墓志石室.状态 = 主墓线索外接
+    world.嬴无翳.状态 = 墓主未证
+
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.穆如砚, chars.苏离灯 }
+  advances: { threads.大墓真相线, threads.九州野史线, threads.封陵旧史线 }
+  reveals: world.嬴无翳墓葬危险原则
+  mentions: { world.疑似离公墓域, world.嬴无翳墓葬危险原则, world.离国旧境 }
+  render_hint: "章末状态是主墓将明，必须保留墓主未证。"
+}

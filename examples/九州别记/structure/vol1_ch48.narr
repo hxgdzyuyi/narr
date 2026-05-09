@@ -1,0 +1,85 @@
+namespace 九州别记.structure.vol1_ch48
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 重封档缝合军令 @ structure.vol01.ch48 {
+  effect:
+    chars.牧云镜.位置 = world.封陵外城
+    chars.牧云镜.状态 = 缝合重封档军令
+    world.穆如旧令抄本.状态 = 与重封档缝合
+
+  pov: chars.牧云镜
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.牧云镜, chars.穆如砚, chars.殷折 }
+  advances: { threads.封陵旧史线, threads.穆如军门线 }
+  mentions: { world.穆如旧令抄本, world.牧云掩史旧档, world.燮朝封陵残证 }
+  render_hint: "档案和军令缝合出的是重封理由，不是完整墓主名。"
+}
+
+beat 牧云镜读出不是护宝 @ structure.vol01.ch48 {
+  effect:
+    chars.牧云镜.状态 = 读出不是护宝
+    chars.牧云镜.相信 += "燮朝重封压住的是旧史危机"
+    world.封陵外城.状态 = 重封证成
+
+  pov: chars.牧云镜
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚 }
+  advances: { threads.封陵旧史线, threads.端朝皇权线, threads.九州野史线 }
+  reveals: world.嬴无翳未帝而霸
+  mentions: { world.嬴无翳未帝而霸, world.封陵外城, world.端朝 }
+  render_hint: "强调重封不是护宝，而是避免旧史反噬皇统。"
+}
+
+beat 姬昌夜皇统阴影 @ structure.vol01.ch48 {
+  effect:
+    chars.牧云镜.知道 += world.姬昌夜承帝统
+    world.燮朝.状态 = 重封意图显
+    world.疑似封陵.状态 = 燮朝重封意图显
+
+  pov: chars.牧云镜
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.牧云镜, chars.穆如砚, chars.殷折 }
+  advances: { threads.九州野史线, threads.封陵旧史线 }
+  reveals: world.姬昌夜承帝统
+  mentions: { world.燮朝, world.燮室姬氏, world.姬昌夜承帝统 }
+  render_hint: "姬昌夜皇统阴影要说明为什么前朝也害怕离公墓，而不是展开新朝代支线。"
+}
+
+beat 闻人撬动重封解释 @ structure.vol01.ch48 {
+  effect:
+    chars.闻人观星.状态 = 撬动重封解释
+    world.辰月暗宗.状态 = 撬动重封解释
+    world.雷碧城星术残简.状态 = 借重封解释起波
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  advances: { threads.辰月暗流线, threads.端朝皇权线, threads.大墓真相线 }
+  mentions: { world.雷碧城星术残简, world.雷碧城辰月国师, world.辰月暗宗 }
+  render_hint: "闻人把重封解释变成各方互疑的燃料，不让他直接宣布最终答案。"
+}
+
+beat 燮朝重封伏笔兑现 @ structure.vol01.ch48 {
+  effect:
+    world.穆如旧令抄本.状态 = 重封证成
+    world.离公墓志残片.状态 = 重封遮名证成
+    world.封陵外城.状态 = 重封证成
+    world.疑似封陵.状态 = 燮朝重封意图显
+
+  pov: chars.牧云镜
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚, chars.苏离灯 }
+  pays_off: promises.燮朝重封伏笔
+  advances: { threads.封陵旧史线, threads.九州野史线, threads.大墓真相线 }
+  mentions: { world.燮朝封陵残证, world.穆如旧令抄本, world.嬴无翳墓葬危险原则 }
+  render_hint: "兑现的是重封动机的方向：压住正统危机；最终墓主定位仍留到第五十章。"
+}

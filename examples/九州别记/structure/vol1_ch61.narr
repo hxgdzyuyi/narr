@@ -1,0 +1,85 @@
+namespace 九州别记.structure.vol1_ch61
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 闻人携盘入廊 @ structure.vol01.ch61 {
+  effect:
+    chars.闻人观星.位置 = world.星文回廊
+    chars.闻人观星.状态 = 携盘入阵
+    world.十二主星盘.状态 = 入廊待启
+
+  pov: chars.闻人观星
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.闻人观星, chars.殷折, chars.苏离灯 }
+  advances: { threads.辰月暗流线, threads.大墓真相线 }
+  mentions: { world.十二主星盘, world.辰月暗宗, world.星文回廊 }
+  render_hint: "闻人观星入廊要像完成长期布局的收束，而不是临时闯入。"
+}
+
+beat 十二主星排成旧局 @ structure.vol01.ch61 {
+  effect:
+    world.十二主星盘.状态 = 十二星入位
+    world.星文回廊.状态 = 主星入局
+    chars.闻人观星.知道 += world.十二主星秘术体系
+
+  pov: chars.闻人观星
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.闻人观星, chars.牧云镜, chars.苏离灯 }
+  advances: { threads.辰月暗流线, threads.九州野史线 }
+  reveals: world.十二主星秘术体系
+  mentions: { world.星文观测原则, world.辰月主星偏用 }
+  render_hint: "十二主星要表现为星文推演，不写成万能占卜。"
+}
+
+beat 残简牵起梦印 @ structure.vol01.ch61 {
+  effect:
+    world.雷碧城星术残简.状态 = 应盘复燃
+    world.殇阳梦境残印.状态 = 被星盘牵起
+    world.殇阳关梦境.状态 = 梦印回潮
+
+  pov: chars.殷折
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.牧云镜 }
+  advances: { threads.殇阳梦境线, threads.辰月暗流线 }
+  mentions: { world.雷碧城星术残简, world.殇阳梦境残印, world.雷碧城 }
+  render_hint: "梦印回潮要沿着已建立的三残成环逻辑出现。"
+}
+
+beat 辰月远观显因 @ structure.vol01.ch61 {
+  effect:
+    chars.闻人观星.动机 = "借星局夺取殇阳旧史与王道名义的解释权。"
+    chars.殷折.知道 += world.辰月人物规划原则
+    world.十二主星盘.状态 = 星局开阵
+
+  pov: chars.牧云镜
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.苏离灯 }
+  advances: { threads.辰月暗流线, threads.九州野史线, threads.大墓真相线 }
+  reveals: { world.辰月人物规划原则, world.星文观测原则 }
+  mentions: { world.辰月星坛, world.十二主星盘, world.嬴无翳墓葬危险原则 }
+  render_hint: "把辰月远观解释为长期借乱局布局，不让闻人直接宣告全部答案。"
+}
+
+beat 主角团被迫入阵 @ structure.vol01.ch61 {
+  effect:
+    chars.殷折.位置 = world.星文回廊
+    chars.苏离灯.位置 = world.地下铁誓厅
+    chars.牧云镜.状态 = 记录星局
+    world.旧鹰扳指.状态 = 被星局牵鸣
+
+  pov: chars.殷折
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.牧云镜 }
+  advances: { threads.误入地宫线, threads.天驱旧誓线, threads.摸金门规线 }
+  mentions: { world.旧鹰扳指, world.地下铁誓厅, world.墓志石室 }
+  render_hint: "章末要把众人推入阵中，但保留各自选择空间。"
+}

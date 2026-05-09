@@ -1,0 +1,86 @@
+namespace 九州别记.structure.vol1_ch36
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 马具残饰排出旧制 @ structure.vol01.ch36 {
+  effect:
+    world.离国马具残饰.状态 = 军制入证
+    world.赤旅兵冢.状态 = 军制露骨
+    chars.洛衡.知道 += world.离国军工痕迹
+
+  pov: chars.洛衡
+  location: world.赤旅兵冢
+  on_screen: true
+  observers: { chars.洛衡, chars.殷折, chars.牧云镜 }
+  advances: { threads.大墓真相线, threads.九州野史线 }
+  reveals: world.离国军工痕迹
+  mentions: { world.离国马具残饰, world.赤旅兵冢, world.离国铁骑 }
+  render_hint: "马具残饰要被当作制式证据，不写成华丽陪葬物。"
+}
+
+beat 洛衡识出赤旅铸痕 @ structure.vol01.ch36 {
+  effect:
+    chars.洛衡.状态 = 识出赤旅铸痕
+    chars.洛衡.相信 += "赤旅铸痕比墓葬纹饰更接近军工"
+    world.离国赤旅.状态 = 铸痕待证
+
+  pov: chars.洛衡
+  location: world.赤旅兵冢
+  on_screen: true
+  observers: { chars.洛衡, chars.殷折, chars.牧云镜 }
+  advances: { threads.大墓真相线, threads.封陵旧史线 }
+  reveals: world.离国军工痕迹
+  mentions: { world.离国赤旅, world.河络地火工艺, world.赤旅兵冢 }
+  render_hint: "洛衡只能从铸痕和机关逻辑辨出军工，不直接替史官确认墓主。"
+}
+
+beat 牧云镜对照军政 @ structure.vol01.ch36 {
+  effect:
+    chars.牧云镜.状态 = 对照离国军政
+    chars.牧云镜.知道 += world.嬴无翳用人与军政
+    world.离国赤旅.状态 = 军政入证
+
+  pov: chars.牧云镜
+  location: world.赤旅兵冢
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚 }
+  advances: { threads.九州野史线, threads.大墓真相线, threads.端朝皇权线 }
+  reveals: world.嬴无翳用人与军政
+  mentions: { world.嬴无翳用人与军政, world.离国赤旅, world.殇阳关战牍 }
+  render_hint: "军政对照应增加危险性，但要明确仍是证据链一环。"
+}
+
+beat 牧云烬改称官证 @ structure.vol01.ch36 {
+  effect:
+    chars.牧云烬.状态 = 改称官证
+    world.端朝掩史司.状态 = 截取军证
+    chars.牧云烬.知道 += world.嬴无翳墓葬危险原则
+
+  pov: chars.牧云烬
+  location: world.赤旅兵冢
+  on_screen: true
+  observers: { chars.牧云烬, chars.牧云镜, chars.穆如砚, chars.殷折 }
+  advances: { threads.端朝皇权线, threads.大墓真相线 }
+  mentions: { world.端朝掩史司, world.离国马具残饰, world.嬴无翳墓葬危险原则 }
+  render_hint: "牧云烬要把军制证据纳入官府口径，为后续封口夺证加压。"
+}
+
+beat 殷折封存军制证据 @ structure.vol01.ch36 {
+  effect:
+    chars.殷折.状态 = 封存军制证据
+    world.离国马具残饰.状态 = 军制入证
+    world.赤旅兵冢.状态 = 军制露骨
+    world.离国赤旅.状态 = 军制证据出土
+
+  pov: chars.殷折
+  location: world.赤旅兵冢
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.洛衡, chars.穆如砚 }
+  advances: { threads.摸金门规线, threads.九州野史线, threads.大墓真相线 }
+  mentions: { world.离国马具残饰, world.离国赤旅, world.赤旅兵冢 }
+  render_hint: "封存动作是为防各方抢改证据，不是把证物私吞。"
+}

@@ -1,0 +1,51 @@
+namespace 九州别记.tests
+
+import 九州别记.structure as structure
+import 九州别记.characters as chars
+import 九州别记.world as world
+import 九州别记.threads as threads
+
+test "第四至第十章承接石门后续发现" tags {structure, vol01, chapters} {
+  assert previous(structure.vol01.ch04) == structure.vol01.ch03
+  assert next(structure.vol01.ch10) == structure.vol01.ch11
+  assert structure.vol01.ch04 reveals world.封陵外城存在
+  assert structure.vol01.ch05 reveals world.燮朝封陵残证
+  assert structure.vol01.ch07 reveals world.天驱旧誓残痕
+  assert structure.vol01.ch08 reveals world.离国军工痕迹
+  assert structure.vol01.ch09 reveals world.空棺无名事实
+}
+
+test "第四至第十章地下空间按阶段打开" tags {state, geography, tomb} {
+  assert state(world.封陵外城.状态, at structure.vol01.ch04.end) == 外门开启
+  assert state(world.封陵外城.状态, at structure.vol01.ch05.end) == 断简显证
+  assert state(world.地下铁誓厅.状态, at structure.vol01.ch07.end) == 誓痕显现
+  assert state(world.赤旅兵冢.状态, at structure.vol01.ch08.end) == 军工待辨
+  assert state(world.疑似离公墓域.状态, at structure.vol01.ch09.end) == 空棺显现
+  assert state(world.离公墓志残片.状态, at structure.vol01.ch10.end) == 由殷折藏存
+}
+
+test "第十章以前仍不确认嬴无翳墓主" tags {pacing, premise, tomb} {
+  assert state(world.嬴无翳.状态, at structure.vol01.ch10.end) == 墓主待证
+  assert count(chapter 章节 in chapters_in(structure.vol01) where 章节 at_or_before structure.vol01.ch10 and 章节 reveals world.嬴无翳墓主定位) == 0
+  assert state(world.疑似封陵.状态, at structure.vol01.ch10.end) != 墓主确认
+  assert state(world.疑似离公墓域.状态, at structure.vol01.ch10.end) != 墓主确认
+}
+
+test "四到十章持续推进地宫政治与秘盟线" tags {threads, pacing} {
+  assert structure.vol01.ch04 advances threads.误入地宫线
+  assert structure.vol01.ch04 advances threads.大墓真相线
+  assert structure.vol01.ch05 advances threads.封陵旧史线
+  assert structure.vol01.ch06 advances threads.端朝皇权线
+  assert structure.vol01.ch06 advances threads.穆如军门线
+  assert structure.vol01.ch07 advances threads.天驱旧誓线
+  assert structure.vol01.ch08 advances threads.辰月暗流线
+  assert structure.vol01.ch08 advances threads.摸金门规线
+  assert structure.vol01.ch09 advances threads.九州野史线
+  assert structure.vol01.ch10 advances threads.大墓真相线
+}
+
+test "丁缺金背叛在第八章才明面摊牌" tags {characters, betrayal, pacing} {
+  assert state(chars.丁缺金.状态, at structure.vol01.ch06.end) == 伪装同道
+  assert state(chars.丁缺金.状态, at structure.vol01.ch08.end) == 露出背门
+  assert structure.vol01.ch08 advances threads.摸金门规线
+}

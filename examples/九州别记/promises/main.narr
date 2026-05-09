@@ -3,6 +3,13 @@ namespace 九州别记.promises
 import 九州别记.structure.vol1_ch01 as vol1_ch01
 import 九州别记.structure.vol1_ch02 as vol1_ch02
 import 九州别记.structure.vol1_ch03 as vol1_ch03
+import 九州别记.structure.vol1_ch10 as vol1_ch10
+import 九州别记.structure.vol1_ch11 as vol1_ch11
+import 九州别记.structure.vol1_ch15 as vol1_ch15
+import 九州别记.structure.vol1_ch16 as vol1_ch16
+import 九州别记.structure.vol1_ch17 as vol1_ch17
+import 九州别记.structure.vol1_ch18 as vol1_ch18
+import 九州别记.structure.vol1_ch20 as vol1_ch20
 
 promise 祖辈封门伏笔 {
   setup_at: vol1_ch01.旧道封门受托.after
@@ -134,4 +141,48 @@ promise 石门身份伏笔 {
   reader_visibility: visible
   tags: { 石门, 疑似封陵, 大墓真相 }
   note: "开局只给出地下规模异常与旧陵感，不把目标写成已知王陵。"
+}
+
+promise 殇阳梦境伏笔 {
+  setup_at: vol1_ch10.离公残片出土.after
+  setup_strength: strong
+  payoff_by: end_of_story
+  payoff_kind: emotional_payoff
+  question: "殷折若被机缘映射为嬴无翳，究竟要替墓主挽回哪一个不能改变胜负的遗憾？"
+  reader_visibility: visible
+  tags: { 殇阳关, 梦境, 嬴无翳, 张博, 墓主, 遗憾 }
+  note: "由离公墓志残片和殇阳关战牍引出卷级梦境：主角化身墓主，不能赢回战役，只能让被遮蔽的死者归名并逼自己理解墓主的选择。"
+}
+
+promise 多族重封伏笔 {
+  setup_at: vol1_ch11.冷锥破封留路.after
+  setup_strength: medium
+  payoff_by: vol1_ch15.多族痕迹归重封.after
+  payoff_kind: answered
+  question: "封陵里河络、羽族、鲛族、夸父和魅的痕迹究竟是同建主墓，还是多代重封留下的证据层？"
+  reader_visibility: visible
+  tags: { 多族, 重封, 河络, 羽族, 鲛族, 夸父, 魅 }
+  note: "第十一至十五章用连续空间回答多族痕迹的来源，把它们归结为材料流通与多代重封，而不是所有族群同时建陵。"
+}
+
+promise 星术触梦伏笔 {
+  setup_at: vol1_ch16.雷碧城残简现星.after
+  setup_strength: strong
+  payoff_by: vol1_ch18.三残同照成环.after
+  payoff_kind: transformed_question
+  question: "雷碧城星术残简、离公墓志残片和殇阳关战牍同时被触动时，会把殷折带向哪里？"
+  reader_visibility: visible
+  tags: { 星文, 辰月, 殇阳关, 梦境, 雷碧城 }
+  note: "星术不是直接揭示墓主，而是把证据链转化成殇阳关梦境入口，让殷折在梦中承受墓主因果。"
+}
+
+promise 张博归名伏笔 {
+  setup_at: vol1_ch17.张博名位被污.after
+  setup_strength: strong
+  payoff_by: vol1_ch20.张博姓名浮现.after
+  payoff_kind: emotional_payoff
+  question: "殷折化身墓主后，能否在不能改写殇阳关败局的边界里，为张博和无名战死者补回姓名？"
+  reader_visibility: visible
+  tags: { 张博, 殇阳关, 归名, 墓主遗憾 }
+  note: "第十七章先让张博姓名被污损，第十九章说明败局不可改，第二十章只兑现归名与收殓，不让梦境变成改史胜利。"
 }

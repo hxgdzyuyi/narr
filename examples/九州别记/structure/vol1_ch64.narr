@@ -1,0 +1,83 @@
+namespace 九州别记.structure.vol1_ch64
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 墓志残片再度发热 @ structure.vol01.ch64 {
+  effect:
+    chars.殷折.位置 = world.墓志石室
+    world.离公墓志残片.状态 = 星誓同照
+    world.墓志石室.状态 = 残片再醒
+
+  pov: chars.殷折
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.苏离灯 }
+  advances: { threads.大墓真相线, threads.殇阳梦境线 }
+  mentions: { world.离公墓志残片, world.殇阳关战牍, world.殇阳梦境残印 }
+  render_hint: "残片发热要被写成证据链响应，而不是宝物召唤。"
+}
+
+beat 两方逼索证物 @ structure.vol01.ch64 {
+  effect:
+    chars.闻人观星.状态 = 索取星证
+    chars.姬断鹰.状态 = 索取誓证
+    chars.殷折.状态 = 被逼交证
+
+  pov: chars.殷折
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.殷折, chars.闻人观星, chars.姬断鹰 }
+  advances: { threads.辰月暗流线, threads.天驱旧誓线, threads.九州野史线 }
+  mentions: { world.离公墓志残片, world.十二主星盘, world.旧鹰扳指 }
+  render_hint: "两方索证的目的都要指向解释权，而不只是物件占有。"
+}
+
+beat 殷折先量活路 @ structure.vol01.ch64 {
+  effect:
+    world.殷门罗盘.状态 = 照活路不照宝
+    chars.殷折.状态 = 先救活人
+    chars.殷折.arc_state = 守规留史
+
+  pov: chars.殷折
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.殷折, chars.洛衡, chars.穆如砚 }
+  advances: { threads.摸金门规线, threads.误入地宫线 }
+  reveals: { world.殷门祖辈传承, world.殷氏罗盘旧训 }
+  mentions: { world.殷门罗盘, world.摸金殷门 }
+  render_hint: "殷折先找退路和活人位置，行为上压过所有夺证要求。"
+}
+
+beat 残片留为真史 @ structure.vol01.ch64 {
+  effect:
+    world.离公墓志残片.状态 = 留真史不归私
+    chars.牧云镜.状态 = 记录共同证词
+    chars.殷折.相信 += "真史只能留给活人共同校验，不能归一方私藏。"
+
+  pov: chars.牧云镜
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.苏离灯 }
+  advances: { threads.九州野史线, threads.封陵旧史线, threads.大墓真相线 }
+  mentions: { world.离公墓志残片, world.牧云掩史旧档 }
+  render_hint: "真史要表现为共同校验证词，不变成某个阵营的新文书武器。"
+}
+
+beat 罗盘照路不照宝 @ structure.vol01.ch64 {
+  effect:
+    world.殷门罗盘.状态 = 照活路不照宝
+    chars.殷折.状态 = 护证护人
+    world.墓志石室.状态 = 留证待退
+
+  pov: chars.殷折
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.牧云镜 }
+  advances: { threads.摸金门规线, threads.误入地宫线, threads.大墓真相线 }
+  mentions: { world.殷门罗盘, world.离公墓志残片, world.殇阳关战牍 }
+  render_hint: "章末让罗盘成为退路和证据边界，不成为寻宝指针。"
+}

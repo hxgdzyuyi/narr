@@ -1,0 +1,194 @@
+namespace 九州别记.structure
+
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.structure.vol1_ch51 as vol1_ch51
+import 九州别记.structure.vol1_ch52 as vol1_ch52
+import 九州别记.structure.vol1_ch53 as vol1_ch53
+import 九州别记.structure.vol1_ch54 as vol1_ch54
+import 九州别记.structure.vol1_ch55 as vol1_ch55
+import 九州别记.structure.vol1_ch56 as vol1_ch56
+import 九州别记.structure.vol1_ch57 as vol1_ch57
+import 九州别记.structure.vol1_ch58 as vol1_ch58
+import 九州别记.structure.vol1_ch59 as vol1_ch59
+import 九州别记.structure.vol1_ch60 as vol1_ch60
+
+chapter vol01.ch51 alias 确墓成危 {
+  title: "确墓成危"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.墓志石室
+  time_hint: "墓主身份在前段被确认后，墓志石室内外同时听见端朝封口令的回声。"
+  summary: "嬴无翳大墓的证据链终于合拢，墓主之名从地下旧史转成地上政治危机；牧云烬立刻把证据纳入掩史司案卷，牧云镜意识到史官职责和皇权密诏不能再并存，穆如砚先把活人和证物隔开。"
+  beats: [
+    vol1_ch51.墓主证链合拢,
+    vol1_ch51.未帝霸名动局,
+    vol1_ch51.牧云烬称证入案,
+    vol1_ch51.牧云镜识出史危,
+    vol1_ch51.穆如砚封住活口
+  ]
+  prose_hint: "第五十一章要把墓主确认写成政治危机的起点，不再把嬴无翳身份当成单纯考古答案。"
+}
+
+chapter vol01.ch52 alias 御案封史 {
+  title: "御案封史"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.牧云烬
+  location: world.掩史司密库
+  time_hint: "墓主确认证据传出后，天启城掩史司密库。"
+  summary: "牧云烬把嬴无翳大墓真相写成可供端朝皇权取用的证物，同时拟出封口册和两套奏词：一套宣称牧云氏可压服霸主旧史，一套把所有知情人列成乱史罪证。"
+  beats: [
+    vol1_ch52.密库收讯立案,
+    vol1_ch52.牧云烬拟皇权证词,
+    vol1_ch52.掩史司列封口册,
+    vol1_ch52.端室牧云索取墓证,
+    vol1_ch52.金匣反压旧驿
+  ]
+  prose_hint: "第五十二章从敌方视角写皇权如何把真相变成工具，重点是文书、案卷和封口机制。"
+}
+
+chapter vol01.ch53 alias 史笔留副 {
+  title: "史笔留副"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.墓志石室
+  time_hint: "掩史司封口册压回地下后，墓志石室。"
+  summary: "牧云镜重新校对墓志残片、战牍和梦印，发现牧云烬的奏词会把真相改成皇权祭器；她在殷折护证下留下副录，第一次明确拒绝改写墓主之名，并把野史暗簿交给可靠同伴分藏。"
+  beats: [
+    vol1_ch53.牧云镜校残牍,
+    vol1_ch53.史官副录分藏,
+    vol1_ch53.殷折守残片不交,
+    vol1_ch53.牧云镜拒改墓主名,
+    vol1_ch53.野史线立暗簿
+  ]
+  prose_hint: "第五十三章让牧云镜从史官两难转向抗诏前夜，行动是留副本和拒改名，不是当场反朝。"
+}
+
+chapter vol01.ch54 alias 双诏反证 {
+  title: "双诏反证"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.穆如砚
+  location: world.雪炽原旧驿
+  time_hint: "地面旧驿收到天启城新诏与军门旧令的同夜。"
+  summary: "穆如砚把穆如旧令抄本与牧云镜藏下的副诏相互对读，发现取证、灭口、迁民和流放军户互相冲突；军门密诏悬念反转为端末盟约破裂的证据，穆如砚意识到继续奉命会先害活人。"
+  beats: [
+    vol1_ch54.穆如旧令对密诏,
+    vol1_ch54.双诏矛盾露出,
+    vol1_ch54.牧云镜交出副诏,
+    vol1_ch54.穆如砚知诏害民,
+    vol1_ch54.军门密诏反成罪证
+  ]
+  prose_hint: "第五十四章兑现军门密诏悬念，但兑现成政治反证，而不是解开所有端朝朝局。"
+}
+
+chapter vol01.ch55 alias 护民抗令 {
+  title: "护民抗令"
+  purpose: reversal
+  target_length: 3000 字
+  pov: chars.穆如砚
+  location: world.雪炽原旧驿
+  time_hint: "双诏反证之后，掩史司骑卒抵达雪炽原旧驿。"
+  summary: "牧云烬的封口骑卒围住旧驿，准备把知情军户和边民一并押走；穆如砚不再只按军令押队，而是开道迁民、挡住掩史司，并把军门线从奉命推向护民疑诏。"
+  beats: [
+    vol1_ch55.旧驿迁民出雪,
+    vol1_ch55.掩史骑卒围驿,
+    vol1_ch55.穆如砚抗令开道,
+    vol1_ch55.牧云烬记军门逆名,
+    vol1_ch55.军门护民成势
+  ]
+  prose_hint: "第五十五章的动作核心是护民和抗令，穆如砚还没公开叛朝，但已经不能回到单纯奉命。"
+}
+
+chapter vol01.ch56 alias 星盘引真 {
+  title: "星盘引真"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  time_hint: "雪炽原旧驿冲突扩散时，辰月星坛。"
+  summary: "闻人观星以十二主星盘重新推演墓主真名、战牍残污和端朝封口令的关联，把嬴无翳大墓真相引入辰月星局；星盘能借势误导各方，却也显出秘术溢出的代价。"
+  beats: [
+    vol1_ch56.闻人校十二主星,
+    vol1_ch56.墓主真名入星盘,
+    vol1_ch56.辰月借星分证,
+    vol1_ch56.星盘牵动天启,
+    vol1_ch56.闻人留出开阵价
+  ]
+  prose_hint: "第五十六章要强调星局来自证据和星文推演，不让辰月凭空全知。"
+}
+
+chapter vol01.ch57 alias 皇权借墓 {
+  title: "皇权借墓"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.牧云烬
+  location: world.天启城
+  time_hint: "十二主星盘牵动天启之后，牧云烬将两用策送入端室。"
+  summary: "牧云烬向端室牧云氏献上两用策：若可控制，就把嬴无翳大墓包装为端朝镇压霸主旧史的皇权工具；若不可控制，就把牧云镜、穆如砚和摸金队都定成乱史罪证。"
+  beats: [
+    vol1_ch57.牧云烬上呈两用策,
+    vol1_ch57.端朝改写墓主,
+    vol1_ch57.掩史司逼认伪供,
+    vol1_ch57.牧云镜当堂驳史,
+    vol1_ch57.皇权线裂成封口
+  ]
+  prose_hint: "第五十七章写牧云烬的政治手段，不把他写成只会灭口的粗暴官吏。"
+}
+
+chapter vol01.ch58 alias 野史分藏 {
+  title: "野史分藏"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.墓志石室
+  time_hint: "牧云烬两用策压下后，地下墓志石室与地面旧驿之间暗中传证。"
+  summary: "殷折、苏离灯、硕风照夜和牧云镜把残片、旧誓、旧歌与副录拆成多路证词，防止任何一方独占墓主真相；九州野史线由地下证据转成分路保存的活史。"
+  beats: [
+    vol1_ch58.殷折归拢残证,
+    vol1_ch58.苏离灯护誓证史,
+    vol1_ch58.硕风照夜送出旧歌,
+    vol1_ch58.牧云镜刻下别记,
+    vol1_ch58.九州野史分路
+  ]
+  prose_hint: "第五十八章把野史写成多人分担的证词网络，不让牧云镜独自承担全部真相。"
+}
+
+chapter vol01.ch59 alias 雪驿违诏 {
+  title: "雪驿违诏"
+  purpose: climax
+  target_length: 3000 字
+  pov: chars.穆如砚
+  location: world.雪炽原旧驿
+  time_hint: "野史分藏之后，掩史司灭证令在雪夜抵达旧驿。"
+  summary: "牧云烬下达灭证令，雪炽原旧驿被迫在迁民、护证和封口之间决断；穆如砚带军户拔营，牧云镜在副录上署名抗诏，闻人观星则等着这道裂口把真相推入星局。"
+  beats: [
+    vol1_ch59.雪驿夜诏封营,
+    vol1_ch59.牧云烬下灭证令,
+    vol1_ch59.穆如砚护民拔营,
+    vol1_ch59.牧云镜抗诏署名,
+    vol1_ch59.闻人观星等裂口
+  ]
+  prose_hint: "第五十九章把个人选择推到明面，章末必须能通向第六十章的星局开阵。"
+}
+
+chapter vol01.ch60 alias 星局开阵 {
+  title: "星局开阵"
+  purpose: climax
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.辰月星坛
+  time_hint: "雪驿违诏与牧云烬夺证令同时传至辰月星坛。"
+  summary: "闻人观星等到端朝、军门、史官和野史证词同时撕裂，十二主星盘正式开阵；牧云烬把掩史变成夺局，穆如砚公开护民违诏，牧云镜则以史官身份抗诏留史，把墓主真相从皇权封口中抢出。"
+  beats: [
+    vol1_ch60.星盘十二位齐亮,
+    vol1_ch60.真相落入辰月局,
+    vol1_ch60.牧云烬掩史夺局,
+    vol1_ch60.穆如砚护民违诏,
+    vol1_ch60.牧云镜抗诏留史
+  ]
+  prose_hint: "第六十章收束本段政治危机的第一轮：星局开阵，但真相没有被辰月或端朝完全吞掉。"
+}

@@ -17,9 +17,84 @@ faction 离国 {
   根基: Symbol = 离国旧境
 }
 
+faction 离国国师府 {
+  状态: Symbol = 辰月渗透
+  根基: Symbol = 雷碧城秘术
+}
+
 faction 离国赤旅 {
   状态: Symbol = 墓中文献待证
   根基: Symbol = 离军旧制
+}
+
+faction 胤朝 {
+  状态: Symbol = 末世旧朝
+  根基: Symbol = 天子诸侯秩序
+}
+
+faction 楚卫国 {
+  状态: Symbol = 胤末诸侯
+  根基: Symbol = 殇阳关南屏
+}
+
+faction 下唐国 {
+  状态: Symbol = 胤末诸侯
+  根基: Symbol = 东陆诸侯盟
+}
+
+faction 殇阳关联军 {
+  状态: Symbol = 战后离散
+  根基: Symbol = 六国勤王
+}
+
+faction 离国铁骑 {
+  状态: Symbol = 霸业遗名
+  根基: Symbol = 离国军制
+}
+
+faction 雷碧城辰月支 {
+  状态: Symbol = 国师暗线
+  根基: Symbol = 辰月秘术
+}
+
+faction 华族 {
+  状态: Symbol = 王朝主体
+  根基: Symbol = 东陆农耕城邦
+}
+
+faction 北陆蛮族 {
+  状态: Symbol = 草原部族并起
+  根基: Symbol = 瀚州游牧
+}
+
+faction 羽族 {
+  状态: Symbol = 星文高族
+  根基: Symbol = 宁州澜州
+}
+
+faction 羽族元极道 {
+  状态: Symbol = 星辰学派
+  根基: Symbol = 十二主星
+}
+
+faction 河络匠盟 {
+  状态: Symbol = 地下隐居
+  根基: Symbol = 北邙山越州河谷
+}
+
+faction 夸父族 {
+  状态: Symbol = 殇州独居
+  根基: Symbol = 高寒巨人部落
+}
+
+faction 鲛族 {
+  状态: Symbol = 七海游居
+  根基: Symbol = 海市潮路
+}
+
+faction 魅族 {
+  状态: Symbol = 虚实难定
+  根基: Symbol = 古战场与幽林
 }
 
 faction 摸金殷门 {
@@ -62,4 +137,14 @@ faction 天驱旧盟 {
 faction 辰月暗宗 {
   状态: Symbol = 暗流窥伺
   根基: Symbol = 星命秘术
+}
+
+faction 天罗军制 {
+  状态: Symbol = 端末余波
+  根基: Symbol = 牧云密军
+}
+
+faction 星辰秘术师 {
+  状态: Symbol = 各派分流
+  根基: Symbol = 十二主星
 }

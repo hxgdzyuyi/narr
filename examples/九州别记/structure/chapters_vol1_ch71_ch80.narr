@@ -1,0 +1,194 @@
+namespace 九州别记.structure
+
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.structure.vol1_ch71 as vol1_ch71
+import 九州别记.structure.vol1_ch72 as vol1_ch72
+import 九州别记.structure.vol1_ch73 as vol1_ch73
+import 九州别记.structure.vol1_ch74 as vol1_ch74
+import 九州别记.structure.vol1_ch75 as vol1_ch75
+import 九州别记.structure.vol1_ch76 as vol1_ch76
+import 九州别记.structure.vol1_ch77 as vol1_ch77
+import 九州别记.structure.vol1_ch78 as vol1_ch78
+import 九州别记.structure.vol1_ch79 as vol1_ch79
+import 九州别记.structure.vol1_ch80 as vol1_ch80
+
+chapter vol01.ch71 alias 星局裂后 {
+  title: "星局裂后"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.墓志石室
+  time_hint: "辰月星局反噬后，墓志石室和星文回廊之间的封门声重新响起。"
+  summary: "十二主星盘反噬使闻人观星的星局受挫，牧云烬趁乱要把三件残证收归掩史司；牧云镜摊开残片、战牍和残简，殷折意识到众人只能在封存、留史、护民和出地之间做选择，旧道塌声逼他们先定归路。"
+  beats: [
+    vol1_ch71.星盘反噬裂回廊,
+    vol1_ch71.掩史司逼夺残证,
+    vol1_ch71.三证摊开待择,
+    vol1_ch71.殷折定下四难,
+    vol1_ch71.塌声催向地面
+  ]
+  prose_hint: "第七十一章要从辰月受挫后的混乱切入，把最终选择压到主角团面前，而不是直接收束。"
+}
+
+chapter vol01.ch72 alias 背门归账 {
+  title: "背门归账"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.星文回廊
+  time_hint: "三证未定时，丁缺金借星文回廊残光最后一次试图脱身。"
+  summary: "丁缺金趁乱夺片，要把证据交给辰月换活路；闻人观星许他生路，殷折却按门规追账而不杀人，逼丁缺金吐露与父辈失踪、辰月诱买有关的旧债，最后让背门者留在塌口赎一条封路。"
+  beats: [
+    vol1_ch72.丁缺金夺片寻星,
+    vol1_ch72.闻人许他活路,
+    vol1_ch72.殷折追账不杀,
+    vol1_ch72.丁缺金吐出旧债,
+    vol1_ch72.背门者留守塌口
+  ]
+  prose_hint: "第七十二章要给丁缺金背叛一个明确归处：不洗白、不快意处死，而是让门规把旧债记清。"
+}
+
+chapter vol01.ch73 alias 护民上撤 {
+  title: "护民上撤"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.穆如砚
+  location: world.无名旧道
+  time_hint: "丁缺金归账后，封陵塌圈从内城向旧道外扩。"
+  summary: "穆如砚违令开出护民上撤的路，硕风照夜听出旧道塌圈，苏离灯以旧誓拒绝夺取王骨，洛衡卸掉地火承重留出生路；众人先把活人送向雪炽原旧驿，确认封存必须先服务护民。"
+  beats: [
+    vol1_ch73.穆如砚开护民路,
+    vol1_ch73.硕风照夜听出塌圈,
+    vol1_ch73.苏离灯守誓不夺,
+    vol1_ch73.洛衡卸火留路,
+    vol1_ch73.活人先上旧驿
+  ]
+  prose_hint: "第七十三章重心在护民和上撤，不把封陵选择写成密室里几个人的私议。"
+}
+
+chapter vol01.ch74 alias 三证留史 {
+  title: "三证留史"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.雪炽原旧驿
+  time_hint: "第一批伤者退到旧驿，残证暂时脱离墓室夺证。"
+  summary: "牧云镜拒绝把殇阳关战牍直接送入掩史司密库，穆如砚压下军令抄本，苏离灯留下鹰戒誓印，硕风照夜补入口传旁证；殷折把三件残证分藏为可追证据，决定留史而不夺墓。"
+  beats: [
+    vol1_ch74.牧云镜拒进密库,
+    vol1_ch74.穆如砚压下军令,
+    vol1_ch74.苏离灯留鹰戒印,
+    vol1_ch74.草原口传补入旁证,
+    vol1_ch74.殷折分藏三证
+  ]
+  prose_hint: "第七十四章要把留史写成具体证据分散和互证，不写成空泛口号。"
+}
+
+chapter vol01.ch75 alias 墓主入野史 {
+  title: "墓主归史"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  time_hint: "三证分藏之前，殷折和牧云镜最后一次回望疑似离公墓域。"
+  summary: "霸刀断铭、赤旅军制和墓志残片终于合拢成墓主证据，殷折确认疑似封陵的核心指向嬴无翳；牧云烬想把墓主真相收入皇权诏书，众人则决定让墓主归入可追野史，而非归皇权或辰月独占。"
+  beats: [
+    vol1_ch75.霸刀断铭照残片,
+    vol1_ch75.赤旅军制合墓域,
+    vol1_ch75.殷折认墓主归史,
+    vol1_ch75.牧云烬索墓主入诏,
+    vol1_ch75.众人定墓主入野史
+  ]
+  prose_hint: "第七十五章可以确认墓主，但确认方式必须来自证据链和野史伦理，不是秘术宣告。"
+}
+
+chapter vol01.ch76 alias 断星受挫 {
+  title: "断星受挫"
+  purpose: reversal
+  target_length: 3000 字
+  pov: chars.苏离灯
+  location: world.星文回廊
+  time_hint: "墓主真相将要入野史时，辰月残局试图最后一次牵动封门。"
+  summary: "闻人观星隔着辰月星坛强牵雷碧城星术残简，十二主星盘裂出反噬；雷碧城旧影被归入证据而非神谕，苏离灯用旧鹰扳指断开誓线污染，闻人只能退守残局，辰月星局彻底失去独占墓主真相的机会。"
+  beats: [
+    vol1_ch76.闻人强牵残简,
+    vol1_ch76.星盘裂出反噬,
+    vol1_ch76.雷碧城旧影入证,
+    vol1_ch76.苏离灯断开誓线污染,
+    vol1_ch76.闻人退守残局
+  ]
+  prose_hint: "第七十六章要写辰月失败的代价，同时保留辰月暗流未灭，不把反派线写成彻底消失。"
+}
+
+chapter vol01.ch77 alias 燮封重合 {
+  title: "燮封重合"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.墓志石室
+  time_hint: "辰月星线断开后，燮朝重封旧制第一次完整显出。"
+  summary: "燮年错铭、穆如旧令、地火机坊和星文回廊合成重封答案：燮朝当年不是发现宝物，而是用多族旧工封存一段会动摇后世正统的离国旧史；殷折拒开内门，众人把重封缘由归证，完成燮朝重封伏笔。"
+  beats: [
+    vol1_ch77.燮年错铭合旧令,
+    vol1_ch77.地火星文归封程,
+    vol1_ch77.穆如砚重读护民令,
+    vol1_ch77.殷折拒开内门,
+    vol1_ch77.重封缘由归证
+  ]
+  prose_hint: "第七十七章回答燮朝重封的目的，但答案要服务重新封存和留证，不打开新的夺宝目标。"
+}
+
+chapter vol01.ch78 alias 封陵见证 {
+  title: "封陵见证"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.无名旧道
+  time_hint: "重封缘由归证后，众人按各自技艺合力把疑似封陵重新封住。"
+  summary: "洛衡归扣地火承重，硕风照夜记下雪声归路，苏离灯封誓不占，殷折以罗盘压门；封陵被重新封存为见证，离公墓志残片、殇阳关战牍和雷碧城星术残简被留下为后人可追的三处证据。"
+  beats: [
+    vol1_ch78.洛衡归扣留脉,
+    vol1_ch78.硕风照夜埋声记路,
+    vol1_ch78.苏离灯封誓不占,
+    vol1_ch78.殷折压罗盘封门,
+    vol1_ch78.三证留给后来人
+  ]
+  prose_hint: "第七十八章要让每个主角的技艺参与封存，证明封陵不是被抹去，而是被见证。"
+}
+
+chapter vol01.ch79 alias 出地不夺 {
+  title: "出地不夺"
+  purpose: aftermath
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.无名旧道
+  time_hint: "封陵见证落定后，最后一批人从无名旧道上撤。"
+  summary: "殷折领队出地，丁缺金守住最后岔口承担背门旧账，牧云烬空诏失证，牧云镜护残史上行；主角团终于回到雪炽原旧驿，选择带证出地而不把墓中一物据为己有。"
+  beats: [
+    vol1_ch79.地宫末路让生,
+    vol1_ch79.丁缺金守最后岔口,
+    vol1_ch79.牧云烬空诏失证,
+    vol1_ch79.牧云镜护残史上行,
+    vol1_ch79.主角团出地不夺
+  ]
+  prose_hint: "第七十九章收束逃出生天和丁缺金归处，让地宫线结束在不夺而出。"
+}
+
+chapter vol01.ch80 alias 雪驿别记 {
+  title: "雪驿别记"
+  purpose: aftermath
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.雪炽原旧驿
+  time_hint: "无名旧道重新封住后的雪炽原旧驿清晨。"
+  summary: "雪炽原旧驿里，殷折清点活人，三件残证不入密库，墓主嬴无翳归史不归权；殷折写下别记，承认野史只为留证、不为夺权，入口在风雪中重封，第一卷以封存见证、留史不夺和守门写史收束。"
+  beats: [
+    vol1_ch80.雪驿清点活人,
+    vol1_ch80.三证不入密库,
+    vol1_ch80.墓主归史不归权,
+    vol1_ch80.殷折写下别记,
+    vol1_ch80.雪封入口留证
+  ]
+  prose_hint: "第八十章是第一卷终章，最终状态要明确：封陵封存、墓主归史、残片留史不夺、殷折守门写史。"
+}

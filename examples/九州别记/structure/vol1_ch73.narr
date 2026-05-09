@@ -1,0 +1,83 @@
+namespace 九州别记.structure.vol1_ch73
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 穆如砚开护民路 @ structure.vol01.ch73 {
+  effect:
+    chars.穆如砚.位置 = world.雪炽原旧驿
+    chars.穆如砚.状态 = 护民开路
+    chars.穆如砚.arc_state = 违令护民
+
+  pov: chars.穆如砚
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.穆如砚, chars.牧云镜 }
+  advances: { threads.穆如军门线, threads.误入地宫线 }
+  mentions: { world.穆如军门, world.边地求援事实, world.雪炽原旧驿 }
+  render_hint: "穆如砚开路要带有违令风险，把护民放在军令之前。"
+}
+
+beat 硕风照夜听出塌圈 @ structure.vol01.ch73 {
+  effect:
+    chars.硕风照夜.位置 = world.无名旧道
+    chars.硕风照夜.状态 = 听出塌圈
+    world.无名旧道.状态 = 塌圈可辨
+
+  pov: chars.硕风照夜
+  location: world.无名旧道
+  on_screen: true
+  observers: { chars.硕风照夜, chars.殷折, chars.洛衡 }
+  advances: { threads.瀚州草原线, threads.误入地宫线 }
+  reveals: world.雪下空音事实
+  mentions: { world.硕风吞狼旧歌, world.无名旧道, world.雪炽原 }
+  render_hint: "塌圈要由草原听地法读出，延续硕风线的地理经验。"
+}
+
+beat 苏离灯守誓不夺 @ structure.vol01.ch73 {
+  effect:
+    chars.苏离灯.状态 = 守誓不夺
+    world.旧鹰扳指.状态 = 护民鸣誓
+    chars.苏离灯.相信 += "旧誓先护活人，不替强者夺骨。"
+
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折 }
+  advances: { threads.天驱旧誓线, threads.九州野史线 }
+  mentions: { world.旧鹰扳指, world.天驱旧盟, world.天驱护陵旧誓 }
+  render_hint: "旧誓在这里要约束不夺，而不是给主角团新的夺取名义。"
+}
+
+beat 洛衡卸火留路 @ structure.vol01.ch73 {
+  effect:
+    chars.洛衡.状态 = 卸火留路
+    world.河络地火机坊.状态 = 卸火护路
+    world.河络地火锥.状态 = 封门借力
+
+  pov: chars.洛衡
+  location: world.河络地火机坊
+  on_screen: true
+  observers: { chars.洛衡, chars.殷折 }
+  advances: { threads.误入地宫线, threads.大墓真相线 }
+  mentions: { world.河络地火机坊, world.河络地火锥, world.河络机坊封死事实 }
+  render_hint: "洛衡拆机关是为了留生路，不是为了取走河络旧工。"
+}
+
+beat 活人先上旧驿 @ structure.vol01.ch73 {
+  effect:
+    chars.殷折.状态 = 先护活人
+    chars.牧云镜.位置 = world.雪炽原旧驿
+    chars.穆如砚.位置 = world.雪炽原旧驿
+
+  pov: chars.穆如砚
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.穆如砚 }
+  advances: { threads.误入地宫线, threads.穆如军门线, threads.摸金门规线 }
+  mentions: { world.雪炽原旧驿, world.殷门祖辈传承, world.边地求援事实 }
+  render_hint: "章末要把护民落实为撤离动作，让封存选择先有伦理基础。"
+}

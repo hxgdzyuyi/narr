@@ -1,0 +1,90 @@
+namespace 九州别记.structure.vol1_ch06
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 穆如砚雪上封营 @ structure.vol01.ch06 {
+  effect:
+    chars.穆如砚.位置 = world.雪炽原旧驿
+    chars.牧云镜.位置 = world.雪炽原旧驿
+    chars.殷折.位置 = world.雪炽原旧驿
+    chars.穆如砚.状态 = 封营护民
+    chars.穆如砚.知道 += world.边地塌陷事实
+
+  pov: chars.穆如砚
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.穆如砚, chars.牧云镜, chars.殷折 }
+  advances: { threads.穆如军门线, threads.误入地宫线 }
+  mentions: { world.雪炽原旧驿, world.穆如军门 }
+  render_hint: "穆如砚封营是为护民和控险，不是单纯夺墓。"
+}
+
+beat 牧云烬持诏入驿 @ structure.vol01.ch06 {
+  effect:
+    chars.牧云烬.位置 = world.雪炽原旧驿
+    chars.牧云烬.状态 = 奉诏夺证
+    chars.牧云烬.知道 += world.牧云掩史旧档
+    chars.牧云烬.知道 += world.燮朝封陵残证
+
+  pov: chars.牧云烬
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.牧云烬, chars.牧云镜, chars.穆如砚, chars.殷折 }
+  sets_up: promises.军门密诏悬念
+  advances: { threads.端朝皇权线, threads.封陵旧史线 }
+  mentions: { world.端朝掩史司, world.端朝, world.掩史司密库 }
+  render_hint: "牧云烬的压力来自密诏和封口，不要让他直接说出地下真相。"
+}
+
+beat 牧云镜藏下副诏 @ structure.vol01.ch06 {
+  effect:
+    chars.牧云镜.状态 = 私藏副诏
+    chars.牧云镜.关系 += "向穆如砚隐瞒副诏"
+    chars.牧云镜.知道 += world.端末盟约破裂
+
+  pov: chars.牧云镜
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.牧云镜 }
+  advances: { threads.端朝皇权线, threads.穆如军门线, threads.九州野史线 }
+  mentions: { world.端室牧云氏, world.穆如军门 }
+  render_hint: "副诏制造她的两难，不要在本章公开所有密诏内容。"
+}
+
+beat 殷折拒交罗盘 @ structure.vol01.ch06 {
+  effect:
+    chars.殷折.状态 = 拒交罗盘
+    chars.殷折.关系 += "拒绝把殷门罗盘交给掩史司"
+    world.殷门罗盘.状态 = 拒交官府
+
+  pov: chars.殷折
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.殷折, chars.牧云烬, chars.牧云镜, chars.穆如砚 }
+  advances: { threads.摸金门规线, threads.端朝皇权线 }
+  mentions: { world.殷门罗盘, world.端朝掩史司 }
+  render_hint: "拒交罗盘是门规和生存判断，不是逞强。"
+}
+
+beat 地下回声逼众返门 @ structure.vol01.ch06 {
+  effect:
+    chars.殷折.位置 = world.封陵外城
+    chars.洛衡.位置 = world.封陵外城
+    chars.苏离灯.位置 = world.封陵外城
+    chars.硕风照夜.位置 = world.封陵外城
+    chars.丁缺金.位置 = world.封陵外城
+    chars.丁缺金.状态 = 伪装同道
+    world.疑似封陵.状态 = 回声加剧
+
+  pov: chars.硕风照夜
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.硕风照夜, chars.殷折, chars.洛衡, chars.苏离灯, chars.丁缺金 }
+  advances: { threads.瀚州草原线, threads.误入地宫线, threads.大墓真相线 }
+  mentions: { world.封陵外城, world.疑似封陵, world.雪炽原 }
+  render_hint: "回声把地上政治压力重新拽回地下，丁缺金仍不摊牌。"
+}

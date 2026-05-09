@@ -67,10 +67,100 @@ test "嬴无翳墓主世界观已建立" tags {world, 嬴无翳, tomb} {
   assert world.嬴无翳为离公 exists
   assert world.嬴无翳善兵 exists
   assert world.嬴无翳未帝而霸 exists
+  assert world.嬴无翳弑兄继位 exists
+  assert world.嬴无翳骑射霸刀 exists
+  assert world.嬴无翳用人与军政 exists
+  assert world.嬴无翳乡下诸侯自嘲 exists
   assert world.离国辰月牵连 exists
+  assert world.雷碧城辰月国师 exists
+  assert world.殇阳关战役事实 exists
+  assert world.殇阳关异变之夜 exists
+  assert world.嬴无翳墓葬危险原则 exists
+  assert world.张博殇阳战死 exists
+  assert world.殇阳梦境映射机制 exists
+  assert world.化身墓主规则 exists
+  assert world.墓主遗憾核心 exists
+  assert world.梦境挽回边界 exists
+  assert world.殇阳梦境卷级用法 exists
   assert world.嬴无翳墓主定位 exists
   assert world.霸刀遗名 exists
+  assert world.霸刀断铭 exists
+  assert world.离国马具残饰 exists
+  assert world.殇阳关战牍 exists
+  assert world.雷碧城星术残简 exists
+  assert world.雷碧城 exists
+  assert world.白毅 exists
+  assert world.张博 exists
+  assert world.离国国师府 exists
+  assert world.离国铁骑 exists
+  assert world.雷碧城辰月支 exists
+  assert world.殇阳关联军 exists
   assert world.离公墓志残片 exists
+  assert world.殇阳关梦境 exists
+  assert world.梦中殇阳雨阵 exists
+  assert world.殇阳梦境残印 exists
+  assert world.张博断刃 exists
+  assert world.无名战牍残页 exists
   assert world.嬴无翳.所属 == world.离国
+  assert world.嬴无翳.状态 == 墓主待证
+  assert world.雷碧城.所属 == world.雷碧城辰月支
+  assert world.白毅.所属 == world.楚卫国
+  assert world.张博.所属 == world.离国铁骑
+}
+
+test "九州三陆九州地理底座已扩展" tags {world, geography, 九州} {
+  assert count(places) >= 55
+  assert world.九州三陆九州格局 exists
+  assert world.内三海分陆事实 exists
+  assert world.七海族群往来 exists
+  assert world.澜州 exists
+  assert world.越州 exists
+  assert world.宁州 exists
+  assert world.云州 exists
+  assert world.雷州 exists
+  assert world.潍海 exists
+  assert world.涣海 exists
+  assert world.滁潦海 exists
+}
+
+test "九州多族与地方性已建立" tags {world, races, factions} {
+  assert world.华族 exists
+  assert world.北陆蛮族 exists
+  assert world.羽族 exists
+  assert world.羽族元极道 exists
+  assert world.河络匠盟 exists
+  assert world.夸父族 exists
+  assert world.鲛族 exists
+  assert world.魅族 exists
+  assert world.六族创世异说 exists
+  assert world.多族痕迹解释原则 exists
+}
+
+test "星辰秘术与天驱制度补入世界观" tags {world, 秘术, 天驱} {
+  assert world.十二主星秘术体系 exists
+  assert world.星文观测原则 exists
+  assert world.秘术溢出风险 exists
+  assert world.辰月主星偏用 exists
+  assert world.天驱指套制度 exists
+  assert world.天驱鹰旗召集 exists
+  assert world.天驱宗主指套残模 exists
+  assert world.鹰旗残绶 exists
+  assert world.十二主星盘 exists
+}
+
+test "地下遗迹纳入多族痕迹但仍不确认墓主" tags {world, tomb, races} {
+  assert count(facts) >= 70
+  assert count(objects) >= 14
+  assert world.河络地火机坊 exists
+  assert world.羽族坠羽井 exists
+  assert world.鲛泪暗渠 exists
+  assert world.星文回廊 exists
+  assert world.夸父骨画壁 exists
+  assert world.魅影空廊 exists
+  assert world.河络机坊封死事实 exists
+  assert world.鲛泪暗渠事实 exists
+  assert world.夸父骨画壁事实 exists
+  assert world.魅影空廊事实 exists
+  assert world.疑似离公墓域.状态 == 未证实
   assert world.嬴无翳.状态 == 墓主待证
 }

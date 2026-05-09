@@ -1,0 +1,85 @@
+namespace 九州别记.structure.vol1_ch24
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 断刃照出群名缺口 @ structure.vol01.ch24 {
+  effect:
+    world.张博断刃.状态 = 照出群名缺口
+    world.无名战牍残页.状态 = 半列初显
+    chars.殷折.状态 = 回到断刃旁
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.九州野史线 }
+  reveals: world.张博殇阳战死
+  mentions: { world.张博断刃, world.无名战牍残页, world.张博殇阳战死 }
+  render_hint: "断刃照出的不是新宝物，而是张博旁边未能落名的死者。"
+}
+
+beat 张博名旁余墨裂开 @ structure.vol01.ch24 {
+  effect:
+    world.张博.状态 = 归名旁照残缺
+    world.殇阳关战牍.状态 = 张博名旁裂墨
+    chars.殷折.知道 += world.张博殇阳战死
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.大墓真相线 }
+  mentions: { world.张博, world.殇阳关战牍, world.离国铁骑 }
+  render_hint: "已归之名旁边裂出余墨，形成继续追索的情感压力。"
+}
+
+beat 殷折试逐一认骨 @ structure.vol01.ch24 {
+  effect:
+    chars.殷折.状态 = 逐一认骨受阻
+    chars.殷折.相信 += "没有名字的死者也不能被当成战阵残物"
+    world.梦中殇阳雨阵.状态 = 认骨受阻
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.摸金门规线, threads.殇阳梦境线 }
+  mentions: { world.梦中殇阳雨阵, world.殷门祖辈传承, world.无名战牍残页 }
+  render_hint: "认骨失败要显出梦境材料不足，不靠殷折凭空猜名字。"
+}
+
+beat 群名被败局压回 @ structure.vol01.ch24 {
+  effect:
+    world.无名战牍残页.状态 = 群名被压回
+    world.梦中殇阳雨阵.状态 = 败局压名
+    chars.殷折.知道 += world.梦境挽回边界
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.九州野史线 }
+  reveals: world.梦境挽回边界
+  mentions: { world.无名战牍残页, world.梦境挽回边界, world.殇阳关战役事实 }
+  render_hint: "群名被压回时要重申败局边界，不要让读者误以为下一步会救活他们。"
+}
+
+beat 断刃只留半列 @ structure.vol01.ch24 {
+  effect:
+    world.张博断刃.状态 = 群名残缺
+    world.无名战牍残页.状态 = 半列待补
+    chars.殷折.状态 = 守住半列残名
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.摸金门规线, threads.九州野史线 }
+  reveals: world.墓主遗憾核心
+  mentions: { world.张博断刃, world.无名战牍残页, world.墓主遗憾核心 }
+  render_hint: "章末只留下半列，给后续点名收殓保留工作量。"
+}

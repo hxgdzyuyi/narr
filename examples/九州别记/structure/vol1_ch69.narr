@@ -1,0 +1,84 @@
+namespace 九州别记.structure.vol1_ch69
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 姬断鹰反夺守誓 @ structure.vol01.ch69 {
+  effect:
+    chars.姬断鹰.状态 = 反夺守誓
+    world.旧鹰扳指.状态 = 被反夺牵扯
+    world.十二主星盘.状态 = 旧誓反夺压盘
+
+  pov: chars.苏离灯
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.苏离灯, chars.姬断鹰, chars.闻人观星 }
+  advances: { threads.天驱旧誓线, threads.辰月暗流线 }
+  mentions: { world.旧鹰扳指, world.十二主星盘, world.天驱旧盟 }
+  render_hint: "姬断鹰要试图利用苏离灯刚定下的守誓，而不是另开新招。"
+}
+
+beat 旧誓拒作王权刀 @ structure.vol01.ch69 {
+  effect:
+    world.旧鹰扳指.状态 = 拒作王权刀
+    chars.苏离灯.状态 = 守住誓界
+    chars.姬断鹰.状态 = 夺誓受拒
+
+  pov: chars.苏离灯
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.苏离灯, chars.姬断鹰, chars.殷折 }
+  advances: { threads.天驱旧誓线, threads.九州野史线 }
+  reveals: world.天驱护陵旧誓
+  mentions: { world.旧鹰扳指, world.嬴无翳墓葬危险原则 }
+  render_hint: "旧誓拒绝的对象是借王道名义夺权，而不是拒绝王道本身。"
+}
+
+beat 鹰旗残绶截入星盘 @ structure.vol01.ch69 {
+  effect:
+    world.鹰旗残绶.状态 = 截入星盘
+    world.十二主星盘.状态 = 旧誓截入
+    chars.闻人观星.状态 = 星局被截
+
+  pov: chars.苏离灯
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.苏离灯, chars.闻人观星, chars.姬断鹰 }
+  advances: { threads.天驱旧誓线, threads.辰月暗流线, threads.大墓真相线 }
+  mentions: { world.鹰旗残绶, world.十二主星盘, world.辰月暗宗 }
+  render_hint: "截入星盘要像旧誓插入阵法逻辑，而不是实体砸碎星盘。"
+}
+
+beat 十二主星盘裂声 @ structure.vol01.ch69 {
+  effect:
+    world.十二主星盘.状态 = 被旧誓截断
+    world.星文回廊.状态 = 星盘裂声
+    chars.闻人观星.状态 = 星局失衡
+
+  pov: chars.殷折
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.牧云镜 }
+  advances: { threads.辰月暗流线, threads.误入地宫线 }
+  reveals: world.秘术溢出风险
+  mentions: { world.十二主星盘, world.星文观测原则 }
+  render_hint: "裂声是星局结构被截断，不一定是星盘物理损毁。"
+}
+
+beat 闻人星局偏转 @ structure.vol01.ch69 {
+  effect:
+    chars.闻人观星.状态 = 星局偏转
+    world.雷碧城星术残简.状态 = 偏离闻人掌控
+    world.殇阳梦境残印.状态 = 脱离夺权牵引
+
+  pov: chars.闻人观星
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.闻人观星, chars.殷折, chars.苏离灯 }
+  advances: { threads.辰月暗流线, threads.殇阳梦境线, threads.大墓真相线 }
+  mentions: { world.雷碧城星术残简, world.殇阳梦境残印, world.十二主星盘 }
+  render_hint: "闻人观星此处要意识到星局已不能按辰月设想收束。"
+}

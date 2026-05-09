@@ -1,0 +1,84 @@
+namespace 九州别记.structure.vol1_ch57
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 牧云烬上呈两用策 @ structure.vol01.ch57 {
+  effect:
+    chars.牧云烬.位置 = world.天启城
+    chars.牧云烬.状态 = 上呈两用策
+    world.端朝.状态 = 两用策入朝
+
+  pov: chars.牧云烬
+  location: world.天启城
+  on_screen: true
+  observers: { chars.牧云烬 }
+  advances: { threads.端朝皇权线, threads.大墓真相线 }
+  mentions: { world.端朝, world.端室牧云氏, world.嬴无翳墓葬危险原则 }
+  render_hint: "两用策一面献证，一面备封口，体现牧云烬的夺局能力。"
+}
+
+beat 端朝改写墓主 @ structure.vol01.ch57 {
+  effect:
+    world.嬴无翳.状态 = 被改写为皇权证物
+    world.端室牧云氏.状态 = 借墓改史
+    chars.牧云烬.相信 += "霸主旧史可以被端朝改写成皇权胜利"
+
+  pov: chars.牧云烬
+  location: world.天启城
+  on_screen: true
+  observers: { chars.牧云烬 }
+  advances: { threads.端朝皇权线, threads.九州野史线 }
+  mentions: { world.嬴无翳, world.嬴无翳未帝而霸, world.端室牧云氏 }
+  render_hint: "改写墓主不是否认嬴无翳，而是把他包装成端朝可利用的旧敌。"
+}
+
+beat 掩史司逼认伪供 @ structure.vol01.ch57 {
+  effect:
+    chars.牧云镜.状态 = 被逼认伪供
+    chars.殷折.状态 = 拒认伪供
+    world.端朝掩史司.状态 = 逼认伪供
+
+  pov: chars.牧云镜
+  location: world.掩史司密库
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.牧云烬 }
+  advances: { threads.端朝皇权线, threads.摸金门规线 }
+  mentions: { world.端朝掩史司, world.离公墓志残片, world.殷门罗盘 }
+  render_hint: "伪供要围绕证据口径，不写成单纯刑讯场面。"
+}
+
+beat 牧云镜当堂驳史 @ structure.vol01.ch57 {
+  effect:
+    chars.牧云镜.状态 = 当堂驳史
+    chars.牧云镜.arc_state = 史官抗诏萌发
+    chars.牧云镜.知道 += world.嬴无翳墓葬危险原则
+
+  pov: chars.牧云镜
+  location: world.掩史司密库
+  on_screen: true
+  observers: { chars.牧云镜, chars.牧云烬, chars.殷折 }
+  advances: { threads.九州野史线, threads.端朝皇权线 }
+  reveals: world.嬴无翳墓葬危险原则
+  mentions: { world.殇阳关战牍, world.牧云掩史旧档, world.嬴无翳 }
+  render_hint: "驳史要抓住证据链，而不是只表达立场。"
+}
+
+beat 皇权线裂成封口 @ structure.vol01.ch57 {
+  effect:
+    chars.牧云烬.状态 = 封口夺证
+    world.端朝.状态 = 皇权封口
+    world.端朝掩史司.状态 = 封口夺证
+
+  pov: chars.牧云烬
+  location: world.天启城
+  on_screen: true
+  observers: { chars.牧云烬 }
+  advances: { threads.端朝皇权线, threads.穆如军门线, threads.辰月暗流线 }
+  mentions: { world.端朝, world.端朝掩史司, world.十二主星盘 }
+  render_hint: "章末让皇权工具化失败后转入封口，为下一章分藏野史创造压力。"
+}
+

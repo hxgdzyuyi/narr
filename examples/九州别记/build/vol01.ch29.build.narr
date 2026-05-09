@@ -1,0 +1,674 @@
+// LLM 使用说明
+// 1. 本文件由 narrc build 生成，是单章写作上下文，不是项目源文件；不要把 build {...} 写回 .narr。
+// 2. Narr 只有全局蓝图层和局部章节层；不要新增 outline、chapter_plan、scene_plan、act、sequence 等结构层。
+// 3. 写作时严格遵守 chapter、ordered_beats、precondition、effect、state_at_chapter_begin、state_at_chapter_end 与 target_length。
+// 4. beat 是章内状态变化单位；按 ordered_beats 顺序展开，effect 描述本章必须完成的状态变化。
+// 5. state_at_chapter_begin 是开章事实，expected_state_changes 是本章预期变化，state_at_chapter_end 是收束状态。
+// 6. 只补充散文表达和场面细节，不改动结构、引用、状态边界或未在 build 中出现的设定。
+//
+// build.narr 简易语法与属性说明
+// build <chapter_code> { ... }：单章派生上下文根节点；chapter_code 是归一化章节号。
+// chapter：目标章节元信息。
+// chapter.code：源文件中写入的章节号。
+// chapter.canonical_code：编译器归一化后的章节号，作为 build 主键。
+// chapter.alias：章节别名，供人读和引用 disambiguation 使用。
+// chapter.title：章回标题或章节标题。
+// chapter.purpose：章节叙事功能，例如 entry、discovery、conflict。
+// chapter.target_length：本章目标字数或长度提示。
+// chapter.volume_code：本章所属卷。
+// chapter.previous_chapter / chapter.next_chapter：相邻章节，用于承接与悬念控制。
+// summary：写作前必须继承的摘要。
+// summary.novel_summary：整部作品的总体叙事摘要。
+// summary.volume_summary：当前卷的叙事摘要。
+// summary.chapter_summary：本章必须完成的摘要。
+// context：本章相关实体集合，只写这些实体已知设定，不擅自扩展世界观。
+// context.relevant_characters：本章相关角色。
+// context.relevant_places：本章相关地点。
+// context.relevant_objects：本章相关物件。
+// context.relevant_facts：本章相关事实、信息或已揭示设定。
+// state：章节边界状态，约束本章开局、变化与收束。
+// state.state_at_chapter_begin：开章时已经成立的状态事实。
+// state.expected_state_changes：本章从 begin 到 end 必须发生的状态变化。
+// state.state_at_chapter_end：章末必须成立的状态事实。
+// structure：本章涉及的叙事结构关系。
+// structure.start_patterns：本章触发或承接的开端模式。
+// structure.active_threads：本章开始时仍活跃的主线/支线。
+// structure.active_promises：本章开始时仍活跃的伏笔或悬念。
+// structure.active_arcs：本章开始时仍活跃的人物或主题弧线。
+// structure.served_threads：本章实际推进的线索。
+// structure.served_promises：本章实际设置、推进或兑现的伏笔。
+// structure.served_arcs：本章实际推进的人物或主题弧线。
+// beats：章内状态变化单位，必须按 ordered_beats 顺序展开成正文。
+// beats.ordered_beats：本章 beat 顺序，是正文组织的主骨架。
+// beats.beat_preconditions：进入某 beat 前必须满足的条件。
+// beats.beat_effects：每个 beat 必须造成的状态变化；effect 行使用 target op value。
+// beats.beat_render_hints：单个 beat 的呈现方式提示。
+// prose：正文生成提示。
+// prose.prose_hint：语气、文风、叙述方式等散文提示。
+// prose.target_length：正文目标长度，通常与 chapter.target_length 一致。
+// 字面量说明：字符串使用双引号；引用形如 namespace.name；列表使用 [item, ...]；状态集合使用 {item, ...}。
+// effect 操作：= 表示赋值，+= 表示集合添加，-= 表示集合移除，append 表示列表追加。
+
+build vol01.ch29 {
+  chapter:
+    code: vol01.ch29
+    canonical_code: vol01.ch29
+    alias: 梦潮将退
+    title: "梦潮将退"
+    purpose: aftermath
+    target_length: 3000 字
+    volume_code: vol01
+    previous_chapter: vol01.ch28
+    next_chapter: vol01.ch30
+  summary:
+    novel_summary: "端朝末局中，边地一次意外塌陷牵出地下遗迹、燮朝封陵旧史与嬴无翳大墓真相的九州幻想长篇。"
+    volume_summary: "端朝末年的边地异变使摸金者、军门、皇权与草原诸部相继卷入地下遗迹；真相从无名旧道逐步指向燮朝封陵与嬴无翳大墓。卷中段以后，殷折会因墓志残片、殇阳关战牍和辰月星术残简的机缘映射，被投入殇阳关战役梦境，化身墓主嬴无翳，试图挽回一桩不能改变胜负、只能补回姓名与收殓的遗憾。"
+    chapter_summary: "雨阵退成战牍纹路，殷折不再追逐胜负幻影；嬴无翳突围因果闭合，群名终于在无名战牍残页上初步成形，梦门也露出通向墓志石室的回潮缝隙。"
+  context:
+    relevant_characters: [
+      九州别记.characters.殷折,
+      九州别记.world.嬴无翳,
+    ]
+    relevant_places: [
+      九州别记.world.墓志石室,
+      九州别记.world.梦中殇阳雨阵,
+      九州别记.world.殇阳关梦境,
+    ]
+    relevant_objects: [
+      九州别记.world.无名战牍残页,
+      九州别记.world.殇阳关战牍,
+      九州别记.world.殇阳梦境残印,
+      九州别记.world.离公墓志残片,
+    ]
+    relevant_facts: [
+      九州别记.world.墓主遗憾核心,
+      九州别记.world.梦境挽回边界,
+      九州别记.world.殇阳关战役事实,
+    ]
+  state:
+    state_at_chapter_begin: {
+      九州别记.characters.丁缺金.arc_state: 贪生背门
+      九州别记.characters.丁缺金.位置: 九州别记.world.疑似离公墓域
+      九州别记.characters.丁缺金.关系: {"借岔路误导殷折", "受辰月暗号牵引", "旧日师兄弟背叛殷折", "暗记封陵外城退路"}
+      九州别记.characters.丁缺金.动机: "先于殷折拿到离公墓志残片，用它向端朝或辰月换取活路。"
+      九州别记.characters.丁缺金.所属: 九州别记.world.摸金殷门
+      九州别记.characters.丁缺金.状态: 借骨影逃匿
+      九州别记.characters.丁缺金.相信: {}
+      九州别记.characters.丁缺金.知道: {九州别记.world.丁缺金门规旧债, 九州别记.world.封陵外城存在, 九州别记.world.开局不知大墓, 九州别记.world.离国军工痕迹}
+      九州别记.characters.丁缺金.秘密: "他参与过殷折父辈失踪案，知道殷氏罗盘为何会指向疑似封陵。"
+      九州别记.characters.丁缺金.身份: 摸金叛徒
+      九州别记.characters.丁缺金.阵营: 敌人
+      九州别记.characters.姬断鹰.arc_state: 以誓为狱
+      九州别记.characters.姬断鹰.位置: 九州别记.world.地下铁誓厅
+      九州别记.characters.姬断鹰.关系: {"追杀苏离灯"}
+      九州别记.characters.姬断鹰.动机: "夺回疑似封陵中的旧盟证据，证明天驱可以用霸道恢复王道。"
+      九州别记.characters.姬断鹰.所属: 九州别记.world.天驱旧盟
+      九州别记.characters.姬断鹰.状态: 追索旧誓
+      九州别记.characters.姬断鹰.相信: {}
+      九州别记.characters.姬断鹰.知道: {九州别记.world.天驱人物规划原则, 九州别记.world.天驱旧誓残痕}
+      九州别记.characters.姬断鹰.秘密: "他曾是苏离灯一支的护誓人，却认为旧誓已经被软弱者败坏。"
+      九州别记.characters.姬断鹰.身份: 天驱叛宗
+      九州别记.characters.姬断鹰.阵营: 敌人
+      九州别记.characters.殷折.arc_state: 守规问史
+      九州别记.characters.殷折.位置: 九州别记.world.殇阳关梦境
+      九州别记.characters.殷折.关系: {"丁缺金借骨画阴影再度脱队", "拒绝把殷门罗盘交给掩史司", "按门规拒绝把殉珠当财物带走", "按门规救回丁缺金", "按门规逐一点名救回队形", "确认丁缺金背门", "阻止众人抢夺火道证物"}
+      九州别记.characters.殷折.动机: "查清父辈失踪与无名旧道塌陷的关系，并保护同伴活着出地。"
+      九州别记.characters.殷折.所属: 九州别记.world.摸金殷门
+      九州别记.characters.殷折.状态: 护名向退潮推进
+      九州别记.characters.殷折.相信: {"一个名字被找回，会照见更多缺名", "旧陵之物可以看，可以记，不可贪。", "星术只能污染证据，不能替代证据", "死者可收殓，不可再被用作术材", "没有名字的死者也不能被当成战阵残物"}
+      九州别记.characters.殷折.知道: {九州别记.world.主角团开局共识, 九州别记.world.化身墓主规则, 九州别记.world.十二主星秘术体系, 九州别记.world.墓主遗憾核心, 九州别记.world.多族痕迹解释原则, 九州别记.world.天驱旧誓残痕, 九州别记.world.夸父骨画壁事实, 九州别记.world.嬴无翳墓葬危险原则, 九州别记.world.嬴无翳用人与军政, 九州别记.world.开局不知大墓, 九州别记.world.张博殇阳战死, 九州别记.world.摸金技艺来源, 九州别记.world.旧道异常事实, 九州别记.world.梦境挽回边界, 九州别记.world.殇阳关异变之夜, 九州别记.world.殇阳关战役事实, 九州别记.world.殇阳梦境映射机制, 九州别记.world.殷氏罗盘旧训, 九州别记.world.殷照胆殉门事实, 九州别记.world.殷门祖辈传承, 九州别记.world.离国军工痕迹, 九州别记.world.离国辰月牵连, 九州别记.world.秘术溢出风险, 九州别记.world.空棺无名事实, 九州别记.world.辰月主星偏用, 九州别记.world.边地塌陷事实, 九州别记.world.边地求援事实, 九州别记.world.雷碧城辰月国师, 九州别记.world.鲛泪暗渠事实}
+      九州别记.characters.殷折.秘密: "殷氏祖传罗盘能读出燮朝封陵改制，却会把持有者引向更深墓域。"
+      九州别记.characters.殷折.身份: 梦中墓主映身
+      九州别记.characters.殷折.阵营: 主角团
+      九州别记.characters.殷照胆.arc_state: 以死封门
+      九州别记.characters.殷照胆.位置: 九州别记.world.无名旧道
+      九州别记.characters.殷照胆.关系: {"以门规救下殷门后辈"}
+      九州别记.characters.殷照胆.动机: "在最后一次封门活中救出后辈，并把无名旧道的危险留给殷折。"
+      九州别记.characters.殷照胆.所属: 九州别记.world.摸金殷门
+      九州别记.characters.殷照胆.状态: 殉门
+      九州别记.characters.殷照胆.相信: {"旧道下方不是寻常墓穴"}
+      九州别记.characters.殷照胆.知道: {九州别记.world.殷氏罗盘旧训, 九州别记.world.殷照胆封门旧事, 九州别记.world.殷照胆殉门事实, 九州别记.world.殷门祖辈传承}
+      九州别记.characters.殷照胆.秘密: "他临死前看见的地下石构不是寻常墓门，却没有来得及确认其身份。"
+      九州别记.characters.殷照胆.身份: 殷门祖辈
+      九州别记.characters.殷照胆.阵营: 祖辈
+      九州别记.characters.洛衡.arc_state: 利己到护队
+      九州别记.characters.洛衡.位置: 九州别记.world.星文回廊
+      九州别记.characters.洛衡.关系: {}
+      九州别记.characters.洛衡.动机: "借殷折的队伍进入旧道，寻找失传的河络机关谱。"
+      九州别记.characters.洛衡.所属: 九州别记.world.摸金殷门
+      九州别记.characters.洛衡.状态: 破封留路
+      九州别记.characters.洛衡.相信: {"外城机关被后世重铺过一层", "所有机关都有造它的人留下的脾气。", "旧道下方有被人改封过的石构"}
+      九州别记.characters.洛衡.知道: {九州别记.world.封陵外城存在, 九州别记.world.旧道异常事实, 九州别记.world.河络地火工艺, 九州别记.world.河络机坊封死事实, 九州别记.world.洛氏机关残学, 九州别记.world.燮朝封陵残证, 九州别记.world.离国军工痕迹}
+      九州别记.characters.洛衡.秘密: "他已经识出疑似封陵的部分机关不是端朝制式，而是更古老的离国军工。"
+      九州别记.characters.洛衡.身份: 机关匠
+      九州别记.characters.洛衡.阵营: 主角团
+      九州别记.characters.牧云烬.arc_state: 忠君到灭口
+      九州别记.characters.牧云烬.位置: 九州别记.world.鲛泪暗渠
+      九州别记.characters.牧云烬.关系: {"以封口命令逼殷折交出残片", "试图把鲛泪盐珠列为官府证物"}
+      九州别记.characters.牧云烬.动机: "控制所有出土文书，确保端朝只得到对牧云氏有利的版本。"
+      九州别记.characters.牧云烬.所属: 九州别记.world.端朝掩史司
+      九州别记.characters.牧云烬.状态: 截取盐珠
+      九州别记.characters.牧云烬.相信: {}
+      九州别记.characters.牧云烬.知道: {九州别记.world.燮朝封陵残证, 九州别记.world.牧云掩史旧档, 九州别记.world.空棺无名事实, 九州别记.world.端朝三百余年, 九州别记.world.端末东西分裂}
+      九州别记.characters.牧云烬.秘密: "他知道密诏源头不止一处，牧云氏内部已经把地下发现当成夺权筹码。"
+      九州别记.characters.牧云烬.身份: 掩史司使
+      九州别记.characters.牧云烬.阵营: 敌人
+      九州别记.characters.牧云镜.arc_state: 史官两难
+      九州别记.characters.牧云镜.位置: 九州别记.world.墓志石室
+      九州别记.characters.牧云镜.关系: {"与穆如砚互相提防", "向穆如砚隐瞒副诏"}
+      九州别记.characters.牧云镜.动机: "寻找能解释端朝末局的旧史证据，同时避免牧云氏把墓中真相变成新一轮清洗。"
+      九州别记.characters.牧云镜.所属: 九州别记.world.端室牧云氏
+      九州别记.characters.牧云镜.状态: 恐战牍动史
+      九州别记.characters.牧云镜.相信: {"多族痕迹可能被魅影故意拼接", "正史之外仍有能互证墓域的族群证词", "正史在墓志前被人裁缺", "殇阳关战牍会动摇端朝对前朝旧史的裁剪"}
+      九州别记.characters.牧云镜.知道: {九州别记.world.九州别记朝代用法, 九州别记.world.六族创世异说, 九州别记.world.多族痕迹解释原则, 九州别记.world.星文回廊事实, 九州别记.world.殇阳关战役事实, 九州别记.world.燮朝封陵残证, 九州别记.world.牧云掩史旧档, 九州别记.world.离国军工痕迹, 九州别记.world.空棺无名事实, 九州别记.world.端末盟约破裂, 九州别记.world.羽族坠羽井传闻, 九州别记.world.羽族星文传统, 九州别记.world.雷碧城辰月国师, 九州别记.world.鲛泪暗渠事实}
+      九州别记.characters.牧云镜.秘密: "她奉的是一份互相矛盾的密诏，一份要取证，一份要灭口。"
+      九州别记.characters.牧云镜.身份: 牧云旁支史官
+      九州别记.characters.牧云镜.阵营: 主角团
+      九州别记.characters.硕风照夜.arc_state: 为部族问路
+      九州别记.characters.硕风照夜.位置: 九州别记.world.魅影空廊
+      九州别记.characters.硕风照夜.关系: {}
+      九州别记.characters.硕风照夜.动机: "追查雪炽原旧歌中失踪的狼旗与无名旧道的关系。"
+      九州别记.characters.硕风照夜.所属: 九州别记.world.瀚州硕风部
+      九州别记.characters.硕风照夜.状态: 旧歌复位
+      九州别记.characters.硕风照夜.相信: {}
+      九州别记.characters.硕风照夜.知道: {九州别记.world.北陆草原与冰原, 九州别记.world.夸父骨画壁事实, 九州别记.world.旧道异常事实, 九州别记.world.瀚州八部入局, 九州别记.world.硕风吞狼旧歌, 九州别记.world.边地塌陷事实, 九州别记.world.雪下空音事实}
+      九州别记.characters.硕风照夜.秘密: "她的部族把疑似封陵称为吞狼之口，认为那里埋着会改写草原盟约的东西。"
+      九州别记.characters.硕风照夜.身份: 瀚州向导
+      九州别记.characters.硕风照夜.阵营: 主角团
+      九州别记.characters.穆如砚.arc_state: 奉命而疑命
+      九州别记.characters.穆如砚.位置: 九州别记.world.墓志石室
+      九州别记.characters.穆如砚.关系: {"守住牧云镜不让掩史司夺牍", "违背封口命令护住队伍"}
+      九州别记.characters.穆如砚.动机: "查明边地塌陷是否牵涉军门旧案，并为被流放的穆如族人争一条活路。"
+      九州别记.characters.穆如砚.所属: 九州别记.world.穆如军门
+      九州别记.characters.穆如砚.状态: 护队越渠
+      九州别记.characters.穆如砚.相信: {}
+      九州别记.characters.穆如砚.知道: {九州别记.world.燮朝封陵残证, 九州别记.world.牧云穆如盟约, 九州别记.world.穆如封陵军令抄本, 九州别记.world.端末盟约破裂, 九州别记.world.边地塌陷事实}
+      九州别记.characters.穆如砚.秘密: "他保存着一页穆如先祖关于燮朝封陵的军令抄本。"
+      九州别记.characters.穆如砚.身份: 穆如军门校尉
+      九州别记.characters.穆如砚.阵营: 主角团
+      九州别记.characters.苏离灯.arc_state: 守誓而疑誓
+      九州别记.characters.苏离灯.位置: 九州别记.world.星文回廊
+      九州别记.characters.苏离灯.关系: {"把天驱旧誓与羽族星文分开辨认", "暗中保护殷折", "被姬断鹰隔门逼认旧誓"}
+      九州别记.characters.苏离灯.动机: "确认地下异动是否触犯天驱旧誓，并阻止王道盟约被端朝或辰月利用。"
+      九州别记.characters.苏离灯.所属: 九州别记.world.天驱旧盟
+      九州别记.characters.苏离灯.状态: 听见护名回声
+      九州别记.characters.苏离灯.相信: {"旧誓在殇阳关梦境外回响", "旧誓能护住被术式吞没的名字", "旧誓被人故意截断", "旧誓被星术借用过"}
+      九州别记.characters.苏离灯.知道: {九州别记.world.天驱人物规划原则, 九州别记.world.天驱护陵旧誓, 九州别记.world.天驱旧誓残痕, 九州别记.world.辰月主星偏用}
+      九州别记.characters.苏离灯.秘密: "她携带的旧鹰扳指并非完整宗主信物，只能证明一支失落天驱曾守过此陵。"
+      九州别记.characters.苏离灯.身份: 天驱后裔
+      九州别记.characters.苏离灯.阵营: 主角团
+      九州别记.characters.闻人观星.arc_state: 均势操盘
+      九州别记.characters.闻人观星.位置: 九州别记.world.辰月星坛
+      九州别记.characters.闻人观星.关系: {"诱导丁缺金背叛殷折"}
+      九州别记.characters.闻人观星.动机: "把无名旧道变成撬动端朝、军门、天驱和草原诸部互相猜忌的星命局。"
+      九州别记.characters.闻人观星.所属: 九州别记.world.辰月暗宗
+      九州别记.characters.闻人观星.状态: 借污受阻
+      九州别记.characters.闻人观星.相信: {}
+      九州别记.characters.闻人观星.知道: {九州别记.world.十二主星秘术体系, 九州别记.world.燮朝封陵残证, 九州别记.world.离国军工痕迹, 九州别记.world.离国辰月牵连, 九州别记.world.空棺无名事实, 九州别记.world.羽族坠羽井传闻, 九州别记.world.辰月人物规划原则}
+      九州别记.characters.闻人观星.秘密: "他并不急于确认墓主，只要各方相信墓中有足以改朝换代的东西。"
+      九州别记.characters.闻人观星.身份: 辰月教长
+      九州别记.characters.闻人观星.阵营: 敌人
+      九州别记.world.下唐国.根基: 东陆诸侯盟
+      九州别记.world.下唐国.状态: 胤末诸侯
+      九州别记.world.北陆蛮族.根基: 瀚州游牧
+      九州别记.world.北陆蛮族.状态: 草原部族并起
+      九州别记.world.十二主星盘.状态: 读名受阻
+      九州别记.world.华族.根基: 东陆农耕城邦
+      九州别记.world.华族.状态: 王朝主体
+      九州别记.world.地下铁誓厅.状态: 誓痕显现
+      九州别记.world.墓志石室.状态: 夹层开匣
+      九州别记.world.天罗军制.根基: 牧云密军
+      九州别记.world.天罗军制.状态: 端末余波
+      九州别记.world.天驱宗主指套残模.状态: 传闻
+      九州别记.world.天驱旧盟.根基: 王道盟约
+      九州别记.world.天驱旧盟.状态: 旧誓潜伏
+      九州别记.world.夸父族.根基: 高寒巨人部落
+      九州别记.world.夸父族.状态: 殇州独居
+      九州别记.world.夸父骨画壁.状态: 骨画拓存
+      九州别记.world.夸父骨画拓本.状态: 殷折拓存
+      九州别记.world.嬴无翳.位置: 九州别记.world.离国旧境
+      九州别记.world.嬴无翳.所属: 九州别记.world.离国
+      九州别记.world.嬴无翳.状态: 突围因果成锁
+      九州别记.world.嬴无翳.相关事实: {九州别记.world.嬴无翳为离公, 九州别记.world.嬴无翳善兵, 九州别记.world.嬴无翳弑兄继位, 九州别记.world.嬴无翳未帝而霸, 九州别记.world.嬴无翳用人与军政, 九州别记.world.嬴无翳骑射霸刀, 九州别记.world.殇阳关战役事实}
+      九州别记.world.嬴无翳.身份: 离国霸主
+      九州别记.world.封陵外城.状态: 断简显证
+      九州别记.world.张博.位置: 九州别记.world.殇阳关
+      九州别记.world.张博.所属: 九州别记.world.离国铁骑
+      九州别记.world.张博.状态: 归名旁照残缺
+      九州别记.world.张博.相关事实: {九州别记.world.张博殇阳战死, 九州别记.world.殇阳关战役事实}
+      九州别记.world.张博.身份: 离国将军
+      九州别记.world.张博断刃.状态: 九州别记.structure.vol01.ch24
+      九州别记.world.摸金殷门.根基: 旧陵术
+      九州别记.world.摸金殷门.状态: 衰落避世
+      九州别记.world.无名战牍残页.状态: 九州别记.structure.vol1_ch28.群名继续反写
+      九州别记.world.无名旧道.状态: 塌陷扩大
+      九州别记.world.旧鹰扳指.状态: 誓线拦污
+      九州别记.world.星文回廊.状态: 残简照片
+      九州别记.world.星辰秘术师.根基: 十二主星
+      九州别记.world.星辰秘术师.状态: 各派分流
+      九州别记.world.梦中殇阳雨阵.状态: 九州别记.structure.vol1_ch27.突围路线显形
+      九州别记.world.楚卫国.根基: 殇阳关南屏
+      九州别记.world.楚卫国.状态: 胤末诸侯
+      九州别记.world.殇阳关战牍.状态: 未改败局
+      九州别记.world.殇阳关梦境.状态: 败局边缘显形
+      九州别记.world.殇阳关联军.根基: 六国勤王
+      九州别记.world.殇阳关联军.状态: 战后离散
+      九州别记.world.殇阳梦境残印.状态: 群名反写前兆
+      九州别记.world.殷门罗盘.状态: 点名成线
+      九州别记.world.河络匠盟.根基: 北邙山越州河谷
+      九州别记.world.河络匠盟.状态: 地下隐居
+      九州别记.world.河络地火机坊.状态: 火道复醒
+      九州别记.world.河络地火锥.状态: 冷锥出匣
+      九州别记.world.河络机关残页.状态: 校读
+      九州别记.world.瀚州硕风部.根基: 瀚州八部
+      九州别记.world.瀚州硕风部.状态: 北陆崛起
+      九州别记.world.燮室姬氏.来源: 胤末姬氏
+      九州别记.world.燮室姬氏.状态: 余脉入史
+      九州别记.world.燮朝.国祚: "约一百二十年"
+      九州别记.world.燮朝.开国名义: 姬野太祖
+      九州别记.world.燮朝.状态: 已亡
+      九州别记.world.燮朝.皇统: 姬昌夜一脉
+      九州别记.world.疑似封陵.状态: 多代重封成证
+      九州别记.world.疑似离公墓域.状态: 墓主待证
+      九州别记.world.白毅.位置: 九州别记.world.梦中殇阳雨阵
+      九州别记.world.白毅.所属: 九州别记.world.楚卫国
+      九州别记.world.白毅.状态: 压阵断回路
+      九州别记.world.白毅.相关事实: {九州别记.world.殇阳关战役事实}
+      九州别记.world.白毅.身份: 楚卫名将
+      九州别记.world.离公墓志残片.状态: 危险原则照出
+      九州别记.world.离国.根基: 九州别记.world.离国旧境
+      九州别记.world.离国.状态: 胤末霸主遗国
+      九州别记.world.离国国师府.根基: 雷碧城秘术
+      九州别记.world.离国国师府.状态: 梦中显影
+      九州别记.world.离国赤旅.根基: 离军旧制
+      九州别记.world.离国赤旅.状态: 墓中文献待证
+      九州别记.world.离国铁骑.根基: 离国军制
+      九州别记.world.离国铁骑.状态: 突围军令在梦中回响
+      九州别记.world.离国马具残饰.状态: 军制待辨
+      九州别记.world.穆如军门.根基: 军门铁骑
+      九州别记.world.穆如军门.状态: 盟约破裂
+      九州别记.world.穆如旧令抄本.状态: 对上门制
+      九州别记.world.端室牧云氏.根基: 九州别记.world.天启城
+      九州别记.world.端室牧云氏.状态: 皇权动摇
+      九州别记.world.端朝.国祚: "三百余年"
+      九州别记.world.端朝.开国名义: 牧云雄疆太祖
+      九州别记.world.端朝.状态: 末世分裂
+      九州别记.world.端朝.皇统: 牧云氏
+      九州别记.world.端朝掩史司.根基: 端朝秘档
+      九州别记.world.端朝掩史司.状态: 奉诏封口
+      九州别记.world.羽族.根基: 宁州澜州
+      九州别记.world.羽族.状态: 星文高族
+      九州别记.world.羽族元极道.根基: 十二主星
+      九州别记.world.羽族元极道.状态: 星辰学派
+      九州别记.world.羽族坠羽井.状态: 星文显现
+      九州别记.world.羽族星文树皮卷.状态: 星文展开
+      九州别记.world.胤朝.根基: 天子诸侯秩序
+      九州别记.world.胤朝.状态: 末世旧朝
+      九州别记.world.赤旅兵冢.状态: 军工待辨
+      九州别记.world.辰月暗宗.根基: 星命秘术
+      九州别记.world.辰月暗宗.状态: 暗流窥伺
+      九州别记.world.雷碧城.位置: 九州别记.world.梦中殇阳雨阵
+      九州别记.world.雷碧城.所属: 九州别记.world.雷碧城辰月支
+      九州别记.world.雷碧城.状态: 梦中国师星局显形
+      九州别记.world.雷碧城.相关事实: {九州别记.world.殇阳关异变之夜, 九州别记.world.离国辰月牵连, 九州别记.world.雷碧城辰月国师}
+      九州别记.world.雷碧城.身份: 离国国师
+      九州别记.world.雷碧城星术残简.状态: 污染被割
+      九州别记.world.雷碧城辰月支.根基: 辰月秘术
+      九州别记.world.雷碧城辰月支.状态: 国师暗线
+      九州别记.world.霸刀断铭.状态: 未出土
+      九州别记.world.霸刀遗名.状态: 传闻
+      九州别记.world.魅影残蜕.状态: 残蜕显形
+      九州别记.world.魅影空廊.状态: 证词扰乱
+      九州别记.world.魅族.根基: 古战场与幽林
+      九州别记.world.魅族.状态: 虚实难定
+      九州别记.world.鲛族.根基: 海市潮路
+      九州别记.world.鲛族.状态: 七海游居
+      九州别记.world.鲛泪暗渠.状态: 暗渠断流
+      九州别记.world.鲛泪盐珠.状态: 留在暗渠
+      九州别记.world.鲛绡残丝.状态: 残丝显证
+      九州别记.world.鹰旗残绶.状态: 失落
+    }
+    expected_state_changes: [
+      { field: 九州别记.characters.殷折.状态, before: 护名向退潮推进, after: 梦门前停步 },
+      { field: 九州别记.world.嬴无翳.状态, before: 突围因果成锁, after: 突围因果已闭 },
+      { field: 九州别记.world.无名战牍残页.状态, before: 九州别记.structure.vol1_ch28.群名继续反写, after: 群名初成 },
+      { field: 九州别记.world.梦中殇阳雨阵.状态, before: 九州别记.structure.vol1_ch27.突围路线显形, after: 突围因果已闭 },
+      { field: 九州别记.world.殇阳关战牍.状态, before: 未改败局, after: 败局未改群名留存 },
+      { field: 九州别记.world.殇阳关梦境.状态, before: 败局边缘显形, after: 将退未退 },
+      { field: 九州别记.world.殇阳梦境残印.状态, before: 群名反写前兆, after: 群名待返 },
+      { field: 九州别记.world.离公墓志残片.状态, before: 危险原则照出, after: 待接群名 },
+    ]
+    state_at_chapter_end: {
+      九州别记.characters.丁缺金.arc_state: 贪生背门
+      九州别记.characters.丁缺金.位置: 九州别记.world.疑似离公墓域
+      九州别记.characters.丁缺金.关系: {"借岔路误导殷折", "受辰月暗号牵引", "旧日师兄弟背叛殷折", "暗记封陵外城退路"}
+      九州别记.characters.丁缺金.动机: "先于殷折拿到离公墓志残片，用它向端朝或辰月换取活路。"
+      九州别记.characters.丁缺金.所属: 九州别记.world.摸金殷门
+      九州别记.characters.丁缺金.状态: 借骨影逃匿
+      九州别记.characters.丁缺金.相信: {}
+      九州别记.characters.丁缺金.知道: {九州别记.world.丁缺金门规旧债, 九州别记.world.封陵外城存在, 九州别记.world.开局不知大墓, 九州别记.world.离国军工痕迹}
+      九州别记.characters.丁缺金.秘密: "他参与过殷折父辈失踪案，知道殷氏罗盘为何会指向疑似封陵。"
+      九州别记.characters.丁缺金.身份: 摸金叛徒
+      九州别记.characters.丁缺金.阵营: 敌人
+      九州别记.characters.姬断鹰.arc_state: 以誓为狱
+      九州别记.characters.姬断鹰.位置: 九州别记.world.地下铁誓厅
+      九州别记.characters.姬断鹰.关系: {"追杀苏离灯"}
+      九州别记.characters.姬断鹰.动机: "夺回疑似封陵中的旧盟证据，证明天驱可以用霸道恢复王道。"
+      九州别记.characters.姬断鹰.所属: 九州别记.world.天驱旧盟
+      九州别记.characters.姬断鹰.状态: 追索旧誓
+      九州别记.characters.姬断鹰.相信: {}
+      九州别记.characters.姬断鹰.知道: {九州别记.world.天驱人物规划原则, 九州别记.world.天驱旧誓残痕}
+      九州别记.characters.姬断鹰.秘密: "他曾是苏离灯一支的护誓人，却认为旧誓已经被软弱者败坏。"
+      九州别记.characters.姬断鹰.身份: 天驱叛宗
+      九州别记.characters.姬断鹰.阵营: 敌人
+      九州别记.characters.殷折.arc_state: 守规问史
+      九州别记.characters.殷折.位置: 九州别记.world.殇阳关梦境
+      九州别记.characters.殷折.关系: {"丁缺金借骨画阴影再度脱队", "拒绝把殷门罗盘交给掩史司", "按门规拒绝把殉珠当财物带走", "按门规救回丁缺金", "按门规逐一点名救回队形", "确认丁缺金背门", "阻止众人抢夺火道证物"}
+      九州别记.characters.殷折.动机: "查清父辈失踪与无名旧道塌陷的关系，并保护同伴活着出地。"
+      九州别记.characters.殷折.所属: 九州别记.world.摸金殷门
+      九州别记.characters.殷折.状态: 梦门前停步
+      九州别记.characters.殷折.相信: {"一个名字被找回，会照见更多缺名", "旧陵之物可以看，可以记，不可贪。", "星术只能污染证据，不能替代证据", "死者可收殓，不可再被用作术材", "没有名字的死者也不能被当成战阵残物"}
+      九州别记.characters.殷折.知道: {九州别记.world.主角团开局共识, 九州别记.world.化身墓主规则, 九州别记.world.十二主星秘术体系, 九州别记.world.墓主遗憾核心, 九州别记.world.多族痕迹解释原则, 九州别记.world.天驱旧誓残痕, 九州别记.world.夸父骨画壁事实, 九州别记.world.嬴无翳墓葬危险原则, 九州别记.world.嬴无翳用人与军政, 九州别记.world.开局不知大墓, 九州别记.world.张博殇阳战死, 九州别记.world.摸金技艺来源, 九州别记.world.旧道异常事实, 九州别记.world.梦境挽回边界, 九州别记.world.殇阳关异变之夜, 九州别记.world.殇阳关战役事实, 九州别记.world.殇阳梦境映射机制, 九州别记.world.殷氏罗盘旧训, 九州别记.world.殷照胆殉门事实, 九州别记.world.殷门祖辈传承, 九州别记.world.离国军工痕迹, 九州别记.world.离国辰月牵连, 九州别记.world.秘术溢出风险, 九州别记.world.空棺无名事实, 九州别记.world.辰月主星偏用, 九州别记.world.边地塌陷事实, 九州别记.world.边地求援事实, 九州别记.world.雷碧城辰月国师, 九州别记.world.鲛泪暗渠事实}
+      九州别记.characters.殷折.秘密: "殷氏祖传罗盘能读出燮朝封陵改制，却会把持有者引向更深墓域。"
+      九州别记.characters.殷折.身份: 梦中墓主映身
+      九州别记.characters.殷折.阵营: 主角团
+      九州别记.characters.殷照胆.arc_state: 以死封门
+      九州别记.characters.殷照胆.位置: 九州别记.world.无名旧道
+      九州别记.characters.殷照胆.关系: {"以门规救下殷门后辈"}
+      九州别记.characters.殷照胆.动机: "在最后一次封门活中救出后辈，并把无名旧道的危险留给殷折。"
+      九州别记.characters.殷照胆.所属: 九州别记.world.摸金殷门
+      九州别记.characters.殷照胆.状态: 殉门
+      九州别记.characters.殷照胆.相信: {"旧道下方不是寻常墓穴"}
+      九州别记.characters.殷照胆.知道: {九州别记.world.殷氏罗盘旧训, 九州别记.world.殷照胆封门旧事, 九州别记.world.殷照胆殉门事实, 九州别记.world.殷门祖辈传承}
+      九州别记.characters.殷照胆.秘密: "他临死前看见的地下石构不是寻常墓门，却没有来得及确认其身份。"
+      九州别记.characters.殷照胆.身份: 殷门祖辈
+      九州别记.characters.殷照胆.阵营: 祖辈
+      九州别记.characters.洛衡.arc_state: 利己到护队
+      九州别记.characters.洛衡.位置: 九州别记.world.星文回廊
+      九州别记.characters.洛衡.关系: {}
+      九州别记.characters.洛衡.动机: "借殷折的队伍进入旧道，寻找失传的河络机关谱。"
+      九州别记.characters.洛衡.所属: 九州别记.world.摸金殷门
+      九州别记.characters.洛衡.状态: 破封留路
+      九州别记.characters.洛衡.相信: {"外城机关被后世重铺过一层", "所有机关都有造它的人留下的脾气。", "旧道下方有被人改封过的石构"}
+      九州别记.characters.洛衡.知道: {九州别记.world.封陵外城存在, 九州别记.world.旧道异常事实, 九州别记.world.河络地火工艺, 九州别记.world.河络机坊封死事实, 九州别记.world.洛氏机关残学, 九州别记.world.燮朝封陵残证, 九州别记.world.离国军工痕迹}
+      九州别记.characters.洛衡.秘密: "他已经识出疑似封陵的部分机关不是端朝制式，而是更古老的离国军工。"
+      九州别记.characters.洛衡.身份: 机关匠
+      九州别记.characters.洛衡.阵营: 主角团
+      九州别记.characters.牧云烬.arc_state: 忠君到灭口
+      九州别记.characters.牧云烬.位置: 九州别记.world.鲛泪暗渠
+      九州别记.characters.牧云烬.关系: {"以封口命令逼殷折交出残片", "试图把鲛泪盐珠列为官府证物"}
+      九州别记.characters.牧云烬.动机: "控制所有出土文书，确保端朝只得到对牧云氏有利的版本。"
+      九州别记.characters.牧云烬.所属: 九州别记.world.端朝掩史司
+      九州别记.characters.牧云烬.状态: 截取盐珠
+      九州别记.characters.牧云烬.相信: {}
+      九州别记.characters.牧云烬.知道: {九州别记.world.燮朝封陵残证, 九州别记.world.牧云掩史旧档, 九州别记.world.空棺无名事实, 九州别记.world.端朝三百余年, 九州别记.world.端末东西分裂}
+      九州别记.characters.牧云烬.秘密: "他知道密诏源头不止一处，牧云氏内部已经把地下发现当成夺权筹码。"
+      九州别记.characters.牧云烬.身份: 掩史司使
+      九州别记.characters.牧云烬.阵营: 敌人
+      九州别记.characters.牧云镜.arc_state: 史官两难
+      九州别记.characters.牧云镜.位置: 九州别记.world.墓志石室
+      九州别记.characters.牧云镜.关系: {"与穆如砚互相提防", "向穆如砚隐瞒副诏"}
+      九州别记.characters.牧云镜.动机: "寻找能解释端朝末局的旧史证据，同时避免牧云氏把墓中真相变成新一轮清洗。"
+      九州别记.characters.牧云镜.所属: 九州别记.world.端室牧云氏
+      九州别记.characters.牧云镜.状态: 恐战牍动史
+      九州别记.characters.牧云镜.相信: {"多族痕迹可能被魅影故意拼接", "正史之外仍有能互证墓域的族群证词", "正史在墓志前被人裁缺", "殇阳关战牍会动摇端朝对前朝旧史的裁剪"}
+      九州别记.characters.牧云镜.知道: {九州别记.world.九州别记朝代用法, 九州别记.world.六族创世异说, 九州别记.world.多族痕迹解释原则, 九州别记.world.星文回廊事实, 九州别记.world.殇阳关战役事实, 九州别记.world.燮朝封陵残证, 九州别记.world.牧云掩史旧档, 九州别记.world.离国军工痕迹, 九州别记.world.空棺无名事实, 九州别记.world.端末盟约破裂, 九州别记.world.羽族坠羽井传闻, 九州别记.world.羽族星文传统, 九州别记.world.雷碧城辰月国师, 九州别记.world.鲛泪暗渠事实}
+      九州别记.characters.牧云镜.秘密: "她奉的是一份互相矛盾的密诏，一份要取证，一份要灭口。"
+      九州别记.characters.牧云镜.身份: 牧云旁支史官
+      九州别记.characters.牧云镜.阵营: 主角团
+      九州别记.characters.硕风照夜.arc_state: 为部族问路
+      九州别记.characters.硕风照夜.位置: 九州别记.world.魅影空廊
+      九州别记.characters.硕风照夜.关系: {}
+      九州别记.characters.硕风照夜.动机: "追查雪炽原旧歌中失踪的狼旗与无名旧道的关系。"
+      九州别记.characters.硕风照夜.所属: 九州别记.world.瀚州硕风部
+      九州别记.characters.硕风照夜.状态: 旧歌复位
+      九州别记.characters.硕风照夜.相信: {}
+      九州别记.characters.硕风照夜.知道: {九州别记.world.北陆草原与冰原, 九州别记.world.夸父骨画壁事实, 九州别记.world.旧道异常事实, 九州别记.world.瀚州八部入局, 九州别记.world.硕风吞狼旧歌, 九州别记.world.边地塌陷事实, 九州别记.world.雪下空音事实}
+      九州别记.characters.硕风照夜.秘密: "她的部族把疑似封陵称为吞狼之口，认为那里埋着会改写草原盟约的东西。"
+      九州别记.characters.硕风照夜.身份: 瀚州向导
+      九州别记.characters.硕风照夜.阵营: 主角团
+      九州别记.characters.穆如砚.arc_state: 奉命而疑命
+      九州别记.characters.穆如砚.位置: 九州别记.world.墓志石室
+      九州别记.characters.穆如砚.关系: {"守住牧云镜不让掩史司夺牍", "违背封口命令护住队伍"}
+      九州别记.characters.穆如砚.动机: "查明边地塌陷是否牵涉军门旧案，并为被流放的穆如族人争一条活路。"
+      九州别记.characters.穆如砚.所属: 九州别记.world.穆如军门
+      九州别记.characters.穆如砚.状态: 护队越渠
+      九州别记.characters.穆如砚.相信: {}
+      九州别记.characters.穆如砚.知道: {九州别记.world.燮朝封陵残证, 九州别记.world.牧云穆如盟约, 九州别记.world.穆如封陵军令抄本, 九州别记.world.端末盟约破裂, 九州别记.world.边地塌陷事实}
+      九州别记.characters.穆如砚.秘密: "他保存着一页穆如先祖关于燮朝封陵的军令抄本。"
+      九州别记.characters.穆如砚.身份: 穆如军门校尉
+      九州别记.characters.穆如砚.阵营: 主角团
+      九州别记.characters.苏离灯.arc_state: 守誓而疑誓
+      九州别记.characters.苏离灯.位置: 九州别记.world.星文回廊
+      九州别记.characters.苏离灯.关系: {"把天驱旧誓与羽族星文分开辨认", "暗中保护殷折", "被姬断鹰隔门逼认旧誓"}
+      九州别记.characters.苏离灯.动机: "确认地下异动是否触犯天驱旧誓，并阻止王道盟约被端朝或辰月利用。"
+      九州别记.characters.苏离灯.所属: 九州别记.world.天驱旧盟
+      九州别记.characters.苏离灯.状态: 听见护名回声
+      九州别记.characters.苏离灯.相信: {"旧誓在殇阳关梦境外回响", "旧誓能护住被术式吞没的名字", "旧誓被人故意截断", "旧誓被星术借用过"}
+      九州别记.characters.苏离灯.知道: {九州别记.world.天驱人物规划原则, 九州别记.world.天驱护陵旧誓, 九州别记.world.天驱旧誓残痕, 九州别记.world.辰月主星偏用}
+      九州别记.characters.苏离灯.秘密: "她携带的旧鹰扳指并非完整宗主信物，只能证明一支失落天驱曾守过此陵。"
+      九州别记.characters.苏离灯.身份: 天驱后裔
+      九州别记.characters.苏离灯.阵营: 主角团
+      九州别记.characters.闻人观星.arc_state: 均势操盘
+      九州别记.characters.闻人观星.位置: 九州别记.world.辰月星坛
+      九州别记.characters.闻人观星.关系: {"诱导丁缺金背叛殷折"}
+      九州别记.characters.闻人观星.动机: "把无名旧道变成撬动端朝、军门、天驱和草原诸部互相猜忌的星命局。"
+      九州别记.characters.闻人观星.所属: 九州别记.world.辰月暗宗
+      九州别记.characters.闻人观星.状态: 借污受阻
+      九州别记.characters.闻人观星.相信: {}
+      九州别记.characters.闻人观星.知道: {九州别记.world.十二主星秘术体系, 九州别记.world.燮朝封陵残证, 九州别记.world.离国军工痕迹, 九州别记.world.离国辰月牵连, 九州别记.world.空棺无名事实, 九州别记.world.羽族坠羽井传闻, 九州别记.world.辰月人物规划原则}
+      九州别记.characters.闻人观星.秘密: "他并不急于确认墓主，只要各方相信墓中有足以改朝换代的东西。"
+      九州别记.characters.闻人观星.身份: 辰月教长
+      九州别记.characters.闻人观星.阵营: 敌人
+      九州别记.world.下唐国.根基: 东陆诸侯盟
+      九州别记.world.下唐国.状态: 胤末诸侯
+      九州别记.world.北陆蛮族.根基: 瀚州游牧
+      九州别记.world.北陆蛮族.状态: 草原部族并起
+      九州别记.world.十二主星盘.状态: 读名受阻
+      九州别记.world.华族.根基: 东陆农耕城邦
+      九州别记.world.华族.状态: 王朝主体
+      九州别记.world.地下铁誓厅.状态: 誓痕显现
+      九州别记.world.墓志石室.状态: 夹层开匣
+      九州别记.world.天罗军制.根基: 牧云密军
+      九州别记.world.天罗军制.状态: 端末余波
+      九州别记.world.天驱宗主指套残模.状态: 传闻
+      九州别记.world.天驱旧盟.根基: 王道盟约
+      九州别记.world.天驱旧盟.状态: 旧誓潜伏
+      九州别记.world.夸父族.根基: 高寒巨人部落
+      九州别记.world.夸父族.状态: 殇州独居
+      九州别记.world.夸父骨画壁.状态: 骨画拓存
+      九州别记.world.夸父骨画拓本.状态: 殷折拓存
+      九州别记.world.嬴无翳.位置: 九州别记.world.离国旧境
+      九州别记.world.嬴无翳.所属: 九州别记.world.离国
+      九州别记.world.嬴无翳.状态: 突围因果已闭
+      九州别记.world.嬴无翳.相关事实: {九州别记.world.嬴无翳为离公, 九州别记.world.嬴无翳善兵, 九州别记.world.嬴无翳弑兄继位, 九州别记.world.嬴无翳未帝而霸, 九州别记.world.嬴无翳用人与军政, 九州别记.world.嬴无翳骑射霸刀, 九州别记.world.殇阳关战役事实}
+      九州别记.world.嬴无翳.身份: 离国霸主
+      九州别记.world.封陵外城.状态: 断简显证
+      九州别记.world.张博.位置: 九州别记.world.殇阳关
+      九州别记.world.张博.所属: 九州别记.world.离国铁骑
+      九州别记.world.张博.状态: 归名旁照残缺
+      九州别记.world.张博.相关事实: {九州别记.world.张博殇阳战死, 九州别记.world.殇阳关战役事实}
+      九州别记.world.张博.身份: 离国将军
+      九州别记.world.张博断刃.状态: 九州别记.structure.vol01.ch24
+      九州别记.world.摸金殷门.根基: 旧陵术
+      九州别记.world.摸金殷门.状态: 衰落避世
+      九州别记.world.无名战牍残页.状态: 群名初成
+      九州别记.world.无名旧道.状态: 塌陷扩大
+      九州别记.world.旧鹰扳指.状态: 誓线拦污
+      九州别记.world.星文回廊.状态: 残简照片
+      九州别记.world.星辰秘术师.根基: 十二主星
+      九州别记.world.星辰秘术师.状态: 各派分流
+      九州别记.world.梦中殇阳雨阵.状态: 突围因果已闭
+      九州别记.world.楚卫国.根基: 殇阳关南屏
+      九州别记.world.楚卫国.状态: 胤末诸侯
+      九州别记.world.殇阳关战牍.状态: 败局未改群名留存
+      九州别记.world.殇阳关梦境.状态: 将退未退
+      九州别记.world.殇阳关联军.根基: 六国勤王
+      九州别记.world.殇阳关联军.状态: 战后离散
+      九州别记.world.殇阳梦境残印.状态: 群名待返
+      九州别记.world.殷门罗盘.状态: 点名成线
+      九州别记.world.河络匠盟.根基: 北邙山越州河谷
+      九州别记.world.河络匠盟.状态: 地下隐居
+      九州别记.world.河络地火机坊.状态: 火道复醒
+      九州别记.world.河络地火锥.状态: 冷锥出匣
+      九州别记.world.河络机关残页.状态: 校读
+      九州别记.world.瀚州硕风部.根基: 瀚州八部
+      九州别记.world.瀚州硕风部.状态: 北陆崛起
+      九州别记.world.燮室姬氏.来源: 胤末姬氏
+      九州别记.world.燮室姬氏.状态: 余脉入史
+      九州别记.world.燮朝.国祚: "约一百二十年"
+      九州别记.world.燮朝.开国名义: 姬野太祖
+      九州别记.world.燮朝.状态: 已亡
+      九州别记.world.燮朝.皇统: 姬昌夜一脉
+      九州别记.world.疑似封陵.状态: 多代重封成证
+      九州别记.world.疑似离公墓域.状态: 墓主待证
+      九州别记.world.白毅.位置: 九州别记.world.梦中殇阳雨阵
+      九州别记.world.白毅.所属: 九州别记.world.楚卫国
+      九州别记.world.白毅.状态: 压阵断回路
+      九州别记.world.白毅.相关事实: {九州别记.world.殇阳关战役事实}
+      九州别记.world.白毅.身份: 楚卫名将
+      九州别记.world.离公墓志残片.状态: 待接群名
+      九州别记.world.离国.根基: 九州别记.world.离国旧境
+      九州别记.world.离国.状态: 胤末霸主遗国
+      九州别记.world.离国国师府.根基: 雷碧城秘术
+      九州别记.world.离国国师府.状态: 梦中显影
+      九州别记.world.离国赤旅.根基: 离军旧制
+      九州别记.world.离国赤旅.状态: 墓中文献待证
+      九州别记.world.离国铁骑.根基: 离国军制
+      九州别记.world.离国铁骑.状态: 突围军令在梦中回响
+      九州别记.world.离国马具残饰.状态: 军制待辨
+      九州别记.world.穆如军门.根基: 军门铁骑
+      九州别记.world.穆如军门.状态: 盟约破裂
+      九州别记.world.穆如旧令抄本.状态: 对上门制
+      九州别记.world.端室牧云氏.根基: 九州别记.world.天启城
+      九州别记.world.端室牧云氏.状态: 皇权动摇
+      九州别记.world.端朝.国祚: "三百余年"
+      九州别记.world.端朝.开国名义: 牧云雄疆太祖
+      九州别记.world.端朝.状态: 末世分裂
+      九州别记.world.端朝.皇统: 牧云氏
+      九州别记.world.端朝掩史司.根基: 端朝秘档
+      九州别记.world.端朝掩史司.状态: 奉诏封口
+      九州别记.world.羽族.根基: 宁州澜州
+      九州别记.world.羽族.状态: 星文高族
+      九州别记.world.羽族元极道.根基: 十二主星
+      九州别记.world.羽族元极道.状态: 星辰学派
+      九州别记.world.羽族坠羽井.状态: 星文显现
+      九州别记.world.羽族星文树皮卷.状态: 星文展开
+      九州别记.world.胤朝.根基: 天子诸侯秩序
+      九州别记.world.胤朝.状态: 末世旧朝
+      九州别记.world.赤旅兵冢.状态: 军工待辨
+      九州别记.world.辰月暗宗.根基: 星命秘术
+      九州别记.world.辰月暗宗.状态: 暗流窥伺
+      九州别记.world.雷碧城.位置: 九州别记.world.梦中殇阳雨阵
+      九州别记.world.雷碧城.所属: 九州别记.world.雷碧城辰月支
+      九州别记.world.雷碧城.状态: 梦中国师星局显形
+      九州别记.world.雷碧城.相关事实: {九州别记.world.殇阳关异变之夜, 九州别记.world.离国辰月牵连, 九州别记.world.雷碧城辰月国师}
+      九州别记.world.雷碧城.身份: 离国国师
+      九州别记.world.雷碧城星术残简.状态: 污染被割
+      九州别记.world.雷碧城辰月支.根基: 辰月秘术
+      九州别记.world.雷碧城辰月支.状态: 国师暗线
+      九州别记.world.霸刀断铭.状态: 未出土
+      九州别记.world.霸刀遗名.状态: 传闻
+      九州别记.world.魅影残蜕.状态: 残蜕显形
+      九州别记.world.魅影空廊.状态: 证词扰乱
+      九州别记.world.魅族.根基: 古战场与幽林
+      九州别记.world.魅族.状态: 虚实难定
+      九州别记.world.鲛族.根基: 海市潮路
+      九州别记.world.鲛族.状态: 七海游居
+      九州别记.world.鲛泪暗渠.状态: 暗渠断流
+      九州别记.world.鲛泪盐珠.状态: 留在暗渠
+      九州别记.world.鲛绡残丝.状态: 残丝显证
+      九州别记.world.鹰旗残绶.状态: 失落
+    }
+  structure:
+    start_patterns: [
+    ]
+    active_threads: [
+      九州别记.threads.九州野史线,
+      九州别记.threads.大墓真相线,
+      九州别记.threads.天驱旧誓线,
+      九州别记.threads.封陵旧史线,
+      九州别记.threads.摸金门规线,
+      九州别记.threads.殇阳梦境线,
+      九州别记.threads.瀚州草原线,
+      九州别记.threads.穆如军门线,
+      九州别记.threads.端朝皇权线,
+      九州别记.threads.误入地宫线,
+      九州别记.threads.辰月暗流线,
+    ]
+    active_promises: [
+      九州别记.promises.军门密诏悬念,
+      九州别记.promises.燮朝重封伏笔,
+      九州别记.promises.石门身份伏笔,
+      九州别记.promises.辰月远观悬念,
+    ]
+    active_arcs: [
+    ]
+    served_threads: [
+      九州别记.threads.九州野史线,
+      九州别记.threads.大墓真相线,
+      九州别记.threads.摸金门规线,
+      九州别记.threads.殇阳梦境线,
+    ]
+    served_promises: [
+    ]
+    served_arcs: [
+    ]
+  beats:
+    ordered_beats: [
+      九州别记.structure.vol1_ch29.雨阵退成战牍,
+      九州别记.structure.vol1_ch29.殷折不追胜负,
+      九州别记.structure.vol1_ch29.突围因果闭合,
+      九州别记.structure.vol1_ch29.无名残页群名初成,
+      九州别记.structure.vol1_ch29.梦门露回石室,
+    ]
+    beat_preconditions: [
+    ]
+    beat_effects: [
+      {
+        beat: 九州别记.structure.vol1_ch29.雨阵退成战牍
+        effect:
+          world.梦中殇阳雨阵.状态 = 退成战牍纹
+          world.殇阳关战牍.状态 = 梦中复成战牍
+          chars.殷折.状态 = 看见雨阵退潮
+      },
+      {
+        beat: 九州别记.structure.vol1_ch29.殷折不追胜负
+        effect:
+          chars.殷折.状态 = 不追胜负幻影
+          chars.殷折.知道 += world.梦境挽回边界
+          world.殇阳关梦境.状态 = 胜负幻影退去
+      },
+      {
+        beat: 九州别记.structure.vol1_ch29.突围因果闭合
+        effect:
+          world.梦中殇阳雨阵.状态 = 突围因果已闭
+          world.嬴无翳.状态 = 突围因果已闭
+          world.殇阳关战牍.状态 = 败局未改群名留存
+      },
+      {
+        beat: 九州别记.structure.vol1_ch29.无名残页群名初成
+        effect:
+          world.无名战牍残页.状态 = 群名初成
+          world.殇阳梦境残印.状态 = 群名待返
+          chars.殷折.状态 = 带群名至梦门
+      },
+      {
+        beat: 九州别记.structure.vol1_ch29.梦门露回石室
+        effect:
+          world.殇阳关梦境.状态 = 将退未退
+          chars.殷折.状态 = 梦门前停步
+          world.离公墓志残片.状态 = 待接群名
+      },
+    ]
+    beat_render_hints: [
+      { beat: 九州别记.structure.vol1_ch29.雨阵退成战牍, hint: "雨阵退成文字纹路，提示梦境将回到现实证物。" },
+      { beat: 九州别记.structure.vol1_ch29.殷折不追胜负, hint: "这是殷折的选择确认，不是梦境替他关掉所有诱惑。" },
+      { beat: 九州别记.structure.vol1_ch29.突围因果闭合, hint: "突围因果闭合时要确认败局没有改写，只有姓名被留住。" },
+      { beat: 九州别记.structure.vol1_ch29.无名残页群名初成, hint: "群名只是初成，不是完整战死名册。" },
+      { beat: 九州别记.structure.vol1_ch29.梦门露回石室, hint: "章末只露回现实缝隙，把醒来留给第三十章。" },
+    ]
+  prose:
+    prose_hint: "第二十九章收束梦境战场，把情绪落在群名成形和退潮将临。"
+    target_length: 3000 字
+}

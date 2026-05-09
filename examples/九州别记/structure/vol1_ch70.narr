@@ -1,0 +1,89 @@
+namespace 九州别记.structure.vol1_ch70
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 星盘被旧誓截断 @ structure.vol01.ch70 {
+  effect:
+    world.十二主星盘.状态 = 被旧誓截断
+    world.星文回廊.状态 = 星局断续
+    world.雷碧城星术残简.状态 = 截断后沉寂
+
+  pov: chars.殷折
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.牧云镜 }
+  advances: { threads.辰月暗流线, threads.天驱旧誓线, threads.大墓真相线 }
+  reveals: { world.秘术溢出风险, world.星文观测原则 }
+  mentions: { world.十二主星盘, world.雷碧城星术残简, world.旧鹰扳指 }
+  render_hint: "开章直接确认星盘被截断，但保留余波和后患。"
+}
+
+beat 闻人星局受挫 @ structure.vol01.ch70 {
+  effect:
+    chars.闻人观星.状态 = 星局受挫
+    chars.闻人观星.arc_state = 均势受挫
+    world.十二主星盘.状态 = 被旧誓截断
+
+  pov: chars.闻人观星
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.闻人观星, chars.殷折, chars.苏离灯 }
+  pays_off: promises.辰月远观悬念
+  advances: { threads.辰月暗流线, threads.九州野史线 }
+  reveals: world.辰月人物规划原则
+  mentions: { world.十二主星盘, world.辰月暗宗, world.辰月星坛 }
+  render_hint: "闻人观星受挫要有撤局判断，不写成彻底终结辰月。"
+}
+
+beat 姬断鹰败走 @ structure.vol01.ch70 {
+  effect:
+    chars.姬断鹰.状态 = 败走
+    chars.姬断鹰.arc_state = 夺誓受挫
+    world.天驱宗主指套残模.状态 = 夺权失效
+
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折, chars.姬断鹰 }
+  advances: { threads.天驱旧誓线, threads.九州野史线 }
+  mentions: { world.天驱宗主指套残模, world.天驱旧盟, world.旧鹰扳指 }
+  render_hint: "姬断鹰败走要带着旧誓解释权失败的挫败，而不是单纯打输。"
+}
+
+beat 苏离灯自定守誓 @ structure.vol01.ch70 {
+  effect:
+    chars.苏离灯.状态 = 自定守誓
+    chars.苏离灯.arc_state = 守誓自定
+    world.旧鹰扳指.状态 = 自定守誓
+    world.地下铁誓厅.状态 = 自定守誓留声
+
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折, chars.牧云镜 }
+  advances: { threads.天驱旧誓线, threads.摸金门规线 }
+  reveals: world.天驱人物规划原则
+  mentions: { world.旧鹰扳指, world.天驱护陵旧誓, world.鹰旗残绶 }
+  render_hint: "苏离灯的胜利是守誓自定，不是拿到号令天驱的宗主权。"
+}
+
+beat 殷折封存真史退路 @ structure.vol01.ch70 {
+  effect:
+    chars.殷折.状态 = 封存真史退路
+    chars.殷折.arc_state = 守规留史
+    world.离公墓志残片.状态 = 真史封存待校
+    world.殇阳梦境残印.状态 = 未被夺权夺用
+
+  pov: chars.殷折
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.牧云镜 }
+  advances: { threads.摸金门规线, threads.大墓真相线, threads.殇阳梦境线 }
+  reveals: world.嬴无翳墓葬危险原则
+  mentions: { world.离公墓志残片, world.殇阳梦境残印, world.殷门罗盘 }
+  render_hint: "收束时让殷折保存真史和退路，不带走墓物作为战利。"
+}

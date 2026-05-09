@@ -1,0 +1,88 @@
+namespace 九州别记.structure.vol1_ch51
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 墓主证链合拢 @ structure.vol01.ch51 {
+  effect:
+    chars.牧云镜.位置 = world.墓志石室
+    chars.牧云镜.知道 += world.嬴无翳墓主定位
+    world.疑似离公墓域.状态 = 墓主已确认
+    world.嬴无翳.状态 = 大墓已证
+
+  pov: chars.牧云镜
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚 }
+  advances: { threads.大墓真相线, threads.封陵旧史线, threads.九州野史线 }
+  reveals: world.嬴无翳墓主定位
+  mentions: { world.离公墓志残片, world.殇阳关战牍, world.嬴无翳 }
+  render_hint: "确认来自残片、战牍和梦印互证，不要写成单件宝物直接报出答案。"
+}
+
+beat 未帝霸名动局 @ structure.vol01.ch51 {
+  effect:
+    chars.牧云镜.知道 += world.嬴无翳未帝而霸
+    chars.穆如砚.知道 += world.嬴无翳墓葬危险原则
+    world.霸刀断铭.状态 = 霸名相合
+    world.离国.状态 = 霸主旧史翻起
+
+  pov: chars.牧云镜
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.牧云镜, chars.穆如砚, chars.殷折 }
+  advances: { threads.九州野史线, threads.端朝皇权线 }
+  reveals: { world.嬴无翳未帝而霸, world.嬴无翳墓葬危险原则 }
+  mentions: { world.霸刀断铭, world.离国, world.端朝 }
+  render_hint: "危险来自未帝而霸的政治含义，不来自陪葬珍宝。"
+}
+
+beat 牧云烬称证入案 @ structure.vol01.ch51 {
+  effect:
+    chars.牧云烬.位置 = world.墓志石室
+    chars.牧云烬.状态 = 称证入案
+    chars.牧云烬.知道 += world.嬴无翳墓葬危险原则
+    world.端朝掩史司.状态 = 接管墓证
+
+  pov: chars.牧云烬
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.牧云烬, chars.牧云镜, chars.穆如砚 }
+  advances: { threads.端朝皇权线, threads.大墓真相线 }
+  mentions: { world.端朝掩史司, world.掩史司密库, world.嬴无翳 }
+  render_hint: "牧云烬先把真相变成案卷口径，为后续皇权取用铺路。"
+}
+
+beat 牧云镜识出史危 @ structure.vol01.ch51 {
+  effect:
+    chars.牧云镜.状态 = 识出史危
+    chars.牧云镜.arc_state = 抗诏前夜
+    chars.牧云镜.相信 += "墓主真名一旦归掩史司，史书就会先于证据被改写"
+
+  pov: chars.牧云镜
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折 }
+  advances: { threads.九州野史线, threads.端朝皇权线 }
+  mentions: { world.牧云掩史旧档, world.离公墓志残片, world.殇阳关战牍 }
+  render_hint: "牧云镜的危机是史官职责与密诏冲突，不是单纯害怕牧云烬。"
+}
+
+beat 穆如砚封住活口 @ structure.vol01.ch51 {
+  effect:
+    chars.穆如砚.位置 = world.墓志石室
+    chars.穆如砚.状态 = 封住活口
+    chars.穆如砚.关系 += "先护知情活人再议军令"
+    world.墓志石室.状态 = 墓主证据封存
+
+  pov: chars.穆如砚
+  location: world.墓志石室
+  on_screen: true
+  observers: { chars.穆如砚, chars.牧云镜, chars.殷折, chars.牧云烬 }
+  advances: { threads.穆如军门线, threads.大墓真相线 }
+  mentions: { world.穆如军门, world.穆如旧令抄本, world.端朝掩史司 }
+  render_hint: "穆如砚封的是现场和活人退路，不是替皇权灭口。"
+}

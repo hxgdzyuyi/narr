@@ -5,6 +5,23 @@ import 九州别记.characters as chars
 import 九州别记.structure.vol1_ch01 as vol1_ch01
 import 九州别记.structure.vol1_ch02 as vol1_ch02
 import 九州别记.structure.vol1_ch03 as vol1_ch03
+import 九州别记.structure.vol1_ch04 as vol1_ch04
+import 九州别记.structure.vol1_ch05 as vol1_ch05
+import 九州别记.structure.vol1_ch06 as vol1_ch06
+import 九州别记.structure.vol1_ch07 as vol1_ch07
+import 九州别记.structure.vol1_ch08 as vol1_ch08
+import 九州别记.structure.vol1_ch09 as vol1_ch09
+import 九州别记.structure.vol1_ch10 as vol1_ch10
+import 九州别记.structure.vol1_ch11 as vol1_ch11
+import 九州别记.structure.vol1_ch12 as vol1_ch12
+import 九州别记.structure.vol1_ch13 as vol1_ch13
+import 九州别记.structure.vol1_ch14 as vol1_ch14
+import 九州别记.structure.vol1_ch15 as vol1_ch15
+import 九州别记.structure.vol1_ch16 as vol1_ch16
+import 九州别记.structure.vol1_ch17 as vol1_ch17
+import 九州别记.structure.vol1_ch18 as vol1_ch18
+import 九州别记.structure.vol1_ch19 as vol1_ch19
+import 九州别记.structure.vol1_ch20 as vol1_ch20
 
 chapter vol01.ch01 alias 祖辈封门 {
   title: "祖辈封门"
@@ -58,4 +75,310 @@ chapter vol01.ch03 alias 旧道塌陷 {
     vol1_ch03.地裂露出石门
   ]
   prose_hint: "第三章才让事故真正启动；只露出石门和地下异常，不进入外城，不出现空棺，不确认墓主。"
+}
+
+chapter vol01.ch04 alias 外城启门 {
+  title: "外城启门"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.无名旧道
+  time_hint: "第三章石门露出后，当夜，无名旧道塌口下方。"
+  summary: "殷折一行在石门前按门规量土、听风、试机关，确认石门后并非寻常墓室而是被改封过的封陵外城；苏离灯的旧鹰扳指再次示警，丁缺金则暗中记下退路。"
+  beats: [
+    vol1_ch04.殷折量门听土,
+    vol1_ch04.洛衡识出外城活扣,
+    vol1_ch04.苏离灯鹰戒灼热,
+    vol1_ch04.众人开入外城,
+    vol1_ch04.丁缺金暗记退路
+  ]
+  prose_hint: "第四章要写第一次过石门的谨慎，重点是门规与生存判断，不把外城直接写成最终主墓。"
+}
+
+chapter vol01.ch05 alias 错铭断简 {
+  title: "错铭断简"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.封陵外城
+  time_hint: "入封陵外城后第一更。"
+  summary: "外城甬道中的错铭、断简和穆如旧令互相印证，说明这里被燮朝二次重封；牧云镜意识到掩史旧档隐去了更危险的名字，辰月也开始借这份旧史布疑。"
+  beats: [
+    vol1_ch05.外城甬道验风,
+    vol1_ch05.牧云镜辨出燮年错铭,
+    vol1_ch05.穆如砚对照旧令,
+    vol1_ch05.洛衡证实二次改封,
+    vol1_ch05.闻人借星传局
+  ]
+  prose_hint: "第五章只确认燮朝封陵痕迹和后世改封，不要确认更古老陵主。"
+}
+
+chapter vol01.ch06 alias 雪上封口 {
+  title: "雪上封口"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.穆如砚
+  location: world.雪炽原旧驿
+  time_hint: "外城发现传回地面后，雪炽原旧驿。"
+  summary: "穆如砚试图封营护民，牧云烬却携掩史密诏赶到旧驿夺证封口；牧云镜私藏副诏，殷折拒交罗盘，地下回声迫使众人带着更重的政治压力返回外城。"
+  beats: [
+    vol1_ch06.穆如砚雪上封营,
+    vol1_ch06.牧云烬持诏入驿,
+    vol1_ch06.牧云镜藏下副诏,
+    vol1_ch06.殷折拒交罗盘,
+    vol1_ch06.地下回声逼众返门
+  ]
+  prose_hint: "第六章把地上皇权、军门和掩史司压力压到队伍身上，但丁缺金仍保持伪装。"
+}
+
+chapter vol01.ch07 alias 铁誓厅灯 {
+  title: "铁誓厅灯"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.苏离灯
+  location: world.地下铁誓厅
+  time_hint: "众人重返封陵外城后，地宫侧廊。"
+  summary: "旧鹰扳指把苏离灯引入地下铁誓厅，铁痕与断名证明天驱旧誓曾在此留下残痕；姬断鹰隔门现身逼她认誓，众人只能熄灯退回外城。"
+  beats: [
+    vol1_ch07.鹰戒牵入铁誓侧廊,
+    vol1_ch07.铁痕照出旧誓,
+    vol1_ch07.苏离灯读出断名,
+    vol1_ch07.姬断鹰隔门逼誓,
+    vol1_ch07.众人熄灯退回外城
+  ]
+  prose_hint: "第七章让天驱线从传闻变成实物痕迹，但仍不能写成天驱主导掘陵。"
+}
+
+chapter vol01.ch08 alias 背门入冢 {
+  title: "背门入冢"
+  purpose: reversal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.赤旅兵冢
+  time_hint: "铁誓厅之后，封陵外城更深处。"
+  summary: "丁缺金借岔路把众人诱入赤旅兵冢，离国军工痕迹第一次浮出水面；他夺灯现形，暴露背门之心，辰月暗号也随之出现，殷折却按门规把叛徒从塌陷中救回。"
+  beats: [
+    vol1_ch08.丁缺金诱入兵冢岔路,
+    vol1_ch08.赤旅铜钉显出军工,
+    vol1_ch08.丁缺金夺灯现形,
+    vol1_ch08.辰月暗号浮上铜皮,
+    vol1_ch08.殷折守规救回叛徒
+  ]
+  prose_hint: "第八章兑现丁缺金的明面背叛，同时让殷折的门规选择压过报复冲动。"
+}
+
+chapter vol01.ch09 alias 空棺无名 {
+  title: "空棺无名"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  time_hint: "赤旅兵冢塌陷后，疑似离公墓域外缘。"
+  summary: "兵冢下层沉门露出疑似离公墓域的外缘，众人见到空棺与无名墓志门；牧云镜判断史书被人有意裁缺，辰月则借缺名制造各方互疑。"
+  beats: [
+    vol1_ch09.兵冢下层沉门,
+    vol1_ch09.无名墓志门闭合,
+    vol1_ch09.空棺照见缺名,
+    vol1_ch09.牧云镜辨伪史,
+    vol1_ch09.闻人借缺名挑疑
+  ]
+  prose_hint: "第九章给空棺和无名墓志门，答案要更近但仍缺关键名字。"
+}
+
+chapter vol01.ch10 alias 残片不归 {
+  title: "残片不归"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.墓志石室
+  time_hint: "空棺无名之后，墓志石室门前。"
+  summary: "墓志石室露缝，离公墓志残片出土却仍不足以确认墓主；牧云烬试图夺证封口，穆如砚违令护队，殷折把残片藏下，决定先保活人和真相，不把它交给任何一方。"
+  beats: [
+    vol1_ch10.墓志石室露缝,
+    vol1_ch10.离公残片出土,
+    vol1_ch10.牧云烬夺证封口,
+    vol1_ch10.穆如砚违令护队,
+    vol1_ch10.殷折藏片立规
+  ]
+  prose_hint: "第十章只让离公墓志残片成为争夺物和新问题，不确认嬴无翳墓主身份。"
+}
+
+chapter vol01.ch11 alias 地火机坊 {
+  title: "地火机坊"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.洛衡
+  location: world.河络地火机坊
+  time_hint: "殷折藏下离公墓志残片后，墓志石室后壁塌开，众人被迫转入封死的机坊火道。"
+  summary: "残片与罗盘牵动墓志石室后的河络地火机坊，洛衡辨出机坊不是主墓原制，而是燮朝重封时借用的承重与火道工程；牧云烬借封口逼供，殷折则按门规以罗盘定承重，众人取冷锥破封留路。"
+  beats: [
+    vol1_ch11.残片压动火道,
+    vol1_ch11.洛衡辨出地火旧工,
+    vol1_ch11.牧云烬封门逼供,
+    vol1_ch11.殷折以罗盘定承重,
+    vol1_ch11.冷锥破封留路
+  ]
+  prose_hint: "第十一章把河络机关写成后世重封工程的痕迹，不把机坊写成主墓核心。"
+}
+
+chapter vol01.ch12 alias 坠羽井星 {
+  title: "坠羽井星"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.苏离灯
+  location: world.羽族坠羽井
+  time_hint: "机坊冷锥破封后，火道尽头露出一口带羽族星文的竖井。"
+  summary: "众人沿火道进入羽族坠羽井，井壁树皮卷和星文残痕显示古航图材料曾被带入封陵；苏离灯把星文与天驱旧誓分开辨认，闻人观星则远处借星误导，硕风照夜听出井风连向北陆旧歌。"
+  beats: [
+    vol1_ch12.星文风井露出,
+    vol1_ch12.牧云镜辨古航残片,
+    vol1_ch12.苏离灯护住断羽誓,
+    vol1_ch12.闻人借星误导井文,
+    vol1_ch12.硕风照夜听出北陆旧风
+  ]
+  prose_hint: "第十二章要让羽族痕迹成为材料与航图线索，而不是证明羽族参与建造主墓。"
+}
+
+chapter vol01.ch13 alias 鲛泪暗渠 {
+  title: "鲛泪暗渠"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.鲛泪暗渠
+  time_hint: "坠羽井星文误导之后，井底盐线把众人引入一段干涸暗渠。"
+  summary: "鲛泪暗渠中的盐结、鲛绡残丝和潮路刻痕证明封陵曾通过水路交换材料；牧云烬想截取盐珠作为官府证物，殷折拒绝把殉珠当财物带走，暗渠回流断路迫使队伍继续向墓域内侧移动。"
+  beats: [
+    vol1_ch13.盐线引入暗渠,
+    vol1_ch13.鲛绡残丝证水路,
+    vol1_ch13.牧云烬截取盐珠,
+    vol1_ch13.殷折拒取殉珠,
+    vol1_ch13.暗渠回流断路
+  ]
+  prose_hint: "第十三章写水路和材料流通，不把鲛族痕迹写成宝物奇观。"
+}
+
+chapter vol01.ch14 alias 骨画无王 {
+  title: "骨画无王"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.硕风照夜
+  location: world.夸父骨画壁
+  time_hint: "暗渠断路后，众人从裂开的石梁爬入一面巨石骨画壁前。"
+  summary: "夸父骨画壁记录的不是华族王侯墓制，而是巨人族群记忆里的吞狼、火道和无王之门；硕风照夜用草原旧歌对读骨画，牧云镜确认这是正史外证词，丁缺金借骨影逃匿，殷折拓下无王图作为后续辨伪依据。"
+  beats: [
+    vol1_ch14.巨石壁露骨画,
+    vol1_ch14.硕风照夜译出吞狼旧口,
+    vol1_ch14.牧云镜辨非华族证词,
+    vol1_ch14.丁缺金借骨影逃匿,
+    vol1_ch14.殷折拓下无王图
+  ]
+  prose_hint: "第十四章把夸父证词写成野史外证，继续保持墓主缺名。"
+}
+
+chapter vol01.ch15 alias 魅廊失名 {
+  title: "魅廊失名"
+  purpose: reversal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.魅影空廊
+  time_hint: "骨画拓下后，墓志石室旁的空廊吞掉火光与人声。"
+  summary: "魅影空廊扰乱众人记忆和证词，让每个人都差点把河络、羽族、鲛族、夸父的痕迹误读成单一建陵者；殷折按门规逐一点名救回队形，牧云镜最终把多族痕迹归为材料流通与多代重封。"
+  beats: [
+    vol1_ch15.空廊吞声,
+    vol1_ch15.魅影残蜕扰记,
+    vol1_ch15.众人各失一段证词,
+    vol1_ch15.殷折守规点名,
+    vol1_ch15.多族痕迹归重封
+  ]
+  prose_hint: "第十五章回答多族痕迹的解释原则，避免把所有痕迹误写成共同建主墓。"
+}
+
+chapter vol01.ch16 alias 星文回廊 {
+  title: "星文回廊"
+  purpose: discovery
+  target_length: 3000 字
+  pov: chars.苏离灯
+  location: world.星文回廊
+  time_hint: "魅影空廊退潮后，铁誓厅旁的星文回廊第一次完整显形。"
+  summary: "星文回廊把天驱旧誓和辰月星术并置，雷碧城星术残简现出与离公墓志残片互照的迹象；闻人观星远催十二主星盘，苏离灯认出誓术被污染，殷折手中的残片开始应星发热。"
+  beats: [
+    vol1_ch16.铁誓厅旁暗门开启,
+    vol1_ch16.雷碧城残简现星,
+    vol1_ch16.闻人远催星盘,
+    vol1_ch16.苏离灯识出誓术污染,
+    vol1_ch16.殷折残片应星
+  ]
+  prose_hint: "第十六章只建立触梦条件，不让星术直接替代证据链。"
+}
+
+chapter vol01.ch17 alias 战牍出匣 {
+  title: "战牍出匣"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.牧云镜
+  location: world.墓志石室
+  time_hint: "星文回廊应星之后，墓志石室夹层露出一只战牍匣。"
+  summary: "牧云镜从墓志石室夹层取出殇阳关战牍，却发现关键姓名被辰月污染和败局传抄遮蔽；张博名位第一次显出又被污损，牧云镜意识到这份战牍会动摇端朝正史，闻人观星则让残简与战牍相连。"
+  beats: [
+    vol1_ch17.墓志夹层开匣,
+    vol1_ch17.殇阳战牍半出,
+    vol1_ch17.张博名位被污,
+    vol1_ch17.牧云镜恐其动摇正史,
+    vol1_ch17.闻人催动残简
+  ]
+  prose_hint: "第十七章让殇阳关战牍成为梦境前的最后证物，重点是缺名与污染。"
+}
+
+chapter vol01.ch18 alias 梦门照身 {
+  title: "梦门照身"
+  purpose: reveal
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  time_hint: "离公墓志残片、殇阳关战牍和雷碧城星术残简同处星文回路时。"
+  summary: "三件残证在星文回廊中互照成环，殷折被映入殇阳关梦境；他不是旁观旧史，而是被墓主身体和因果压住，苏离灯在现实侧听见旧誓回声，梦门合上时明确给出不能自由改史的限制。"
+  beats: [
+    vol1_ch18.三残同照成环,
+    vol1_ch18.殷折被映入战前,
+    vol1_ch18.墓主身体压身,
+    vol1_ch18.苏离灯听见旧誓回声,
+    vol1_ch18.梦门合上留限
+  ]
+  prose_hint: "第十八章触发殇阳梦境和化身墓主规则，但重点是因果限制，不是爽快改史。"
+}
+
+chapter vol01.ch19 alias 雨阵不能改 {
+  title: "雨阵不能改"
+  purpose: conflict
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  time_hint: "殷折入梦后，殇阳关战役决战前的雨阵。"
+  summary: "殷折以嬴无翳之身醒在殇阳雨阵，见白毅军势压关、雷碧城星术污染战牍；他试图改写败局却被梦境边界压回，只能从张博断刃和无名战牍残页中看见真正可挽回的是姓名与收殓。"
+  beats: [
+    vol1_ch19.殷折醒在离军阵前,
+    vol1_ch19.白毅军势压关,
+    vol1_ch19.雷碧城星术污染战牍,
+    vol1_ch19.殷折试改败局受限,
+    vol1_ch19.张博断刃指名
+  ]
+  prose_hint: "第十九章要把不能改写胜负写清楚，让梦境从战史奇观转为伦理选择。"
+}
+
+chapter vol01.ch20 alias 断刃归名 {
+  title: "断刃归名"
+  purpose: choice
+  target_length: 3000 字
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  time_hint: "雨阵败局不可改之后，殷折循断刃找回张博的最后位置。"
+  summary: "殷折追至死阵边缘，终于让张博姓名从被污损的战牍里浮现；他不能替嬴无翳回军改写殇阳关败局，只能收殓断刃、补回姓名，并让梦印反写进现实残片，完成第一处墓主遗憾的归名。"
+  beats: [
+    vol1_ch20.殷折追至死阵,
+    vol1_ch20.张博姓名浮现,
+    vol1_ch20.墓主不能回军,
+    vol1_ch20.殷折收殓断刃,
+    vol1_ch20.梦印反写残片
+  ]
+  prose_hint: "第二十章兑现张博归名，但仍保留殇阳梦境后续空间，不把整场梦境全部解决。"
 }

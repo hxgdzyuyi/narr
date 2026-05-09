@@ -5,19 +5,70 @@ import 九州别记.characters as chars
 import 九州别记.world as world
 import 九州别记.threads as threads
 
-test "开头三章已声明且章序连续" tags {structure, chapters} {
+test "第一卷八十章已声明且前二十章章序连续" tags {structure, chapters} {
   let 第一章 = structure.vol01.ch01
   let 第二章 = structure.vol01.ch02
   let 第三章 = structure.vol01.ch03
+  let 第四章 = structure.vol01.ch04
+  let 第五章 = structure.vol01.ch05
+  let 第六章 = structure.vol01.ch06
+  let 第七章 = structure.vol01.ch07
+  let 第八章 = structure.vol01.ch08
+  let 第九章 = structure.vol01.ch09
+  let 第十章 = structure.vol01.ch10
+  let 第十一章 = structure.vol01.ch11
+  let 第十二章 = structure.vol01.ch12
+  let 第十三章 = structure.vol01.ch13
+  let 第十四章 = structure.vol01.ch14
+  let 第十五章 = structure.vol01.ch15
+  let 第十六章 = structure.vol01.ch16
+  let 第十七章 = structure.vol01.ch17
+  let 第十八章 = structure.vol01.ch18
+  let 第十九章 = structure.vol01.ch19
+  let 第二十章 = structure.vol01.ch20
 
-  assert count(chapters_in(structure.vol01)) == 3
+  assert count(chapters_in(structure.vol01)) == 80
   assert 第一章 precedes 第二章
   assert 第二章 precedes 第三章
+  assert 第三章 precedes 第四章
+  assert 第四章 precedes 第五章
+  assert 第五章 precedes 第六章
+  assert 第六章 precedes 第七章
+  assert 第七章 precedes 第八章
+  assert 第八章 precedes 第九章
+  assert 第九章 precedes 第十章
+  assert 第十章 precedes 第十一章
+  assert 第十一章 precedes 第十二章
+  assert 第十二章 precedes 第十三章
+  assert 第十三章 precedes 第十四章
+  assert 第十四章 precedes 第十五章
+  assert 第十五章 precedes 第十六章
+  assert 第十六章 precedes 第十七章
+  assert 第十七章 precedes 第十八章
+  assert 第十八章 precedes 第十九章
+  assert 第十九章 precedes 第二十章
   assert next(第一章) == 第二章
   assert next(第二章) == 第三章
+  assert next(第三章) == 第四章
+  assert next(第四章) == 第五章
+  assert next(第五章) == 第六章
+  assert next(第六章) == 第七章
+  assert next(第七章) == 第八章
+  assert next(第八章) == 第九章
+  assert next(第九章) == 第十章
+  assert next(第十章) == 第十一章
+  assert next(第十一章) == 第十二章
+  assert next(第十二章) == 第十三章
+  assert next(第十三章) == 第十四章
+  assert next(第十四章) == 第十五章
+  assert next(第十五章) == 第十六章
+  assert next(第十六章) == 第十七章
+  assert next(第十七章) == 第十八章
+  assert next(第十八章) == 第十九章
+  assert next(第十九章) == 第二十章
 }
 
-test "开头三章保留章节元信息" tags {structure, metadata} {
+test "第一卷章节保留章节元信息" tags {structure, metadata} {
   forall chapter 章节 in chapters_in(structure.vol01):
     assert 章节.title exists
     assert 章节.alias exists
@@ -27,10 +78,9 @@ test "开头三章保留章节元信息" tags {structure, metadata} {
     assert 章节.prose_hint exists
 }
 
-test "开头三章各有五个 beat" tags {structure, beats} {
-  assert count(beats(structure.vol01.ch01)) == 5
-  assert count(beats(structure.vol01.ch02)) == 5
-  assert count(beats(structure.vol01.ch03)) == 5
+test "第一卷各章都有五个 beat" tags {structure, beats} {
+  forall chapter 章节 in chapters_in(structure.vol01):
+    assert count(beats(章节)) == 5
 }
 
 test "前两章先讲祖辈死亡与摸金技艺来源" tags {structure, pacing, ancestor} {
@@ -64,5 +114,5 @@ test "开头三章只推进到石门不进入外城" tags {state, premise, pacin
   assert state(world.疑似封陵.状态, at structure.vol01.ch03.end) == 露出石门
   assert state(world.封陵外城.状态, at structure.vol01.ch03.end) == 未开启
   assert state(world.疑似离公墓域.状态, at structure.vol01.ch03.end) == 未证实
-  assert count(chapter 章节 in chapters_in(structure.vol01) where 章节 reveals world.嬴无翳墓主定位) == 0
+  assert count(chapter 章节 in chapters_in(structure.vol01) where 章节 at_or_before structure.vol01.ch03 and 章节 reveals world.嬴无翳墓主定位) == 0
 }

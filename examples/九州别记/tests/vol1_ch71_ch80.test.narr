@@ -1,0 +1,55 @@
+namespace 九州别记.tests
+
+import 九州别记.structure as structure
+import 九州别记.characters as chars
+import 九州别记.world as world
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+test "第七十一至第八十章完成卷末章序边界" tags {structure, vol01, ending} {
+  assert previous(structure.vol01.ch80) == structure.vol01.ch79
+  assert next(structure.vol01.ch80) missing
+  assert count(beats(structure.vol01.ch71)) == 5
+  assert count(beats(structure.vol01.ch80)) == 5
+}
+
+test "卷末选择封存留史护民而非夺墓" tags {state, ending, tomb} {
+  assert state(world.疑似封陵.状态, at structure.vol01.ch80.end) == 封存见证
+  assert state(world.嬴无翳.状态, at structure.vol01.ch80.end) == 墓主归史
+  assert state(world.离公墓志残片.状态, at structure.vol01.ch80.end) == 留史不夺
+  assert state(chars.殷折.arc_state, at structure.vol01.ch80.end) == 守门写史
+  assert state(chars.殷折.位置, at structure.vol01.ch80.end) == world.雪炽原旧驿
+}
+
+test "丁缺金背叛归账且不再独占证物" tags {characters, promise, betrayal} {
+  assert structure.vol01.ch72 pays_off promises.丁缺金背叛伏笔
+  assert state(chars.丁缺金.状态, at structure.vol01.ch72.end) == 背门守塌
+  assert state(chars.丁缺金.位置, at structure.vol01.ch79.end) == world.无名旧道
+  assert structure.vol01.ch79 resolves threads.摸金门规线
+}
+
+test "墓主真相入野史而非归皇权或辰月" tags {world, reveals, history} {
+  assert structure.vol01.ch75 reveals world.嬴无翳墓主定位
+  assert structure.vol01.ch75 reveals world.嬴无翳墓葬危险原则
+  assert structure.vol01.ch76 reveals world.秘术溢出风险
+  assert state(world.端朝掩史司.状态, at structure.vol01.ch80.end) == 未能独占
+  assert state(world.辰月暗宗.状态, at structure.vol01.ch80.end) == 星局受挫
+}
+
+test "燮朝重封答案归证并重新封陵" tags {promise, sealing, history} {
+  assert structure.vol01.ch77 reveals world.燮朝封陵残证
+  assert structure.vol01.ch77 pays_off promises.燮朝重封伏笔
+  assert structure.vol01.ch77 resolves threads.封陵旧史线
+  assert state(world.墓志石室.状态, at structure.vol01.ch77.end) == 内门不启
+  assert state(world.无名旧道.状态, at structure.vol01.ch80.end) == 封门归静
+}
+
+test "第一卷核心线在第八十章收束为可追野史" tags {threads, ending, vol01} {
+  assert structure.vol01.ch71 advances threads.辰月暗流线
+  assert structure.vol01.ch73 advances threads.误入地宫线
+  assert structure.vol01.ch74 advances threads.九州野史线
+  assert structure.vol01.ch78 advances threads.大墓真相线
+  assert structure.vol01.ch80 resolves threads.误入地宫线
+  assert structure.vol01.ch80 resolves threads.大墓真相线
+  assert structure.vol01.ch80 resolves threads.九州野史线
+}

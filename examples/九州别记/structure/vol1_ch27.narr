@@ -1,0 +1,86 @@
+namespace 九州别记.structure.vol1_ch27
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 突围路线显形 @ structure.vol01.ch27 {
+  effect:
+    world.梦中殇阳雨阵.状态 = 突围路线显形
+    world.嬴无翳.状态 = 突围路线压身
+    chars.殷折.状态 = 看见突围路线
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.大墓真相线 }
+  reveals: world.殇阳关战役事实
+  mentions: { world.嬴无翳, world.梦中殇阳雨阵, world.殇阳关战役事实 }
+  render_hint: "突围路线显形时要同时显出不能回身的代价。"
+}
+
+beat 白毅压阵不许回身 @ structure.vol01.ch27 {
+  effect:
+    world.白毅.位置 = world.梦中殇阳雨阵
+    world.白毅.状态 = 压阵断回路
+    chars.殷折.知道 += world.殇阳关战役事实
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.九州野史线, threads.殇阳梦境线 }
+  mentions: { world.白毅, world.楚卫国, world.殇阳关联军 }
+  render_hint: "白毅仍是战史压力的一部分，不要把他简化成阻碍归名的恶人。"
+}
+
+beat 嬴无翳因果成锁 @ structure.vol01.ch27 {
+  effect:
+    world.嬴无翳.状态 = 突围因果成锁
+    chars.殷折.身份 = 梦中墓主映身
+    chars.殷折.知道 += world.梦境挽回边界
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.大墓真相线, threads.殇阳梦境线 }
+  reveals: world.梦境挽回边界
+  mentions: { world.嬴无翳, world.梦境挽回边界, world.化身墓主规则 }
+  render_hint: "因果成锁要让墓主更近，但仍不公开完整墓主结论。"
+}
+
+beat 殷折照见墓葬危险 @ structure.vol01.ch27 {
+  effect:
+    chars.殷折.知道 += world.嬴无翳墓葬危险原则
+    chars.殷折.状态 = 照见墓葬危险
+    world.离公墓志残片.状态 = 危险原则照出
+
+  pov: chars.殷折
+  location: world.殇阳关梦境
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.大墓真相线, threads.九州野史线, threads.封陵旧史线 }
+  reveals: world.嬴无翳墓葬危险原则
+  mentions: { world.离公墓志残片, world.嬴无翳墓葬危险原则, world.端朝 }
+  render_hint: "危险来自旧史动摇正统，不来自可夺取的奇珍。"
+}
+
+beat 群名避开改史 @ structure.vol01.ch27 {
+  effect:
+    world.殇阳关战牍.状态 = 未改败局
+    world.无名战牍残页.状态 = 避开改史续名
+    chars.殷折.状态 = 避开改史诱惑
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.摸金门规线, threads.九州野史线 }
+  reveals: world.梦境挽回边界
+  mentions: { world.无名战牍残页, world.殇阳关战牍, world.梦境挽回边界 }
+  render_hint: "群名继续推进，但必须明确没有改变突围和失守。"
+}

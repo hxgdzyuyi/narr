@@ -1,0 +1,84 @@
+namespace 九州别记.structure.vol1_ch49
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 霸刀遗名压回断铭 @ structure.vol01.ch49 {
+  effect:
+    chars.殷折.位置 = world.疑似离公墓域
+    chars.殷折.状态 = 断铭前停手
+    world.霸刀遗名.状态 = 指向嬴无翳
+    world.霸刀断铭.状态 = 墓主临界
+
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.洛衡 }
+  advances: { threads.大墓真相线, threads.摸金门规线 }
+  reveals: world.嬴无翳善兵
+  mentions: { world.霸刀遗名, world.霸刀断铭, world.嬴无翳善兵 }
+  render_hint: "遗名压回断铭时要写成危险逼近，不写成传奇名物现世。"
+}
+
+beat 战牍与残片逼近名讳 @ structure.vol01.ch49 {
+  effect:
+    world.殇阳关战牍.状态 = 墓主名待宣
+    world.离公墓志残片.状态 = 名讳将显
+    world.无名战牍残页.状态 = 名讳回潮
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚 }
+  advances: { threads.殇阳梦境线, threads.九州野史线, threads.大墓真相线 }
+  mentions: { world.殇阳关战牍, world.离公墓志残片, world.无名战牍残页 }
+  render_hint: "名讳逼近但不落定，形成第五十章前的临界压力。"
+}
+
+beat 殷折按门规停手 @ structure.vol01.ch49 {
+  effect:
+    chars.殷折.状态 = 按门规停手
+    chars.殷折.arc_state = 守规承危
+    world.殷门罗盘.状态 = 停手示警
+
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.洛衡, chars.牧云镜 }
+  advances: { threads.摸金门规线, threads.大墓真相线 }
+  mentions: { world.殷门罗盘, world.摸金殷门, world.疑似离公墓域 }
+  render_hint: "殷折停手不是逃避答案，而是确认前最后一次把活人放在证据前面。"
+}
+
+beat 牧云镜拒作献捷章 @ structure.vol01.ch49 {
+  effect:
+    chars.牧云镜.状态 = 拒作献捷章
+    chars.牧云镜.相信 += "墓主名一旦写成捷报，就会变成端朝争权之物"
+    world.端朝.状态 = 正统疑动
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.穆如砚, chars.殷折 }
+  advances: { threads.端朝皇权线, threads.九州野史线 }
+  mentions: { world.端朝, world.端末东西分裂, world.中州天启中心性 }
+  render_hint: "牧云镜拒写捷报，让确认前夜转向正统叙事危机。"
+}
+
+beat 墓域回声逼近确认 @ structure.vol01.ch49 {
+  effect:
+    world.嬴无翳.状态 = 墓主临界
+    world.疑似离公墓域.状态 = 确认前压迫
+    world.十二主星盘.状态 = 临界回响
+
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.牧云镜 }
+  advances: { threads.辰月暗流线, threads.大墓真相线, threads.殇阳梦境线 }
+  mentions: { world.嬴无翳, world.疑似离公墓域, world.十二主星盘 }
+  render_hint: "章末只到临界，确保第五十章的确认仍有结构重量。"
+}

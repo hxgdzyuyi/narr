@@ -1,0 +1,86 @@
+namespace 九州别记.structure.vol1_ch26
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 败局边缘再开 @ structure.vol01.ch26 {
+  effect:
+    world.梦中殇阳雨阵.状态 = 败局边缘再开
+    chars.殷折.状态 = 被推向败局边缘
+    world.殇阳关梦境.状态 = 败局边缘显形
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.九州野史线 }
+  reveals: world.殇阳关战役事实
+  mentions: { world.梦中殇阳雨阵, world.殇阳关战役事实, world.嬴无翳 }
+  render_hint: "败局边缘要让读者感到战史压力重新压身。"
+}
+
+beat 殷折听见突围军令 @ structure.vol01.ch26 {
+  effect:
+    chars.殷折.知道 += world.嬴无翳用人与军政
+    chars.殷折.状态 = 听见突围军令
+    world.离国铁骑.状态 = 突围军令在梦中回响
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.九州野史线, threads.大墓真相线 }
+  reveals: world.嬴无翳用人与军政
+  mentions: { world.离国铁骑, world.嬴无翳用人与军政, world.殇阳关战役事实 }
+  render_hint: "军令要表现嬴无翳的军政压力，而不是给殷折改命机会。"
+}
+
+beat 墓主因果压回营门 @ structure.vol01.ch26 {
+  effect:
+    world.嬴无翳.状态 = 突围因果压身
+    chars.殷折.状态 = 被因果压回
+    chars.殷折.知道 += world.化身墓主规则
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.大墓真相线, threads.殇阳梦境线 }
+  reveals: world.化身墓主规则
+  mentions: { world.嬴无翳, world.化身墓主规则, world.梦境挽回边界 }
+  render_hint: "因果压回要写成身体和历史共同作用，不是单纯心理放弃。"
+}
+
+beat 无名战牍补成第二列 @ structure.vol01.ch26 {
+  effect:
+    world.无名战牍残页.状态 = 群名两列
+    world.殇阳关战牍.状态 = 第二列初成
+    chars.殷折.状态 = 补成第二列
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.九州野史线 }
+  mentions: { world.无名战牍残页, world.殇阳关战牍, world.墓主遗憾核心 }
+  render_hint: "第二列要来自前面反污和点名，不要凭空成形。"
+}
+
+beat 殷折承认只补名 @ structure.vol01.ch26 {
+  effect:
+    chars.殷折.状态 = 承认只补名
+    chars.殷折.知道 += world.梦境挽回边界
+    world.梦中殇阳雨阵.状态 = 败局仍不可改
+
+  pov: chars.殷折
+  location: world.梦中殇阳雨阵
+  on_screen: true
+  observers: { chars.殷折 }
+  advances: { threads.殇阳梦境线, threads.摸金门规线, threads.九州野史线 }
+  reveals: { world.墓主遗憾核心, world.梦境挽回边界 }
+  mentions: { world.梦境挽回边界, world.墓主遗憾核心, world.殇阳关战役事实 }
+  render_hint: "章末让殷折主动收束目标，不再把补名误认为救胜负。"
+}

@@ -1,0 +1,93 @@
+namespace 九州别记.structure.vol1_ch33
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 众人退入星文回廊 @ structure.vol01.ch33 {
+  effect:
+    chars.殷折.位置 = world.星文回廊
+    chars.牧云镜.位置 = world.星文回廊
+    chars.穆如砚.位置 = world.星文回廊
+    chars.苏离灯.位置 = world.星文回廊
+    chars.洛衡.位置 = world.星文回廊
+    world.星文回廊.状态 = 带证退入
+
+  pov: chars.苏离灯
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折, chars.牧云镜, chars.洛衡 }
+  advances: { threads.误入地宫线, threads.天驱旧誓线 }
+  mentions: { world.星文回廊, world.旧鹰扳指, world.离公墓志残片 }
+  render_hint: "退入回廊不是逃进安全区，而是带着证物进入另一层围困。"
+}
+
+beat 闻人借星封路 @ structure.vol01.ch33 {
+  effect:
+    chars.闻人观星.位置 = world.辰月星坛
+    chars.闻人观星.状态 = 远控封路
+    world.十二主星盘.状态 = 封路推演
+    world.星文回廊.状态 = 辰月封路
+    world.雷碧城星术残简.状态 = 封路照残
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  advances: { threads.辰月暗流线, threads.殇阳梦境线, threads.大墓真相线 }
+  reveals: world.星文观测原则
+  mentions: { world.十二主星盘, world.辰月星坛, world.雷碧城星术残简 }
+  render_hint: "闻人以星封路要表现为推演与误导，不能写成隔空全知。"
+}
+
+beat 苏离灯断开旧誓回路 @ structure.vol01.ch33 {
+  effect:
+    chars.苏离灯.状态 = 断开旧誓回路
+    chars.苏离灯.知道 += world.天驱护陵旧誓
+    world.旧鹰扳指.状态 = 断开污染
+    world.星文回廊.状态 = 旧誓分路
+
+  pov: chars.苏离灯
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折, chars.牧云镜 }
+  advances: { threads.天驱旧誓线, threads.辰月暗流线 }
+  reveals: world.天驱护陵旧誓
+  mentions: { world.旧鹰扳指, world.天驱旧盟, world.星文回廊 }
+  render_hint: "苏离灯要把旧誓和辰月星术拆开辨，不把二者混成一个神秘机关。"
+}
+
+beat 洛衡改扣开偏门 @ structure.vol01.ch33 {
+  effect:
+    chars.洛衡.状态 = 改扣开偏门
+    chars.洛衡.arc_state = 利己到护队
+    world.星文回廊.状态 = 偏门开出
+    world.河络地火锥.状态 = 借作开扣
+
+  pov: chars.洛衡
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.洛衡, chars.殷折, chars.苏离灯 }
+  advances: { threads.误入地宫线, threads.摸金门规线 }
+  mentions: { world.星文回廊, world.河络地火锥, world.河络地火工艺 }
+  render_hint: "洛衡的开路要靠机关判断，不靠破解星术本身。"
+}
+
+beat 星文回廊留证不留人 @ structure.vol01.ch33 {
+  effect:
+    chars.殷折.位置 = world.地下铁誓厅
+    chars.牧云镜.位置 = world.地下铁誓厅
+    chars.穆如砚.位置 = world.地下铁誓厅
+    chars.苏离灯.位置 = world.地下铁誓厅
+    world.星文回廊.状态 = 封锁失效
+    world.雷碧城星术残简.状态 = 留痕待辨
+
+  pov: chars.殷折
+  location: world.星文回廊
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.穆如砚, chars.苏离灯 }
+  advances: { threads.误入地宫线, threads.大墓真相线, threads.辰月暗流线 }
+  mentions: { world.星文回廊, world.雷碧城星术残简, world.地下铁誓厅 }
+  render_hint: "回廊封锁失效后要留下可辨星痕，避免把证据全部化成逃亡动作。"
+}

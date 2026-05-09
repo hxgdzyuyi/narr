@@ -1,0 +1,86 @@
+namespace 九州别记.structure.vol1_ch80
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 雪驿清点活人 @ structure.vol01.ch80 {
+  effect:
+    chars.殷折.位置 = world.雪炽原旧驿
+    chars.苏离灯.位置 = world.雪炽原旧驿
+    chars.洛衡.位置 = world.雪炽原旧驿
+    chars.殷折.状态 = 清点活人
+
+  pov: chars.殷折
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.洛衡, chars.牧云镜 }
+  advances: { threads.误入地宫线, threads.摸金门规线 }
+  mentions: { world.雪炽原旧驿, world.边地求援事实, world.殷门祖辈传承 }
+  render_hint: "终章第一拍先清点活人，把本卷价值落在护民和出地。"
+}
+
+beat 三证不入密库 @ structure.vol01.ch80 {
+  effect:
+    world.离公墓志残片.状态 = 留史不夺
+    world.殇阳关战牍.状态 = 野史副证
+    world.雷碧城星术残简.状态 = 封存副证
+
+  pov: chars.牧云镜
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚 }
+  advances: { threads.九州野史线, threads.端朝皇权线 }
+  mentions: { world.离公墓志残片, world.殇阳关战牍, world.雷碧城星术残简 }
+  render_hint: "三证不入密库要清楚写成可追野史，而不是失控散佚。"
+}
+
+beat 墓主归史不归权 @ structure.vol01.ch80 {
+  effect:
+    world.嬴无翳.状态 = 墓主归史
+    world.疑似封陵.状态 = 封存见证
+    chars.殷折.知道 += world.嬴无翳墓主定位
+
+  pov: chars.殷折
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.苏离灯 }
+  resolves: threads.大墓真相线
+  advances: threads.九州野史线
+  mentions: { world.嬴无翳, world.疑似封陵, world.嬴无翳墓葬危险原则 }
+  render_hint: "墓主归史不归权要直接回应皇权和辰月都不能独占此名。"
+}
+
+beat 殷折写下别记 @ structure.vol01.ch80 {
+  effect:
+    chars.殷折.arc_state = 守门写史
+    chars.殷折.相信 += "野史只为留证，不为夺权。"
+    world.嬴无翳.状态 = 墓主归史
+
+  pov: chars.殷折
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜 }
+  resolves: threads.九州野史线
+  mentions: { world.九州别记朝代用法, world.嬴无翳, world.离公墓志残片 }
+  render_hint: "殷折写别记是角色弧收束，语气要克制，不写成夺得真相后的宣言。"
+}
+
+beat 雪封入口留证 @ structure.vol01.ch80 {
+  effect:
+    world.疑似封陵.状态 = 封存见证
+    world.无名旧道.状态 = 封门归静
+    chars.殷折.位置 = world.雪炽原旧驿
+    world.辰月暗宗.状态 = 星局受挫
+
+  pov: chars.殷折
+  location: world.雪炽原旧驿
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.牧云镜, chars.穆如砚 }
+  resolves: { threads.误入地宫线, threads.大墓真相线, threads.九州野史线 }
+  advances: threads.封陵旧史线
+  mentions: { world.无名旧道, world.疑似封陵, world.雪炽原 }
+  render_hint: "最后一拍要给出封存见证而非彻底抹除，留下后续可追证据。"
+}

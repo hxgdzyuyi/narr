@@ -1,0 +1,96 @@
+namespace 九州别记.structure.vol1_ch04
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 殷折量门听土 @ structure.vol01.ch04 {
+  effect:
+    chars.殷折.位置 = world.无名旧道
+    chars.洛衡.位置 = world.无名旧道
+    chars.苏离灯.位置 = world.无名旧道
+    chars.硕风照夜.位置 = world.无名旧道
+    chars.丁缺金.位置 = world.无名旧道
+    chars.殷折.状态 = 量门听土
+    chars.殷折.知道 += world.旧道异常事实
+    world.殷门罗盘.状态 = 压针偏南
+
+  pov: chars.殷折
+  location: world.无名旧道
+  on_screen: true
+  observers: { chars.殷折, chars.洛衡, chars.苏离灯, chars.硕风照夜, chars.丁缺金 }
+  sets_up: promises.石门身份伏笔
+  advances: { threads.误入地宫线, threads.摸金门规线 }
+  reveals: world.旧道异常事实
+  mentions: { world.无名旧道, world.疑似封陵, world.殷门罗盘 }
+  render_hint: "殷折先按门规量土听风，不急着把石门写成宝门。"
+}
+
+beat 洛衡识出外城活扣 @ structure.vol01.ch04 {
+  effect:
+    chars.洛衡.状态 = 识出外城活扣
+    chars.洛衡.知道 += world.封陵外城存在
+    world.封陵外城.状态 = 外门可启
+
+  pov: chars.洛衡
+  location: world.无名旧道
+  on_screen: true
+  observers: { chars.洛衡, chars.殷折, chars.苏离灯 }
+  advances: { threads.大墓真相线, threads.封陵旧史线 }
+  reveals: world.封陵外城存在
+  mentions: { world.封陵外城, world.河络机关残页 }
+  render_hint: "洛衡只能从活扣、承重和封泥判断外城存在，不能直接判断墓主。"
+}
+
+beat 苏离灯鹰戒灼热 @ structure.vol01.ch04 {
+  effect:
+    chars.苏离灯.状态 = 旧誓警觉
+    chars.苏离灯.知道 += world.天驱护陵旧誓
+    world.旧鹰扳指.状态 = 灼热示警
+
+  pov: chars.苏离灯
+  location: world.无名旧道
+  on_screen: true
+  observers: { chars.苏离灯, chars.殷折 }
+  sets_up: promises.天驱扳指伏笔
+  advances: threads.天驱旧誓线
+  mentions: { world.旧鹰扳指, world.天驱旧盟, world.疑似封陵 }
+  render_hint: "扳指只警示旧誓被触动，不解释铁誓厅。"
+}
+
+beat 众人开入外城 @ structure.vol01.ch04 {
+  effect:
+    chars.殷折.位置 = world.封陵外城
+    chars.洛衡.位置 = world.封陵外城
+    chars.苏离灯.位置 = world.封陵外城
+    chars.硕风照夜.位置 = world.封陵外城
+    chars.丁缺金.位置 = world.封陵外城
+    world.封陵外城.状态 = 外门开启
+    world.疑似封陵.状态 = 外城初启
+
+  pov: chars.殷折
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.殷折, chars.洛衡, chars.苏离灯, chars.硕风照夜, chars.丁缺金 }
+  advances: { threads.误入地宫线, threads.大墓真相线, threads.封陵旧史线 }
+  mentions: { world.封陵外城, world.疑似封陵 }
+  render_hint: "外城打开时要有危险感和旧制感，不写成寻宝成功。"
+}
+
+beat 丁缺金暗记退路 @ structure.vol01.ch04 {
+  effect:
+    chars.丁缺金.状态 = 伪装同道
+    chars.丁缺金.知道 += world.封陵外城存在
+    chars.丁缺金.关系 += "暗记封陵外城退路"
+
+  pov: chars.丁缺金
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.丁缺金 }
+  sets_up: promises.丁缺金背叛伏笔
+  advances: { threads.摸金门规线, threads.辰月暗流线 }
+  mentions: { world.封陵外城, world.辰月暗宗 }
+  render_hint: "丁缺金的动作只能让读者不安，不要在本章摊牌。"
+}

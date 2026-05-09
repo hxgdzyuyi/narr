@@ -1,0 +1,94 @@
+namespace 九州别记.structure.vol1_ch11
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 残片压动火道 @ structure.vol01.ch11 {
+  effect:
+    chars.殷折.位置 = world.河络地火机坊
+    chars.洛衡.位置 = world.河络地火机坊
+    chars.牧云镜.位置 = world.河络地火机坊
+    chars.穆如砚.位置 = world.河络地火机坊
+    world.墓志石室.状态 = 后壁塌开
+    world.河络地火机坊.状态 = 火道露出
+    world.离公墓志残片.状态 = 压动火道
+
+  pov: chars.洛衡
+  location: world.河络地火机坊
+  on_screen: true
+  observers: { chars.洛衡, chars.殷折, chars.牧云镜, chars.穆如砚 }
+  advances: { threads.误入地宫线, threads.大墓真相线 }
+  mentions: { world.河络地火机坊, world.离公墓志残片, world.墓志石室 }
+  render_hint: "残片触动的是后世火道机关，不要写成残片直接打开主墓。"
+}
+
+beat 洛衡辨出地火旧工 @ structure.vol01.ch11 {
+  effect:
+    chars.洛衡.状态 = 辨出地火旧工
+    chars.洛衡.知道 += world.河络机坊封死事实
+    chars.洛衡.知道 += world.河络地火工艺
+    world.河络地火机坊.状态 = 火道复醒
+    world.河络地火锥.状态 = 露出冷锥
+
+  pov: chars.洛衡
+  location: world.河络地火机坊
+  on_screen: true
+  observers: { chars.洛衡, chars.殷折 }
+  advances: { threads.大墓真相线, threads.封陵旧史线 }
+  reveals: world.河络机坊封死事实
+  mentions: { world.河络匠盟, world.河络地火锥 }
+  render_hint: "洛衡从火候、承重和封死痕迹判断这是重封工程。"
+}
+
+beat 牧云烬封门逼供 @ structure.vol01.ch11 {
+  effect:
+    chars.牧云烬.位置 = world.河络地火机坊
+    chars.牧云烬.状态 = 封机坊逼供
+    chars.牧云烬.关系 += "以封口命令逼殷折交出残片"
+    world.离公墓志残片.状态 = 再被官府争夺
+
+  pov: chars.牧云烬
+  location: world.河络地火机坊
+  on_screen: true
+  observers: { chars.牧云烬, chars.殷折, chars.牧云镜, chars.穆如砚 }
+  advances: { threads.端朝皇权线, threads.穆如军门线 }
+  mentions: { world.端朝掩史司, world.离公墓志残片, world.河络地火机坊 }
+  render_hint: "牧云烬要用封门夺回解释权，政治压力继续压在地下。"
+}
+
+beat 殷折以罗盘定承重 @ structure.vol01.ch11 {
+  effect:
+    chars.殷折.状态 = 定火道承重
+    chars.殷折.知道 += world.殷氏罗盘旧训
+    chars.殷折.关系 += "阻止众人抢夺火道证物"
+    world.殷门罗盘.状态 = 指向地火承重
+
+  pov: chars.殷折
+  location: world.河络地火机坊
+  on_screen: true
+  observers: { chars.殷折, chars.洛衡, chars.牧云烬 }
+  advances: { threads.摸金门规线, threads.误入地宫线 }
+  mentions: { world.殷门罗盘, world.河络地火机坊 }
+  render_hint: "殷折用罗盘保命和定承重，不把火道当作取宝路径。"
+}
+
+beat 冷锥破封留路 @ structure.vol01.ch11 {
+  effect:
+    world.河络地火锥.状态 = 冷锥出匣
+    world.疑似封陵.状态 = 多族重封初证
+    chars.洛衡.状态 = 破封留路
+    chars.殷折.位置 = world.河络地火机坊
+    chars.洛衡.位置 = world.河络地火机坊
+
+  pov: chars.洛衡
+  location: world.河络地火机坊
+  on_screen: true
+  observers: { chars.洛衡, chars.殷折, chars.牧云镜 }
+  sets_up: promises.多族重封伏笔
+  advances: { threads.大墓真相线, threads.封陵旧史线, threads.摸金门规线 }
+  mentions: { world.河络地火锥, world.疑似封陵 }
+  render_hint: "破封的目的只是留出活路，并把多代重封问题推到下一层。"
+}

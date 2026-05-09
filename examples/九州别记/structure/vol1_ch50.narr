@@ -1,0 +1,92 @@
+namespace 九州别记.structure.vol1_ch50
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 四证最后互锁 @ structure.vol01.ch50 {
+  effect:
+    chars.殷折.位置 = world.疑似离公墓域
+    chars.牧云镜.位置 = world.疑似离公墓域
+    world.霸刀断铭.状态 = 四证最后互锁
+    world.离国马具残饰.状态 = 陪证完成
+    world.殇阳关战牍.状态 = 墓主证链完成
+    world.离公墓志残片.状态 = 墓主名落
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚, chars.苏离灯, chars.洛衡 }
+  advances: { threads.大墓真相线, threads.九州野史线, threads.封陵旧史线 }
+  mentions: { world.霸刀断铭, world.离国马具残饰, world.殇阳关战牍, world.离公墓志残片 }
+  render_hint: "四证互锁要像不可回避的结论，不像成功解谜后的奖励。"
+}
+
+beat 嬴无翳墓主名落定 @ structure.vol01.ch50 {
+  effect:
+    world.嬴无翳.状态 = 墓主确认
+    world.疑似离公墓域.状态 = 嬴无翳墓域
+    world.霸刀断铭.状态 = 墓主证成
+    chars.牧云镜.知道 += world.嬴无翳墓主定位
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚, chars.苏离灯 }
+  advances: { threads.大墓真相线, threads.九州野史线 }
+  reveals: world.嬴无翳墓主定位
+  mentions: { world.嬴无翳, world.嬴无翳墓主定位, world.霸刀断铭 }
+  render_hint: "墓主名落定后，场面要先安静下来，让所有人意识到后果。"
+}
+
+beat 殷折拒把确认当胜利 @ structure.vol01.ch50 {
+  effect:
+    chars.殷折.状态 = 拒把确认当胜利
+    chars.殷折.相信 += "确认墓主不是赢，是把所有活人推到更危险的位置"
+    world.疑似封陵.状态 = 墓主确认
+
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.洛衡, chars.牧云镜 }
+  advances: { threads.摸金门规线, threads.大墓真相线 }
+  mentions: { world.疑似封陵, world.嬴无翳墓主定位, world.摸金殷门 }
+  render_hint: "殷折要明确拒绝庆祝式确认，把章调性压回生存和责任。"
+}
+
+beat 牧云镜看见正统危机 @ structure.vol01.ch50 {
+  effect:
+    chars.牧云镜.状态 = 看见正统危机
+    chars.牧云镜.知道 += world.嬴无翳墓葬危险原则
+    world.端朝.状态 = 正统危机加重
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.穆如砚, chars.殷折 }
+  advances: { threads.端朝皇权线, threads.封陵旧史线, threads.九州野史线 }
+  reveals: world.嬴无翳墓葬危险原则
+  mentions: { world.嬴无翳墓葬危险原则, world.端朝, world.燮朝, world.离国 }
+  render_hint: "危险原则要写清楚：不是宝物招祸，而是旧史会撬动端朝正统。"
+}
+
+beat 大墓确认后门规加重 @ structure.vol01.ch50 {
+  effect:
+    world.嬴无翳.状态 = 墓主确认
+    world.疑似封陵.状态 = 墓主确认
+    world.疑似离公墓域.状态 = 嬴无翳墓域
+    world.霸刀断铭.状态 = 墓主证成
+    chars.殷折.状态 = 确认后守规
+    chars.殷折.知道 += world.嬴无翳墓葬危险原则
+
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.苏离灯, chars.穆如砚, chars.洛衡 }
+  advances: { threads.大墓真相线, threads.摸金门规线, threads.辰月暗流线 }
+  reveals: { world.嬴无翳墓主定位, world.嬴无翳墓葬危险原则 }
+  mentions: { world.嬴无翳, world.疑似封陵, world.疑似离公墓域, world.霸刀断铭 }
+  render_hint: "最后一拍锁定用户指定状态，并把下一段危险留在门规和正统危机上。"
+}

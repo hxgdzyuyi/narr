@@ -1,0 +1,83 @@
+namespace 九州别记.structure.vol1_ch45
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 石门纹路回读 @ structure.vol01.ch45 {
+  effect:
+    chars.殷折.位置 = world.封陵外城
+    chars.殷折.状态 = 回读石门纹路
+    world.封陵外城.状态 = 墓门纹路回读
+
+  pov: chars.殷折
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.殷折, chars.洛衡, chars.牧云镜 }
+  advances: { threads.误入地宫线, threads.大墓真相线 }
+  mentions: { world.封陵外城, world.封陵外城存在, world.殷门罗盘 }
+  render_hint: "把第三章以来的石门重新读一遍，让早期疑问自然回收。"
+}
+
+beat 外城封门归位 @ structure.vol01.ch45 {
+  effect:
+    chars.洛衡.位置 = world.封陵外城
+    chars.洛衡.状态 = 归位外城封门
+    world.封陵外城.状态 = 离公墓门外城
+
+  pov: chars.洛衡
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.洛衡, chars.殷折, chars.穆如砚 }
+  advances: { threads.封陵旧史线, threads.大墓真相线 }
+  mentions: { world.封陵外城, world.燮朝封陵残证, world.洛氏机关残学 }
+  render_hint: "归位的是墓门结构，不是打开主墓的捷径。"
+}
+
+beat 殷折确认不是宝门 @ structure.vol01.ch45 {
+  effect:
+    chars.殷折.状态 = 确认不是宝门
+    chars.殷折.相信 += "石门身份越清楚，越不能把墓域当宝地"
+    world.殷门罗盘.状态 = 认出墓门气
+
+  pov: chars.殷折
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.殷折, chars.苏离灯, chars.洛衡 }
+  advances: { threads.摸金门规线, threads.误入地宫线 }
+  mentions: { world.殷门罗盘, world.疑似封陵, world.摸金殷门 }
+  render_hint: "这一拍明确反寻宝：知道门是什么，只会让他们更谨慎。"
+}
+
+beat 牧云镜改称离公墓门 @ structure.vol01.ch45 {
+  effect:
+    chars.牧云镜.状态 = 改称离公墓门
+    chars.牧云镜.知道 += world.嬴无翳为离公
+    world.疑似离公墓域.状态 = 离公墓域待证
+
+  pov: chars.牧云镜
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚 }
+  advances: { threads.九州野史线, threads.端朝皇权线, threads.大墓真相线 }
+  mentions: { world.嬴无翳为离公, world.疑似离公墓域, world.牧云掩史旧档 }
+  render_hint: "她只能把石门改称离公墓门，仍不准自己写下最终墓主名。"
+}
+
+beat 石门身份伏笔兑现 @ structure.vol01.ch45 {
+  effect:
+    world.疑似封陵.状态 = 石门身份兑现
+    world.封陵外城.状态 = 离公墓门外城
+    chars.殷折.状态 = 石门前守规
+
+  pov: chars.殷折
+  location: world.封陵外城
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.苏离灯, chars.穆如砚 }
+  pays_off: promises.石门身份伏笔
+  advances: { threads.摸金门规线, threads.大墓真相线, threads.封陵旧史线 }
+  mentions: { world.疑似封陵, world.封陵外城, world.嬴无翳 }
+  render_hint: "兑现问题的是石门身份，不是墓主胜利；章末要让门规重量增加。"
+}

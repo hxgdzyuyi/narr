@@ -1,0 +1,83 @@
+namespace 九州别记.structure.vol1_ch44
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 四证同案排布 @ structure.vol01.ch44 {
+  effect:
+    chars.牧云镜.位置 = world.疑似离公墓域
+    chars.牧云镜.状态 = 排布四证
+    world.霸刀断铭.状态 = 四证成链
+    world.离公墓志残片.状态 = 与断铭互证
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚, chars.苏离灯 }
+  advances: { threads.大墓真相线, threads.封陵旧史线 }
+  mentions: { world.霸刀断铭, world.离国马具残饰, world.殇阳关战牍, world.离公墓志残片 }
+  render_hint: "四证成链是推理压力，不是开宝箱的仪式。"
+}
+
+beat 罗盘避开主棺线 @ structure.vol01.ch44 {
+  effect:
+    chars.殷折.状态 = 避开主棺线
+    world.殷门罗盘.状态 = 避开主棺
+    world.疑似离公墓域.状态 = 离公唯一待证
+
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.殷折, chars.洛衡, chars.苏离灯 }
+  advances: { threads.摸金门规线, threads.大墓真相线 }
+  mentions: { world.殷门罗盘, world.疑似离公墓域, world.殷氏罗盘旧训 }
+  render_hint: "罗盘提醒他们避开主棺方向，把确认和生存规则绑定。"
+}
+
+beat 牧云镜提出离公唯一 @ structure.vol01.ch44 {
+  effect:
+    chars.牧云镜.状态 = 提出离公唯一
+    chars.牧云镜.知道 += world.嬴无翳为离公
+    world.殇阳关战牍.状态 = 与墓志互证
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.穆如砚, chars.殷折 }
+  advances: { threads.九州野史线, threads.大墓真相线, threads.端朝皇权线 }
+  reveals: world.嬴无翳为离公
+  mentions: { world.嬴无翳, world.殇阳关战牍, world.离公墓志残片 }
+  render_hint: "她只说离公方向唯一，仍要压住最终墓主名。"
+}
+
+beat 穆如砚意识军门危局 @ structure.vol01.ch44 {
+  effect:
+    chars.穆如砚.状态 = 意识军门危局
+    chars.穆如砚.知道 += world.穆如封陵军令抄本
+    world.穆如旧令抄本.状态 = 待重封互证
+
+  pov: chars.穆如砚
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.穆如砚, chars.牧云镜, chars.殷折 }
+  advances: { threads.穆如军门线, threads.封陵旧史线 }
+  mentions: { world.穆如旧令抄本, world.穆如军门, world.疑似封陵 }
+  render_hint: "穆如砚看到的是军门会被卷入掩史，而不是得到军功。"
+}
+
+beat 星文回廊反噬证链 @ structure.vol01.ch44 {
+  effect:
+    world.雷碧城星术残简.状态 = 反噬证链
+    world.星文回廊.状态 = 证链反噬
+    chars.闻人观星.状态 = 借证链反噬
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  advances: { threads.辰月暗流线, threads.殇阳梦境线, threads.大墓真相线 }
+  mentions: { world.雷碧城星术残简, world.星文回廊, world.十二主星盘 }
+  render_hint: "证据越完整，辰月越能借回路反噬，形成确认前的危险升级。"
+}

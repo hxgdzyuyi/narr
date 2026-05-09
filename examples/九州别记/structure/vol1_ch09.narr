@@ -1,0 +1,84 @@
+namespace 九州别记.structure.vol1_ch09
+
+import 九州别记.structure as structure
+import 九州别记.world as world
+import 九州别记.characters as chars
+import 九州别记.threads as threads
+import 九州别记.promises as promises
+
+beat 兵冢下层沉门 @ structure.vol01.ch09 {
+  effect:
+    chars.殷折.位置 = world.疑似离公墓域
+    chars.牧云镜.位置 = world.疑似离公墓域
+    chars.穆如砚.位置 = world.疑似离公墓域
+    chars.苏离灯.位置 = world.疑似离公墓域
+    world.疑似离公墓域.状态 = 墓域外缘显现
+
+  pov: chars.殷折
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.殷折, chars.牧云镜, chars.穆如砚, chars.苏离灯 }
+  advances: { threads.误入地宫线, threads.大墓真相线 }
+  mentions: { world.赤旅兵冢, world.疑似离公墓域 }
+  render_hint: "沉门打开的是墓域外缘，不是主墓答案。"
+}
+
+beat 无名墓志门闭合 @ structure.vol01.ch09 {
+  effect:
+    world.墓志石室.状态 = 门后有光
+    world.疑似离公墓域.状态 = 无名门闭合
+    chars.牧云镜.状态 = 记录无名门
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚 }
+  advances: { threads.封陵旧史线, threads.九州野史线 }
+  mentions: { world.墓志石室, world.疑似离公墓域 }
+  render_hint: "无名门要让缺名本身成为线索。"
+}
+
+beat 空棺照见缺名 @ structure.vol01.ch09 {
+  effect:
+    chars.牧云镜.知道 += world.空棺无名事实
+    chars.殷折.知道 += world.空棺无名事实
+    world.疑似离公墓域.状态 = 空棺显现
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折, chars.穆如砚, chars.苏离灯 }
+  advances: { threads.大墓真相线, threads.九州野史线 }
+  reveals: world.空棺无名事实
+  mentions: { world.疑似离公墓域, world.墓志石室 }
+  render_hint: "空棺提供遮蔽身份的事实，不提供最终名字。"
+}
+
+beat 牧云镜辨伪史 @ structure.vol01.ch09 {
+  effect:
+    chars.牧云镜.状态 = 辨出伪史缺口
+    chars.牧云镜.相信 += "正史在墓志前被人裁缺"
+    chars.牧云镜.知道 += world.九州别记朝代用法
+
+  pov: chars.牧云镜
+  location: world.疑似离公墓域
+  on_screen: true
+  observers: { chars.牧云镜, chars.殷折 }
+  advances: { threads.端朝皇权线, threads.九州野史线, threads.封陵旧史线 }
+  mentions: { world.端朝, world.燮朝, world.疑似离公墓域 }
+  render_hint: "她能辨出史书被裁缺，但不能凭空补出墓主姓名。"
+}
+
+beat 闻人借缺名挑疑 @ structure.vol01.ch09 {
+  effect:
+    chars.闻人观星.状态 = 借缺名挑疑
+    chars.闻人观星.知道 += world.空棺无名事实
+    world.疑似离公墓域.状态 = 空棺显现
+
+  pov: chars.闻人观星
+  location: world.辰月星坛
+  on_screen: true
+  advances: { threads.辰月暗流线, threads.九州野史线 }
+  mentions: { world.辰月星坛, world.疑似离公墓域 }
+  render_hint: "辰月利用缺名制造互疑，不替读者揭开答案。"
+}
