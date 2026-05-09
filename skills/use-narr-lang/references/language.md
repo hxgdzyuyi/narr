@@ -84,6 +84,29 @@ volume vol01 alias 开端卷 {
 }
 ```
 
+Volume `purpose` 表示大叙事阶段，优先从这些值中选择：
+
+```text
+exposition
+inciting_incident
+conflict
+rising_action
+midpoint
+climax
+falling_action
+denouement
+resolution
+aftermath
+in_media_res
+nonlinear_overview
+setup
+escalation
+reversal
+descent
+revelation
+interlude
+```
+
 Chapter 定义元信息和有序 beats：
 
 ```narr
@@ -97,6 +120,33 @@ chapter vol01.ch01 alias 城门 {
   summary: "..."
   beats: [beats.沈夜抵达城门, beats.火印异常]
 }
+```
+
+Chapter `purpose` 表示更细的章节叙事功能，优先从这些值中选择：
+
+```text
+intro_characters
+setup_conflict
+escalate_conflict
+reversal
+foreshadow
+flashback
+flashforward
+reveal_secret
+turning_point
+resolution_minor
+transition
+epilogue_segment
+entry
+encounter
+discovery
+conflict
+choice
+aftermath
+reveal
+interlude
+climax
+quiet
 ```
 
 顶层 beat 必须锚定到 chapter，并出现在该 chapter 的 `beats` 列表中：

@@ -33,6 +33,52 @@ const (
 	shapeHidden       fieldShape = "hidden_rule"
 )
 
+var volumePurposeValues = valueSet(
+	"setup",
+	"escalation",
+	"reversal",
+	"descent",
+	"revelation",
+	"resolution",
+	"interlude",
+	"aftermath",
+	"exposition",
+	"inciting_incident",
+	"conflict",
+	"rising_action",
+	"midpoint",
+	"climax",
+	"falling_action",
+	"denouement",
+	"in_media_res",
+	"nonlinear_overview",
+)
+
+var chapterPurposeValues = valueSet(
+	"entry",
+	"encounter",
+	"discovery",
+	"conflict",
+	"choice",
+	"reversal",
+	"aftermath",
+	"reveal",
+	"transition",
+	"interlude",
+	"climax",
+	"quiet",
+	"intro_characters",
+	"setup_conflict",
+	"escalate_conflict",
+	"foreshadow",
+	"flashback",
+	"flashforward",
+	"reveal_secret",
+	"turning_point",
+	"resolution_minor",
+	"epilogue_segment",
+)
+
 func (c *Checker) checkSchemas() {
 	for _, file := range c.files {
 		if file == nil || file.Mode != ast.ModeNarr {
@@ -194,7 +240,7 @@ func declFieldSpecs(kind ast.DeclKind) (map[string]fieldSpec, bool) {
 	case ast.DeclVolume:
 		return map[string]fieldSpec{
 			"title":           {shape: shapeString},
-			"purpose":         {shape: shapeIdentifier, values: valueSet("setup", "escalation", "reversal", "descent", "revelation", "resolution", "interlude", "aftermath")},
+			"purpose":         {shape: shapeIdentifier, values: volumePurposeValues},
 			"summary":         {shape: shapeText},
 			"target_chapters": {shape: shapeInteger},
 			"target_length":   {shape: shapeLength},
@@ -202,7 +248,7 @@ func declFieldSpecs(kind ast.DeclKind) (map[string]fieldSpec, bool) {
 	case ast.DeclChapter:
 		return map[string]fieldSpec{
 			"title":         {shape: shapeString},
-			"purpose":       {shape: shapeIdentifier, values: valueSet("entry", "encounter", "discovery", "conflict", "choice", "reversal", "aftermath", "reveal", "transition", "interlude", "climax", "quiet")},
+			"purpose":       {shape: shapeIdentifier, values: chapterPurposeValues},
 			"start_pattern": {shape: shapeRef},
 			"summary":       {shape: shapeText},
 			"target_length": {shape: shapeLength},

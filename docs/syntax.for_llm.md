@@ -74,7 +74,7 @@ novel 长夜之城 {
 ```narr
 volume vol01 alias 开端卷 {
   title: "..."
-  purpose: setup     // setup|escalation|reversal|descent|revelation|resolution|interlude|aftermath
+  purpose: setup     // exposition|inciting_incident|conflict|rising_action|midpoint|climax|falling_action|denouement|resolution|aftermath|in_media_res|nonlinear_overview|setup|escalation|reversal|descent|revelation|interlude
   summary: "..."
   target_chapters: 80
 }
@@ -85,7 +85,7 @@ volume vol01 alias 开端卷 {
 ```narr
 chapter vol01.ch01 alias 城门 {
   title: "城门"
-  purpose: entry     // entry|encounter|discovery|conflict|choice|reversal|aftermath|reveal|transition|interlude|climax|quiet
+  purpose: entry     // intro_characters|setup_conflict|escalate_conflict|reversal|foreshadow|flashback|flashforward|reveal_secret|turning_point|resolution_minor|transition|epilogue_segment|entry|encounter|discovery|conflict|choice|aftermath|reveal|interlude|climax|quiet
   start_pattern: 流亡者入城
   pov: chars.沈夜
   location: world.王都南门

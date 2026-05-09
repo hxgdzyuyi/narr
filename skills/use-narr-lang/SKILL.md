@@ -43,9 +43,10 @@ description: 当用户需要在 Narr 项目内创建、修改、解释或审查 
 
 1. 定位目标 namespace 和需要 import 的命名空间。
 2. 只使用文档中的顶层声明：`novel`、`volume`、`chapter`、`beat`、`promise`、`thread`、`arc`、`invariant`、实体等。
-3. 让 chapter 持有 `beats: [...]` 顺序；顶层 beat 必须 `@` 到所属 chapter。
-4. 用显式字段和 `effect` 表达结构关系，不依赖散文语义猜测。
-5. 修改后建议运行 `narrc lint --project <project-dir>`。
+3. 选择 `volume.purpose` / `chapter.purpose` 时，按 `references/language.md` 中卷级大叙事阶段和章级叙事功能的合法值填写。
+4. 让 chapter 持有 `beats: [...]` 顺序；顶层 beat 必须 `@` 到所属 chapter。
+5. 用显式字段和 `effect` 表达结构关系，不依赖散文语义猜测。
+6. 修改后建议运行 `narrc lint --project <project-dir>`。
 
 ## `.test.narr` 工作流
 

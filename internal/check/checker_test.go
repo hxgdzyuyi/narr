@@ -165,6 +165,68 @@ volume vol01 {
 	}
 }
 
+func TestCheckSchemaAcceptsExpandedPurposeValues(t *testing.T) {
+	volumePurposes := []string{
+		"exposition",
+		"inciting_incident",
+		"conflict",
+		"rising_action",
+		"midpoint",
+		"climax",
+		"falling_action",
+		"denouement",
+		"resolution",
+		"aftermath",
+		"in_media_res",
+		"nonlinear_overview",
+	}
+	for _, purpose := range volumePurposes {
+		t.Run("volume "+purpose, func(t *testing.T) {
+			loaded := testProject(t)
+			file := parseNarr(t, "structure.narr", `namespace x.structure
+volume vol01 {
+  purpose: `+purpose+`
+}
+`)
+
+			diagnostics := parseResolveCheck(t, loaded, []*ast.File{file})
+			if source.HasErrors(diagnostics) {
+				t.Fatalf("Check diagnostics:\n%s", diagnosticsText(diagnostics))
+			}
+		})
+	}
+
+	chapterPurposes := []string{
+		"intro_characters",
+		"setup_conflict",
+		"escalate_conflict",
+		"reversal",
+		"foreshadow",
+		"flashback",
+		"flashforward",
+		"reveal_secret",
+		"turning_point",
+		"resolution_minor",
+		"transition",
+		"epilogue_segment",
+	}
+	for _, purpose := range chapterPurposes {
+		t.Run("chapter "+purpose, func(t *testing.T) {
+			loaded := testProject(t)
+			file := parseNarr(t, "structure.narr", `namespace x.structure
+chapter vol01.ch01 {
+  purpose: `+purpose+`
+}
+`)
+
+			diagnostics := parseResolveCheck(t, loaded, []*ast.File{file})
+			if source.HasErrors(diagnostics) {
+				t.Fatalf("Check diagnostics:\n%s", diagnosticsText(diagnostics))
+			}
+		})
+	}
+}
+
 func TestCheckTestSemanticsRejectsNonBoolAssert(t *testing.T) {
 	loaded := testProject(t)
 	file := parseTest(t, "bad.test.narr", `namespace x.tests

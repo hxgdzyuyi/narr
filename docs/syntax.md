@@ -311,14 +311,24 @@ volume_field ::=
 合法 `purpose`：
 
 ```text
+exposition
+inciting_incident
+conflict
+rising_action
+midpoint
+climax
+falling_action
+denouement
+resolution
+aftermath
+in_media_res
+nonlinear_overview
 setup
 escalation
 reversal
 descent
 revelation
-resolution
 interlude
-aftermath
 ```
 
 ---
@@ -344,15 +354,25 @@ chapter_field ::=
 合法 `purpose`：
 
 ```text
+intro_characters
+setup_conflict
+escalate_conflict
+reversal
+foreshadow
+flashback
+flashforward
+reveal_secret
+turning_point
+resolution_minor
+transition
+epilogue_segment
 entry
 encounter
 discovery
 conflict
 choice
-reversal
 aftermath
 reveal
-transition
 interlude
 climax
 quiet
