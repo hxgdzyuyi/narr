@@ -9,6 +9,12 @@ description: 当用户需要在 Narr 项目内创建、修改、解释或审查 
 
 引导用户用 Narr 语言构建小说蓝图和项目设计测试，不要臆造语法。此 skill 内置 `references/syntax.md`，它是从仓库 `docs/syntax.md` 复制的完整语法事实源。
 
+## 强制要求
+
+- 生成或修改 `.narr`、`.test.narr`、`narr.toml` 内容时，必须全程由 LLM 直接生成、推理和编辑。
+- 不得调用 Python、脚本或代码生成工具来批量拼接、模板化生成或改写 Narr 源内容。
+- 工具只能用于读取、搜索、查看 diff、运行 `narrc` 校验或执行用户明确要求的非生成任务。
+
 ## 起手检查
 
 - 先查看当前项目的 `narr.toml`、namespace、import、目录结构和相邻 `.narr` / `.test.narr` 示例。
@@ -22,6 +28,16 @@ description: 当用户需要在 Narr 项目内创建、修改、解释或审查 
 - 写 `.narr`、`narr.toml`、章节、beat、effect、实体和结构声明时，先读 `references/language.md`。
 - 写 `.test.narr`、测试断言、派生视图、叙事谓词或 `narrc query` 表达式时，先读 `references/tests-and-query.md`。
 - 有任何语法边界、字段合法性或完整规则疑问时，读 `references/syntax.md`。
+
+## 章节生成工作流
+
+生成或扩写 chapter 时必须按以下顺序推进：
+
+1. 先充分读取并考虑当前项目已有的 `thread`、`promise`、`arc`、world/entity/faction/place/fact、章节结构、既有 beats、测试约束和相邻章节。
+2. 先生成或更新对应的 `.test.narr`，把本章必须满足的项目特异约束、承诺兑现、thread 推进、world 状态变化和结构边界写成可计算断言。
+3. 再生成或更新 chapter 所在的 `.narr`，包括 chapter 声明、beats 顺序、beat `effect` 和必要引用。
+4. 过程中允许同步新增或修改相关声明，例如新的 `promise`、`thread`、`arc`、实体、world fact、place、faction、invariant 或 import；这些声明必须服务于本章结构，不得孤立堆砌。
+5. 完成后优先运行目标测试，再运行项目 lint。
 
 ## `.narr` 工作流
 
